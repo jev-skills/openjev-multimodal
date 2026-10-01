@@ -7,7 +7,7 @@ description: 四个 Qwen 模型通过兼容 Jev 的 OpenJev Multimodal API 玩�
 
 四个 Qwen 模型通过 `POST /v1/systemone` 玩完整的俄罗斯方块。规则交给代码：列出所有合法走法、模拟结果、按下按键。每一步都由模型选择，**每两个方块只用 1 个输出 token**。
 
-**[在浏览器中试玩 →](https://hand-in.github.io/openjev-multimodal/demos/tetris/web/)** &nbsp; [完整测试报告](https://hand-in.github.io/openjev-multimodal/demos/tetris/report/) · [源码与录制数据](https://github.com/Hand-In/openjev-multimodal/tree/main/examples/tetris)
+**[在浏览器中试玩 →](https://jev-skills.github.io/openjev-multimodal/demos/tetris/web/)** &nbsp; [完整测试报告](https://jev-skills.github.io/openjev-multimodal/demos/tetris/report/) · [源码与录制数据](https://github.com/jev-skills/openjev-multimodal/tree/main/examples/tetris)
 
 | 结果 | 实测 |
 | --- | --- |
@@ -52,7 +52,7 @@ description: 四个 Qwen 模型通过兼容 Jev 的 OpenJev Multimodal API 玩�
 
 </div>
 
-每格 5 个种子，每局 100 个方块。一致率把视觉提示下的决策与参考评估器比较，参考评估器从不参与落子。[全部 60 局 →](https://hand-in.github.io/openjev-multimodal/demos/tetris/report/)
+每格 5 个种子，每局 100 个方块。一致率把视觉提示下的决策与参考评估器比较，参考评估器从不参与落子。[全部 60 局 →](https://jev-skills.github.io/openjev-multimodal/demos/tetris/report/)
 
 ## 没有模型会怎样
 

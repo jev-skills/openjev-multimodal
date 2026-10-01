@@ -4,7 +4,7 @@
 
 [![Qwen3.8-27B 通过 OpenJev Multimodal 玩俄罗斯方块](report/videos/max.jpg)](report/videos/max.mp4)
 
-[测试报告](report/README.zh-CN.md) · [可视化报告](https://hand-in.github.io/openjev-multimodal/demos/tetris/report/) · [在浏览器中试玩](https://hand-in.github.io/openjev-multimodal/demos/tetris/web/) · [English](README.md)
+[测试报告](report/README.zh-CN.md) · [可视化报告](https://jev-skills.github.io/openjev-multimodal/demos/tetris/report/) · [在浏览器中试玩](https://jev-skills.github.io/openjev-multimodal/demos/tetris/web/) · [English](README.md)
 
 ## 运行
 

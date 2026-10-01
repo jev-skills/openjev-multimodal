@@ -59,7 +59,7 @@ def request(method: str, path: str, body: dict | None = None, timeout: float = 1
     except (urllib.error.URLError, TimeoutError) as error:
         sys.exit(
             f"OpenJev is not reachable at {URL} ({error}). Start it from a clone of "
-            "https://github.com/Hand-In/openjev-multimodal with: uv run openjev serve"
+            "https://github.com/jev-skills/openjev-multimodal with: uv run openjev serve"
         )
 
 

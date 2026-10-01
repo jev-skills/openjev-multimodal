@@ -11,7 +11,7 @@ OpenJev Multimodal turns text and images into typed decisions on your Mac. You n
 
 ```bash
 brew install uv llama.cpp
-git clone https://github.com/Hand-In/openjev-multimodal.git
+git clone https://github.com/jev-skills/openjev-multimodal.git
 cd openjev-multimodal
 uv sync --frozen
 uv run openjev serve

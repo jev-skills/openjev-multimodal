@@ -1,6 +1,6 @@
 # Tetris test report
 
-[Visual report](https://hand-in.github.io/openjev-multimodal/demos/tetris/report/) · [Play in the browser](https://hand-in.github.io/openjev-multimodal/demos/tetris/web/) · [How the example works](../README.md) · [中文](README.zh-CN.md)
+[Visual report](https://jev-skills.github.io/openjev-multimodal/demos/tetris/report/) · [Play in the browser](https://jev-skills.github.io/openjev-multimodal/demos/tetris/web/) · [How the example works](../README.md) · [中文](README.zh-CN.md)
 
 Four local Qwen models played Tetris through OpenJev Multimodal. Code lists every legal move and simulates its outcome; the model makes every choice, reading one output token per two pieces. 60 games of 100 pieces, the same five piece sequences for every model, measured 2026-09-21 on an Apple M3 Max.
 

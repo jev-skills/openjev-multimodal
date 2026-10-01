@@ -11,7 +11,7 @@ description: 使用 uv 与 llama.cpp 安装 OpenJev Multimodal，在 Apple Silic
 
 ```bash
 brew install uv llama.cpp
-git clone https://github.com/Hand-In/openjev-multimodal.git
+git clone https://github.com/jev-skills/openjev-multimodal.git
 cd openjev-multimodal
 uv sync --frozen
 uv run openjev serve

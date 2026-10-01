@@ -24,7 +24,7 @@ python3 scripts/openjev.py health               # health plus /v1/limits
 ```
 
 If nothing answers, start it from a clone of
-[Hand-In/openjev-multimodal](https://github.com/Hand-In/openjev-multimodal) on Apple
+[jev-skills/openjev-multimodal](https://github.com/jev-skills/openjev-multimodal) on Apple
 Silicon (`brew install uv llama.cpp`, llama.cpp b9670 or newer):
 
 ```bash
@@ -147,7 +147,7 @@ data and consequences.
 
 ## Worked example
 
-[`examples/tetris`](https://github.com/Hand-In/openjev-multimodal/tree/main/examples/tetris)
+[`examples/tetris`](https://github.com/jev-skills/openjev-multimodal/tree/main/examples/tetris)
 plays Tetris through the API. Code enumerates every two-piece plan, prunes dominated
 ones, and sends one Choice with each plan's keys and measured result plus a lettered
 image of the outcomes; Jev's single token picks the plan. It includes the benchmark

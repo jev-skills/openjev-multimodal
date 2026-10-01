@@ -2,10 +2,10 @@
 
 Publication verified on September 21, 2026. Commit author and committer dates are intentionally October 1, 2026, as requested; they are not the measurement dates.
 
-- Repository: https://github.com/Hand-In/openjev-multimodal
-- English documentation: https://hand-in.github.io/openjev-multimodal/
-- Chinese documentation: https://hand-in.github.io/openjev-multimodal/zh/
-- Benchmark: https://hand-in.github.io/openjev-multimodal/zh/benchmarks
+- Repository: https://github.com/jev-skills/openjev-multimodal
+- English documentation: https://jev-skills.github.io/openjev-multimodal/
+- Chinese documentation: https://jev-skills.github.io/openjev-multimodal/zh/
+- Benchmark: https://jev-skills.github.io/openjev-multimodal/zh/benchmarks
 - Local playground: http://127.0.0.1:8000/playground
 
 ## Evidence

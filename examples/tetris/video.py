@@ -306,7 +306,7 @@ def background(scene: Scene) -> Image.Image:
         "trip; key, drop and clear animations are added."
     )
     text(draw, (40, 694), caption, face("sans", 12), MUTED, "lm")
-    text(draw, (W - 40, 694), "hand-in.github.io/openjev-multimodal", face("mono", 12), MUTED, "rm")
+    text(draw, (W - 40, 694), "jev-skills.github.io/openjev-multimodal", face("mono", 12), MUTED, "rm")
     return image
 
 

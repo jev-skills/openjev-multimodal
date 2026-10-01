@@ -1,10 +1,10 @@
 <p align="center"><img src="assets/social.png" alt="OpenJev Multimodal — See. Decide. Stay local." width="900"></p>
 
 <p align="center">
-  <a href="https://hand-in.github.io/openjev-multimodal/">Documentation</a> ·
-  <a href="https://hand-in.github.io/openjev-multimodal/zh/">中文文档</a> ·
+  <a href="https://jev-skills.github.io/openjev-multimodal/">Documentation</a> ·
+  <a href="https://jev-skills.github.io/openjev-multimodal/zh/">中文文档</a> ·
   <a href="README.zh-CN.md">中文 README</a> ·
-  <a href="https://hand-in.github.io/openjev-multimodal/benchmarks">Benchmarks</a>
+  <a href="https://jev-skills.github.io/openjev-multimodal/benchmarks">Benchmarks</a>
 </p>
 
 # OpenJev Multimodal
@@ -28,7 +28,7 @@ Apple Silicon, Python 3.11+, llama.cpp b9670 or newer with post-sampling probabi
 
 ```bash
 brew install uv llama.cpp
-git clone https://github.com/Hand-In/openjev-multimodal.git
+git clone https://github.com/jev-skills/openjev-multimodal.git
 cd openjev-multimodal
 uv sync --frozen
 uv run openjev serve
@@ -48,7 +48,7 @@ uv run openjev serve --profile quality  # one profile at a time
 uv run openjev doctor
 ```
 
-Quality weights are about 23.3 GB and max weights 17.6 GB, each plus a 0.9 GB projector. For sub-second `max` decisions on a repeated state, build the [patched llama.cpp](https://hand-in.github.io/openjev-multimodal/models#max-qwen3-8-27b) once with `scripts/build-llama.sh`; `serve` then uses it. Slow downloads? `--source modelscope` fetches the same verified files from ModelScope. `--backend` chooses the inference backend: llama.cpp is built in, and [plugin packages](https://hand-in.github.io/openjev-multimodal/design#backends) can add others. Published measurements use an M3 Max with 128 GB memory; smaller-machine minimums were not benchmarked.
+Quality weights are about 23.3 GB and max weights 17.6 GB, each plus a 0.9 GB projector. For sub-second `max` decisions on a repeated state, build the [patched llama.cpp](https://jev-skills.github.io/openjev-multimodal/models#max-qwen3-8-27b) once with `scripts/build-llama.sh`; `serve` then uses it. Slow downloads? `--source modelscope` fetches the same verified files from ModelScope. `--backend` chooses the inference backend: llama.cpp is built in, and [plugin packages](https://jev-skills.github.io/openjev-multimodal/design#backends) can add others. Published measurements use an M3 Max with 128 GB memory; smaller-machine minimums were not benchmarked.
 
 ## A decision is an API call
 
@@ -71,7 +71,7 @@ curl http://127.0.0.1:8000/v1/systemone \
   }'
 ```
 
-Read `answers.team.choice` and `answers.team.probabilities`. Add an `images` array of inline data URLs for vision. Structured JSON state, instructions and criteria are preserved. [Full API →](https://hand-in.github.io/openjev-multimodal/api)
+Read `answers.team.choice` and `answers.team.probabilities`. Add an `images` array of inline data URLs for vision. Structured JSON state, instructions and criteria are preserved. [Full API →](https://jev-skills.github.io/openjev-multimodal/api)
 
 ## Real local responses
 
@@ -81,14 +81,14 @@ A **replay of actual local API responses**, with measured latency. The checkout 
 
 ## Tetris: decisions under time pressure
 
-[![Qwen3.8-27B plays Tetris through OpenJev Multimodal](examples/tetris/report/videos/max.jpg)](https://hand-in.github.io/openjev-multimodal/tetris)
+[![Qwen3.8-27B plays Tetris through OpenJev Multimodal](examples/tetris/report/videos/max.jpg)](https://jev-skills.github.io/openjev-multimodal/tetris)
 
-Four local models play Tetris through the API. Code simulates every legal two-piece plan and presses the keys; **one Choice token picks the plan**. Random picks among the same plans clear 14.3 lines per game. Qwen3.8-27B clears 38.2 and decides in 0.73 s, with the rules cached as an unchanging state. [Demo page](https://hand-in.github.io/openjev-multimodal/tetris) · [Play in the browser](https://hand-in.github.io/openjev-multimodal/demos/tetris/web/) · [Test report](examples/tetris/report/README.md) · [Code](examples/tetris).
+Four local models play Tetris through the API. Code simulates every legal two-piece plan and presses the keys; **one Choice token picks the plan**. Random picks among the same plans clear 14.3 lines per game. Qwen3.8-27B clears 38.2 and decides in 0.73 s, with the rules cached as an unchanging state. [Demo page](https://jev-skills.github.io/openjev-multimodal/tetris) · [Play in the browser](https://jev-skills.github.io/openjev-multimodal/demos/tetris/web/) · [Test report](examples/tetris/report/README.md) · [Code](examples/tetris).
 
 ## Use it from an agent
 
 ```bash
-npx openskills install Hand-In/openjev-multimodal/skills/openjev-multimodal -g -y
+npx openskills install jev-skills/openjev-multimodal/skills/openjev-multimodal -g -y
 ```
 
 The [openjev-multimodal skill](skills/openjev-multimodal) teaches Claude Code, Codex and any `AGENTS.md` agent to start and check the service, design Noul, Choice and Score questions, size images for the vision encoder, and read probabilities and latency. From a clone: `npm run skill:install`.
@@ -101,7 +101,7 @@ The [openjev-multimodal skill](skills/openjev-multimodal) teaches Claude Code, C
 
 Exploratory subset, not a leaderboard result. Wilson intervals show sampling uncertainty. GSM8K uses synthetic numeric distractors; chess measures legal-move selection. A larger run was stopped to limit load; all 886 completed receipts remain archived. The chart selects the first 20 in each task's random order, without score-based filtering.
 
-[Methodology](https://hand-in.github.io/openjev-multimodal/benchmarks) · [Summary + IDs](benchmarks/quality/summary.json) · [All receipts](benchmarks/quality/decisions.jsonl) · [SVG chart](assets/benchmark.svg).
+[Methodology](https://jev-skills.github.io/openjev-multimodal/benchmarks) · [Summary + IDs](benchmarks/quality/summary.json) · [All receipts](benchmarks/quality/decisions.jsonl) · [SVG chart](assets/benchmark.svg).
 
 ```bash
 # Quality server running: small, serial, with rest between calls.
@@ -114,7 +114,7 @@ uv run --group bench python scripts/render_benchmark.py
 
 ## Design and operations
 
-Options map to verified single-token labels. A uniform logit bias brings them into the probability list; normalization cancels the shared bias. Every candidate must be present. The API computes typed answers from the complete distribution. Input prefill, image encoding, model size and cache still determine latency; every response reports its server time. [How it works →](https://hand-in.github.io/openjev-multimodal/design) · [Latency →](https://hand-in.github.io/openjev-multimodal/performance)
+Options map to verified single-token labels. A uniform logit bias brings them into the probability list; normalization cancels the shared bias. Every candidate must be present. The API computes typed answers from the complete distribution. Input prefill, image encoding, model size and cache still determine latency; every response reports its server time. [How it works →](https://jev-skills.github.io/openjev-multimodal/design) · [Latency →](https://jev-skills.github.io/openjev-multimodal/performance)
 
 - Localhost binding by default; `OPENJEV_API_KEY` enables Bearer auth on `/v1/*`.
 - `/health` checks the backend; `/health/live` checks the process; `/v1/limits` exposes limits.

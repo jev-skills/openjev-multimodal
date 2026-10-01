@@ -1,6 +1,6 @@
 # OpenJev Multimodal end-to-end delivery
 
-Build a Jev-compatible local API with image input, real one-token probability readout, English and Chinese SEO documentation and an honest demo. Publish code and the documentation to Hand-In/openjev-multimodal, and verify deployment. All authored commits use 2026-10-01 (America/Los_Angeles).
+Build a Jev-compatible local API with image input, real one-token probability readout, English and Chinese SEO documentation and an honest demo. Publish code and the documentation to jev-skills/openjev-multimodal, and verify deployment. All authored commits use 2026-10-01 (America/Los_Angeles).
 
 Authority: the user requests autonomous end-to-end implementation and publication. The new, empty repository is the isolated project workspace. Work directly on the explicitly requested main branch. Avoid repeated approval gates for already authorized work. No paid services are required.
 

@@ -1,6 +1,6 @@
 # openjev-multimodal skill
 
-An agent skill for building with [OpenJev Multimodal](https://github.com/Hand-In/openjev-multimodal),
+An agent skill for building with [OpenJev Multimodal](https://github.com/jev-skills/openjev-multimodal),
 the local Jev-compatible SystemOne API. It teaches an agent (Claude Code, Codex, or any
 tool that reads `AGENTS.md`) how to start and check the service, call it with text and
 images, design Noul, Choice and Score questions, size images for the vision encoder,
@@ -19,7 +19,7 @@ With [OpenSkills](https://github.com/numman-ali/openskills) (Node.js 20.6+):
 
 ```bash
 # from GitHub: install for every project on this machine
-npx openskills install Hand-In/openjev-multimodal/skills/openjev-multimodal -g -y
+npx openskills install jev-skills/openjev-multimodal/skills/openjev-multimodal -g -y
 
 # from a clone of the repository
 npx openskills install ./skills/openjev-multimodal -g -y    # or: npm run skill:install
@@ -38,7 +38,7 @@ example `~/.claude/skills/openjev-multimodal` or `~/.codex/skills/openjev-multim
 
 ```bash
 # 从 GitHub 安装到本机（所有项目可用）
-npx openskills install Hand-In/openjev-multimodal/skills/openjev-multimodal -g -y
+npx openskills install jev-skills/openjev-multimodal/skills/openjev-multimodal -g -y
 
 # 从本地克隆安装
 npx openskills install ./skills/openjev-multimodal -g -y    # 或：npm run skill:install
@@ -50,4 +50,4 @@ npx openskills install ./skills/openjev-multimodal -g -y    # 或：npm run skil
 或 `~/.codex/skills/openjev-multimodal` 即可。
 
 The skill needs a running service for its examples: see the
-[quickstart](https://hand-in.github.io/openjev-multimodal/guide). MIT licensed.
+[quickstart](https://jev-skills.github.io/openjev-multimodal/guide). MIT licensed.

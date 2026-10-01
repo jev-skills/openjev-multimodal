@@ -2,11 +2,11 @@
 
 Published and verified on September 21, 2026. Commit author and committer dates are fixed at October 1, 2026, as for the rest of the history; they are not the measurement dates.
 
-- Skill: [`skills/openjev-multimodal`](../../../skills/openjev-multimodal), installed with `npx openskills install Hand-In/openjev-multimodal/skills/openjev-multimodal -g -y` or `npm run skill:install`
+- Skill: [`skills/openjev-multimodal`](../../../skills/openjev-multimodal), installed with `npx openskills install jev-skills/openjev-multimodal/skills/openjev-multimodal -g -y` or `npm run skill:install`
 - Example: [`examples/tetris`](../../../examples/tetris) · [test report](../../../examples/tetris/report/README.md)
-- Demo page: https://hand-in.github.io/openjev-multimodal/tetris and https://hand-in.github.io/openjev-multimodal/zh/tetris
-- Browser game and replay: https://hand-in.github.io/openjev-multimodal/demos/tetris/web/
-- Visual report: https://hand-in.github.io/openjev-multimodal/demos/tetris/report/
+- Demo page: https://jev-skills.github.io/openjev-multimodal/tetris and https://jev-skills.github.io/openjev-multimodal/zh/tetris
+- Browser game and replay: https://jev-skills.github.io/openjev-multimodal/demos/tetris/web/
+- Visual report: https://jev-skills.github.io/openjev-multimodal/demos/tetris/report/
 
 ## Evidence
 

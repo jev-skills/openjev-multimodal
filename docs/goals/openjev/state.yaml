@@ -15,7 +15,7 @@ goal:
     completion_proof: Live API, real benchmarks, package and docs builds, deployed bilingual site and remote main.
     likely_misfire: Mock inference or a chat wrapper presented as the actual Jev model.
     blind_spots_considered: [probability semantics, model license, image privacy, Pages cannot host inference]
-    existing_plan_facts: [Hand-In/openjev-multimodal, main, 2026-10-01 commit dates]
+    existing_plan_facts: [jev-skills/openjev-multimodal, main, 2026-10-01 commit dates]
 rules:
   pm_owns_state: true
   one_active_task: true

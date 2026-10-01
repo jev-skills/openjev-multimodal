@@ -17,7 +17,7 @@ from jev import payload
 from tetris import Game, frontier
 from vision import labels, outcome_sheet
 
-SITE = "https://hand-in.github.io/openjev-multimodal/"
+SITE = "https://jev-skills.github.io/openjev-multimodal/"
 PROFILES = ("fast", "balanced", "quality", "max")
 MODES = ("vision", "text", "compact")
 MODE_NAMES = {
@@ -686,7 +686,7 @@ def site_page(summary: dict, runs: dict, zh: bool) -> str:
     video = {name: goal_video(runs, name) for name in PROFILES}
     report = f"{SITE}demos/tetris/report/"
     web = f"{SITE}demos/tetris/web/"
-    source = "https://github.com/Hand-In/openjev-multimodal/tree/main/examples/tetris"
+    source = "https://github.com/jev-skills/openjev-multimodal/tree/main/examples/tetris"
 
     def t(en: str, cn: str) -> str:
         return cn if zh else en
@@ -1038,7 +1038,7 @@ footer { max-width: 1120px; margin: 0 auto; padding: 0 24px 48px; color: var(--m
   <a class="brand" href="{{SITE}}"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1 19 10 10 19 1 10Z" fill="currentColor"/><circle cx="10" cy="10" r="3.2" fill="#101713"/></svg>OpenJev Multimodal</a>
   <nav>
     <a href="../web/"><span lang="en">Play &amp; replay</span><span lang="zh">试玩与回放</span></a>
-    <a class="optional" href="https://github.com/Hand-In/openjev-multimodal/tree/main/examples/tetris">GitHub</a>
+    <a class="optional" href="https://github.com/jev-skills/openjev-multimodal/tree/main/examples/tetris">GitHub</a>
     <button type="button" id="lang">中文</button>
   </nav>
 </header>

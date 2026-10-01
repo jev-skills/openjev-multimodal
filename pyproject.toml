@@ -18,8 +18,8 @@ dependencies = [
 openjev = "openjev.cli:main"
 
 [project.urls]
-Homepage = "https://hand-in.github.io/openjev-multimodal/"
-Repository = "https://github.com/Hand-In/openjev-multimodal"
+Homepage = "https://jev-skills.github.io/openjev-multimodal/"
+Repository = "https://github.com/jev-skills/openjev-multimodal"
 
 [build-system]
 requires = ["hatchling"]

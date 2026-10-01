@@ -61,4 +61,4 @@ uv run --group bench python scripts/benchmark.py \
 uv run --group bench python scripts/render_benchmark.py
 ```
 
-[Summary + selected IDs](https://github.com/Hand-In/openjev-multimodal/blob/main/benchmarks/quality/summary.json) · [All completed per-question receipts](https://github.com/Hand-In/openjev-multimodal/blob/main/benchmarks/quality/decisions.jsonl) · [Run manifest and dataset revisions](https://github.com/Hand-In/openjev-multimodal/blob/main/benchmarks/quality/manifest.json) · [SVG image](https://github.com/Hand-In/openjev-multimodal/blob/main/assets/benchmark.svg).
+[Summary + selected IDs](https://github.com/jev-skills/openjev-multimodal/blob/main/benchmarks/quality/summary.json) · [All completed per-question receipts](https://github.com/jev-skills/openjev-multimodal/blob/main/benchmarks/quality/decisions.jsonl) · [Run manifest and dataset revisions](https://github.com/jev-skills/openjev-multimodal/blob/main/benchmarks/quality/manifest.json) · [SVG image](https://github.com/jev-skills/openjev-multimodal/blob/main/assets/benchmark.svg).

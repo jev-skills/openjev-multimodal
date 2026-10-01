@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /openjev-multimodal/
-Sitemap: https://hand-in.github.io/openjev-multimodal/sitemap.xml
+Sitemap: https://jev-skills.github.io/openjev-multimodal/sitemap.xml

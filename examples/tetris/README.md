@@ -4,7 +4,7 @@
 
 [![Qwen3.8-27B plays Tetris through OpenJev Multimodal](report/videos/max.jpg)](report/videos/max.mp4)
 
-[Test report](report/README.md) · [Visual report](https://hand-in.github.io/openjev-multimodal/demos/tetris/report/) · [Play in the browser](https://hand-in.github.io/openjev-multimodal/demos/tetris/web/) · [中文](README.zh-CN.md)
+[Test report](report/README.md) · [Visual report](https://jev-skills.github.io/openjev-multimodal/demos/tetris/report/) · [Play in the browser](https://jev-skills.github.io/openjev-multimodal/demos/tetris/web/) · [中文](README.zh-CN.md)
 
 ## Run it
 

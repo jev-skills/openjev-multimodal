@@ -83,7 +83,7 @@ function replay() {
     </section>
 
     <section class="section closing">
-      <div class="eyebrow">BUILT FOR YOUR NEXT IDEA</div><h2>{{ t('Your state.', '你的状态。') }}<br><span>{{ t('Your model. Your decision.', '你的模型，你的决定。') }}</span></h2><p>{{ t('Start with a lightweight 4B model. Scale to Qwen3.6 or Qwen3.8 on a larger Mac. Keep the same API.', '从轻量的 4B 模型起步，在大内存 Mac 上切换至 Qwen3.6 或 Qwen3.8，保持同一套 API。') }}</p><div class="actions"><a class="button-primary" :href="route('guide')">{{ t('Run it locally', '本地运行') }} ↗</a><a class="button-quiet" href="https://github.com/Hand-In/openjev-multimodal">GitHub →</a></div>
+      <div class="eyebrow">BUILT FOR YOUR NEXT IDEA</div><h2>{{ t('Your state.', '你的状态。') }}<br><span>{{ t('Your model. Your decision.', '你的模型，你的决定。') }}</span></h2><p>{{ t('Start with a lightweight 4B model. Scale to Qwen3.6 or Qwen3.8 on a larger Mac. Keep the same API.', '从轻量的 4B 模型起步，在大内存 Mac 上切换至 Qwen3.6 或 Qwen3.8，保持同一套 API。') }}</p><div class="actions"><a class="button-primary" :href="route('guide')">{{ t('Run it locally', '本地运行') }} ↗</a><a class="button-quiet" href="https://github.com/jev-skills/openjev-multimodal">GitHub →</a></div>
     </section>
   </div>
 </template>

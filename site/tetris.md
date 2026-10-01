@@ -7,7 +7,7 @@ description: Four Qwen models play Tetris through the Jev-compatible OpenJev Mul
 
 Four Qwen models play a complete Tetris game through `POST /v1/systemone`. Code knows the rules: it lists every legal move, simulates the outcome and presses the keys. The model makes every choice, with **one output token per two pieces**.
 
-**[Play in the browser →](https://hand-in.github.io/openjev-multimodal/demos/tetris/web/)** &nbsp; [Full test report](https://hand-in.github.io/openjev-multimodal/demos/tetris/report/) · [Source and recordings](https://github.com/Hand-In/openjev-multimodal/tree/main/examples/tetris)
+**[Play in the browser →](https://jev-skills.github.io/openjev-multimodal/demos/tetris/web/)** &nbsp; [Full test report](https://jev-skills.github.io/openjev-multimodal/demos/tetris/report/) · [Source and recordings](https://github.com/jev-skills/openjev-multimodal/tree/main/examples/tetris)
 
 | Result | Measured |
 | --- | --- |
@@ -52,7 +52,7 @@ Seed 101, from the first piece to the tenth line clear. Waiting time is the meas
 
 </div>
 
-Five seeds per cell, 100 pieces per game. Agreement compares the vision-prompt decisions with a reference evaluator that never moves a piece. [All 60 games →](https://hand-in.github.io/openjev-multimodal/demos/tetris/report/)
+Five seeds per cell, 100 pieces per game. Agreement compares the vision-prompt decisions with a reference evaluator that never moves a piece. [All 60 games →](https://jev-skills.github.io/openjev-multimodal/demos/tetris/report/)
 
 ## Without a model
 

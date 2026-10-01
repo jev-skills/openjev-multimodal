@@ -83,7 +83,7 @@ Qwen3.5、Qwen3.6 与 Qwen3.8 都是混合架构，循环层无法回滚到任�
 | 启用重复 state 缓存 | 0.83 秒 |
 | 缓存 + 补丁 | 0.66 秒 |
 
-每种配置 16 次决策，同一时间只运行一个服务（[测量记录](https://github.com/Hand-In/openjev-multimodal/tree/main/examples/tetris/report/probes)）。固定检查集的 32 个答案与原版 llama.cpp 完全一致。设置 `OPENJEV_PRIME_REPEATED_STATE=false` 可关闭该缓存。
+每种配置 16 次决策，同一时间只运行一个服务（[测量记录](https://github.com/jev-skills/openjev-multimodal/tree/main/examples/tetris/report/probes)）。固定检查集的 32 个答案与原版 llama.cpp 完全一致。设置 `OPENJEV_PRIME_REPEATED_STATE=false` 可关闭该缓存。
 
 多个 state 也可以轮流使用。`scripts/build-llama.sh` 构建的 llama.cpp 会把之前的提示连同检查点保存在内存中：在 Qwen3.5-4B 上轮流使用 4 个 800 token 的 state，每次回答 0.11 秒；llama.cpp b9670 每次都要重读 state，需 0.69 秒。
 
@@ -95,7 +95,7 @@ Qwen3.5、Qwen3.6 与 Qwen3.8 都是混合架构，循环层无法回滚到任�
 - **每 512 token 一个检查点。** OpenJev 的 llama.cpp 构建现在会沿途为每个提示保存检查点，只共享 state 开头的后续请求可以从分叉处附近续算。同一页面去掉历史后，从 3.61 秒降到 0.65 秒；填写一个字段后的下一轮，从 9.65 秒降到 8.66 秒。答案完全一致。
 - **少用的问题晚点再问。** state 完全相同的请求只读取新问题：再问一题只需 0.27 秒。很少用到的问题应放到后续请求里。
 
-交替测量 7 次的中位数，共用一个 llama.cpp 进程，每次请求前清空（`--flush`），期间另一个应用占用着 GPU：请在同一行内比较。测量记录：[紧凑 JSON](https://github.com/Hand-In/openjev-multimodal/blob/main/benchmarks/performance/json-states.json) · [检查点](https://github.com/Hand-In/openjev-multimodal/blob/main/benchmarks/performance/checkpoints.json)
+交替测量 7 次的中位数，共用一个 llama.cpp 进程，每次请求前清空（`--flush`），期间另一个应用占用着 GPU：请在同一行内比较。测量记录：[紧凑 JSON](https://github.com/jev-skills/openjev-multimodal/blob/main/benchmarks/performance/json-states.json) · [检查点](https://github.com/jev-skills/openjev-multimodal/blob/main/benchmarks/performance/checkpoints.json)
 
 ## 准确性
 
@@ -123,7 +123,7 @@ uv run python scripts/latency.py --quiet --output benchmarks/performance/balance
 uv run python scripts/render_performance.py --chart
 ```
 
-测量记录：[fast](https://github.com/Hand-In/openjev-multimodal/blob/main/benchmarks/performance/fast.json) · [balanced](https://github.com/Hand-In/openjev-multimodal/blob/main/benchmarks/performance/balanced.json) · [quality](https://github.com/Hand-In/openjev-multimodal/blob/main/benchmarks/performance/quality.json)
+测量记录：[fast](https://github.com/jev-skills/openjev-multimodal/blob/main/benchmarks/performance/fast.json) · [balanced](https://github.com/jev-skills/openjev-multimodal/blob/main/benchmarks/performance/balanced.json) · [quality](https://github.com/jev-skills/openjev-multimodal/blob/main/benchmarks/performance/quality.json)
 
 <style scoped>
 .delta { margin-left: 6px; font-size: 12px; color: var(--vp-c-text-3); white-space: nowrap; }

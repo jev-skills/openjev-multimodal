@@ -1,6 +1,6 @@
 <p align="center"><img src="assets/social.png" alt="OpenJev Multimodal — 文字与图片，本地决策" width="900"></p>
 
-<p align="center"><a href="https://hand-in.github.io/openjev-multimodal/zh/">中文文档</a> · <a href="README.md">English</a> · <a href="https://hand-in.github.io/openjev-multimodal/zh/benchmarks">实测基准</a></p>
+<p align="center"><a href="https://jev-skills.github.io/openjev-multimodal/zh/">中文文档</a> · <a href="README.md">English</a> · <a href="https://jev-skills.github.io/openjev-multimodal/zh/benchmarks">实测基准</a></p>
 
 # OpenJev Multimodal
 
@@ -23,7 +23,7 @@
 
 ```bash
 brew install uv llama.cpp
-git clone https://github.com/Hand-In/openjev-multimodal.git
+git clone https://github.com/jev-skills/openjev-multimodal.git
 cd openjev-multimodal
 uv sync --frozen
 uv run openjev serve
@@ -43,7 +43,7 @@ uv run openjev serve --profile quality
 uv run openjev doctor
 ```
 
-一次只运行一个档位。quality 权重约 23.3 GB，max 约 17.6 GB，另需 0.9 GB 投影器。要让 max 在重复 state 上达到亚秒级，请用 `scripts/build-llama.sh` 构建一次[打过补丁的 llama.cpp](https://hand-in.github.io/openjev-multimodal/zh/models#max-qwen3-8-27b)，`serve` 之后会自动使用它。下载慢时，`--source modelscope` 会从 ModelScope 获取同样经过校验的文件。`--backend` 选择推理后端：llama.cpp 为内置后端，[插件包](https://hand-in.github.io/openjev-multimodal/zh/design#后端)可以添加其他后端。实测来自 M3 Max 128 GB，未测其他机器的最低内存要求。
+一次只运行一个档位。quality 权重约 23.3 GB，max 约 17.6 GB，另需 0.9 GB 投影器。要让 max 在重复 state 上达到亚秒级，请用 `scripts/build-llama.sh` 构建一次[打过补丁的 llama.cpp](https://jev-skills.github.io/openjev-multimodal/zh/models#max-qwen3-8-27b)，`serve` 之后会自动使用它。下载慢时，`--source modelscope` 会从 ModelScope 获取同样经过校验的文件。`--backend` 选择推理后端：llama.cpp 为内置后端，[插件包](https://jev-skills.github.io/openjev-multimodal/zh/design#后端)可以添加其他后端。实测来自 M3 Max 128 GB，未测其他机器的最低内存要求。
 
 ## API 示例
 
@@ -63,7 +63,7 @@ curl http://127.0.0.1:8000/v1/systemone \
   }'
 ```
 
-读取 `answers.team.choice` 和 `answers.team.probabilities`。添加 `images` data URL 数组即可输入图片。[完整 API →](https://hand-in.github.io/openjev-multimodal/zh/api)
+读取 `answers.team.choice` 和 `answers.team.probabilities`。添加 `images` data URL 数组即可输入图片。[完整 API →](https://jev-skills.github.io/openjev-multimodal/zh/api)
 
 ## 本机实录
 
@@ -73,14 +73,14 @@ curl http://127.0.0.1:8000/v1/systemone \
 
 ## 俄罗斯方块：限时决策
 
-[![Qwen3.8-27B 通过 OpenJev Multimodal 玩俄罗斯方块](examples/tetris/report/videos/max.jpg)](https://hand-in.github.io/openjev-multimodal/zh/tetris)
+[![Qwen3.8-27B 通过 OpenJev Multimodal 玩俄罗斯方块](examples/tetris/report/videos/max.jpg)](https://jev-skills.github.io/openjev-multimodal/zh/tetris)
 
-四个本地模型通过 API 玩俄罗斯方块。代码模拟所有合法的两步方案并负责按键；**1 个 Choice token 选出方案**。在同样的方案中随机选择，每局只消除 14.3 行；Qwen3.8-27B 消除 38.2 行，每次决策 0.73 秒，规则作为不变的 state 被缓存。[演示页](https://hand-in.github.io/openjev-multimodal/zh/tetris) · [在浏览器中试玩](https://hand-in.github.io/openjev-multimodal/demos/tetris/web/) · [测试报告](examples/tetris/report/README.zh-CN.md) · [代码](examples/tetris)。
+四个本地模型通过 API 玩俄罗斯方块。代码模拟所有合法的两步方案并负责按键；**1 个 Choice token 选出方案**。在同样的方案中随机选择，每局只消除 14.3 行；Qwen3.8-27B 消除 38.2 行，每次决策 0.73 秒，规则作为不变的 state 被缓存。[演示页](https://jev-skills.github.io/openjev-multimodal/zh/tetris) · [在浏览器中试玩](https://jev-skills.github.io/openjev-multimodal/demos/tetris/web/) · [测试报告](examples/tetris/report/README.zh-CN.md) · [代码](examples/tetris)。
 
 ## 在智能体中使用
 
 ```bash
-npx openskills install Hand-In/openjev-multimodal/skills/openjev-multimodal -g -y
+npx openskills install jev-skills/openjev-multimodal/skills/openjev-multimodal -g -y
 ```
 
 [openjev-multimodal 技能](skills/openjev-multimodal)教 Claude Code、Codex 以及任何读取 `AGENTS.md` 的智能体启动与检查服务、设计 Noul / Choice / Score 问题、按视觉编码器调整图片尺寸，并读取概率与延迟。在本地克隆中可直接运行 `npm run skill:install`。
@@ -93,7 +93,7 @@ npx openskills install Hand-In/openjev-multimodal/skills/openjev-multimodal -g -
 
 这是探索性抽样，不是排行榜成绩。图中展示 Wilson 区间；GSM8K 使用合成数字干扰项，国际象棋测试合法着法。较大评测已中断以控制负载，886 条已完成记录全部保留；图表按各任务随机顺序取前 20 条，没有按成绩筛选。
 
-[方法](https://hand-in.github.io/openjev-multimodal/zh/benchmarks) · [汇总与 ID](benchmarks/quality/summary.json) · [全部记录](benchmarks/quality/decisions.jsonl) · [SVG 图](assets/benchmark.svg)。
+[方法](https://jev-skills.github.io/openjev-multimodal/zh/benchmarks) · [汇总与 ID](benchmarks/quality/summary.json) · [全部记录](benchmarks/quality/decisions.jsonl) · [SVG 图](assets/benchmark.svg)。
 
 ```bash
 # quality 服务启动后，小样本串行运行，每次请求后休息
@@ -106,7 +106,7 @@ uv run --group bench python scripts/render_benchmark.py
 
 ## 原理与边界
 
-选项映射为单 token 标签，通过共同 logit 偏置取得完整候选概率，再归一化抵消偏置。输入预填充、图像编码、模型和缓存仍影响耗时，每个响应都会返回服务端耗时。[原理 →](https://hand-in.github.io/openjev-multimodal/zh/design) · [延迟 →](https://hand-in.github.io/openjev-multimodal/zh/performance)
+选项映射为单 token 标签，通过共同 logit 偏置取得完整候选概率，再归一化抵消偏置。输入预填充、图像编码、模型和缓存仍影响耗时，每个响应都会返回服务端耗时。[原理 →](https://jev-skills.github.io/openjev-multimodal/zh/design) · [延迟 →](https://jev-skills.github.io/openjev-multimodal/zh/performance)
 
 - 默认 localhost；`OPENJEV_API_KEY` 启用 `/v1/*` Bearer 鉴权。
 - `/health` 检查后端，`/health/live` 检查进程，`/v1/limits` 返回限制。

@@ -3,7 +3,7 @@ import { resolve } from 'node:path'
 import { defineConfig } from 'vitepress'
 
 const base = '/openjev-multimodal/'
-const host = 'https://hand-in.github.io'
+const host = 'https://jev-skills.github.io'
 const menu = (zh = false) => [
   { text: zh ? '开始使用' : 'Get started', items: [
     { text: zh ? '快速开始' : 'Quickstart', link: zh ? '/zh/guide' : '/guide' },
@@ -84,7 +84,7 @@ export default defineConfig({
   },
   themeConfig: {
     logo: '/logo.svg', siteTitle: 'OpenJev',
-    socialLinks: [{ icon: 'github', link: 'https://github.com/Hand-In/openjev-multimodal' }],
+    socialLinks: [{ icon: 'github', link: 'https://github.com/jev-skills/openjev-multimodal' }],
     search: { provider: 'local' }, outline: [2, 3],
   },
 })

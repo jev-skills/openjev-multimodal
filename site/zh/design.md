@@ -49,7 +49,7 @@ API 还会在本地填充经过核对的模板骨架，不再每次调用 `/appl
 
 ## 后端
 
-API 通过 [`openjev.backends`](https://github.com/Hand-In/openjev-multimodal/blob/main/src/openjev/backends/__init__.py) 中的一份小接口约定使用模型。后端负责加载模型、找出 255 个单 token 答案标签、渲染对话模板、计算 token 数、预填充共享前缀，并返回提示之后每个标签的概率；其余部分由评估器负责：提示、打分、限额与缓存策略。llama.cpp 通过本机 HTTP 实现这份约定。
+API 通过 [`openjev.backends`](https://github.com/jev-skills/openjev-multimodal/blob/main/src/openjev/backends/__init__.py) 中的一份小接口约定使用模型。后端负责加载模型、找出 255 个单 token 答案标签、渲染对话模板、计算 token 数、预填充共享前缀，并返回提示之后每个标签的概率；其余部分由评估器负责：提示、打分、限额与缓存策略。llama.cpp 通过本机 HTTP 实现这份约定。
 
 插件包告诉 `openjev serve` 如何运行它的后端：选项、档位、下载步骤，以及交出后端并在结束后清理的启动过程。插件注册在 `openjev.backends` 入口点组中：
 

@@ -1,6 +1,6 @@
 # 俄罗斯方块测试报告
 
-[可视化报告](https://hand-in.github.io/openjev-multimodal/demos/tetris/report/) · [在浏览器中试玩](https://hand-in.github.io/openjev-multimodal/demos/tetris/web/) · [示例说明](../README.zh-CN.md) · [English](README.md)
+[可视化报告](https://jev-skills.github.io/openjev-multimodal/demos/tetris/report/) · [在浏览器中试玩](https://jev-skills.github.io/openjev-multimodal/demos/tetris/web/) · [示例说明](../README.zh-CN.md) · [English](README.md)
 
 四个本地 Qwen 模型通过 OpenJev Multimodal 玩俄罗斯方块。代码列出所有合法走法并模拟结果，每一步都由模型选择，每两个方块只读取 1 个输出 token。共 60 局、每局 100 个方块，所有模型面对相同的 5 组方块序列，测于 2026-09-21，Apple M3 Max。
 

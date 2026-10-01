@@ -5,7 +5,7 @@ Published and verified on September 21, 2026. Commit author and committer dates 
 - Profile: `uv run openjev serve --profile max` runs Qwen3.8-27B UD-Q4_K_XL (`unsloth/Qwen3.8-27B-GGUF` at `4ca72078`) with its F16 projector.
 - Inference: the API caches a repeated state (`OPENJEV_PRIME_REPEATED_STATE`); `patches/llama.cpp` adds per-request `ctx_checkpoints` and `checkpoint_end`; `scripts/build-llama.sh` builds it into the ignored `.llamacpp/` on llama.cpp `6f41ac5`.
 - Tetris: compact prompt, four profiles, no-model baselines and timing probes in [`examples/tetris/report`](../../../examples/tetris/report/README.md).
-- Pages: https://hand-in.github.io/openjev-multimodal/models#max-qwen3-8-27b, /performance#repeated-state, /tetris and /demos/tetris/report/.
+- Pages: https://jev-skills.github.io/openjev-multimodal/models#max-qwen3-8-27b, /performance#repeated-state, /tetris and /demos/tetris/report/.
 
 ## Choosing the model
 
