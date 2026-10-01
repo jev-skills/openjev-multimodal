@@ -4,7 +4,7 @@ goal:
   slug: openjev
   kind: specific
   tranche: Complete the original end-to-end outcome with live evidence.
-  status: active
+  status: complete
   intake:
     original_request: Jev API plus multimodal input, fast on this Mac, bilingual SEO site, GitHub deployment, October 1 commits.
     interpreted_outcome: Working local inference service and published reproducible project.
@@ -29,7 +29,7 @@ rules:
   preserve_and_validate_existing_plan: true
   intake_misfire_must_be_audited: true
 agents: {scout: installed, worker: installed, judge: installed}
-active_task: T004
+active_task: null
 tasks:
   - id: T001
     type: pm
@@ -67,12 +67,15 @@ tasks:
   - id: T004
     type: pm
     assignee: PM
-    status: active
+    status: done
     objective: Publish fixed-date commits and GitHub Pages, review and audit the complete outcome.
     allowed_files: ['*']
     verify: [remote commit dates, GitHub checks, public HTTP pages, live local API]
     stop_if: [GitHub rejects credentials or permissions.]
-    receipt: null
+    receipt:
+      result: done
+      summary: Published main to the corrected OpenJev repository; author and committer dates are October 1, 2026. Package and Pages workflows succeeded. Public English/Chinese pages, clean URLs, chart/demo assets and SEO metadata verified. Default 4B service and live playground are available locally; only one inference backend remains.
+      evidence: [docs/goals/openjev/delivery.md]
 checks:
-  dirty_fingerprint: initial
-  last_verification: {result: implementation_and_docs_verified, task: T003, commands: [ruff, uv build, npm run docs:build, live API requests, desktop and mobile browser review]}
+  dirty_fingerprint: final_delivery_receipt
+  last_verification: {result: full_outcome_verified, task: T004, commands: [GitHub Actions, public HTTP and SEO checks, published browser review, live local API, remote commit dates]}
