@@ -6,7 +6,8 @@
   "scripts": {
     "docs:dev": "vitepress dev site --host 127.0.0.1",
     "docs:build": "vitepress build site",
-    "docs:preview": "vitepress preview site --host 127.0.0.1"
+    "docs:preview": "vitepress preview site --host 127.0.0.1",
+    "skill:install": "npx openskills install ./skills/openjev-multimodal -g -y"
   },
   "devDependencies": {
     "vitepress": "1.6.4",
