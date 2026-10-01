@@ -83,6 +83,10 @@ uv run openjev serve --connect http://127.0.0.1:18081
 | `OPENJEV_REQUEST_TIMEOUT` | `120` | 总超时秒数，含排队 |
 | `OPENJEV_MAX_CONCURRENT_REQUESTS` | `4` | 活跃或排队请求上限；推理仍串行 |
 | `OPENJEV_IMAGE_MAX_EDGE` | `1024` | 缩放后图片最长边 |
+| `OPENJEV_IMAGE_ALIGN` | `32` | 视觉 token 边长（像素）；超大图片一次缩放到编码器实际尺寸，设为 `0` 关闭 |
+| `OPENJEV_PRIME_SHARED_PREFIX` | `true` | 多问题请求只读取一次共享 state |
+| `OPENJEV_TEMPLATE_CACHE` | `true` | 复用经后端核验的聊天模板骨架 |
+| `OPENJEV_RESPONSE_TIMING` | `true` | 在响应中加入 `timing` 对象；响应头始终包含耗时 |
 
 可通过环境变量或本地 `.env` 设置，密钥不要提交到 Git。服务默认绑定 `127.0.0.1`。如需主动对外开放，请配置鉴权和 TLS 反向代理。
 

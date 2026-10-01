@@ -94,18 +94,30 @@ description: Jev 兼容的请求和响应格式，多模态图片输入，Noul�
   model: string; // 请求使用的别名或 ID
   answers: Record<string, NoulAnswer | ChoiceAnswer | ScoreAnswer>;
   usage: { input_tokens: number; output_tokens: number };
+  timing?: {                // OpenJev 扩展字段，单位毫秒
+    processing_ms: number;  // 服务器从收到请求到结果就绪
+    parse_ms: number;       // 读取、解析并校验请求
+    prepare_ms: number;     // 整理 state、处理图片、编译提示
+    queue_ms: number;       // 等待推理槽位
+    inference_ms: number;   // 共享前缀预填充与逐题读数
+  };
 }
 ```
 
 输入用量是各问题的完整后端提示 token 数之和，包含图片与缓存 token；输出用量等于问题数。这不是 TypeSafe 的计费单位。
+
+`timing` 让你无需在客户端埋点即可查看服务端耗时：`processing_ms` 从 API 收到请求起算，到响应就绪为止，不含网络传输；各阶段之和与它的差距不到 1 毫秒。`model`、`answers`、`usage` 仍与 Jev 完全一致：官方 Python SDK 以 `extra="ignore"` 解析响应，JavaScript SDK 直接返回解析后的 JSON，二者都会忽略这个扩展字段。如果客户端会拒绝未知字段，设置 `OPENJEV_RESPONSE_TIMING=false` 即可，下列响应头仍提供相同数据。
 
 | 响应头 | 含义 |
 | --- | --- |
 | `x-typesafe-request-id` | 唯一请求 ID |
 | `x-openjev-model` | 实际后端模型 |
 | `x-openjev-cached-tokens` | 后端报告的复用 token 数 |
-| `x-openjev-elapsed-ms` | API 评估耗时 |
-| `Server-Timing` | 准备、排队、推理耗时 |
+| `x-openjev-processing-ms` | 服务端处理耗时；所有 `/v1/*` 错误响应也会返回 |
+| `x-openjev-elapsed-ms` | 评估耗时：从整理 state 到最后一次读数 |
+| `Server-Timing` | `parse`、`prepare`、`queue`、`inference`、`total`，以及 llama.cpp 报告的模型计算时间 `compute` |
+
+浏览器开发者工具的 Timing 面板会直接显示 `Server-Timing`。
 
 概率以给定候选为条件。`confidence = 1 − H(p)/log(n)` 衡量分布集中度，不是校准后的正确率保证。
 

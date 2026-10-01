@@ -18,3 +18,14 @@ class Settings(BaseSettings):
     image_max_edge: int = Field(default=1024, ge=128, le=4096)
     image_max_pixels: int = Field(default=20_000_000, ge=1)
     image_token_budget: int = Field(default=512, ge=64, le=4096)
+    # Pixels per visual-token edge (patch x spatial merge; 32 for Qwen3.5/3.6). Oversized
+    # images are resized once, straight to the size the vision encoder uses. 0 disables.
+    image_align: int = Field(default=32, ge=0, le=128)
+    # Evaluate the shared prefix once per multi-question request so later questions resume
+    # from a backend checkpoint instead of re-reading the state and re-encoding images.
+    prime_shared_prefix: bool = True
+    # Reuse a chat-template skeleton verified against the backend instead of rendering it
+    # remotely on every request.
+    template_cache: bool = True
+    # Add the `timing` extension object to responses. Headers always carry timings.
+    response_timing: bool = True

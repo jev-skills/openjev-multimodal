@@ -29,7 +29,7 @@ Longer prompts, multiple images, larger image budgets, concurrent evaluations, a
 
 Each question performs prompt processing and a first-token readout. No reasoning trace or token-by-token JSON generation is needed. The API constructs typed JSON from measured label probabilities.
 
-The model still reads the complete state. Questions run sequentially on one slot to permit shared-prefix reuse. Reuse is opportunistic because hybrid recurrent state, prompt boundaries and cache pressure matter. Inspect `x-openjev-cached-tokens` rather than assuming full reuse.
+The model still reads the complete state. Questions run sequentially on one slot. Hybrid recurrent layers cannot roll back to an arbitrary cached position, so a multi-question request first evaluates the shared prefix once; each question then resumes from the backend checkpoint and processes only its own text. `x-openjev-cached-tokens` shows the reused tokens, and the response's `timing` object shows where the time went.
 
 ## Provenance
 

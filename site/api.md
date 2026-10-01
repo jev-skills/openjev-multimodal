@@ -94,18 +94,30 @@ Structured rubric descriptions are JSON strings in `legend`.
   model: string; // requested alias or ID
   answers: Record<string, NoulAnswer | ChoiceAnswer | ScoreAnswer>;
   usage: { input_tokens: number; output_tokens: number };
+  timing?: {                // OpenJev extension, milliseconds
+    processing_ms: number;  // request received → response ready, on the server
+    parse_ms: number;       // read, decode and validate the request
+    prepare_ms: number;     // state, images and prompt compilation
+    queue_ms: number;       // waiting for the inference slot
+    inference_ms: number;   // prefix priming and one readout per question
+  };
 }
 ```
 
 Input usage sums full backend prompt counts across questions, including image and cached tokens. Output usage is the number of questions. These are local backend counts, not TypeSafe billing units.
+
+`timing` answers "how long did the server take?" without client-side instrumentation: `processing_ms` runs from the moment the API receives the request until the response is ready, and excludes network transfer. The stages add up to it within a fraction of a millisecond. `model`, `answers` and `usage` keep the exact Jev shape: the official Python SDK parses responses with `extra="ignore"` and the JavaScript SDK returns parsed JSON, so both skip the extra field. For clients that reject unknown fields, set `OPENJEV_RESPONSE_TIMING=false`; the headers below still carry the same numbers.
 
 | Header | Meaning |
 | --- | --- |
 | `x-typesafe-request-id` | Unique request ID |
 | `x-openjev-model` | Actual backend model |
 | `x-openjev-cached-tokens` | Backend-reported reused tokens |
-| `x-openjev-elapsed-ms` | API evaluation time |
-| `Server-Timing` | Preparation, queue and inference durations |
+| `x-openjev-processing-ms` | Server processing time; also sent on every `/v1/*` error |
+| `x-openjev-elapsed-ms` | Evaluation time, from state preparation to the last readout |
+| `Server-Timing` | `parse`, `prepare`, `queue`, `inference`, `total`, plus `compute` (model time reported by llama.cpp) |
+
+`Server-Timing` appears in the browser developer tools' timing view.
 
 Probability is conditioned on supplied options. Confidence is `1 − H(p)/log(n)`, measuring concentration. Neither promises calibrated correctness.
 

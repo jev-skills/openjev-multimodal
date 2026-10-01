@@ -73,7 +73,29 @@ class Usage(Strict):
     output_tokens: int = Field(ge=0)
 
 
+class Timing(Strict):
+    """OpenJev extension, in milliseconds. Jev SDKs ignore unknown response fields."""
+
+    processing_ms: float = Field(
+        ge=0,
+        description="Server time from receiving the request to having the response ready. "
+        "Excludes network transfer.",
+    )
+    parse_ms: float = Field(ge=0, description="Reading, decoding and validating the request.")
+    prepare_ms: float = Field(
+        ge=0, description="State normalization, image decoding and prompt compilation."
+    )
+    queue_ms: float = Field(ge=0, description="Waiting for the inference slot.")
+    inference_ms: float = Field(
+        ge=0, description="Holding the inference slot: prefix priming and one readout per question."
+    )
+
+
 class Result(Strict):
     model: str
     answers: dict[str, NoulResult | ChoiceResult | ScoreResult]
     usage: Usage
+    timing: Timing | None = Field(
+        default=None,
+        description="OpenJev extension. Omitted when OPENJEV_RESPONSE_TIMING=false.",
+    )

@@ -83,6 +83,10 @@ Use a matching projector. An existing backend must expose native llama.cpp endpo
 | `OPENJEV_REQUEST_TIMEOUT` | `120` | Evaluation deadline including queue time |
 | `OPENJEV_MAX_CONCURRENT_REQUESTS` | `4` | Active/queued evaluations; inference stays serial |
 | `OPENJEV_IMAGE_MAX_EDGE` | `1024` | Longest image edge after resizing |
+| `OPENJEV_IMAGE_ALIGN` | `32` | Visual-token edge in pixels; oversized images are resized once, straight to the encoder's size (`0` turns this off) |
+| `OPENJEV_PRIME_SHARED_PREFIX` | `true` | Read the shared state once for multi-question requests |
+| `OPENJEV_TEMPLATE_CACHE` | `true` | Reuse a chat-template skeleton verified against the backend |
+| `OPENJEV_RESPONSE_TIMING` | `true` | Add the `timing` object to responses; headers always carry it |
 
 Use environment variables or a local `.env`. Keep credentials out of Git. The API binds to `127.0.0.1`. For an intentional network deployment, use authentication and a TLS reverse proxy.
 

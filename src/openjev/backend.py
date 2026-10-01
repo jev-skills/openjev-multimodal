@@ -4,12 +4,31 @@ import asyncio
 import itertools
 import math
 import string
+import uuid
 from dataclasses import dataclass
 
 import httpx
 
 from .config import Settings
 from .errors import APIError
+
+# Characters the chat-template `trim` filter removes. Content whose edges hold any other
+# whitespace is always rendered by the backend, so the skeleton never guesses.
+_TRIM = " \t\n\r"
+_VERIFICATIONS = 3  # renders compared against the backend before a skeleton is trusted
+
+
+@dataclass
+class _Skeleton:
+    parts: list[str]
+    verified: int = 0
+
+
+def _trimmed(content: str) -> str | None:
+    value = content.strip(_TRIM)
+    if value and (value[0].isspace() or value[-1].isspace()):
+        return None
+    return value
 
 
 @dataclass
@@ -39,6 +58,7 @@ class LlamaBackend:
         self.vision = False
         self.media_marker = "<__media__>"
         self.context_size = settings.max_input_tokens
+        self.skeletons: dict[tuple[str, ...], _Skeleton | None] = {}
 
     async def close(self):
         await self.client.aclose()
@@ -108,7 +128,7 @@ class LlamaBackend:
                     return
         raise APIError("The backend needs 255 distinct single-token answer labels.", 503)
 
-    async def template(self, messages: list[dict]) -> str:
+    async def render(self, messages: list[dict]) -> str:
         data = await self.call(
             "/apply-template",
             {
@@ -119,6 +139,72 @@ class LlamaBackend:
         if not isinstance(data.get("prompt"), str):
             raise APIError("Backend returned no chat template.", 502)
         return data["prompt"]
+
+    async def template(self, messages: list[dict]) -> str:
+        """Render the chat template, reusing a verified skeleton when one applies.
+
+        llama.cpp's /apply-template prepares a complete chat request on every call (render,
+        output parser and grammar setup): about 9 ms whatever the content size. For
+        conversations of only user and system text messages, the template emits fixed text
+        around each trimmed message, so a skeleton rendered once with sentinel contents
+        reproduces it exactly. The first renders are still compared with the backend; any
+        mismatch disables the skeleton for good.
+        """
+        roles = tuple(m["role"] for m in messages)
+        cacheable = (
+            self.settings.template_cache
+            and all(isinstance(m.get("content"), str) and len(m) == 2 for m in messages)
+            and all(role == "user" or (role == "system" and i == 0) for i, role in enumerate(roles))
+        )
+        if not cacheable:
+            return await self.render(messages)
+        if roles not in self.skeletons:
+            self.skeletons[roles] = await self._skeleton(roles)
+        skeleton = self.skeletons[roles]
+        contents = [_trimmed(m["content"]) for m in messages]
+        if skeleton is None or None in contents:
+            return await self.render(messages)
+        rendered = skeleton.parts[0] + "".join(
+            content + part for content, part in zip(contents, skeleton.parts[1:], strict=True)
+        )
+        if skeleton.verified < _VERIFICATIONS:
+            actual = await self.render(messages)
+            if actual != rendered:
+                self.skeletons[roles] = None
+                return actual
+            skeleton.verified += 1
+        return rendered
+
+    async def _skeleton(self, roles: tuple[str, ...]) -> _Skeleton | None:
+        sentinels = [f"OPENJEV{uuid.uuid4().hex}S{i}" for i in range(len(roles))]
+        try:
+            rendered = await self.render(
+                [{"role": role, "content": s} for role, s in zip(roles, sentinels, strict=True)]
+            )
+        except APIError:
+            return None
+        parts, rest = [], rendered
+        for sentinel in sentinels:
+            if rest.count(sentinel) != 1:
+                return None
+            head, rest = rest.split(sentinel)
+            parts.append(head)
+        return _Skeleton(parts + [rest])
+
+    async def prime(self, prefix: str, images: list[str]) -> None:
+        """Evaluate only the prefix shared by all questions of a request.
+
+        Hybrid recurrent models (Qwen3.5/3.6) cannot roll back to an arbitrary cached
+        position, so without this every question re-reads the state and re-encodes images.
+        llama.cpp checkpoints a few tokens before the end of each prompt; after this call,
+        each question restores that checkpoint and processes only its own text.
+        """
+        prompt = prefix.replace("<__media__>", self.media_marker)
+        payload = {"prompt_string": prompt, "multimodal_data": images} if images else prompt
+        await self.call(
+            "/completion",
+            {"prompt": payload, "n_predict": 0, "cache_prompt": True, "id_slot": 0},
+        )
 
     async def read(self, prompt: str, images: list[str], labels: list[tuple[str, int]]) -> Readout:
         prompt = prompt.replace("<__media__>", self.media_marker)
