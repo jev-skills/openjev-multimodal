@@ -49,7 +49,7 @@ Remote fetching and request-controlled file access are disabled. Treat model jud
 
 ## Backends
 
-The API reaches its model through a small contract in [`openjev.backends`](https://github.com/jev-skills/openjev-multimodal/blob/main/src/openjev/backends/__init__.py). A backend loads the model, finds 255 single-token answer labels, renders the chat template, counts tokens, primes a shared prefix and returns each label's probability after a prompt. The evaluator does the rest: prompts, scoring, limits and the caching policy. llama.cpp implements the contract over localhost HTTP.
+The API reaches its model through a small contract in [`openjev.backends`](https://github.com/jev-skills/openjev-multimodal/blob/main/src/openjev/backends/__init__.py). A backend loads the model, finds 255 single-token answer labels, renders the chat template, counts tokens, primes a shared prefix and returns each label's probability after a prompt. The evaluator does the rest: prompts, scoring, limits and the caching policy. A backend may also read a request's questions together (`read_many`); llama.cpp implements the contract over localhost HTTP and reads them in turn.
 
 A plugin package tells `openjev serve` how to run its backend: its options, profiles and download step, and a launch that yields the backend and cleans up afterwards. It registers under the `openjev.backends` entry-point group:
 

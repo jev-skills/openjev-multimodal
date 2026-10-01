@@ -108,7 +108,7 @@ Every trial sends the identical request to both versions.
 
 ## Next
 
-- Batch the questions of one request from the shared checkpoint.
+- A variable-length Gated DeltaNet kernel, so a request's questions share one batch. Parallel llama.cpp slots forked from the primed state measured no faster: hybrid models advance parallel sequences in equal-length steps, and questions of different lengths fall into a staircase of small batches. Inco Splash also reads a request's questions in turn.
 - Label-prior calibration and multi-token option scoring, evaluated on their own because they change probabilities.
 - Continuous batching across requests, for throughput.
 - A trained readout, such as LoRA or distillation from the quality profile, once labeled decisions exist.

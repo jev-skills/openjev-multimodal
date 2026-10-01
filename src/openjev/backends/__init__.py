@@ -81,6 +81,9 @@ class Backend(Protocol):
         """Label probabilities after `prompt`; `checkpoints=False`: its end is not reused."""
         ...
 
+    # Optional: `async def read_many(prompts, images, labels) -> list[Readout]` reads prompts
+    # that all extend the primed prefix together. `read_all` falls back to one read at a time.
+
 
 class BackendPlugin:
     """How `openjev serve` and `openjev download` run one backend."""
@@ -109,6 +112,18 @@ class BackendPlugin:
     def doctor(self) -> dict:
         """Prerequisites for `openjev doctor`, checked without downloading anything."""
         return {}
+
+
+async def read_all(
+    backend: Backend, prompts: list[str], images: list[str], labels: list[list[tuple[str, int]]]
+) -> list[Readout]:
+    """Read prompts that extend the primed prefix, together when the backend can."""
+    if many := getattr(backend, "read_many", None):
+        return await many(prompts, images, labels)
+    return [
+        await backend.read(prompt, images, label, checkpoints=False)
+        for prompt, label in zip(prompts, labels, strict=True)
+    ]
 
 
 def normalized(name: str) -> str:

@@ -4,7 +4,7 @@ import time
 from dataclasses import dataclass
 from uuid import uuid4
 
-from .backends import Backend
+from .backends import Backend, read_all
 from .config import Settings
 from .errors import APIError
 from .prompts import Branch, choices, question_text, state_messages, text
@@ -135,17 +135,25 @@ class Evaluator:
                     admitted = time.perf_counter()
                     state = (prefix, *images)
                     await self.prepare(state, images, branches)
-                    for branch in branches:
-                        readout = await self.backend.read(
-                            branch.prompt, images, branch.labels, checkpoints=self.primed != state
-                        )
+                    primed = self.primed == state
+                    if primed:
+                        # every question extends the primed prefix; a backend may read them at once
+                        prompts = [branch.prompt for branch in branches]
+                        labels = [branch.labels for branch in branches]
+                        readouts = await read_all(self.backend, prompts, images, labels)
+                    else:
+                        readouts = [
+                            await self.backend.read(branch.prompt, images, branch.labels)
+                            for branch in branches
+                        ]
+                    for branch, readout in zip(branches, readouts, strict=True):
                         input_tokens += readout.input_tokens
                         if input_tokens > self.settings.max_total_input_tokens:
                             raise APIError("Actual multimodal tokens exceed the total token limit.")
                         output_tokens += readout.output_tokens
                         cached += readout.cached_tokens
                         compute_ms += readout.inference_ms
-                        if self.primed == state and readout.cached_tokens < len(shared) // 2:
+                        if primed and readout.cached_tokens < len(shared) // 2:
                             self.primed = None  # the checkpoint is gone; prime again next time
                         answers[branch.key] = scored(
                             branch.question,
@@ -162,7 +170,7 @@ class Evaluator:
                     prepare_ms=(prepared - start) * 1000,
                     queue_ms=(admitted - prepared) * 1000,
                     inference_ms=(finished - admitted) * 1000,
-                    compute_ms=compute_ms,
+                    compute_ms=min(compute_ms, (finished - admitted) * 1000),  # reads may overlap
                     elapsed_ms=(time.perf_counter() - start) * 1000,
                     cached_tokens=cached,
                     request_id=uuid4().hex,
