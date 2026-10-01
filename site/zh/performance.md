@@ -1,6 +1,6 @@
 ---
 title: 延迟
-description: OpenJev Multimodal 的请求时间花在哪里、改了什么：混合架构 Qwen 的共享前缀预填充、经核对的模板骨架与图片一次缩放，附优化前后实测。
+description: OpenJev Multimodal 的请求时间花在哪里、改了什么：混合架构 Qwen 的共享前缀预填充、经核对的模板骨架与图片一次缩放，四个档位实测。
 ---
 
 # 延迟
@@ -15,21 +15,21 @@ description: OpenJev Multimodal 的请求时间花在哪里、改了什么：混
 
 **一个问题**
 
-|  | fast <span class="model">0.8B</span> | balanced <span class="model">4B</span> | quality <span class="model">35B-A3B</span> |
-| --- | ---: | ---: | ---: |
-| 客服工单 | 70 ms <span class="delta">−13%</span> | 278 ms <span class="delta">−4%</span> | 332 ms <span class="delta">−6%</span> |
-| 1.2k token 条款 | 205 ms <span class="delta">−7%</span> | 996 ms <span class="delta">−1%</span> | 1.09 s <span class="delta">−2%</span> |
-| 448×672 截图 | 136 ms <span class="delta">−7%</span> | 735 ms <span class="delta">−1%</span> | 1.04 s <span class="delta">−3%</span> |
-| 2048×1536 照片 | 256 ms <span class="delta">−18%</span> | 911 ms <span class="delta">−6%</span> | 1.42 s <span class="delta">−1%</span> |
-| 重复请求 | 14 ms <span class="delta">−41%</span> | 35 ms <span class="delta">−20%</span> | 34 ms <span class="delta">−20%</span> |
+|  | fast <span class="model">0.8B</span> | balanced <span class="model">4B</span> | quality <span class="model">35B-A3B</span> | max <span class="model">27B</span> |
+| --- | ---: | ---: | ---: | ---: |
+| 客服工单 | 70 ms <span class="delta">−13%</span> | 278 ms <span class="delta">−4%</span> | 332 ms <span class="delta">−6%</span> | 1.62 s <span class="delta">−1%</span> |
+| 1.2k token 条款 | 205 ms <span class="delta">−7%</span> | 996 ms <span class="delta">−1%</span> | 1.09 s <span class="delta">−2%</span> | 6.06 s <span class="delta">0%</span> |
+| 448×672 截图 | 136 ms <span class="delta">−7%</span> | 735 ms <span class="delta">−1%</span> | 1.04 s <span class="delta">−3%</span> | 2.75 s <span class="delta">−1%</span> |
+| 2048×1536 照片 | 256 ms <span class="delta">−18%</span> | 911 ms <span class="delta">−6%</span> | 1.42 s <span class="delta">−1%</span> | 3.72 s <span class="delta">−1%</span> |
+| 重复请求 | 14 ms <span class="delta">−41%</span> | 35 ms <span class="delta">−20%</span> | 34 ms <span class="delta">−20%</span> | 172 ms <span class="delta">−5%</span> |
 
 **同一 state 的四个问题**
 
-|  | fast <span class="model">0.8B</span> | balanced <span class="model">4B</span> | quality <span class="model">35B-A3B</span> |
-| --- | ---: | ---: | ---: |
-| 客服工单 | 165 ms <span class="delta">−35%</span> | 623 ms <span class="delta">−42%</span> | 859 ms <span class="delta">−35%</span> |
-| 1.2k token 条款 | 311 ms <span class="delta">−41%</span> | 1.43 s <span class="delta">−45%</span> | 1.68 s <span class="delta">−39%</span> |
-| 448×672 截图 | 235 ms <span class="delta">−53%</span> | 1.00 s <span class="delta">−60%</span> | 2.09 s <span class="delta">−57%</span> |
+|  | fast <span class="model">0.8B</span> | balanced <span class="model">4B</span> | quality <span class="model">35B-A3B</span> | max <span class="model">27B</span> |
+| --- | ---: | ---: | ---: | ---: |
+| 客服工单 | 165 ms <span class="delta">−35%</span> | 623 ms <span class="delta">−42%</span> | 859 ms <span class="delta">−35%</span> | 3.38 s <span class="delta">−47%</span> |
+| 1.2k token 条款 | 311 ms <span class="delta">−41%</span> | 1.43 s <span class="delta">−45%</span> | 1.68 s <span class="delta">−39%</span> | 9.53 s <span class="delta">−47%</span> |
+| 448×672 截图 | 235 ms <span class="delta">−53%</span> | 1.00 s <span class="delta">−60%</span> | 2.09 s <span class="delta">−57%</span> | 4.42 s <span class="delta">−58%</span> |
 
 </div>
 
@@ -101,9 +101,9 @@ Qwen3.5、Qwen3.6 与 Qwen3.8 都是混合架构，循环层无法回滚到任�
 
 每次试验向两个版本发送完全相同的请求。
 
-- **判断：** 168 对请求全部一致（3 个档位 × 8 类请求 × 7 次）。
+- **判断：** 224 对请求全部一致（4 个档位 × 8 类请求 × 7 次）。
 - **单问题、无大图：** 概率完全相同。
-- **多问题：** 0.8B 与 4B 模型的概率差不超过 0.001，35B-A3B 不超过 0.067。前缀改为单独一批计算，浮点求和顺序随之变化。
+- **多问题：** 0.8B、4B 与 27B 模型的概率差不超过 0.001，35B-A3B 不超过 0.067。前缀改为单独一批计算，浮点求和顺序随之变化。
 - **照片：** 不超过 0.018，因为只重采样一次。
 
 ## 下一步
@@ -115,7 +115,7 @@ Qwen3.5、Qwen3.6 与 Qwen3.8 都是混合架构，循环层无法回滚到任�
 
 ## 方法
 
-`scripts/latency.py` 把每个新请求按轮换顺序发给两个版本。两个版本各自运行 llama.cpp 进程，互不共享缓存。每个 state 以新的标识开头，确保请求都是冷启动；重复请求用例只计第二次的耗时。每类请求预热两次后测 7 次，2026 年 9 月 21 日测于 M3 Max（128 GB）与 llama.cpp b9670，没有样本与其他推理重叠。
+`scripts/latency.py` 把每个新请求按轮换顺序发给两个版本。两个版本各自运行 llama.cpp 进程，互不共享缓存。每个 state 以新的标识开头，确保请求都是冷启动；重复请求用例只计第二次的耗时。每类请求预热两次后测 7 次，2026 年 9 月 21 日测于 M3 Max（128 GB）与 llama.cpp b9670。max 同一时间只加载一个模型：两个版本共用一个 llama.cpp 进程，每次请求前清空（`--flush`），每轮试验前空闲 30 秒，测于 9 月 22 日。没有样本与其他推理重叠。
 
 ```bash
 uv run python scripts/latency.py --quiet --output benchmarks/performance/balanced.json \
@@ -123,7 +123,7 @@ uv run python scripts/latency.py --quiet --output benchmarks/performance/balance
 uv run python scripts/render_performance.py --chart
 ```
 
-测量记录：[fast](https://github.com/jev-skills/openjev-multimodal/blob/main/benchmarks/performance/fast.json) · [balanced](https://github.com/jev-skills/openjev-multimodal/blob/main/benchmarks/performance/balanced.json) · [quality](https://github.com/jev-skills/openjev-multimodal/blob/main/benchmarks/performance/quality.json)
+测量记录：[fast](https://github.com/jev-skills/openjev-multimodal/blob/main/benchmarks/performance/fast.json) · [balanced](https://github.com/jev-skills/openjev-multimodal/blob/main/benchmarks/performance/balanced.json) · [quality](https://github.com/jev-skills/openjev-multimodal/blob/main/benchmarks/performance/quality.json) · [max](https://github.com/jev-skills/openjev-multimodal/blob/main/benchmarks/performance/max.json)
 
 <style scoped>
 .delta { margin-left: 6px; font-size: 12px; color: var(--vp-c-text-3); white-space: nowrap; }

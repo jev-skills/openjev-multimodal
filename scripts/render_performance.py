@@ -153,7 +153,8 @@ def name(case: str, zh: bool) -> str:
 
 
 def change(ms: float, base: float) -> str:
-    return f"{(ms - base) / base * 100:+.0f}%".replace("-", "−")
+    percent = round((ms - base) / base * 100)
+    return f"{percent:+d}%".replace("-", "−") if percent else "0%"
 
 
 def model(receipt: dict) -> str:
@@ -209,7 +210,8 @@ def main():
         nargs="*",
         type=Path,
         default=[
-            ROOT / f"benchmarks/performance/{p}.json" for p in ("fast", "balanced", "quality")
+            ROOT / f"benchmarks/performance/{p}.json"
+            for p in ("fast", "balanced", "quality", "max")
         ],
     )
     parser.add_argument(

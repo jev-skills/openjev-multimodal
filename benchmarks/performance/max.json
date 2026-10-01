@@ -1,0 +1,3362 @@
+{
+ "created": "2026-09-22T09:35:42+00:00",
+ "machine": "arm64",
+ "chip": "Apple M3 Max",
+ "trials": 7,
+ "shared_backend": "http://127.0.0.1:18099",
+ "pause_s": 30.0,
+ "endpoints": {
+  "before": {
+   "url": "http://127.0.0.1:8101",
+   "status": "ok",
+   "model": "Qwen/Qwen3.8-27B",
+   "multimodal": true,
+   "backend": "llama.cpp"
+  },
+  "after": {
+   "url": "http://127.0.0.1:8100",
+   "status": "ok",
+   "model": "Qwen/Qwen3.8-27B",
+   "multimodal": true,
+   "backend": "llama.cpp",
+   "backend_build": "b9670-02810c7aa",
+   "weights": "Qwen3.8-27B-UD-Q4_K_XL.gguf"
+  }
+ },
+ "cases": {
+  "text_1q": {
+   "summary": {
+    "before": {
+     "median_ms": 1635.8,
+     "min_ms": 1629.48,
+     "max_ms": 1647.7,
+     "server_ms": null,
+     "cached_tokens": 0,
+     "input_tokens": 277,
+     "same_decisions_as_reference": 1.0,
+     "max_probability_difference": 0.0
+    },
+    "after": {
+     "median_ms": 1624.8,
+     "min_ms": 1619.87,
+     "max_ms": 1644.3,
+     "server_ms": 1621.6,
+     "cached_tokens": 0,
+     "input_tokens": 277,
+     "same_decisions_as_reference": 1.0,
+     "max_probability_difference": 0.0
+    }
+   },
+   "rows": {
+    "before": [
+     {
+      "client_ms": 1647.7,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 0,
+      "input_tokens": 277,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9936449166515281,
+        0.0031212291952233675,
+        0.002480707655612339,
+        0.0007531464976361882
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1635.57,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 0,
+      "input_tokens": 277,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9929761024097689,
+        0.003960010955019094,
+        0.002292228102642277,
+        0.000771658532569733
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1632.07,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 0,
+      "input_tokens": 274,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9927031175355252,
+        0.004208242426383464,
+        0.002364629593771976,
+        0.0007240104443193401
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1635.76,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 0,
+      "input_tokens": 277,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9926219577935422,
+        0.004086283964996094,
+        0.0024791939638186275,
+        0.0008125642776430751
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1646.25,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 0,
+      "input_tokens": 273,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9929553853092963,
+        0.003865275992493765,
+        0.002405485367907318,
+        0.0007738533303025978
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1629.48,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 0,
+      "input_tokens": 273,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9929168896093099,
+        0.0037998939222764518,
+        0.002481539519799505,
+        0.0008016769486141671
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1645.7,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 0,
+      "input_tokens": 274,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9928243715263362,
+        0.0038369726231074278,
+        0.0025488668947381927,
+        0.0007897889558182205
+       ]
+      },
+      "clean": true
+     }
+    ],
+    "after": [
+     {
+      "client_ms": 1633.38,
+      "processing_ms": 1631.62,
+      "timing": {
+       "processing_ms": 1631.62,
+       "parse_ms": 0.15,
+       "prepare_ms": 13.63,
+       "queue_ms": 0.0,
+       "inference_ms": 1617.75
+      },
+      "cached_tokens": 0,
+      "input_tokens": 277,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9936449166515281,
+        0.0031212291952233675,
+        0.002480707655612339,
+        0.0007531464976361882
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1644.3,
+      "processing_ms": 1641.7,
+      "timing": {
+       "processing_ms": 1641.7,
+       "parse_ms": 0.27,
+       "prepare_ms": 22.49,
+       "queue_ms": 0.0,
+       "inference_ms": 1618.81
+      },
+      "cached_tokens": 0,
+      "input_tokens": 277,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9929761024097689,
+        0.003960010955019094,
+        0.002292228102642277,
+        0.000771658532569733
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1620.98,
+      "processing_ms": 1619.28,
+      "timing": {
+       "processing_ms": 1619.28,
+       "parse_ms": 0.17,
+       "prepare_ms": 2.18,
+       "queue_ms": 0.0,
+       "inference_ms": 1616.82
+      },
+      "cached_tokens": 0,
+      "input_tokens": 274,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9927031175355252,
+        0.004208242426383464,
+        0.002364629593771976,
+        0.0007240104443193401
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1628.66,
+      "processing_ms": 1626.11,
+      "timing": {
+       "processing_ms": 1626.11,
+       "parse_ms": 0.43,
+       "prepare_ms": 4.34,
+       "queue_ms": 0.0,
+       "inference_ms": 1621.21
+      },
+      "cached_tokens": 0,
+      "input_tokens": 277,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9926219577935422,
+        0.004086283964996094,
+        0.0024791939638186275,
+        0.0008125642776430751
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1621.75,
+      "processing_ms": 1620.18,
+      "timing": {
+       "processing_ms": 1620.18,
+       "parse_ms": 0.15,
+       "prepare_ms": 2.14,
+       "queue_ms": 0.0,
+       "inference_ms": 1617.77
+      },
+      "cached_tokens": 0,
+      "input_tokens": 273,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9929553853092963,
+        0.003865275992493765,
+        0.002405485367907318,
+        0.0007738533303025978
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1624.77,
+      "processing_ms": 1621.61,
+      "timing": {
+       "processing_ms": 1621.61,
+       "parse_ms": 0.34,
+       "prepare_ms": 4.57,
+       "queue_ms": 0.01,
+       "inference_ms": 1616.53
+      },
+      "cached_tokens": 0,
+      "input_tokens": 273,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9929168896093099,
+        0.0037998939222764518,
+        0.002481539519799505,
+        0.0008016769486141671
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1619.87,
+      "processing_ms": 1618.35,
+      "timing": {
+       "processing_ms": 1618.35,
+       "parse_ms": 0.15,
+       "prepare_ms": 2.26,
+       "queue_ms": 0.0,
+       "inference_ms": 1615.83
+      },
+      "cached_tokens": 0,
+      "input_tokens": 274,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9928243715263362,
+        0.0038369726231074278,
+        0.0025488668947381927,
+        0.0007897889558182205
+       ]
+      },
+      "clean": true
+     }
+    ]
+   }
+  },
+  "text_4q": {
+   "summary": {
+    "before": {
+     "median_ms": 6329.6,
+     "min_ms": 6318.29,
+     "max_ms": 6344.58,
+     "server_ms": null,
+     "cached_tokens": 0,
+     "input_tokens": 1073,
+     "same_decisions_as_reference": 1.0,
+     "max_probability_difference": 0.0
+    },
+    "after": {
+     "median_ms": 3376.9,
+     "min_ms": 3372.43,
+     "max_ms": 3380.54,
+     "server_ms": 3374.7,
+     "cached_tokens": 908,
+     "input_tokens": 1073,
+     "same_decisions_as_reference": 1.0,
+     "max_probability_difference": 2.299535128535979e-05
+    }
+   },
+   "rows": {
+    "before": [
+     {
+      "client_ms": 6329.55,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 0,
+      "input_tokens": 1073,
+      "decisions": {
+       "refund": true,
+       "team": "billing",
+       "urgency": 1,
+       "mood": "frustrated"
+      },
+      "probabilities": {
+       "refund": [
+        0.9944924130027543
+       ],
+       "team": [
+        0.9924989272786554,
+        0.004211102116995994,
+        0.0024951097845386083,
+        0.0007948608198099444
+       ],
+       "urgency": [
+        0.03920666121094178,
+        0.5970351684893758,
+        0.3419993811436009,
+        0.021758789156081548
+       ],
+       "mood": [
+        0.024634892671590136,
+        0.9588250136112797,
+        0.016540093717130132
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 6318.29,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 0,
+      "input_tokens": 1069,
+      "decisions": {
+       "refund": true,
+       "team": "billing",
+       "urgency": 1,
+       "mood": "frustrated"
+      },
+      "probabilities": {
+       "refund": [
+        0.9944370615889393
+       ],
+       "team": [
+        0.9924403096982989,
+        0.004146708751507447,
+        0.0025890116337208492,
+        0.0008239699164728083
+       ],
+       "urgency": [
+        0.03959444120979561,
+        0.5907958083883397,
+        0.34704073875724445,
+        0.02256901164462032
+       ],
+       "mood": [
+        0.02473582005518306,
+        0.9581223326536746,
+        0.017141847291142345
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 6331.92,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 0,
+      "input_tokens": 1073,
+      "decisions": {
+       "refund": true,
+       "team": "billing",
+       "urgency": 1,
+       "mood": "frustrated"
+      },
+      "probabilities": {
+       "refund": [
+        0.9945073118484511
+       ],
+       "team": [
+        0.9926876657449032,
+        0.004071523064787077,
+        0.002465399738204741,
+        0.0007754114521050355
+       ],
+       "urgency": [
+        0.03892891050981118,
+        0.5963256270240899,
+        0.3427467891164602,
+        0.02199867334963868
+       ],
+       "mood": [
+        0.024926783377713802,
+        0.958158845315731,
+        0.016914371306555133
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 6323.8,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 0,
+      "input_tokens": 1077,
+      "decisions": {
+       "refund": true,
+       "team": "billing",
+       "urgency": 1,
+       "mood": "frustrated"
+      },
+      "probabilities": {
+       "refund": [
+        0.9941849824295493
+       ],
+       "team": [
+        0.9926067538713915,
+        0.004137701798906017,
+        0.002432874856810159,
+        0.0008226694728922883
+       ],
+       "urgency": [
+        0.039952578695041575,
+        0.5901796641892295,
+        0.34744407691228163,
+        0.022423680203447337
+       ],
+       "mood": [
+        0.024441804509220604,
+        0.9590490371077411,
+        0.01650915838303828
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 6344.58,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 0,
+      "input_tokens": 1073,
+      "decisions": {
+       "refund": true,
+       "team": "billing",
+       "urgency": 1,
+       "mood": "frustrated"
+      },
+      "probabilities": {
+       "refund": [
+        0.9942345240754181
+       ],
+       "team": [
+        0.9924636687116974,
+        0.004147249824831913,
+        0.0025456676317041666,
+        0.000843413831766525
+       ],
+       "urgency": [
+        0.039056572917638074,
+        0.5934622861688499,
+        0.3452956961643111,
+        0.022185444749200922
+       ],
+       "mood": [
+        0.02463355506292523,
+        0.9581075435630098,
+        0.017258901374064963
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 6327.15,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 0,
+      "input_tokens": 1069,
+      "decisions": {
+       "refund": true,
+       "team": "billing",
+       "urgency": 1,
+       "mood": "frustrated"
+      },
+      "probabilities": {
+       "refund": [
+        0.9946289783599704
+       ],
+       "team": [
+        0.9922469027860489,
+        0.004422996090447097,
+        0.0025434228000914623,
+        0.000786678323412509
+       ],
+       "urgency": [
+        0.03964785195165569,
+        0.5910919429771814,
+        0.3472835790740687,
+        0.021976625997094226
+       ],
+       "mood": [
+        0.02454369837421797,
+        0.9585829180769397,
+        0.016873383548842335
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 6336.8,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 0,
+      "input_tokens": 1073,
+      "decisions": {
+       "refund": true,
+       "team": "billing",
+       "urgency": 1,
+       "mood": "frustrated"
+      },
+      "probabilities": {
+       "refund": [
+        0.9947221921511097
+       ],
+       "team": [
+        0.9924866791091106,
+        0.004096433151225526,
+        0.0026062359716467077,
+        0.000810651768017209
+       ],
+       "urgency": [
+        0.04001809760975347,
+        0.5887754117005612,
+        0.3483299405809849,
+        0.022876550108700433
+       ],
+       "mood": [
+        0.025119178231052853,
+        0.9576529949684907,
+        0.01722782680045652
+       ]
+      },
+      "clean": true
+     }
+    ],
+    "after": [
+     {
+      "client_ms": 3376.92,
+      "processing_ms": 3375.4,
+      "timing": {
+       "processing_ms": 3375.4,
+       "parse_ms": 0.17,
+       "prepare_ms": 3.78,
+       "queue_ms": 0.0,
+       "inference_ms": 3371.35
+      },
+      "cached_tokens": 908,
+      "input_tokens": 1073,
+      "decisions": {
+       "refund": true,
+       "team": "billing",
+       "urgency": 1,
+       "mood": "frustrated"
+      },
+      "probabilities": {
+       "refund": [
+        0.9944802397624746
+       ],
+       "team": [
+        0.9924989272786554,
+        0.004211102116995994,
+        0.0024951097845386083,
+        0.0007948608198099444
+       ],
+       "urgency": [
+        0.03920666121094178,
+        0.5970351684893758,
+        0.3419993811436009,
+        0.021758789156081548
+       ],
+       "mood": [
+        0.024634892671590136,
+        0.9588250136112797,
+        0.016540093717130132
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 3378.91,
+      "processing_ms": 3376.2,
+      "timing": {
+       "processing_ms": 3376.2,
+       "parse_ms": 0.37,
+       "prepare_ms": 7.16,
+       "queue_ms": 0.0,
+       "inference_ms": 3368.52
+      },
+      "cached_tokens": 904,
+      "input_tokens": 1069,
+      "decisions": {
+       "refund": true,
+       "team": "billing",
+       "urgency": 1,
+       "mood": "frustrated"
+      },
+      "probabilities": {
+       "refund": [
+        0.9944304740523228
+       ],
+       "team": [
+        0.9924403096982989,
+        0.004146708751507447,
+        0.0025890116337208492,
+        0.0008239699164728083
+       ],
+       "urgency": [
+        0.03959444120979561,
+        0.5907958083883397,
+        0.34704073875724445,
+        0.02256901164462032
+       ],
+       "mood": [
+        0.02473582005518306,
+        0.9581223326536746,
+        0.017141847291142345
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 3373.43,
+      "processing_ms": 3371.67,
+      "timing": {
+       "processing_ms": 3371.67,
+       "parse_ms": 0.2,
+       "prepare_ms": 4.5,
+       "queue_ms": 0.0,
+       "inference_ms": 3366.86
+      },
+      "cached_tokens": 908,
+      "input_tokens": 1073,
+      "decisions": {
+       "refund": true,
+       "team": "billing",
+       "urgency": 1,
+       "mood": "frustrated"
+      },
+      "probabilities": {
+       "refund": [
+        0.9945083533767578
+       ],
+       "team": [
+        0.9926876657449032,
+        0.004071523064787077,
+        0.002465399738204741,
+        0.0007754114521050355
+       ],
+       "urgency": [
+        0.03892891050981118,
+        0.5963256270240899,
+        0.3427467891164602,
+        0.02199867334963868
+       ],
+       "mood": [
+        0.024926783377713802,
+        0.958158845315731,
+        0.016914371306555133
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 3377.25,
+      "processing_ms": 3374.72,
+      "timing": {
+       "processing_ms": 3374.72,
+       "parse_ms": 0.3,
+       "prepare_ms": 6.96,
+       "queue_ms": 0.0,
+       "inference_ms": 3367.32
+      },
+      "cached_tokens": 912,
+      "input_tokens": 1077,
+      "decisions": {
+       "refund": true,
+       "team": "billing",
+       "urgency": 1,
+       "mood": "frustrated"
+      },
+      "probabilities": {
+       "refund": [
+        0.9941736362512938
+       ],
+       "team": [
+        0.9926067538713915,
+        0.004137701798906017,
+        0.002432874856810159,
+        0.0008226694728922883
+       ],
+       "urgency": [
+        0.039952578695041575,
+        0.5901796641892295,
+        0.34744407691228163,
+        0.022423680203447337
+       ],
+       "mood": [
+        0.024441804509220604,
+        0.9590490371077411,
+        0.01650915838303828
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 3375.62,
+      "processing_ms": 3373.97,
+      "timing": {
+       "processing_ms": 3373.97,
+       "parse_ms": 0.17,
+       "prepare_ms": 4.29,
+       "queue_ms": 0.0,
+       "inference_ms": 3369.41
+      },
+      "cached_tokens": 908,
+      "input_tokens": 1073,
+      "decisions": {
+       "refund": true,
+       "team": "billing",
+       "urgency": 1,
+       "mood": "frustrated"
+      },
+      "probabilities": {
+       "refund": [
+        0.9942274348263205
+       ],
+       "team": [
+        0.9924636687116974,
+        0.004147249824831913,
+        0.0025456676317041666,
+        0.000843413831766525
+       ],
+       "urgency": [
+        0.039056572917638074,
+        0.5934622861688499,
+        0.3452956961643111,
+        0.022185444749200922
+       ],
+       "mood": [
+        0.02463355506292523,
+        0.9581075435630098,
+        0.017258901374064963
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 3380.54,
+      "processing_ms": 3378.42,
+      "timing": {
+       "processing_ms": 3378.42,
+       "parse_ms": 0.32,
+       "prepare_ms": 7.52,
+       "queue_ms": 0.0,
+       "inference_ms": 3370.45
+      },
+      "cached_tokens": 904,
+      "input_tokens": 1069,
+      "decisions": {
+       "refund": true,
+       "team": "billing",
+       "urgency": 1,
+       "mood": "frustrated"
+      },
+      "probabilities": {
+       "refund": [
+        0.9946059830086851
+       ],
+       "team": [
+        0.9922469027860489,
+        0.004422996090447097,
+        0.0025434228000914623,
+        0.000786678323412509
+       ],
+       "urgency": [
+        0.03964785195165569,
+        0.5910919429771814,
+        0.3472835790740687,
+        0.021976625997094226
+       ],
+       "mood": [
+        0.02454369837421797,
+        0.9585829180769397,
+        0.016873383548842335
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 3372.43,
+      "processing_ms": 3370.77,
+      "timing": {
+       "processing_ms": 3370.77,
+       "parse_ms": 0.16,
+       "prepare_ms": 3.99,
+       "queue_ms": 0.0,
+       "inference_ms": 3366.52
+      },
+      "cached_tokens": 908,
+      "input_tokens": 1073,
+      "decisions": {
+       "refund": true,
+       "team": "billing",
+       "urgency": 1,
+       "mood": "frustrated"
+      },
+      "probabilities": {
+       "refund": [
+        0.994722832516476
+       ],
+       "team": [
+        0.9924866791091106,
+        0.004096433151225526,
+        0.0026062359716467077,
+        0.000810651768017209
+       ],
+       "urgency": [
+        0.04001809760975347,
+        0.5887754117005612,
+        0.3483299405809849,
+        0.022876550108700433
+       ],
+       "mood": [
+        0.025119178231052853,
+        0.9576529949684907,
+        0.01722782680045652
+       ]
+      },
+      "clean": true
+     }
+    ]
+   }
+  },
+  "long_1q": {
+   "summary": {
+    "before": {
+     "median_ms": 6074.0,
+     "min_ms": 6059.67,
+     "max_ms": 6180.87,
+     "server_ms": null,
+     "cached_tokens": 0,
+     "input_tokens": 1178,
+     "same_decisions_as_reference": 1.0,
+     "max_probability_difference": 0.0
+    },
+    "after": {
+     "median_ms": 6058.2,
+     "min_ms": 6031.28,
+     "max_ms": 6157.94,
+     "server_ms": 6056.1,
+     "cached_tokens": 0,
+     "input_tokens": 1178,
+     "same_decisions_as_reference": 1.0,
+     "max_probability_difference": 0.0
+    }
+   },
+   "rows": {
+    "before": [
+     {
+      "client_ms": 6074.0,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 0,
+      "input_tokens": 1178,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.0097599570253489
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 6108.78,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 0,
+      "input_tokens": 1178,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.01028301912553186
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 6059.67,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 0,
+      "input_tokens": 1179,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.010492180737935826
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 6180.87,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 0,
+      "input_tokens": 1175,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.009322603973469429
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 6060.16,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 0,
+      "input_tokens": 1180,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.010805148430072731
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 6110.6,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 0,
+      "input_tokens": 1180,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.010225643508585243
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 6059.69,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 0,
+      "input_tokens": 1182,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.010565781710007858
+       ]
+      },
+      "clean": true
+     }
+    ],
+    "after": [
+     {
+      "client_ms": 6058.2,
+      "processing_ms": 6056.14,
+      "timing": {
+       "processing_ms": 6056.14,
+       "parse_ms": 0.18,
+       "prepare_ms": 3.57,
+       "queue_ms": 0.0,
+       "inference_ms": 6052.28
+      },
+      "cached_tokens": 0,
+      "input_tokens": 1178,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.0097599570253489
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 6045.04,
+      "processing_ms": 6041.93,
+      "timing": {
+       "processing_ms": 6041.93,
+       "parse_ms": 0.5,
+       "prepare_ms": 7.03,
+       "queue_ms": 0.0,
+       "inference_ms": 6034.22
+      },
+      "cached_tokens": 0,
+      "input_tokens": 1178,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.01028301912553186
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 6157.94,
+      "processing_ms": 6156.25,
+      "timing": {
+       "processing_ms": 6156.25,
+       "parse_ms": 0.16,
+       "prepare_ms": 3.64,
+       "queue_ms": 0.0,
+       "inference_ms": 6152.33
+      },
+      "cached_tokens": 0,
+      "input_tokens": 1179,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.010492180737935826
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 6037.43,
+      "processing_ms": 6035.41,
+      "timing": {
+       "processing_ms": 6035.41,
+       "parse_ms": 0.26,
+       "prepare_ms": 5.37,
+       "queue_ms": 0.0,
+       "inference_ms": 6029.68
+      },
+      "cached_tokens": 0,
+      "input_tokens": 1175,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.009322603973469429
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 6149.18,
+      "processing_ms": 6147.24,
+      "timing": {
+       "processing_ms": 6147.24,
+       "parse_ms": 0.16,
+       "prepare_ms": 3.37,
+       "queue_ms": 0.0,
+       "inference_ms": 6143.61
+      },
+      "cached_tokens": 0,
+      "input_tokens": 1180,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.010805148430072731
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 6031.28,
+      "processing_ms": 6029.19,
+      "timing": {
+       "processing_ms": 6029.19,
+       "parse_ms": 0.26,
+       "prepare_ms": 5.42,
+       "queue_ms": 0.0,
+       "inference_ms": 6023.37
+      },
+      "cached_tokens": 0,
+      "input_tokens": 1180,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.010225643508585243
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 6112.48,
+      "processing_ms": 6110.77,
+      "timing": {
+       "processing_ms": 6110.77,
+       "parse_ms": 0.17,
+       "prepare_ms": 3.37,
+       "queue_ms": 0.0,
+       "inference_ms": 6107.13
+      },
+      "cached_tokens": 0,
+      "input_tokens": 1182,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.010565781710007858
+       ]
+      },
+      "clean": true
+     }
+    ]
+   }
+  },
+  "long_4q": {
+   "summary": {
+    "before": {
+     "median_ms": 17876.5,
+     "min_ms": 15252.71,
+     "max_ms": 20203.14,
+     "server_ms": null,
+     "cached_tokens": 1986,
+     "input_tokens": 4753,
+     "same_decisions_as_reference": 1.0,
+     "max_probability_difference": 0.0
+    },
+    "after": {
+     "median_ms": 9529.6,
+     "min_ms": 7901.07,
+     "max_ms": 11047.37,
+     "server_ms": 9527.5,
+     "cached_tokens": 4584,
+     "input_tokens": 4753,
+     "same_decisions_as_reference": 1.0,
+     "max_probability_difference": 0.00038397227481690166
+    }
+   },
+   "rows": {
+    "before": [
+     {
+      "client_ms": 15252.71,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 1989,
+      "input_tokens": 4753,
+      "decisions": {
+       "refund": false,
+       "team": "other",
+       "urgency": 0,
+       "mood": "calm"
+      },
+      "probabilities": {
+       "refund": [
+        0.009815858805013842
+       ],
+       "team": [
+        0.06592705014815675,
+        0.011178046319174907,
+        0.0148945057685272,
+        0.9080003977641411
+       ],
+       "urgency": [
+        0.8921776760692426,
+        0.04550732917597529,
+        0.03223556935129028,
+        0.030079425403491816
+       ],
+       "mood": [
+        0.8974512982638795,
+        0.04748630984660815,
+        0.05506239188951239
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 15641.47,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 1983,
+      "input_tokens": 4745,
+      "decisions": {
+       "refund": false,
+       "team": "other",
+       "urgency": 0,
+       "mood": "calm"
+      },
+      "probabilities": {
+       "refund": [
+        0.009975071111577895
+       ],
+       "team": [
+        0.07216770825998974,
+        0.010486683632470383,
+        0.015368322584191517,
+        0.9019772855233483
+       ],
+       "urgency": [
+        0.8925481239136728,
+        0.044746260089883354,
+        0.03186011243179189,
+        0.030845503564651974
+       ],
+       "mood": [
+        0.8954384527080905,
+        0.04623178868513827,
+        0.0583297586067712
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 20203.14,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 1986,
+      "input_tokens": 4749,
+      "decisions": {
+       "refund": false,
+       "team": "other",
+       "urgency": 0,
+       "mood": "calm"
+      },
+      "probabilities": {
+       "refund": [
+        0.01070789179550232
+       ],
+       "team": [
+        0.07090677274731229,
+        0.011116496214814975,
+        0.015891969100345127,
+        0.9020847619375276
+       ],
+       "urgency": [
+        0.8899891277031325,
+        0.046367749053600256,
+        0.03255292736866034,
+        0.031090195874606864
+       ],
+       "mood": [
+        0.8941971426480263,
+        0.048858134664569265,
+        0.05694472268740439
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 20140.74,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 1989,
+      "input_tokens": 4753,
+      "decisions": {
+       "refund": false,
+       "team": "other",
+       "urgency": 0,
+       "mood": "calm"
+      },
+      "probabilities": {
+       "refund": [
+        0.011187869847046773
+       ],
+       "team": [
+        0.06925052385055314,
+        0.011302680676888636,
+        0.0158046800201628,
+        0.9036421154523955
+       ],
+       "urgency": [
+        0.8911173592633761,
+        0.04605961347165369,
+        0.032158964280755195,
+        0.030664062984214993
+       ],
+       "mood": [
+        0.8955393266763664,
+        0.04834591134738342,
+        0.056114761976250226
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 19127.08,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 1977,
+      "input_tokens": 4737,
+      "decisions": {
+       "refund": false,
+       "team": "other",
+       "urgency": 0,
+       "mood": "calm"
+      },
+      "probabilities": {
+       "refund": [
+        0.009925915720976205
+       ],
+       "team": [
+        0.07308798079133087,
+        0.010110433862253078,
+        0.01641360810733564,
+        0.9003879772390804
+       ],
+       "urgency": [
+        0.8918291760267844,
+        0.043681840530003596,
+        0.03284172652584079,
+        0.03164725691737129
+       ],
+       "mood": [
+        0.8986992668602752,
+        0.04627146113158276,
+        0.055029272008142026
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 17876.47,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 1983,
+      "input_tokens": 4745,
+      "decisions": {
+       "refund": false,
+       "team": "other",
+       "urgency": 0,
+       "mood": "calm"
+      },
+      "probabilities": {
+       "refund": [
+        0.00989701668971645
+       ],
+       "team": [
+        0.07060008390843743,
+        0.009687318322251464,
+        0.014885433727719877,
+        0.9048271640415912
+       ],
+       "urgency": [
+        0.894693911075592,
+        0.04363199323415756,
+        0.031597163528203964,
+        0.030076932162046432
+       ],
+       "mood": [
+        0.9015214510375369,
+        0.04599409957225695,
+        0.052484449390206106
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 17170.19,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 1989,
+      "input_tokens": 4753,
+      "decisions": {
+       "refund": false,
+       "team": "other",
+       "urgency": 0,
+       "mood": "calm"
+      },
+      "probabilities": {
+       "refund": [
+        0.010804495542772675
+       ],
+       "team": [
+        0.07001468506634848,
+        0.010697524013474938,
+        0.01575308472033085,
+        0.9035347061998458
+       ],
+       "urgency": [
+        0.888193630491776,
+        0.04675863060098296,
+        0.03273056532857551,
+        0.03231717357866546
+       ],
+       "mood": [
+        0.8993865881092347,
+        0.04607391374585745,
+        0.05453949814490787
+       ]
+      },
+      "clean": true
+     }
+    ],
+    "after": [
+     {
+      "client_ms": 8805.48,
+      "processing_ms": 8803.71,
+      "timing": {
+       "processing_ms": 8803.71,
+       "parse_ms": 0.19,
+       "prepare_ms": 4.96,
+       "queue_ms": 0.0,
+       "inference_ms": 8798.44
+      },
+      "cached_tokens": 4588,
+      "input_tokens": 4753,
+      "decisions": {
+       "refund": false,
+       "team": "other",
+       "urgency": 0,
+       "mood": "calm"
+      },
+      "probabilities": {
+       "refund": [
+        0.009834711394111108
+       ],
+       "team": [
+        0.06589932893168482,
+        0.011120957581348661,
+        0.014890173796801218,
+        0.9080895396901653
+       ],
+       "urgency": [
+        0.8921137202871855,
+        0.04544161505694645,
+        0.0322773075026281,
+        0.030167357153239927
+       ],
+       "mood": [
+        0.8972516260426855,
+        0.0475939709155404,
+        0.0551544030417741
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 7901.07,
+      "processing_ms": 7898.03,
+      "timing": {
+       "processing_ms": 7898.03,
+       "parse_ms": 0.43,
+       "prepare_ms": 14.78,
+       "queue_ms": 0.0,
+       "inference_ms": 7882.68
+      },
+      "cached_tokens": 4580,
+      "input_tokens": 4745,
+      "decisions": {
+       "refund": false,
+       "team": "other",
+       "urgency": 0,
+       "mood": "calm"
+      },
+      "probabilities": {
+       "refund": [
+        0.009961594007480078
+       ],
+       "team": [
+        0.07183962933257879,
+        0.010487226583755291,
+        0.01531188628550075,
+        0.9023612577981652
+       ],
+       "urgency": [
+        0.8925105250206727,
+        0.044801082044829785,
+        0.031873117835511285,
+        0.030815275098986225
+       ],
+       "mood": [
+        0.8954132828690606,
+        0.04625059308950079,
+        0.058336124041438564
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 11047.37,
+      "processing_ms": 11045.5,
+      "timing": {
+       "processing_ms": 11045.5,
+       "parse_ms": 0.2,
+       "prepare_ms": 4.53,
+       "queue_ms": 0.0,
+       "inference_ms": 11040.67
+      },
+      "cached_tokens": 4584,
+      "input_tokens": 4749,
+      "decisions": {
+       "refund": false,
+       "team": "other",
+       "urgency": 0,
+       "mood": "calm"
+      },
+      "probabilities": {
+       "refund": [
+        0.010664096201435628
+       ],
+       "team": [
+        0.07100054753945298,
+        0.01113544611512583,
+        0.0159220940605196,
+        0.9019419122849016
+       ],
+       "urgency": [
+        0.8899508267819088,
+        0.04643265980834875,
+        0.03258357996726822,
+        0.03103293344247416
+       ],
+       "mood": [
+        0.8939163917951835,
+        0.04900629201175289,
+        0.05707731619306361
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 10329.24,
+      "processing_ms": 10326.57,
+      "timing": {
+       "processing_ms": 10326.57,
+       "parse_ms": 0.37,
+       "prepare_ms": 10.6,
+       "queue_ms": 0.0,
+       "inference_ms": 10315.47
+      },
+      "cached_tokens": 4588,
+      "input_tokens": 4753,
+      "decisions": {
+       "refund": false,
+       "team": "other",
+       "urgency": 0,
+       "mood": "calm"
+      },
+      "probabilities": {
+       "refund": [
+        0.0112500749947506
+       ],
+       "team": [
+        0.06915176588979603,
+        0.011224989664298588,
+        0.015719530942929126,
+        0.9039037135029763
+       ],
+       "urgency": [
+        0.8909254437816213,
+        0.04605742051302663,
+        0.03232223083728695,
+        0.030694904868065066
+       ],
+       "mood": [
+        0.8954619565130333,
+        0.04831370975866072,
+        0.056224333728305986
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 9755.03,
+      "processing_ms": 9753.23,
+      "timing": {
+       "processing_ms": 9753.23,
+       "parse_ms": 0.19,
+       "prepare_ms": 5.03,
+       "queue_ms": 0.0,
+       "inference_ms": 9747.88
+      },
+      "cached_tokens": 4572,
+      "input_tokens": 4737,
+      "decisions": {
+       "refund": false,
+       "team": "other",
+       "urgency": 0,
+       "mood": "calm"
+      },
+      "probabilities": {
+       "refund": [
+        0.00997273638803864
+       ],
+       "team": [
+        0.07291287034369712,
+        0.010054249110451451,
+        0.016496540640551696,
+        0.9005363399052997
+       ],
+       "urgency": [
+        0.8914673527658139,
+        0.04374781348737657,
+        0.03298708125174972,
+        0.0317977524950598
+       ],
+       "mood": [
+        0.8983558088051024,
+        0.0463763936274169,
+        0.05526779756748073
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 9529.61,
+      "processing_ms": 9527.48,
+      "timing": {
+       "processing_ms": 9527.48,
+       "parse_ms": 0.19,
+       "prepare_ms": 5.23,
+       "queue_ms": 0.0,
+       "inference_ms": 9521.91
+      },
+      "cached_tokens": 4580,
+      "input_tokens": 4745,
+      "decisions": {
+       "refund": false,
+       "team": "other",
+       "urgency": 0,
+       "mood": "calm"
+      },
+      "probabilities": {
+       "refund": [
+        0.00989118708955315
+       ],
+       "team": [
+        0.07053190541998573,
+        0.009573900238902217,
+        0.014891948703500848,
+        0.9050022456376112
+       ],
+       "urgency": [
+        0.8948523981592573,
+        0.04342484093564592,
+        0.031633153498856065,
+        0.030089607406240688
+       ],
+       "mood": [
+        0.9017581343650818,
+        0.04587963968515396,
+        0.05236222594976425
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 9078.98,
+      "processing_ms": 9077.29,
+      "timing": {
+       "processing_ms": 9077.29,
+       "parse_ms": 0.18,
+       "prepare_ms": 4.69,
+       "queue_ms": 0.0,
+       "inference_ms": 9072.32
+      },
+      "cached_tokens": 4588,
+      "input_tokens": 4753,
+      "decisions": {
+       "refund": false,
+       "team": "other",
+       "urgency": 0,
+       "mood": "calm"
+      },
+      "probabilities": {
+       "refund": [
+        0.010819999198801838
+       ],
+       "team": [
+        0.0698981644604697,
+        0.010570853751695645,
+        0.015736352359198923,
+        0.9037946294286358
+       ],
+       "urgency": [
+        0.8883670104796739,
+        0.04664197261097986,
+        0.032756191235127914,
+        0.03223482567421832
+       ],
+       "mood": [
+        0.8995969496577296,
+        0.04576165331367373,
+        0.05464139702859663
+       ]
+      },
+      "clean": true
+     }
+    ]
+   }
+  },
+  "screenshot_1q": {
+   "summary": {
+    "before": {
+     "median_ms": 2772.1,
+     "min_ms": 2743.98,
+     "max_ms": 3172.94,
+     "server_ms": null,
+     "cached_tokens": 0,
+     "input_tokens": 410,
+     "same_decisions_as_reference": 1.0,
+     "max_probability_difference": 0.0
+    },
+    "after": {
+     "median_ms": 2753.8,
+     "min_ms": 2733.98,
+     "max_ms": 3154.48,
+     "server_ms": 2750.2,
+     "cached_tokens": 0,
+     "input_tokens": 410,
+     "same_decisions_as_reference": 1.0,
+     "max_probability_difference": 0.0
+    }
+   },
+   "rows": {
+    "before": [
+     {
+      "client_ms": 3172.94,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 0,
+      "input_tokens": 410,
+      "decisions": {
+       "team": "other"
+      },
+      "probabilities": {
+       "team": [
+        0.055179076153867496,
+        0.1643576823064696,
+        0.02104902147843198,
+        0.7594142200612309
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 2977.94,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 0,
+      "input_tokens": 410,
+      "decisions": {
+       "team": "other"
+      },
+      "probabilities": {
+       "team": [
+        0.0348845413820836,
+        0.15672860660129806,
+        0.01908702543353414,
+        0.7892998265830842
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 2811.28,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 0,
+      "input_tokens": 411,
+      "decisions": {
+       "team": "other"
+      },
+      "probabilities": {
+       "team": [
+        0.04933542238666348,
+        0.15026442258762054,
+        0.02037708028027176,
+        0.7800230747454442
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 2747.7,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 0,
+      "input_tokens": 407,
+      "decisions": {
+       "team": "other"
+      },
+      "probabilities": {
+       "team": [
+        0.03295864830079968,
+        0.18200739777442781,
+        0.020710141827851827,
+        0.7643238120969207
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 2760.08,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 0,
+      "input_tokens": 410,
+      "decisions": {
+       "team": "other"
+      },
+      "probabilities": {
+       "team": [
+        0.04907152374381359,
+        0.13844169521583213,
+        0.020893119042071116,
+        0.7915936619982832
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 2743.98,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 0,
+      "input_tokens": 411,
+      "decisions": {
+       "team": "other"
+      },
+      "probabilities": {
+       "team": [
+        0.040395196677726494,
+        0.19808416142346025,
+        0.02444733688401929,
+        0.737073305014794
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 2772.14,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 0,
+      "input_tokens": 410,
+      "decisions": {
+       "team": "other"
+      },
+      "probabilities": {
+       "team": [
+        0.03453821290628453,
+        0.14175704015972435,
+        0.01693007709883096,
+        0.8067746698351601
+       ]
+      },
+      "clean": true
+     }
+    ],
+    "after": [
+     {
+      "client_ms": 3154.48,
+      "processing_ms": 3152.88,
+      "timing": {
+       "processing_ms": 3152.88,
+       "parse_ms": 0.15,
+       "prepare_ms": 18.37,
+       "queue_ms": 0.0,
+       "inference_ms": 3134.27
+      },
+      "cached_tokens": 0,
+      "input_tokens": 410,
+      "decisions": {
+       "team": "other"
+      },
+      "probabilities": {
+       "team": [
+        0.055179076153867496,
+        0.1643576823064696,
+        0.02104902147843198,
+        0.7594142200612309
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 2890.46,
+      "processing_ms": 2888.96,
+      "timing": {
+       "processing_ms": 2888.96,
+       "parse_ms": 0.15,
+       "prepare_ms": 16.09,
+       "queue_ms": 0.0,
+       "inference_ms": 2872.63
+      },
+      "cached_tokens": 0,
+      "input_tokens": 410,
+      "decisions": {
+       "team": "other"
+      },
+      "probabilities": {
+       "team": [
+        0.0348845413820836,
+        0.15672860660129806,
+        0.01908702543353414,
+        0.7892998265830842
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 2801.39,
+      "processing_ms": 2799.69,
+      "timing": {
+       "processing_ms": 2799.69,
+       "parse_ms": 0.15,
+       "prepare_ms": 4.14,
+       "queue_ms": 0.0,
+       "inference_ms": 2795.29
+      },
+      "cached_tokens": 0,
+      "input_tokens": 411,
+      "decisions": {
+       "team": "other"
+      },
+      "probabilities": {
+       "team": [
+        0.04933542238666348,
+        0.15026442258762054,
+        0.02037708028027176,
+        0.7800230747454442
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 2753.84,
+      "processing_ms": 2750.16,
+      "timing": {
+       "processing_ms": 2750.16,
+       "parse_ms": 0.82,
+       "prepare_ms": 15.06,
+       "queue_ms": 0.0,
+       "inference_ms": 2734.09
+      },
+      "cached_tokens": 0,
+      "input_tokens": 407,
+      "decisions": {
+       "team": "other"
+      },
+      "probabilities": {
+       "team": [
+        0.03295864830079968,
+        0.18200739777442781,
+        0.020710141827851827,
+        0.7643238120969207
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 2748.68,
+      "processing_ms": 2747.15,
+      "timing": {
+       "processing_ms": 2747.15,
+       "parse_ms": 0.15,
+       "prepare_ms": 4.03,
+       "queue_ms": 0.0,
+       "inference_ms": 2742.87
+      },
+      "cached_tokens": 0,
+      "input_tokens": 410,
+      "decisions": {
+       "team": "other"
+      },
+      "probabilities": {
+       "team": [
+        0.04907152374381359,
+        0.13844169521583213,
+        0.020893119042071116,
+        0.7915936619982832
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 2736.83,
+      "processing_ms": 2734.71,
+      "timing": {
+       "processing_ms": 2734.71,
+       "parse_ms": 0.27,
+       "prepare_ms": 6.74,
+       "queue_ms": 0.0,
+       "inference_ms": 2727.59
+      },
+      "cached_tokens": 0,
+      "input_tokens": 411,
+      "decisions": {
+       "team": "other"
+      },
+      "probabilities": {
+       "team": [
+        0.040395196677726494,
+        0.19808416142346025,
+        0.02444733688401929,
+        0.737073305014794
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 2733.98,
+      "processing_ms": 2732.34,
+      "timing": {
+       "processing_ms": 2732.34,
+       "parse_ms": 0.15,
+       "prepare_ms": 3.84,
+       "queue_ms": 0.0,
+       "inference_ms": 2728.25
+      },
+      "cached_tokens": 0,
+      "input_tokens": 410,
+      "decisions": {
+       "team": "other"
+      },
+      "probabilities": {
+       "team": [
+        0.03453821290628453,
+        0.14175704015972435,
+        0.01693007709883096,
+        0.8067746698351601
+       ]
+      },
+      "clean": true
+     }
+    ]
+   }
+  },
+  "screenshot_4q": {
+   "summary": {
+    "before": {
+     "median_ms": 10491.9,
+     "min_ms": 10448.03,
+     "max_ms": 10577.64,
+     "server_ms": null,
+     "cached_tokens": 0,
+     "input_tokens": 1613,
+     "same_decisions_as_reference": 1.0,
+     "max_probability_difference": 0.0
+    },
+    "after": {
+     "median_ms": 4423.7,
+     "min_ms": 4394.85,
+     "max_ms": 4430.71,
+     "server_ms": 4421.2,
+     "cached_tokens": 1440,
+     "input_tokens": 1613,
+     "same_decisions_as_reference": 1.0,
+     "max_probability_difference": 2.6707908516055735e-05
+    }
+   },
+   "rows": {
+    "before": [
+     {
+      "client_ms": 10518.93,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 0,
+      "input_tokens": 1613,
+      "decisions": {
+       "refund": false,
+       "team": "other",
+       "urgency": 0,
+       "mood": "calm"
+      },
+      "probabilities": {
+       "refund": [
+        0.002282983376262581
+       ],
+       "team": [
+        0.051514655735452886,
+        0.1673081231661746,
+        0.02292638289128529,
+        0.7582508382070872
+       ],
+       "urgency": [
+        0.8752748353867329,
+        0.020851300990485957,
+        0.05313041796324697,
+        0.050743445659534175
+       ],
+       "mood": [
+        0.9383530108104741,
+        0.028486455124676742,
+        0.03316053406484922
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 10477.88,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 0,
+      "input_tokens": 1609,
+      "decisions": {
+       "refund": false,
+       "team": "other",
+       "urgency": 0,
+       "mood": "calm"
+      },
+      "probabilities": {
+       "refund": [
+        0.0018743621656743608
+       ],
+       "team": [
+        0.03339213033341973,
+        0.16287387422103064,
+        0.01873357538182809,
+        0.7850004200637215
+       ],
+       "urgency": [
+        0.8882417596109048,
+        0.018068378622938145,
+        0.04273826961649331,
+        0.05095159214966379
+       ],
+       "mood": [
+        0.9329990709833835,
+        0.027603488312648652,
+        0.039397440703967807
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 10491.89,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 0,
+      "input_tokens": 1593,
+      "decisions": {
+       "refund": false,
+       "team": "other",
+       "urgency": 0,
+       "mood": "calm"
+      },
+      "probabilities": {
+       "refund": [
+        0.0012663599340942547
+       ],
+       "team": [
+        0.035322204363801346,
+        0.17980983920324534,
+        0.021640848449024738,
+        0.7632271079839286
+       ],
+       "urgency": [
+        0.8806193454552081,
+        0.02005508724589816,
+        0.04452913618734267,
+        0.05479643111155102
+       ],
+       "mood": [
+        0.9283232930982972,
+        0.03172551178216406,
+        0.03995119511953878
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 10448.03,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 0,
+      "input_tokens": 1601,
+      "decisions": {
+       "refund": false,
+       "team": "other",
+       "urgency": 0,
+       "mood": "calm"
+      },
+      "probabilities": {
+       "refund": [
+        0.0029254562666694707
+       ],
+       "team": [
+        0.04879425965830616,
+        0.13603286799874184,
+        0.019635856663625675,
+        0.7955370156793263
+       ],
+       "urgency": [
+        0.8814728030178337,
+        0.01981629007043678,
+        0.04948517551125501,
+        0.04922573140047446
+       ],
+       "mood": [
+        0.9336396525326345,
+        0.030505817610813807,
+        0.03585452985655166
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 10524.22,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 0,
+      "input_tokens": 1617,
+      "decisions": {
+       "refund": false,
+       "team": "other",
+       "urgency": 0,
+       "mood": "calm"
+      },
+      "probabilities": {
+       "refund": [
+        0.00254002592630752
+       ],
+       "team": [
+        0.05273549033521182,
+        0.1484588128083985,
+        0.021560034385697015,
+        0.7772456624706926
+       ],
+       "urgency": [
+        0.8805414487451768,
+        0.020592393468650393,
+        0.05074240668160323,
+        0.04812375110456953
+       ],
+       "mood": [
+        0.9373343639299331,
+        0.030464807695512516,
+        0.032200828374554374
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 10577.64,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 0,
+      "input_tokens": 1597,
+      "decisions": {
+       "refund": false,
+       "team": "other",
+       "urgency": 0,
+       "mood": "calm"
+      },
+      "probabilities": {
+       "refund": [
+        0.0013438520177909232
+       ],
+       "team": [
+        0.037357881943567706,
+        0.15640899655527618,
+        0.02105683849049239,
+        0.7851762830106637
+       ],
+       "urgency": [
+        0.8859575357811245,
+        0.01848733418253312,
+        0.04465812428050442,
+        0.050897005755837985
+       ],
+       "mood": [
+        0.910320712779771,
+        0.041211590784960846,
+        0.04846769643526817
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 10491.62,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 0,
+      "input_tokens": 1605,
+      "decisions": {
+       "refund": false,
+       "team": "other",
+       "urgency": 0,
+       "mood": "calm"
+      },
+      "probabilities": {
+       "refund": [
+        0.003357053499186607
+       ],
+       "team": [
+        0.04899802068061758,
+        0.16678825051856833,
+        0.02336627808095194,
+        0.7608474507198622
+       ],
+       "urgency": [
+        0.8734686791744912,
+        0.020776545203212655,
+        0.051843951325335605,
+        0.05391082429696048
+       ],
+       "mood": [
+        0.9340369070543464,
+        0.0300484000517115,
+        0.0359146928939421
+       ]
+      },
+      "clean": true
+     }
+    ],
+    "after": [
+     {
+      "client_ms": 4394.85,
+      "processing_ms": 4393.23,
+      "timing": {
+       "processing_ms": 4393.23,
+       "parse_ms": 0.15,
+       "prepare_ms": 5.83,
+       "queue_ms": 0.0,
+       "inference_ms": 4387.15
+      },
+      "cached_tokens": 1448,
+      "input_tokens": 1613,
+      "decisions": {
+       "refund": false,
+       "team": "other",
+       "urgency": 0,
+       "mood": "calm"
+      },
+      "probabilities": {
+       "refund": [
+        0.0022666716817454666
+       ],
+       "team": [
+        0.051514655735452886,
+        0.1673081231661746,
+        0.02292638289128529,
+        0.7582508382070872
+       ],
+       "urgency": [
+        0.8752748353867329,
+        0.020851300990485957,
+        0.05313041796324697,
+        0.050743445659534175
+       ],
+       "mood": [
+        0.9383530108104741,
+        0.028486455124676742,
+        0.03316053406484922
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 4423.7,
+      "processing_ms": 4421.24,
+      "timing": {
+       "processing_ms": 4421.24,
+       "parse_ms": 0.34,
+       "prepare_ms": 10.83,
+       "queue_ms": 0.0,
+       "inference_ms": 4409.95
+      },
+      "cached_tokens": 1444,
+      "input_tokens": 1609,
+      "decisions": {
+       "refund": false,
+       "team": "other",
+       "urgency": 0,
+       "mood": "calm"
+      },
+      "probabilities": {
+       "refund": [
+        0.0018800084599012816
+       ],
+       "team": [
+        0.03339213033341973,
+        0.16287387422103064,
+        0.01873357538182809,
+        0.7850004200637215
+       ],
+       "urgency": [
+        0.8882417596109048,
+        0.018068378622938145,
+        0.04273826961649331,
+        0.05095159214966379
+       ],
+       "mood": [
+        0.9329990709833835,
+        0.027603488312648652,
+        0.039397440703967807
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 4412.7,
+      "processing_ms": 4411.03,
+      "timing": {
+       "processing_ms": 4411.03,
+       "parse_ms": 0.16,
+       "prepare_ms": 5.7,
+       "queue_ms": 0.0,
+       "inference_ms": 4405.06
+      },
+      "cached_tokens": 1428,
+      "input_tokens": 1593,
+      "decisions": {
+       "refund": false,
+       "team": "other",
+       "urgency": 0,
+       "mood": "calm"
+      },
+      "probabilities": {
+       "refund": [
+        0.0012674411889801917
+       ],
+       "team": [
+        0.035322204363801346,
+        0.17980983920324534,
+        0.021640848449024738,
+        0.7632271079839286
+       ],
+       "urgency": [
+        0.8806193454552081,
+        0.02005508724589816,
+        0.04452913618734267,
+        0.05479643111155102
+       ],
+       "mood": [
+        0.9283232930982972,
+        0.03172551178216406,
+        0.03995119511953878
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 4407.3,
+      "processing_ms": 4403.56,
+      "timing": {
+       "processing_ms": 4403.56,
+       "parse_ms": 0.42,
+       "prepare_ms": 21.07,
+       "queue_ms": 0.0,
+       "inference_ms": 4381.94
+      },
+      "cached_tokens": 1436,
+      "input_tokens": 1601,
+      "decisions": {
+       "refund": false,
+       "team": "other",
+       "urgency": 0,
+       "mood": "calm"
+      },
+      "probabilities": {
+       "refund": [
+        0.0029341480981638236
+       ],
+       "team": [
+        0.04879425965830616,
+        0.13603286799874184,
+        0.019635856663625675,
+        0.7955370156793263
+       ],
+       "urgency": [
+        0.8814728030178337,
+        0.01981629007043678,
+        0.04948517551125501,
+        0.04922573140047446
+       ],
+       "mood": [
+        0.9336396525326345,
+        0.030505817610813807,
+        0.03585452985655166
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 4428.35,
+      "processing_ms": 4426.7,
+      "timing": {
+       "processing_ms": 4426.7,
+       "parse_ms": 0.2,
+       "prepare_ms": 6.1,
+       "queue_ms": 0.0,
+       "inference_ms": 4420.28
+      },
+      "cached_tokens": 1452,
+      "input_tokens": 1617,
+      "decisions": {
+       "refund": false,
+       "team": "other",
+       "urgency": 0,
+       "mood": "calm"
+      },
+      "probabilities": {
+       "refund": [
+        0.002513318017791464
+       ],
+       "team": [
+        0.05273549033521182,
+        0.1484588128083985,
+        0.021560034385697015,
+        0.7772456624706926
+       ],
+       "urgency": [
+        0.8805414487451768,
+        0.020592393468650393,
+        0.05074240668160323,
+        0.04812375110456953
+       ],
+       "mood": [
+        0.9373343639299331,
+        0.030464807695512516,
+        0.032200828374554374
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 4425.62,
+      "processing_ms": 4423.05,
+      "timing": {
+       "processing_ms": 4423.05,
+       "parse_ms": 0.33,
+       "prepare_ms": 11.04,
+       "queue_ms": 0.0,
+       "inference_ms": 4411.55
+      },
+      "cached_tokens": 1432,
+      "input_tokens": 1597,
+      "decisions": {
+       "refund": false,
+       "team": "other",
+       "urgency": 0,
+       "mood": "calm"
+      },
+      "probabilities": {
+       "refund": [
+        0.0013477485250379371
+       ],
+       "team": [
+        0.037357881943567706,
+        0.15640899655527618,
+        0.02105683849049239,
+        0.7851762830106637
+       ],
+       "urgency": [
+        0.8859575357811245,
+        0.01848733418253312,
+        0.04465812428050442,
+        0.050897005755837985
+       ],
+       "mood": [
+        0.910320712779771,
+        0.041211590784960846,
+        0.04846769643526817
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 4430.71,
+      "processing_ms": 4429.02,
+      "timing": {
+       "processing_ms": 4429.02,
+       "parse_ms": 0.17,
+       "prepare_ms": 5.89,
+       "queue_ms": 0.0,
+       "inference_ms": 4422.85
+      },
+      "cached_tokens": 1440,
+      "input_tokens": 1605,
+      "decisions": {
+       "refund": false,
+       "team": "other",
+       "urgency": 0,
+       "mood": "calm"
+      },
+      "probabilities": {
+       "refund": [
+        0.0033430689167448105
+       ],
+       "team": [
+        0.04899802068061758,
+        0.16678825051856833,
+        0.02336627808095194,
+        0.7608474507198622
+       ],
+       "urgency": [
+        0.8734686791744912,
+        0.020776545203212655,
+        0.051843951325335605,
+        0.05391082429696048
+       ],
+       "mood": [
+        0.9340369070543464,
+        0.0300484000517115,
+        0.0359146928939421
+       ]
+      },
+      "clean": true
+     }
+    ]
+   }
+  },
+  "photo_1q": {
+   "summary": {
+    "before": {
+     "median_ms": 3768.1,
+     "min_ms": 3746.32,
+     "max_ms": 3787.06,
+     "server_ms": null,
+     "cached_tokens": 0,
+     "input_tokens": 593,
+     "same_decisions_as_reference": 1.0,
+     "max_probability_difference": 0.0
+    },
+    "after": {
+     "median_ms": 3716.7,
+     "min_ms": 3700.62,
+     "max_ms": 3725.39,
+     "server_ms": 3708.8,
+     "cached_tokens": 0,
+     "input_tokens": 593,
+     "same_decisions_as_reference": 1.0,
+     "max_probability_difference": 0.001109300863268423
+    }
+   },
+   "rows": {
+    "before": [
+     {
+      "client_ms": 3787.06,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 0,
+      "input_tokens": 593,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.003659432733471881
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 3746.32,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 0,
+      "input_tokens": 591,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.0033102601401119917
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 3772.35,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 0,
+      "input_tokens": 591,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.002150258469972
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 3756.22,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 0,
+      "input_tokens": 595,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.002472002013176642
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 3770.6,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 0,
+      "input_tokens": 593,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.0029460687950907645
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 3748.89,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 0,
+      "input_tokens": 593,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.002134600465646815
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 3768.11,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 0,
+      "input_tokens": 591,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.002487212113133646
+       ]
+      },
+      "clean": true
+     }
+    ],
+    "after": [
+     {
+      "client_ms": 3716.68,
+      "processing_ms": 3712.0,
+      "timing": {
+       "processing_ms": 3712.0,
+       "parse_ms": 2.22,
+       "prepare_ms": 32.87,
+       "queue_ms": 0.0,
+       "inference_ms": 3676.81
+      },
+      "cached_tokens": 0,
+      "input_tokens": 593,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.004392667743075035
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 3725.39,
+      "processing_ms": 3716.42,
+      "timing": {
+       "processing_ms": 3716.42,
+       "parse_ms": 3.81,
+       "prepare_ms": 44.73,
+       "queue_ms": 0.0,
+       "inference_ms": 3667.75
+      },
+      "cached_tokens": 0,
+      "input_tokens": 591,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.004004306133808435
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 3705.93,
+      "processing_ms": 3701.15,
+      "timing": {
+       "processing_ms": 3701.15,
+       "parse_ms": 1.99,
+       "prepare_ms": 34.15,
+       "queue_ms": 0.0,
+       "inference_ms": 3664.91
+      },
+      "cached_tokens": 0,
+      "input_tokens": 591,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.002695964916673971
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 3700.62,
+      "processing_ms": 3689.53,
+      "timing": {
+       "processing_ms": 3689.53,
+       "parse_ms": 4.05,
+       "prepare_ms": 46.07,
+       "queue_ms": 0.0,
+       "inference_ms": 3639.3
+      },
+      "cached_tokens": 0,
+      "input_tokens": 595,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.003581302876445065
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 3709.71,
+      "processing_ms": 3704.59,
+      "timing": {
+       "processing_ms": 3704.59,
+       "parse_ms": 2.07,
+       "prepare_ms": 32.57,
+       "queue_ms": 0.0,
+       "inference_ms": 3669.83
+      },
+      "cached_tokens": 0,
+      "input_tokens": 593,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.003709197740273645
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 3720.36,
+      "processing_ms": 3708.83,
+      "timing": {
+       "processing_ms": 3708.83,
+       "parse_ms": 4.08,
+       "prepare_ms": 46.56,
+       "queue_ms": 0.0,
+       "inference_ms": 3658.08
+      },
+      "cached_tokens": 0,
+      "input_tokens": 593,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.0027453757746768934
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 3722.6,
+      "processing_ms": 3717.59,
+      "timing": {
+       "processing_ms": 3717.59,
+       "parse_ms": 2.04,
+       "prepare_ms": 33.47,
+       "queue_ms": 0.0,
+       "inference_ms": 3681.98
+      },
+      "cached_tokens": 0,
+      "input_tokens": 591,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.0031810182384673347
+       ]
+      },
+      "clean": true
+     }
+    ]
+   }
+  },
+  "repeat_1q": {
+   "summary": {
+    "before": {
+     "median_ms": 182.0,
+     "min_ms": 181.66,
+     "max_ms": 183.09,
+     "server_ms": null,
+     "cached_tokens": 245,
+     "input_tokens": 249,
+     "same_decisions_as_reference": 1.0,
+     "max_probability_difference": 0.0
+    },
+    "after": {
+     "median_ms": 172.1,
+     "min_ms": 170.61,
+     "max_ms": 173.43,
+     "server_ms": 171.0,
+     "cached_tokens": 245,
+     "input_tokens": 249,
+     "same_decisions_as_reference": 1.0,
+     "max_probability_difference": 0.0
+    }
+   },
+   "rows": {
+    "before": [
+     {
+      "client_ms": 181.66,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 245,
+      "input_tokens": 249,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9941287980507969,
+        0.0030519935924868792,
+        0.0021333675290138784,
+        0.0006858408277023932
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 182.25,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 245,
+      "input_tokens": 249,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9941287980507969,
+        0.0030519935924868792,
+        0.0021333675290138784,
+        0.0006858408277023932
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 181.68,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 245,
+      "input_tokens": 249,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9941287980507969,
+        0.0030519935924868792,
+        0.0021333675290138784,
+        0.0006858408277023932
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 182.02,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 245,
+      "input_tokens": 249,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9941287980507969,
+        0.0030519935924868792,
+        0.0021333675290138784,
+        0.0006858408277023932
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 182.21,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 245,
+      "input_tokens": 249,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9941287980507969,
+        0.0030519935924868792,
+        0.0021333675290138784,
+        0.0006858408277023932
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 183.09,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 245,
+      "input_tokens": 249,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9941287980507969,
+        0.0030519935924868792,
+        0.0021333675290138784,
+        0.0006858408277023932
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 181.85,
+      "processing_ms": NaN,
+      "timing": null,
+      "cached_tokens": 245,
+      "input_tokens": 249,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9941287980507969,
+        0.0030519935924868792,
+        0.0021333675290138784,
+        0.0006858408277023932
+       ]
+      },
+      "clean": true
+     }
+    ],
+    "after": [
+     {
+      "client_ms": 173.43,
+      "processing_ms": 172.3,
+      "timing": {
+       "processing_ms": 172.3,
+       "parse_ms": 0.1,
+       "prepare_ms": 1.67,
+       "queue_ms": 0.0,
+       "inference_ms": 170.44
+      },
+      "cached_tokens": 245,
+      "input_tokens": 249,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9941287980507969,
+        0.0030519935924868792,
+        0.0021333675290138784,
+        0.0006858408277023932
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 171.11,
+      "processing_ms": 169.57,
+      "timing": {
+       "processing_ms": 169.57,
+       "parse_ms": 0.11,
+       "prepare_ms": 1.68,
+       "queue_ms": 0.0,
+       "inference_ms": 167.69
+      },
+      "cached_tokens": 245,
+      "input_tokens": 249,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9941287980507969,
+        0.0030519935924868792,
+        0.0021333675290138784,
+        0.0006858408277023932
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 173.15,
+      "processing_ms": 171.74,
+      "timing": {
+       "processing_ms": 171.74,
+       "parse_ms": 0.21,
+       "prepare_ms": 1.84,
+       "queue_ms": 0.0,
+       "inference_ms": 169.6
+      },
+      "cached_tokens": 245,
+      "input_tokens": 249,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9941287980507969,
+        0.0030519935924868792,
+        0.0021333675290138784,
+        0.0006858408277023932
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 170.61,
+      "processing_ms": 169.6,
+      "timing": {
+       "processing_ms": 169.6,
+       "parse_ms": 0.14,
+       "prepare_ms": 1.83,
+       "queue_ms": 0.0,
+       "inference_ms": 167.54
+      },
+      "cached_tokens": 245,
+      "input_tokens": 249,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9941287980507969,
+        0.0030519935924868792,
+        0.0021333675290138784,
+        0.0006858408277023932
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 172.13,
+      "processing_ms": 170.97,
+      "timing": {
+       "processing_ms": 170.97,
+       "parse_ms": 0.14,
+       "prepare_ms": 1.65,
+       "queue_ms": 0.0,
+       "inference_ms": 169.08
+      },
+      "cached_tokens": 245,
+      "input_tokens": 249,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9941287980507969,
+        0.0030519935924868792,
+        0.0021333675290138784,
+        0.0006858408277023932
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 170.96,
+      "processing_ms": 169.96,
+      "timing": {
+       "processing_ms": 169.96,
+       "parse_ms": 0.13,
+       "prepare_ms": 1.52,
+       "queue_ms": 0.0,
+       "inference_ms": 168.23
+      },
+      "cached_tokens": 245,
+      "input_tokens": 249,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9941287980507969,
+        0.0030519935924868792,
+        0.0021333675290138784,
+        0.0006858408277023932
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 172.13,
+      "processing_ms": 171.04,
+      "timing": {
+       "processing_ms": 171.04,
+       "parse_ms": 0.14,
+       "prepare_ms": 1.75,
+       "queue_ms": 0.0,
+       "inference_ms": 169.05
+      },
+      "cached_tokens": 245,
+      "input_tokens": 249,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9941287980507969,
+        0.0030519935924868792,
+        0.0021333675290138784,
+        0.0006858408277023932
+       ]
+      },
+      "clean": true
+     }
+    ]
+   }
+  }
+ }
+}
