@@ -1,17 +1,35 @@
-"""llama.cpp single-token readout, including selected labels outside ordinary top-k."""
+"""The built-in backend: llama.cpp over localhost HTTP.
+
+`openjev serve` fetches the profile's pinned GGUF weights and projector, launches
+llama-server with one slot and reads label probabilities from /completion, including
+labels outside the ordinary top-k. `--connect` uses a server that is already running.
+"""
 
 import asyncio
 import itertools
 import math
+import os
+import shutil
+import socket
 import string
+import subprocess
+import time
 import uuid
+from collections.abc import Iterator
+from contextlib import contextmanager
 from dataclasses import dataclass
 from pathlib import Path
 
 import httpx
 
-from .config import Settings
-from .errors import APIError
+from ..config import Settings
+from ..errors import APIError
+from ..fetch import SOURCES, cached, fetch
+from ..profiles import PROFILES
+from . import BackendPlugin, Readout
+
+# The build from scripts/build-llama.sh, with OpenJev's checkpoint controls.
+PATCHED = Path(__file__).resolve().parents[3] / ".llamacpp/llama.cpp/build/bin/llama-server"
 
 # Characters the chat-template `trim` filter removes. Content whose edges hold any other
 # whitespace is always rendered by the backend, so the skeleton never guesses.
@@ -32,16 +50,10 @@ def _trimmed(content: str) -> str | None:
     return value
 
 
-@dataclass
-class Readout:
-    probabilities: list[float]
-    input_tokens: int
-    output_tokens: int
-    cached_tokens: int
-    inference_ms: float
-
-
 class LlamaBackend:
+    name = "llama.cpp"
+    prime_single = False  # priming one question would only add a round trip
+
     def __init__(self, settings: Settings):
         self.settings = settings
         headers = {}
@@ -199,7 +211,7 @@ class LlamaBackend:
     async def prime(self, prefix: str, images: list[str]) -> None:
         """Evaluate only the prefix shared by all questions of a request.
 
-        Hybrid recurrent models (Qwen3.5/3.6) cannot roll back to an arbitrary cached
+        Hybrid recurrent models (Qwen3.5, 3.6, 3.8) cannot roll back to an arbitrary cached
         position, so without this every question re-reads the state and re-encodes images.
         llama.cpp checkpoints a few tokens before the end of each prompt; after this call,
         each question restores that checkpoint and processes only its own text.
@@ -280,3 +292,166 @@ class LlamaBackend:
                 "Use llama.cpp b9670+ with post_sampling_probs support.",
                 502,
             ) from exc
+
+
+def default_llama_server() -> str:
+    """OPENJEV_LLAMA_SERVER, else the build from scripts/build-llama.sh, else PATH."""
+    if configured := os.environ.get("OPENJEV_LLAMA_SERVER"):
+        return configured
+    return str(PATCHED) if PATCHED.is_file() else "llama-server"
+
+
+def weights(
+    profile, model_file=None, mmproj_file=None, source="huggingface", connections=8, quant=None
+):
+    """Local paths to the profile's weights and projector, downloading what is missing."""
+    paths = []
+    artifacts = profile.artifacts(quant)
+    for supplied, artifact in zip((model_file, mmproj_file), artifacts, strict=True):
+        if supplied is not None:
+            path = supplied.expanduser().resolve()
+            if not path.is_file():
+                raise ValueError(f"Missing model file: {path}")
+            paths.append(str(path))
+        else:
+            if not cached(artifact):
+                print(f"Preparing {artifact.repo}/{artifact.filename} from {source} …", flush=True)
+            path = fetch(artifact, source, connections, log=lambda line: print(line, flush=True))
+            paths.append(str(path))
+    return paths
+
+
+class LlamaCpp(BackendPlugin):
+    name = LlamaBackend.name
+    summary = "llama.cpp server with pinned GGUF weights"
+    profiles = {name: profile.model for name, profile in PROFILES.items()}
+
+    def add_arguments(self, parser, command):
+        options = parser.add_argument_group("llama.cpp backend")
+        if command == "serve":
+            options.add_argument("--backend-port", type=int, default=18081)
+            options.add_argument(
+                "--connect", help="Connect to an existing llama.cpp server instead of launching"
+            )
+            options.add_argument("--model-file", type=Path, help="Use existing GGUF weights")
+            options.add_argument(
+                "--mmproj-file", type=Path, help="Use existing matching vision projector"
+            )
+            options.add_argument(
+                "--llama-server",
+                default=default_llama_server(),
+                help="llama-server binary (default: OpenJev's patched build when built, else PATH)",
+            )
+            options.add_argument(
+                "--threads", type=int, default=4, help="Bound CPU threads (default: 4)"
+            )
+            options.add_argument("--startup-timeout", type=float, default=300)
+        options.add_argument(
+            "--source",
+            choices=SOURCES,
+            default=os.environ.get("OPENJEV_MODEL_SOURCE", "huggingface"),
+            help="hub to download missing weights from; the other one is the fallback",
+        )
+        options.add_argument(
+            "--connections", type=int, default=8, help="parallel downloads per file (default: 8)"
+        )
+        options.add_argument("--quant", help="another pinned quantization, e.g. Q8_0 for max")
+
+    def create(self, settings):
+        return LlamaBackend(settings)
+
+    @contextmanager
+    def launch(self, args, settings) -> Iterator[LlamaBackend]:
+        url = args.connect or f"http://127.0.0.1:{args.backend_port}"
+        settings = settings.model_copy(update={"backend_url": url})
+        if args.connect:
+            yield LlamaBackend(settings)
+            return
+        executable = shutil.which(args.llama_server)
+        if not executable:
+            raise ValueError("llama-server is missing. On macOS run: brew install llama.cpp")
+        with socket.socket() as probe:
+            if probe.connect_ex(("127.0.0.1", args.backend_port)) == 0:
+                raise ValueError(
+                    f"Backend port {args.backend_port} is occupied; "
+                    "use --connect or choose --backend-port."
+                )
+        profile = PROFILES[args.profile]
+        model, projector = weights(
+            profile, args.model_file, args.mmproj_file, args.source, args.connections, args.quant
+        )
+        logs = Path.home() / ".cache" / "openjev-multimodal"
+        logs.mkdir(parents=True, exist_ok=True)
+        log_path = logs / f"backend-{args.backend_port}.log"
+        command = [
+            executable,
+            "-m",
+            model,
+            "--mmproj",
+            projector,
+            "--host",
+            "127.0.0.1",
+            "--port",
+            str(args.backend_port),
+            "--alias",
+            profile.model,
+            "-c",
+            str(settings.max_input_tokens),
+            "-np",
+            "1",
+            "-ngl",
+            "99",
+            "--jinja",
+            "--reasoning",
+            "off",
+            "--chat-template-kwargs",
+            '{"enable_thinking":false}',
+            "--image-max-tokens",
+            str(settings.image_token_budget),
+            "-t",
+            str(args.threads),
+            "-tb",
+            str(args.threads),
+        ]
+        with log_path.open("a") as log:
+            process = subprocess.Popen(command, stdout=log, stderr=subprocess.STDOUT)
+            try:
+                print(f"Loading {profile.model} on Metal. Backend log: {log_path}", flush=True)
+                deadline = time.monotonic() + args.startup_timeout
+                while time.monotonic() < deadline:
+                    if process.poll() is not None:
+                        raise RuntimeError(
+                            f"llama-server exited ({process.returncode}); see {log_path}"
+                        )
+                    try:
+                        with httpx.Client(timeout=1, trust_env=False) as client:
+                            if client.get(url + "/health").status_code == 200:
+                                break
+                    except httpx.HTTPError:
+                        pass
+                    time.sleep(0.5)
+                else:
+                    raise RuntimeError(f"Model startup timed out; see {log_path}")
+                yield LlamaBackend(settings)
+            finally:
+                if process.poll() is None:
+                    process.terminate()
+                    try:
+                        process.wait(timeout=10)
+                    except subprocess.TimeoutExpired:
+                        process.kill()
+                        process.wait()
+
+    def download(self, args):
+        return weights(
+            PROFILES[args.profile],
+            source=args.source,
+            connections=args.connections,
+            quant=args.quant,
+        )
+
+    def doctor(self):
+        return {"llama_server": shutil.which(default_llama_server())}
+
+
+plugin = LlamaCpp()

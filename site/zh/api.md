@@ -127,7 +127,7 @@ description: Jev 兼容的请求和响应格式，多模态图片输入，Noul�
 | --- | --- |
 | `GET /v1/models` | TypeSafe 与 OpenAI 风格模型目录 |
 | `GET /v1/limits` | 当前部署限制 |
-| `GET /health` | 检查推理后端并返回模型、权重文件与 llama.cpp 版本；不可用时返回 503 |
+| `GET /health` | 检查推理后端并返回后端名称、模型、权重文件与版本；不可用时返回 503 |
 | `GET /health/live` | API 进程存活 |
 | `GET /docs` | 交互文档 |
 | `GET /openapi.json` | OpenAPI schema |

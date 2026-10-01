@@ -9,7 +9,7 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
 
 from . import __version__
-from .backend import LlamaBackend
+from .backends import Backend, load
 from .config import Settings
 from .errors import APIError
 from .schema import Evaluation, Result, Timing
@@ -87,9 +87,11 @@ class Guard:
         return await self.app(scope, receive, send)
 
 
-def create_app(settings: Settings | None = None) -> FastAPI:
+def create_app(settings: Settings | None = None, backend: Backend | None = None) -> FastAPI:
+    """The API over `backend`, or over the one `settings.backend` names, unlaunched."""
     settings = settings or Settings()
-    backend = LlamaBackend(settings)
+    if backend is None:
+        backend = load(settings.backend).create(settings)
     evaluator = Evaluator(settings, backend)
 
     @asynccontextmanager
@@ -145,7 +147,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                 "status": "ok" if ready else "unavailable",
                 "model": backend.model,
                 "multimodal": backend.vision,
-                "backend": "llama.cpp",
+                "backend": backend.name,
                 "backend_build": backend.build,
                 "weights": backend.weights,
             },

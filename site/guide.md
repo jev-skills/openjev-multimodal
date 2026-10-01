@@ -79,10 +79,19 @@ uv run openjev serve --connect http://127.0.0.1:18081
 
 Use a matching projector. An existing backend must expose native llama.cpp endpoints, support post-sampling probabilities, disable thinking, use one slot, and load a projector for vision. Configure its context and image-token limits consistently with `--context` and `--image-tokens`.
 
+## Backends
+
+```bash
+uv run openjev serve --backend llama.cpp
+```
+
+`--backend` (or `OPENJEV_BACKEND`) chooses the inference backend at startup; every backend serves the same API. llama.cpp is built in and the default. Other backends are Python packages registered under the `openjev.backends` entry point: install one into the same environment and pass its name. `openjev serve --backend NAME --help` lists its options, `openjev doctor` shows what is installed and `/health` reports the backend in use. [Contract →](./design#backends)
+
 ## Configuration
 
 | Setting | Default | Purpose |
 | --- | --- | --- |
+| `--backend` | `llama.cpp` | Inference backend (`OPENJEV_BACKEND`) |
 | `--port` | `8000` | API and local playground |
 | `--backend-port` | `18081` | Private localhost inference server |
 | `--context` | `8192` | Per-question context limit |

@@ -79,10 +79,19 @@ uv run openjev serve --connect http://127.0.0.1:18081
 
 权重必须配套对应的视觉投影器。已有后端需提供 llama.cpp 原生接口，支持采样后概率，关闭 thinking，使用单槽位；其上下文与图片 token 限制应和 `--context`、`--image-tokens` 一致。
 
+## 后端
+
+```bash
+uv run openjev serve --backend llama.cpp
+```
+
+`--backend`（或 `OPENJEV_BACKEND`）在启动时选择推理后端，所有后端提供同一套 API。llama.cpp 为内置默认后端。其他后端是注册在 `openjev.backends` 入口点下的 Python 包：安装到同一环境后传入其名称即可。`openjev serve --backend 名称 --help` 列出它的选项，`openjev doctor` 显示已安装的后端，`/health` 报告正在使用的后端。[接口约定 →](./design#后端)
+
 ## 配置
 
 | 配置 | 默认值 | 用途 |
 | --- | --- | --- |
+| `--backend` | `llama.cpp` | 推理后端（`OPENJEV_BACKEND`） |
 | `--port` | `8000` | API 与本地演示页 |
 | `--backend-port` | `18081` | 仅本机可访问的推理后端 |
 | `--context` | `8192` | 每个问题的上下文上限 |

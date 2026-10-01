@@ -4,7 +4,7 @@ import time
 from dataclasses import dataclass
 from uuid import uuid4
 
-from .backend import LlamaBackend
+from .backends import Backend
 from .config import Settings
 from .errors import APIError
 from .prompts import Branch, choices, question_text, state_messages, text
@@ -46,7 +46,7 @@ class Stats:
 
 
 class Evaluator:
-    def __init__(self, settings: Settings, backend: LlamaBackend):
+    def __init__(self, settings: Settings, backend: Backend):
         self.settings = settings
         self.backend = backend
         self.active = 0
@@ -64,6 +64,7 @@ class Evaluator:
         primes its state once. So does a request that repeats the previous request's state
         with different questions: from then on, requests with that state read only their
         questions. An exact repeat needs nothing; llama.cpp already resumes near its end.
+        A backend that keeps its own prefix snapshots (`prime_single`) primes every state.
         """
         prompts = tuple(branch.prompt for branch in branches)
         repeated = self.recent is not None and self.recent[0] == state
@@ -72,8 +73,10 @@ class Evaluator:
         if state == self.primed:
             return
         self.primed = None  # a different prompt replaces the backend's cached state
-        wanted = len(branches) > 1 or (
-            repeated and not exact and self.settings.prime_repeated_state
+        wanted = (
+            len(branches) > 1
+            or self.backend.prime_single
+            or (repeated and not exact and self.settings.prime_repeated_state)
         )
         if self.settings.prime_shared_prefix and wanted:
             await self.backend.prime(state[0], images)

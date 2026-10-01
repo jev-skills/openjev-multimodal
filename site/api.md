@@ -127,7 +127,7 @@ Probability is conditioned on supplied options. Confidence is `1 − H(p)/log(n)
 | --- | --- |
 | `GET /v1/models` | TypeSafe-style and OpenAI-style catalogues |
 | `GET /v1/limits` | Configured admission limits |
-| `GET /health` | Checks backend and reports its model, weights file and llama.cpp build; 503 when unavailable |
+| `GET /health` | Checks the backend and reports its name, model, weights file and build; 503 when unavailable |
 | `GET /health/live` | API process liveness |
 | `GET /docs` | Interactive OpenAPI reference |
 | `GET /openapi.json` | Machine-readable schema |

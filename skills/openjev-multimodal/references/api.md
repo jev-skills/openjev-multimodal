@@ -63,7 +63,7 @@ Confidence is `1 − H(p) / log(n)`, a measure of concentration.
 
 | Route | Use |
 | --- | --- |
-| `GET /health` | Backend readiness, model name and whether images are supported; 503 when not ready |
+| `GET /health` | Backend readiness, backend name, model name and whether images are supported; 503 when not ready |
 | `GET /health/live` | The API process is up |
 | `GET /v1/models` | Accepted model IDs (TypeSafe-style and OpenAI-style lists) |
 | `GET /v1/limits` | Options, levels, questions, images, image edge, token and time limits |

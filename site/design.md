@@ -47,6 +47,19 @@ Bounded images are EXIF-transposed, converted to RGB and re-encoded; images larg
 
 Remote fetching and request-controlled file access are disabled. Treat model judgments as fallible application inputs: prompt injection can still affect predictions.
 
+## Backends
+
+The API reaches its model through a small contract in [`openjev.backends`](https://github.com/Hand-In/openjev-multimodal/blob/main/src/openjev/backends/__init__.py). A backend loads the model, finds 255 single-token answer labels, renders the chat template, counts tokens, primes a shared prefix and returns each label's probability after a prompt. The evaluator does the rest: prompts, scoring, limits and the caching policy. llama.cpp implements the contract over localhost HTTP.
+
+A plugin package tells `openjev serve` how to run its backend: its options, profiles and download step, and a launch that yields the backend and cleans up afterwards. It registers under the `openjev.backends` entry-point group:
+
+```toml
+[project.entry-points."openjev.backends"]
+mine = "my_package:plugin"
+```
+
+Names match without case or punctuation, so `llamacpp` also selects llama.cpp. `openjev doctor` reports a plugin that fails to import; the others keep working.
+
 ## References
 
 | Project | Approach |

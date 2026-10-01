@@ -5,6 +5,9 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_prefix="OPENJEV_", env_file=".env", extra="ignore")
 
+    # The inference backend: llama.cpp, or one an installed plugin registers.
+    backend: str = "llama.cpp"
+    # llama.cpp backend: the server's URL and its optional key.
     backend_url: str = "http://127.0.0.1:18081"
     model_name: str = "Qwen/Qwen3.5-0.8B"
     api_key: SecretStr | None = None
