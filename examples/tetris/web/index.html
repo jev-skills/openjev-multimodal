@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OpenJev Tetris</title>
+  <meta name="description" content="Play Tetris in the browser, replay games recorded with OpenJev Multimodal on fast, balanced and quality models, or let a local model play live.">
+  <meta name="theme-color" content="#101713">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Crect width='20' height='20' rx='4' fill='%23101713'/%3E%3Cpath d='M10 3 17 10 10 17 3 10Z' fill='%23b4f784'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400..700&family=Space+Grotesk:wght@500;600&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="bar">
+    <a class="brand" href="https://hand-in.github.io/openjev-multimodal/">
+      <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1 19 10 10 19 1 10Z" fill="currentColor"/><circle cx="10" cy="10" r="3.2" fill="#101713"/></svg>
+      <strong>OpenJev Multimodal</strong><span lang="en">plays Tetris</span><span lang="zh">玩俄罗斯方块</span>
+    </a>
+    <nav class="modes" role="tablist" aria-label="Mode">
+      <button role="tab" data-mode="replay" aria-selected="true"><span lang="en">Replay</span><span lang="zh">回放</span></button>
+      <button role="tab" data-mode="live" aria-selected="false"><span lang="en">Live Jev</span><span lang="zh">实时 Jev</span></button>
+      <button role="tab" data-mode="play" aria-selected="false"><span lang="en">Play</span><span lang="zh">亲自玩</span></button>
+    </nav>
+    <button class="lang" id="lang" type="button" aria-label="Switch language">中文</button>
+  </header>
+
+  <main class="stage" id="stage">
+    <section class="game" aria-label="Game">
+      <div class="well-frame">
+        <canvas id="well" width="280" height="560" aria-label="Tetris well"></canvas>
+        <div class="overlay" id="overlay" hidden><div><h2 id="overlay-title"></h2><p id="overlay-text"></p></div></div>
+      </div>
+      <aside class="side">
+        <div><div class="label"><span lang="en">Next</span><span lang="zh">下一个</span></div><canvas id="next" width="110" height="150" aria-label="Next pieces"></canvas></div>
+        <dl>
+          <div class="stat"><dt><span lang="en">Score</span><span lang="zh">分数</span></dt><dd id="score">0</dd></div>
+          <div class="stat"><dt><span lang="en">Lines</span><span lang="zh">消除行数</span></dt><dd id="lines">0</dd></div>
+          <div class="stat"><dt><span lang="en">Pieces</span><span lang="zh">方块数</span></dt><dd id="pieces">0</dd></div>
+          <div class="stat goal" id="goal"><dt><span lang="en">Clears</span><span lang="zh">消除次数</span></dt><dd><span id="clears">0</span><small>/ 10</small></dd><div class="meter"><i id="goal-meter"></i></div></div>
+        </dl>
+      </aside>
+      <div class="touch" id="touch" aria-label="Touch controls">
+        <button data-key="left" aria-label="Move left"></button>
+        <button data-key="cw" aria-label="Rotate"></button>
+        <button data-key="right" aria-label="Move right"></button>
+        <button data-key="down" aria-label="Soft drop"></button>
+        <button data-key="drop" aria-label="Hard drop"></button>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="controls" id="controls-replay">
+        <label><span lang="en">Model</span><span lang="zh">模型</span>
+          <select id="replay-profile"><option value="fast">fast · 0.8B</option><option value="balanced" selected>balanced · 4B</option><option value="quality">quality · 35B-A3B</option></select></label>
+        <label><span lang="en">Seed</span><span lang="zh">种子</span><select id="replay-seed"></select></label>
+        <label><span lang="en">Prompt</span><span lang="zh">提示方式</span>
+          <select id="replay-mode"><option value="vision">vision</option><option value="text">text only</option></select></label>
+        <button class="button primary" id="replay-toggle" type="button">▶ <span lang="en">Play</span><span lang="zh">播放</span></button>
+        <div class="speed" role="group" aria-label="Speed"><button data-speed="1" aria-pressed="true">1×</button><button data-speed="2" aria-pressed="false">2×</button><button data-speed="4" aria-pressed="false">4×</button></div>
+        <span class="status" id="replay-status"></span>
+      </div>
+      <div class="controls" id="controls-live" hidden>
+        <label><span lang="en">Seed</span><span lang="zh">种子</span><input id="live-seed" type="number" min="0" max="999999" value="101"></label>
+        <label><span lang="en">Prompt</span><span lang="zh">提示方式</span>
+          <select id="live-mode"><option value="vision">vision</option><option value="text">text only</option></select></label>
+        <button class="button primary" id="live-toggle" type="button">▶ <span lang="en">Let Jev play</span><span lang="zh">让 Jev 来玩</span></button>
+        <span class="status" id="live-status"></span>
+      </div>
+      <div class="controls" id="controls-play" hidden>
+        <label><span lang="en">Seed</span><span lang="zh">种子</span><input id="play-seed" type="number" min="0" max="999999" value="7"></label>
+        <button class="button primary" id="play-start" type="button">▶ <span lang="en">New game</span><span lang="zh">新游戏</span></button>
+        <span class="hint"><span lang="en">Same seed, same pieces as the recorded runs.</span><span lang="zh">相同种子即相同方块序列，可与录制对局对比。</span></span>
+      </div>
+
+      <article class="card" id="card" aria-live="polite">
+        <div class="card-head"><code>POST /v1/systemone</code><span class="count" id="count"></span><span class="pill">1 OUTPUT TOKEN</span></div>
+        <p class="subtitle" id="subtitle"><span lang="en">Choose Replay to watch a recorded game, or Live Jev to run one on your model.</span><span lang="zh">选择“回放”观看已录制的对局，或选择“实时 Jev”用本机模型现场对局。</span></p>
+        <div class="sweep"><i></i></div>
+        <div class="row-label"><span lang="en">Image sent</span><span lang="zh">发送的图片</span><span class="meta" id="image-meta"></span></div>
+        <div class="sheet-wrap"><canvas id="sheet" width="0" height="0"></canvas><img id="sheet-img" alt="Image sent to OpenJev" hidden></div>
+        <div class="row-label"><span lang="en">Plans</span><span lang="zh">候选方案</span><span lang="en">Probability</span><span lang="zh">概率</span></div>
+        <ol class="plans" id="plans"></ol>
+        <div class="metrics" id="metrics"></div>
+      </article>
+      <div class="keys" id="keys" aria-label="Key sequence"></div>
+
+      <ul class="help" id="help" hidden>
+        <li><kbd>←</kbd><kbd>→</kbd><span lang="en">move</span><span lang="zh">左右移动</span></li>
+        <li><kbd>↑</kbd><kbd>X</kbd><span lang="en">rotate</span><span lang="zh">顺时针旋转</span></li>
+        <li><kbd>Z</kbd><span lang="en">rotate back</span><span lang="zh">逆时针旋转</span></li>
+        <li><kbd>↓</kbd><span lang="en">soft drop</span><span lang="zh">软降</span></li>
+        <li><kbd>Space</kbd><span lang="en">hard drop</span><span lang="zh">硬降</span></li>
+        <li><kbd>P</kbd><span lang="en">pause</span><span lang="zh">暂停</span></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span lang="en">Replays re-simulate recorded runs key by key; waiting time is the measured API round trip. Live mode needs <code>uv run python examples/tetris/serve.py</code> and a local model.</span>
+    <span lang="zh">回放按键逐一重演已录制的对局，等待时间即实测 API 往返耗时。实时模式需要本机运行 <code>uv run python examples/tetris/serve.py</code> 与本地模型。</span>
+    <a href="../report/" id="report-link"><span lang="en">Test report →</span><span lang="zh">测试报告 →</span></a>
+  </footer>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
