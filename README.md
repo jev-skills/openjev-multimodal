@@ -78,6 +78,20 @@ Read `answers.team.choice` and `answers.team.probabilities`. Add an `images` arr
 
 A **replay of actual local API responses**, with measured latency. The checkout image is an original synthetic fixture. The website replays recordings; the localhost playground runs live inference. [Recorded JSON](benchmarks/demo.json) · [Image example](examples/image_decision.py).
 
+## Tetris: decisions under time pressure
+
+[![Qwen3.5-4B plays Tetris through OpenJev Multimodal](examples/tetris/report/videos/balanced.jpg)](https://hand-in.github.io/openjev-multimodal/tetris)
+
+Three local models play Tetris through the API. Code enumerates every legal two-piece plan and presses the keys; **one Choice token picks the plan**, guided by exact facts and a token-aligned image of each outcome. All 15 vision-mode games reached 10 line clears; median decisions took 0.15 s (0.8B), 0.65 s (4B) and 0.91 s (35B-A3B). [Demo page](https://hand-in.github.io/openjev-multimodal/tetris) · [Play in the browser](https://hand-in.github.io/openjev-multimodal/demos/tetris/web/) · [Test report](examples/tetris/report/README.md) · [Code](examples/tetris).
+
+## Use it from an agent
+
+```bash
+npx openskills install Hand-In/openjev-multimodal/skills/openjev-multimodal -g -y
+```
+
+The [openjev-multimodal skill](skills/openjev-multimodal) teaches Claude Code, Codex and any `AGENTS.md` agent to start and check the service, design Noul, Choice and Score questions, size images for the vision encoder, and read probabilities and latency. From a clone: `npm run skill:install`.
+
 ## Small-sample benchmark
 
 ![Nine measured tasks with 20 samples each, confidence intervals and latency](assets/benchmark.png)

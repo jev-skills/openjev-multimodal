@@ -1,0 +1,93 @@
+{
+ "schema": 1,
+ "profile": "fast",
+ "server": {
+  "model": "Qwen/Qwen3.5-0.8B",
+  "profile": "fast",
+  "multimodal": true,
+  "openjev": "0.1.0",
+  "image_max_edge": 1024
+ },
+ "machine": {
+  "system": "Darwin arm64",
+  "chip": "Apple M3 Max",
+  "memory_gb": 128,
+  "llama_cpp": "b9670",
+  "python": "3.11.12"
+ },
+ "measured": "2026-09-21T03:07:33-07:00",
+ "results": {
+  "text": {
+   "states": 48,
+   "agreement": 0.3958333333333333,
+   "mean_regret": 1.5845543750000004,
+   "avoidable_holes": 28,
+   "hole_traps": 46,
+   "median_ms": 89.85145852784626,
+   "median_input_tokens": 373.5
+  },
+  "vision": {
+   "states": 48,
+   "agreement": 0.375,
+   "mean_regret": 1.4405438541666669,
+   "avoidable_holes": 29,
+   "hole_traps": 46,
+   "median_ms": 136.6351670003496,
+   "median_input_tokens": 492.5
+  },
+  "pixels": {
+   "states": 48,
+   "agreement": 0.22916666666666666,
+   "mean_regret": 2.4324440625,
+   "avoidable_holes": 30,
+   "hole_traps": 46,
+   "median_ms": 122.92462500045076,
+   "median_input_tokens": 409.5
+  },
+  "board": {
+   "states": 48,
+   "agreement": 0.22916666666666666,
+   "mean_regret": 2.393288104166667,
+   "avoidable_holes": 33,
+   "hole_traps": 46,
+   "median_ms": 198.61433349433355,
+   "median_input_tokens": 696.5
+  },
+  "board@0.5": {
+   "states": 48,
+   "agreement": 0.3333333333333333,
+   "mean_regret": 1.6901309375000002,
+   "avoidable_holes": 28,
+   "hole_traps": 46,
+   "median_ms": 128.325333527755,
+   "median_input_tokens": 479.5
+  },
+  "board@2.0": {
+   "states": 48,
+   "agreement": 0.375,
+   "mean_regret": 1.7738857916666666,
+   "avoidable_holes": 27,
+   "hole_traps": 46,
+   "median_ms": 271.58735450939275,
+   "median_input_tokens": 888.5
+  },
+  "vision@0.5": {
+   "states": 48,
+   "agreement": 0.4583333333333333,
+   "mean_regret": 1.1816703541666669,
+   "avoidable_holes": 26,
+   "hole_traps": 46,
+   "median_ms": 111.34868749650195,
+   "median_input_tokens": 438.5
+  },
+  "vision@2.0": {
+   "states": 48,
+   "agreement": 0.4375,
+   "mean_regret": 1.3848535833333333,
+   "avoidable_holes": 25,
+   "hole_traps": 46,
+   "median_ms": 162.15566647588275,
+   "median_input_tokens": 642.0
+  }
+ }
+}

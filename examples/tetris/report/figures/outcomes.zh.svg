@@ -1,0 +1,141 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 400" width="960" height="400" role="img" aria-labelledby="t d">
+<title id="t">100 个方块之后</title>
+<desc id="d">按档位与提示方式展示每局的得分、消除行数与最多空洞。</desc>
+<rect x="0.5" y="0.5" width="959" height="399" rx="14" fill="#141e16" stroke="#2b382e"/>
+<text x="32.0" y="44.0" font-family="'Space Grotesk', 'DM Sans', system-ui, sans-serif" font-size="20" font-weight="500" fill="#eef1e9" text-anchor="start">100 个方块之后</text>
+<text x="32.0" y="68.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="13" font-weight="400" fill="#acb7ac" text-anchor="start">每个档位 5 个种子，所有模型面对相同的方块序列；每个点代表一局。</text>
+<text x="150.0" y="98.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#eef1e9" text-anchor="start">得分</text>
+<line x1="150.0" y1="110.0" x2="150.0" y2="314.0" stroke="#223025" stroke-width="1" stroke-linecap="butt"/>
+<text x="150.0" y="332.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#7f967a" text-anchor="middle">0</text>
+<line x1="208.8" y1="110.0" x2="208.8" y2="314.0" stroke="#223025" stroke-width="1" stroke-linecap="butt"/>
+<text x="208.8" y="332.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#7f967a" text-anchor="middle">4k</text>
+<line x1="267.7" y1="110.0" x2="267.7" y2="314.0" stroke="#223025" stroke-width="1" stroke-linecap="butt"/>
+<text x="267.7" y="332.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#7f967a" text-anchor="middle">8k</text>
+<line x1="326.5" y1="110.0" x2="326.5" y2="314.0" stroke="#223025" stroke-width="1" stroke-linecap="butt"/>
+<text x="326.5" y="332.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#7f967a" text-anchor="middle">12k</text>
+<line x1="385.3" y1="110.0" x2="385.3" y2="314.0" stroke="#223025" stroke-width="1" stroke-linecap="butt"/>
+<text x="385.3" y="332.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#7f967a" text-anchor="middle">16k</text>
+<circle cx="220.8" cy="130.0" r="4.5" fill="#b4f784" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>fast · vision · seed 101: 4,816</title></circle>
+<circle cx="268.7" cy="130.0" r="4.5" fill="#b4f784" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>fast · vision · seed 202: 8,068</title></circle>
+<circle cx="258.0" cy="130.0" r="4.5" fill="#b4f784" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>fast · vision · seed 303: 7,344</title></circle>
+<circle cx="278.2" cy="130.0" r="4.5" fill="#b4f784" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>fast · vision · seed 404: 8,714</title></circle>
+<circle cx="252.8" cy="130.0" r="4.5" fill="#b4f784" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>fast · vision · seed 505: 6,990</title></circle>
+<circle cx="229.6" cy="146.0" r="4.5" fill="#7f967a" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>fast · text · seed 101: 5,410</title></circle>
+<circle cx="186.3" cy="146.0" r="4.5" fill="#7f967a" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>fast · text · seed 202: 2,470</title></circle>
+<circle cx="185.3" cy="146.0" r="4.5" fill="#7f967a" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>fast · text · seed 303: 2,400</title></circle>
+<circle cx="180.6" cy="146.0" r="4.5" fill="#7f967a" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>fast · text · seed 404: 2,078</title></circle>
+<circle cx="203.5" cy="146.0" r="4.5" fill="#7f967a" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>fast · text · seed 505: 3,638</title></circle>
+<circle cx="333.9" cy="200.0" r="4.5" fill="#b4f784" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>balanced · vision · seed 101: 12,506</title></circle>
+<circle cx="339.9" cy="200.0" r="4.5" fill="#b4f784" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>balanced · vision · seed 202: 12,910</title></circle>
+<circle cx="293.9" cy="200.0" r="4.5" fill="#b4f784" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>balanced · vision · seed 303: 9,786</title></circle>
+<circle cx="301.7" cy="200.0" r="4.5" fill="#b4f784" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>balanced · vision · seed 404: 10,316</title></circle>
+<circle cx="351.0" cy="200.0" r="4.5" fill="#b4f784" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>balanced · vision · seed 505: 13,668</title></circle>
+<circle cx="342.5" cy="216.0" r="4.5" fill="#7f967a" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>balanced · text · seed 101: 13,086</title></circle>
+<circle cx="327.4" cy="216.0" r="4.5" fill="#7f967a" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>balanced · text · seed 202: 12,064</title></circle>
+<circle cx="354.0" cy="216.0" r="4.5" fill="#7f967a" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>balanced · text · seed 303: 13,868</title></circle>
+<circle cx="332.0" cy="216.0" r="4.5" fill="#7f967a" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>balanced · text · seed 404: 12,374</title></circle>
+<circle cx="336.8" cy="216.0" r="4.5" fill="#7f967a" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>balanced · text · seed 505: 12,700</title></circle>
+<circle cx="362.0" cy="270.0" r="4.5" fill="#b4f784" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>quality · vision · seed 101: 14,416</title></circle>
+<circle cx="357.7" cy="270.0" r="4.5" fill="#b4f784" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>quality · vision · seed 202: 14,118</title></circle>
+<circle cx="354.0" cy="270.0" r="4.5" fill="#b4f784" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>quality · vision · seed 303: 13,870</title></circle>
+<circle cx="334.9" cy="270.0" r="4.5" fill="#b4f784" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>quality · vision · seed 404: 12,574</title></circle>
+<circle cx="348.6" cy="270.0" r="4.5" fill="#b4f784" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>quality · vision · seed 505: 13,500</title></circle>
+<circle cx="372.9" cy="286.0" r="4.5" fill="#7f967a" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>quality · text · seed 101: 15,156</title></circle>
+<circle cx="356.2" cy="286.0" r="4.5" fill="#7f967a" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>quality · text · seed 202: 14,022</title></circle>
+<circle cx="362.7" cy="286.0" r="4.5" fill="#7f967a" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>quality · text · seed 303: 14,462</title></circle>
+<circle cx="361.2" cy="286.0" r="4.5" fill="#7f967a" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>quality · text · seed 404: 14,362</title></circle>
+<circle cx="354.7" cy="286.0" r="4.5" fill="#7f967a" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>quality · text · seed 505: 13,916</title></circle>
+<text x="421.3" y="98.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#eef1e9" text-anchor="start">消除行数</text>
+<line x1="421.3" y1="110.0" x2="421.3" y2="314.0" stroke="#223025" stroke-width="1" stroke-linecap="butt"/>
+<text x="421.3" y="332.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#7f967a" text-anchor="middle">0</text>
+<line x1="480.2" y1="110.0" x2="480.2" y2="314.0" stroke="#223025" stroke-width="1" stroke-linecap="butt"/>
+<text x="480.2" y="332.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#7f967a" text-anchor="middle">10</text>
+<line x1="539.0" y1="110.0" x2="539.0" y2="314.0" stroke="#223025" stroke-width="1" stroke-linecap="butt"/>
+<text x="539.0" y="332.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#7f967a" text-anchor="middle">20</text>
+<line x1="597.8" y1="110.0" x2="597.8" y2="314.0" stroke="#223025" stroke-width="1" stroke-linecap="butt"/>
+<text x="597.8" y="332.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#7f967a" text-anchor="middle">30</text>
+<line x1="656.7" y1="110.0" x2="656.7" y2="314.0" stroke="#223025" stroke-width="1" stroke-linecap="butt"/>
+<text x="656.7" y="332.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#7f967a" text-anchor="middle">40</text>
+<circle cx="533.1" cy="130.0" r="4.5" fill="#b4f784" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>fast · vision · seed 101: 19</title></circle>
+<circle cx="586.1" cy="130.0" r="4.5" fill="#b4f784" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>fast · vision · seed 202: 28</title></circle>
+<circle cx="592.0" cy="130.0" r="4.5" fill="#b4f784" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>fast · vision · seed 303: 29</title></circle>
+<circle cx="597.8" cy="130.0" r="4.5" fill="#b4f784" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>fast · vision · seed 404: 30</title></circle>
+<circle cx="580.2" cy="130.0" r="4.5" fill="#b4f784" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>fast · vision · seed 505: 27</title></circle>
+<circle cx="544.9" cy="146.0" r="4.5" fill="#7f967a" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>fast · text · seed 101: 21</title></circle>
+<circle cx="491.9" cy="146.0" r="4.5" fill="#7f967a" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>fast · text · seed 202: 12</title></circle>
+<circle cx="486.1" cy="146.0" r="4.5" fill="#7f967a" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>fast · text · seed 303: 11</title></circle>
+<circle cx="474.3" cy="146.0" r="4.5" fill="#7f967a" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>fast · text · seed 404: 9</title></circle>
+<circle cx="509.6" cy="146.0" r="4.5" fill="#7f967a" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>fast · text · seed 505: 15</title></circle>
+<circle cx="639.0" cy="200.0" r="4.5" fill="#b4f784" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>balanced · vision · seed 101: 37</title></circle>
+<circle cx="639.0" cy="200.0" r="4.5" fill="#b4f784" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>balanced · vision · seed 202: 37</title></circle>
+<circle cx="609.6" cy="200.0" r="4.5" fill="#b4f784" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>balanced · vision · seed 303: 32</title></circle>
+<circle cx="621.4" cy="200.0" r="4.5" fill="#b4f784" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>balanced · vision · seed 404: 34</title></circle>
+<circle cx="650.8" cy="200.0" r="4.5" fill="#b4f784" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>balanced · vision · seed 505: 39</title></circle>
+<circle cx="644.9" cy="216.0" r="4.5" fill="#7f967a" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>balanced · text · seed 101: 38</title></circle>
+<circle cx="627.2" cy="216.0" r="4.5" fill="#7f967a" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>balanced · text · seed 202: 35</title></circle>
+<circle cx="633.1" cy="216.0" r="4.5" fill="#7f967a" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>balanced · text · seed 303: 36</title></circle>
+<circle cx="633.1" cy="216.0" r="4.5" fill="#7f967a" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>balanced · text · seed 404: 36</title></circle>
+<circle cx="639.0" cy="216.0" r="4.5" fill="#7f967a" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>balanced · text · seed 505: 37</title></circle>
+<circle cx="650.8" cy="270.0" r="4.5" fill="#b4f784" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>quality · vision · seed 101: 39</title></circle>
+<circle cx="644.9" cy="270.0" r="4.5" fill="#b4f784" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>quality · vision · seed 202: 38</title></circle>
+<circle cx="650.8" cy="270.0" r="4.5" fill="#b4f784" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>quality · vision · seed 303: 39</title></circle>
+<circle cx="633.1" cy="270.0" r="4.5" fill="#b4f784" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>quality · vision · seed 404: 36</title></circle>
+<circle cx="650.8" cy="270.0" r="4.5" fill="#b4f784" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>quality · vision · seed 505: 39</title></circle>
+<circle cx="650.8" cy="286.0" r="4.5" fill="#7f967a" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>quality · text · seed 101: 39</title></circle>
+<circle cx="644.9" cy="286.0" r="4.5" fill="#7f967a" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>quality · text · seed 202: 38</title></circle>
+<circle cx="644.9" cy="286.0" r="4.5" fill="#7f967a" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>quality · text · seed 303: 38</title></circle>
+<circle cx="644.9" cy="286.0" r="4.5" fill="#7f967a" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>quality · text · seed 404: 38</title></circle>
+<circle cx="644.9" cy="286.0" r="4.5" fill="#7f967a" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>quality · text · seed 505: 38</title></circle>
+<text x="692.7" y="98.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#eef1e9" text-anchor="start">最多空洞</text>
+<line x1="692.7" y1="110.0" x2="692.7" y2="314.0" stroke="#223025" stroke-width="1" stroke-linecap="butt"/>
+<text x="692.7" y="332.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#7f967a" text-anchor="middle">0</text>
+<line x1="751.5" y1="110.0" x2="751.5" y2="314.0" stroke="#223025" stroke-width="1" stroke-linecap="butt"/>
+<text x="751.5" y="332.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#7f967a" text-anchor="middle">10</text>
+<line x1="810.3" y1="110.0" x2="810.3" y2="314.0" stroke="#223025" stroke-width="1" stroke-linecap="butt"/>
+<text x="810.3" y="332.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#7f967a" text-anchor="middle">20</text>
+<line x1="869.2" y1="110.0" x2="869.2" y2="314.0" stroke="#223025" stroke-width="1" stroke-linecap="butt"/>
+<text x="869.2" y="332.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#7f967a" text-anchor="middle">30</text>
+<line x1="928.0" y1="110.0" x2="928.0" y2="314.0" stroke="#223025" stroke-width="1" stroke-linecap="butt"/>
+<text x="928.0" y="332.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#7f967a" text-anchor="middle">40</text>
+<circle cx="916.2" cy="130.0" r="4.5" fill="#b4f784" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>fast · vision · seed 101: 38</title></circle>
+<circle cx="839.8" cy="130.0" r="4.5" fill="#b4f784" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>fast · vision · seed 202: 25</title></circle>
+<circle cx="863.3" cy="130.0" r="4.5" fill="#b4f784" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>fast · vision · seed 303: 29</title></circle>
+<circle cx="780.9" cy="130.0" r="4.5" fill="#b4f784" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>fast · vision · seed 404: 15</title></circle>
+<circle cx="869.2" cy="130.0" r="4.5" fill="#b4f784" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>fast · vision · seed 505: 30</title></circle>
+<circle cx="851.5" cy="146.0" r="4.5" fill="#7f967a" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>fast · text · seed 101: 27</title></circle>
+<circle cx="910.4" cy="146.0" r="4.5" fill="#7f967a" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>fast · text · seed 202: 37</title></circle>
+<circle cx="857.4" cy="146.0" r="4.5" fill="#7f967a" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>fast · text · seed 303: 28</title></circle>
+<circle cx="869.2" cy="146.0" r="4.5" fill="#7f967a" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>fast · text · seed 404: 30</title></circle>
+<circle cx="851.5" cy="146.0" r="4.5" fill="#7f967a" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>fast · text · seed 505: 27</title></circle>
+<circle cx="728.0" cy="200.0" r="4.5" fill="#b4f784" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>balanced · vision · seed 101: 6</title></circle>
+<circle cx="769.2" cy="200.0" r="4.5" fill="#b4f784" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>balanced · vision · seed 202: 13</title></circle>
+<circle cx="757.4" cy="200.0" r="4.5" fill="#b4f784" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>balanced · vision · seed 303: 11</title></circle>
+<circle cx="745.6" cy="200.0" r="4.5" fill="#b4f784" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>balanced · vision · seed 404: 9</title></circle>
+<circle cx="733.9" cy="200.0" r="4.5" fill="#b4f784" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>balanced · vision · seed 505: 7</title></circle>
+<circle cx="722.1" cy="216.0" r="4.5" fill="#7f967a" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>balanced · text · seed 101: 5</title></circle>
+<circle cx="733.9" cy="216.0" r="4.5" fill="#7f967a" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>balanced · text · seed 202: 7</title></circle>
+<circle cx="710.3" cy="216.0" r="4.5" fill="#7f967a" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>balanced · text · seed 303: 3</title></circle>
+<circle cx="739.7" cy="216.0" r="4.5" fill="#7f967a" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>balanced · text · seed 404: 8</title></circle>
+<circle cx="710.3" cy="216.0" r="4.5" fill="#7f967a" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>balanced · text · seed 505: 3</title></circle>
+<circle cx="722.1" cy="270.0" r="4.5" fill="#b4f784" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>quality · vision · seed 101: 5</title></circle>
+<circle cx="710.3" cy="270.0" r="4.5" fill="#b4f784" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>quality · vision · seed 202: 3</title></circle>
+<circle cx="704.4" cy="270.0" r="4.5" fill="#b4f784" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>quality · vision · seed 303: 2</title></circle>
+<circle cx="722.1" cy="270.0" r="4.5" fill="#b4f784" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>quality · vision · seed 404: 5</title></circle>
+<circle cx="710.3" cy="270.0" r="4.5" fill="#b4f784" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>quality · vision · seed 505: 3</title></circle>
+<circle cx="704.4" cy="286.0" r="4.5" fill="#7f967a" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>quality · text · seed 101: 2</title></circle>
+<circle cx="716.2" cy="286.0" r="4.5" fill="#7f967a" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>quality · text · seed 202: 4</title></circle>
+<circle cx="716.2" cy="286.0" r="4.5" fill="#7f967a" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>quality · text · seed 303: 4</title></circle>
+<circle cx="704.4" cy="286.0" r="4.5" fill="#7f967a" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>quality · text · seed 404: 2</title></circle>
+<circle cx="710.3" cy="286.0" r="4.5" fill="#7f967a" fill-opacity="0.85" stroke="#141e16" stroke-width="2"><title>quality · text · seed 505: 3</title></circle>
+<text x="32.0" y="140.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="15" font-weight="600" fill="#eef1e9" text-anchor="start">fast</text>
+<text x="32.0" y="158.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="11" font-weight="400" fill="#7f967a" text-anchor="start">Qwen3.5-0.8B</text>
+<text x="32.0" y="210.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="15" font-weight="600" fill="#eef1e9" text-anchor="start">balanced</text>
+<text x="32.0" y="228.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="11" font-weight="400" fill="#7f967a" text-anchor="start">Qwen3.5-4B</text>
+<text x="32.0" y="280.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="15" font-weight="600" fill="#eef1e9" text-anchor="start">quality</text>
+<text x="32.0" y="298.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="11" font-weight="400" fill="#7f967a" text-anchor="start">Qwen3.6-35B-A3B</text>
+<circle cx="155.0" cy="374.0" r="5" fill="#b4f784" fill-opacity="1.0"></circle>
+<text x="166.0" y="378.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" font-weight="400" fill="#acb7ac" text-anchor="start">视觉：文字事实 + 结果缩略图</text>
+<circle cx="348.4" cy="374.0" r="5" fill="#7f967a" fill-opacity="1.0"></circle>
+<text x="359.4" y="378.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" font-weight="400" fill="#acb7ac" text-anchor="start">纯文字提示</text>
+<text x="928.0" y="378.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="11" font-weight="400" fill="#7f967a" text-anchor="end">种子 101 · 202 · 303 · 404 · 505</text>
+</svg>

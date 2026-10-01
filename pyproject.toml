@@ -28,6 +28,10 @@ build-backend = "hatchling.build"
 [tool.hatch.build.targets.wheel]
 packages = ["src/openjev"]
 
+[tool.hatch.build.targets.sdist]
+# Recorded runs and replay videos live in the repository, not in the source package.
+exclude = ["/.claude", "/examples/tetris/report"]
+
 [dependency-groups]
 bench = [
     "datasets>=4,<6",

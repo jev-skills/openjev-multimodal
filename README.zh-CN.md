@@ -70,6 +70,20 @@ curl http://127.0.0.1:8000/v1/systemone \
 
 动图回放**真实本地 API 结果**，耗时来自实测。结账图为原创合成素材。文档站回放记录，本地 playground 实时推理。[响应记录](benchmarks/demo.json) · [图片示例](examples/image_decision.py)。
 
+## 俄罗斯方块：限时决策
+
+[![Qwen3.5-4B 通过 OpenJev Multimodal 玩俄罗斯方块](examples/tetris/report/videos/balanced.jpg)](https://hand-in.github.io/openjev-multimodal/zh/tetris)
+
+三个本地模型通过 API 玩俄罗斯方块。代码枚举所有合法的两步方案并负责按键；**1 个 Choice token 选出方案**，依据是精确的文字事实与按 token 对齐的结果图。视觉模式的 15 局全部完成 10 次消除，单次决策中位数为 0.15 秒（0.8B）、0.65 秒（4B）和 0.91 秒（35B-A3B）。[演示页](https://hand-in.github.io/openjev-multimodal/zh/tetris) · [在浏览器中试玩](https://hand-in.github.io/openjev-multimodal/demos/tetris/web/) · [测试报告](examples/tetris/report/README.zh-CN.md) · [代码](examples/tetris)。
+
+## 在智能体中使用
+
+```bash
+npx openskills install Hand-In/openjev-multimodal/skills/openjev-multimodal -g -y
+```
+
+[openjev-multimodal 技能](skills/openjev-multimodal)教 Claude Code、Codex 以及任何读取 `AGENTS.md` 的智能体启动与检查服务、设计 Noul / Choice / Score 问题、按视觉编码器调整图片尺寸，并读取概率与延迟。在本地克隆中可直接运行 `npm run skill:install`。
+
 ## 小样本基准
 
 ![九类任务，每项 20 题，包含置信区间](assets/benchmark.png)

@@ -7,6 +7,7 @@ Not affiliated with TypeSafe; open-model predictions are not proprietary Jev out
 - [API](https://hand-in.github.io/openjev-multimodal/api)
 - [Models](https://hand-in.github.io/openjev-multimodal/models)
 - [Benchmarks](https://hand-in.github.io/openjev-multimodal/benchmarks)
+- [Tetris demo](https://hand-in.github.io/openjev-multimodal/tetris): three local models play Tetris, one output token per two pieces
 - [中文文档](https://hand-in.github.io/openjev-multimodal/zh/guide)
 - [Source](https://github.com/Hand-In/openjev-multimodal)
 

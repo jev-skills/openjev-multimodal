@@ -1,3 +1,5 @@
+import { cpSync, existsSync } from 'node:fs'
+import { resolve } from 'node:path'
 import { defineConfig } from 'vitepress'
 
 const base = '/openjev-multimodal/'
@@ -7,6 +9,7 @@ const menu = (zh = false) => [
     { text: zh ? '快速开始' : 'Quickstart', link: zh ? '/zh/guide' : '/guide' },
     { text: zh ? 'API 参考' : 'API reference', link: zh ? '/zh/api' : '/api' },
     { text: zh ? '多模态示例' : 'Multimodal examples', link: zh ? '/zh/examples' : '/examples' },
+    { text: zh ? '俄罗斯方块演示' : 'Tetris demo', link: zh ? '/zh/tetris' : '/tetris' },
   ] },
   { text: zh ? '深入了解' : 'Go deeper', items: [
     { text: zh ? '模型与性能' : 'Models & performance', link: zh ? '/zh/models' : '/models' },
@@ -20,6 +23,18 @@ export default defineConfig({
   description: 'A local, open-source Jev-compatible API for typed decisions from text and images. One-token probabilities on Apple Silicon with Qwen 3.5 and Qwen 3.6.',
   lastUpdated: false,
   sitemap: { hostname: host + base },
+  // The browser game and the full Tetris report are static pages from examples/tetris.
+  // Publish them next to the docs, without the raw run receipts.
+  buildEnd({ root, outDir }) {
+    const source = resolve(root, '../examples/tetris')
+    if (!existsSync(source)) return
+    const skip = /(\.DS_Store|report\/(runs|ablation)(\/|$)|README[^/]*\.md$)/
+    for (const part of ['web', 'report']) {
+      cpSync(resolve(source, part), resolve(outDir, 'demos/tetris', part), {
+        recursive: true, filter: (path) => !skip.test(path),
+      })
+    }
+  },
   head: [
     ['link', { rel: 'icon', type: 'image/svg+xml', href: base + 'logo.svg' }],
     ['meta', { name: 'theme-color', content: '#101713' }],
@@ -55,12 +70,12 @@ export default defineConfig({
   },
   locales: {
     root: { label: 'English', lang: 'en', themeConfig: {
-      nav: [{ text: 'Docs', link: '/guide' }, { text: 'Benchmarks', link: '/benchmarks' }],
+      nav: [{ text: 'Docs', link: '/guide' }, { text: 'Benchmarks', link: '/benchmarks' }, { text: 'Tetris', link: '/tetris' }],
       sidebar: menu(), footer: { message: 'Open models. Local inference. Measured claims.', copyright: 'MIT · OpenJev Multimodal' },
     } },
     zh: { label: '简体中文', lang: 'zh-CN', title: 'OpenJev Multimodal',
       description: '可在 Mac 本地运行的开源 Jev 兼容多模态 API。将文字与图片转为类型化概率，支持 Qwen3.5、Qwen3.6 和 Apple Silicon。',
-      themeConfig: { nav: [{ text: '文档', link: '/zh/guide' }, { text: '基准测试', link: '/zh/benchmarks' }],
+      themeConfig: { nav: [{ text: '文档', link: '/zh/guide' }, { text: '基准测试', link: '/zh/benchmarks' }, { text: '俄罗斯方块', link: '/zh/tetris' }],
         sidebar: menu(true), outlineTitle: '本页内容',
         footer: { message: '开放模型 · 本地推理 · 实测数据', copyright: 'MIT · OpenJev Multimodal' },
       },
