@@ -5,7 +5,7 @@ description: 使用 uv 与 llama.cpp 安装 OpenJev Multimodal，在 Apple Silic
 
 # 从本地开始
 
-需要 Apple Silicon Mac、Python 3.11+，以及足以容纳模型的内存。16 GB 或更大内存的 Mac 可以从 4B 的 `balanced` 档开始；更看重内存占用时选择 `fast`。这是选型起点，不是实测最低内存保证。
+需要 Apple Silicon Mac、Python 3.11+，以及足以容纳模型的内存。16 GB 或更大内存的 Mac 可以从 4B 的 `balanced` 档开始；更看重内存占用时选择 `fast`，内存更大的 Mac 可选 `quality` 或 `max`。这是选型起点，不是实测最低内存保证。
 
 ## 安装并启动
 

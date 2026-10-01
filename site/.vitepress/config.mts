@@ -21,7 +21,7 @@ const menu = (zh = false) => [
 export default defineConfig({
   base, title: 'OpenJev Multimodal', cleanUrls: true,
   ignoreDeadLinks: [/^http:\/\/localhost:8000\//],
-  description: 'A local, open-source Jev-compatible API for typed decisions from text and images. One-token probabilities on Apple Silicon with Qwen 3.5 and Qwen 3.6.',
+  description: 'A local, open-source Jev-compatible API for typed decisions from text and images. One-token probabilities on Apple Silicon with Qwen 3.5, 3.6 and 3.8.',
   lastUpdated: false,
   sitemap: { hostname: host + base },
   // The browser game and the full Tetris report are static pages from examples/tetris.
@@ -75,7 +75,7 @@ export default defineConfig({
       sidebar: menu(), footer: { message: 'Open models. Local inference. Measured claims.', copyright: 'MIT · OpenJev Multimodal' },
     } },
     zh: { label: '简体中文', lang: 'zh-CN', title: 'OpenJev Multimodal',
-      description: '可在 Mac 本地运行的开源 Jev 兼容多模态 API。将文字与图片转为类型化概率，支持 Qwen3.5、Qwen3.6 和 Apple Silicon。',
+      description: '可在 Mac 本地运行的开源 Jev 兼容多模态 API。将文字与图片转为类型化概率，支持 Qwen3.5、Qwen3.6、Qwen3.8 和 Apple Silicon。',
       themeConfig: { nav: [{ text: '文档', link: '/zh/guide' }, { text: '基准测试', link: '/zh/benchmarks' }, { text: '俄罗斯方块', link: '/zh/tetris' }],
         sidebar: menu(true), outlineTitle: '本页内容',
         footer: { message: '开放模型 · 本地推理 · 实测数据', copyright: 'MIT · OpenJev Multimodal' },

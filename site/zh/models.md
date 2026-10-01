@@ -46,7 +46,7 @@ uv run openjev serve --profile max
 确切版本见 [profiles.py](https://github.com/Hand-In/openjev-multimodal/blob/main/src/openjev/profiles.py)。
 
 - 原始模型：[Qwen3.5](https://huggingface.co/Qwen/Qwen3.5-4B)、[Qwen3.6-35B-A3B](https://huggingface.co/Qwen/Qwen3.6-35B-A3B)、[Qwen3.8-27B](https://huggingface.co/Qwen/Qwen3.8-27B)。
-- fast、balanced 与 max 的权重和投影器：[Unsloth GGUF](https://huggingface.co/unsloth/Qwen3.8-27B-GGUF)。
+- fast、balanced 与 max 的权重和投影器：Unsloth GGUF [0.8B](https://huggingface.co/unsloth/Qwen3.5-0.8B-GGUF)、[4B](https://huggingface.co/unsloth/Qwen3.5-4B-GGUF)、[27B](https://huggingface.co/unsloth/Qwen3.8-27B-GGUF)。
 - quality 权重：[Qwen3.6 MTP GGUF](https://huggingface.co/havenoammo/Qwen3.6-35B-A3B-MTP-GGUF)，配套投影器来自 [Unsloth](https://huggingface.co/unsloth/Qwen3.6-35B-A3B-GGUF)。
 
 本仓库原创代码采用 MIT 许可，模型权重与数据集保留各自许可。

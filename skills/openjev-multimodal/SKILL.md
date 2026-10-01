@@ -13,7 +13,7 @@ response is a complete probability distribution rather than generated text. Code
 the workflow; the model supplies the judgment that code cannot compute.
 
 It is an independent open-model implementation of the Jev wire format: it runs
-Qwen3.5 and Qwen3.6 locally and is not TypeSafe's proprietary Jev. Probabilities are
+Qwen3.5, Qwen3.6 and Qwen3.8 locally and is not TypeSafe's proprietary Jev. Probabilities are
 conditioned on the options you supply; they are not calibrated guarantees.
 
 ## Check or start the service
@@ -100,10 +100,10 @@ state. In the Tetris study, pictures alone were not enough for any model, while
 facts plus a small picture of each option's outcome gave the lowest regret for every
 model size.
 
-**Ask only the questions you will use.** The Qwen3.5 and Qwen3.6 models are hybrids
-that llama.cpp cannot resume from a cached prefix, so each question costs its own full
-prompt pass and latency grows with the number of questions. Batch independent
-questions in one request when you need all of their answers; otherwise ask one.
+**Ask only the questions you will use.** The API reads a request's state once and
+resumes every question from a checkpoint, but each question still adds its own text and
+readout, so latency grows with the number of questions. Batch the questions you need
+about one state in one request; otherwise ask one.
 
 More patterns, prompts and measured trade-offs: [references/design.md](references/design.md).
 

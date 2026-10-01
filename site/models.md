@@ -46,7 +46,7 @@ The model still reads the complete state. Questions run one after another on one
 Exact revisions are pinned in [profiles.py](https://github.com/Hand-In/openjev-multimodal/blob/main/src/openjev/profiles.py).
 
 - [Qwen3.5](https://huggingface.co/Qwen/Qwen3.5-4B), [Qwen3.6-35B-A3B](https://huggingface.co/Qwen/Qwen3.6-35B-A3B) and [Qwen3.8-27B](https://huggingface.co/Qwen/Qwen3.8-27B): original model documentation.
-- [Unsloth GGUF](https://huggingface.co/unsloth/Qwen3.8-27B-GGUF): fast, balanced and max weights and projectors.
+- Unsloth GGUF [0.8B](https://huggingface.co/unsloth/Qwen3.5-0.8B-GGUF), [4B](https://huggingface.co/unsloth/Qwen3.5-4B-GGUF) and [27B](https://huggingface.co/unsloth/Qwen3.8-27B-GGUF): fast, balanced and max weights and projectors.
 - [Qwen3.6 MTP GGUF](https://huggingface.co/havenoammo/Qwen3.6-35B-A3B-MTP-GGUF): quality weights; matching projector from [Unsloth](https://huggingface.co/unsloth/Qwen3.6-35B-A3B-GGUF).
 
 This repository's original code is MIT-licensed. Model weights and datasets keep their own licenses.

@@ -1,6 +1,6 @@
 ---
 title: Latency
-description: Where request time goes in OpenJev Multimodal and what changed. Shared-prefix priming for hybrid Qwen models, a verified template skeleton and one-step image resizing, measured on all three profiles.
+description: Where request time goes in OpenJev Multimodal and what changed. Shared-prefix priming for hybrid Qwen models, a verified template skeleton and one-step image resizing, with before-and-after measurements.
 ---
 
 # Latency
@@ -61,7 +61,7 @@ Previous version, balanced profile:
 | Photo preparation in the API | 65 ms for 2048×1536, 119 ms for 4032×3024, then resized again by llama.cpp | per image |
 | Prompt processing | 0.29 s for a 276-token ticket, 1.0 s for a 1.2k-token policy, 0.75 s for a 448×672 screenshot | per token and image |
 
-Qwen3.5 and Qwen3.6 are hybrid models. Their recurrent layers cannot roll back to an arbitrary position, and llama.cpp checkpoints only near the end of each prompt, so every further question re-read the whole state: `forcing full prompt re-processing due to lack of cache data`.
+Qwen3.5, Qwen3.6 and Qwen3.8 are hybrid models. Their recurrent layers cannot roll back to an arbitrary position, and llama.cpp checkpoints only near the end of each prompt, so every further question re-read the whole state: `forcing full prompt re-processing due to lack of cache data`.
 
 ## What changed
 

@@ -1,6 +1,6 @@
 ---
 title: 延迟
-description: OpenJev Multimodal 的请求时间花在哪里、改了什么：混合架构 Qwen 的共享前缀预填充、经核对的模板骨架与图片一次缩放，三个档位实测。
+description: OpenJev Multimodal 的请求时间花在哪里、改了什么：混合架构 Qwen 的共享前缀预填充、经核对的模板骨架与图片一次缩放，附优化前后实测。
 ---
 
 # 延迟
@@ -61,7 +61,7 @@ description: OpenJev Multimodal 的请求时间花在哪里、改了什么：混
 | API 处理照片 | 2048×1536 需 65 毫秒，4032×3024 需 119 毫秒，随后 llama.cpp 再缩放一次 | 每张图片 |
 | 提示处理 | 276 token 工单 0.29 秒，1.2k token 条款 1.0 秒，448×672 截图 0.75 秒 | 每个 token 与图片 |
 
-Qwen3.5 与 Qwen3.6 是混合架构，循环层无法回滚到任意位置，而 llama.cpp 只在每个提示末尾附近保存检查点，所以之后的每个问题都要重读整个 state：`forcing full prompt re-processing due to lack of cache data`。
+Qwen3.5、Qwen3.6 与 Qwen3.8 都是混合架构，循环层无法回滚到任意位置，而 llama.cpp 只在每个提示末尾附近保存检查点，所以之后的每个问题都要重读整个 state：`forcing full prompt re-processing due to lack of cache data`。
 
 ## 改了什么
 

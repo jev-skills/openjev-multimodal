@@ -37,7 +37,7 @@ Choice returns the argmax. Score is `sum(index * probability)`. Confidence is `1
 
 ## Latency path
 
-Every question costs a prefill of its full prompt. Qwen3.5 and Qwen3.6 are hybrid models: their recurrent layers cannot roll back to an arbitrary cached position, so llama.cpp re-read the shared state, images included, for every question. Requests with two or more questions now evaluate the shared prefix once; llama.cpp checkpoints it, and each question resumes from there with only its own text. A screenshot with four questions takes less than half the time. Decisions stay the same; probabilities move by at most 0.067 because the prefix runs as its own batch.
+Every question costs a prefill of its full prompt. Qwen3.5, Qwen3.6 and Qwen3.8 are hybrid models: their recurrent layers cannot roll back to an arbitrary cached position, so llama.cpp re-read the shared state, images included, for every question. Requests with two or more questions now evaluate the shared prefix once; llama.cpp checkpoints it, and each question resumes from there with only its own text. A screenshot with four questions takes less than half the time. Decisions stay the same; probabilities move by at most 0.067 because the prefix runs as its own batch.
 
 The API also fills a verified chat-template skeleton locally instead of calling `/apply-template` (about 9 ms) on every request, and resizes an oversized image once, straight to the vision encoder's size. [Measurements →](./performance)
 

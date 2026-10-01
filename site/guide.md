@@ -5,7 +5,7 @@ description: Install OpenJev Multimodal with uv and llama.cpp. Run Qwen on Apple
 
 # Start locally
 
-OpenJev Multimodal turns text and images into typed decisions on your Mac. You need an Apple Silicon Mac, Python 3.11 or later, and enough memory for your chosen model. Start with the 4B `balanced` profile on a 16 GB or larger Mac; use `fast` for a smaller footprint. These are practical starting points, not measured minimum-memory guarantees.
+OpenJev Multimodal turns text and images into typed decisions on your Mac. You need an Apple Silicon Mac, Python 3.11 or later, and enough memory for your chosen model. Start with the 4B `balanced` profile on a 16 GB or larger Mac; use `fast` for a smaller footprint, and `quality` or `max` on a Mac with more memory. These are practical starting points, not measured minimum-memory guarantees.
 
 ## Install and run
 
