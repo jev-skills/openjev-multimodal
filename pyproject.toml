@@ -1,0 +1,44 @@
+[project]
+name = "openjev-multimodal"
+version = "0.1.0"
+description = "Local multimodal decisions. Jev-compatible typed probabilities on Apple Silicon."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+dependencies = [
+  "fastapi>=0.115,<1",
+  "httpx>=0.28,<1",
+  "pillow>=11.1,<13",
+  "pydantic-settings>=2.8,<3",
+  "uvicorn>=0.34,<1",
+  "huggingface-hub>=1,<2",
+]
+
+[project.scripts]
+openjev = "openjev.cli:main"
+
+[project.urls]
+Homepage = "https://hand-in.github.io/openjev-multimodal/"
+Repository = "https://github.com/Hand-In/openjev-multimodal"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/openjev"]
+
+[dependency-groups]
+bench = [
+    "datasets>=4,<6",
+    "matplotlib>=3.10,<4",
+    "python-chess>=1.999,<2",
+]
+dev = ["ruff>=0.11,<1"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]

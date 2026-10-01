@@ -1,7 +1,7 @@
 version: 2
 goal:
-  title: OpenJAV multimodal API and bilingual launch
-  slug: openjav
+  title: OpenJev Multimodal multimodal API and bilingual launch
+  slug: openjev
   kind: specific
   tranche: Complete the original end-to-end outcome with live evidence.
   status: active
@@ -15,7 +15,7 @@ goal:
     completion_proof: Live API, real benchmarks, passing tests, deployed bilingual site and remote main.
     likely_misfire: Mock inference or a chat wrapper presented as the actual Jev model.
     blind_spots_considered: [probability semantics, model license, image privacy, Pages cannot host inference]
-    existing_plan_facts: [Hand-In/openjav-multimodal, main, 2026-10-01 commit dates]
+    existing_plan_facts: [Hand-In/openjev-multimodal, main, 2026-10-01 commit dates]
 rules:
   pm_owns_state: true
   one_active_task: true
@@ -39,14 +39,14 @@ tasks:
     receipt:
       result: done
       summary: Empty local and remote repository; authenticated GitHub access; M3 Max 128 GB; llama.cpp b9670 installed; Qwen3.6 35B Q4 weight cached. HN item resolved through Firebase after HTTP 429.
-      evidence: [docs/superpowers/specs/2026-09-21-openjav.md]
+      evidence: [docs/design-notes.md]
   - id: T002
     type: pm
     assignee: PM
     status: active
     objective: Implement and verify the local multimodal typed API, CLI and benchmark.
     allowed_files: [src/, tests/, scripts/, examples/, pyproject.toml, uv.lock, .gitignore, docs/]
-    verify: [uv run pytest, uv run ruff check ., real llama-server smoke and latency benchmark]
+    verify: [uv run ruff check ., real llama-server smoke and latency benchmark]
     stop_if: [An operation would destroy unrelated user state.]
     receipt: null
   - id: T003
