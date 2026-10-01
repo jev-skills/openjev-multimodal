@@ -12,7 +12,7 @@ Four pinned Qwen profiles serve the same API, each with a matching vision projec
 | `fast` | Qwen3.5-0.8B | Q4_K_M | Small footprint, simple judgments |
 | `balanced` (default) | Qwen3.5-4B | Q4_K_M | Everyday text and image decisions |
 | `quality` | Qwen3.6-35B-A3B | UD-Q4_K_XL | Stronger knowledge on larger Macs |
-| `max` | Qwen3.8-27B | UD-Q4_K_XL | The strongest judgment |
+| `max` | Qwen3.8-27B | UD-Q4_K_XL | Qwen's strongest local model |
 
 Balanced is a practical start on a 16 GB or larger Mac; fast suits a smaller footprint. Quality weights are about 23.3 GB, max weights 17.6 GB, each plus a 0.9 GB projector. **The verified machine is an M3 Max with 128 GB memory and a 40-core GPU. Smaller-machine minimums were not benchmarked.**
 
@@ -27,7 +27,7 @@ scripts/build-llama.sh
 uv run openjev serve --profile max
 ```
 
-Stock llama.cpp runs the same profile, about 0.2 s slower per cached request. `--quant Q8_0` loads the 8-bit weights (29 GB): on an M3 Max they process short prompts about 5% faster than UD-Q4_K_XL, and all 32 answers of our check set matched. MTP heads and speculative decoding do not help: OpenJev reads one output token.
+Stock llama.cpp runs the same profile, about 0.2 s slower per cached request. `--quant Q8_0` loads the 8-bit weights (29 GB): on an M3 Max they process short prompts about 5% faster than UD-Q4_K_XL, and all 32 answers of our check set matched. MTP heads and speculative decoding do not help: OpenJev reads one output token. On our [nine-task sample](./benchmarks#qwen3-8-27b-on-the-same-cases) it scores 126 of 180 against quality's 127, about four times slower per decision.
 
 ## Measured behavior
 

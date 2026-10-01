@@ -34,6 +34,25 @@ description: MMLU、GPQA、ARC、HellaSwag、WinoGrande、GSM8K 与国际象棋�
 
 最初较大的串行评测已为控制负载而中断，**886 条已完成记录**全部保留。图表从中取出 180 条现有观察，没有再次发起推理。
 
+## max 档位在同一批样本上的结果
+
+`max` 档位于 2026 年 9 月 22 日在 OpenJev 的 llama.cpp 构建（`b52-61053cc`）上重放了同样的 180 个样本，ID、数据集版本与协议完全一致。
+
+| 任务 | quality 35B-A3B | max 27B |
+| --- | --- | --- |
+| MMLU | 17/20 | 16/20 |
+| GPQA Diamond | 10/20 | 9/20 |
+| ARC Easy | 20/20 | 20/20 |
+| ARC Challenge | 19/20 | 19/20 |
+| WinoGrande | 15/20 | 16/20 |
+| HellaSwag | 20/20 | 20/20 |
+| GSM8K · 4 选项 | 8/20 | 8/20 |
+| GSM8K · 10 选项 | 8/20 | 9/20 |
+| 国际象棋 · 4 走法 | 10/20 | 9/20 |
+| **合计** | **127/180** | **126/180** |
+
+HTTP 延迟中位数为 **1.24 秒**，quality 为 281 毫秒。在这个样本量下两个档位无法区分，各区间彼此重叠；Qwen 公布的基准整体上给 Qwen3.8-27B 更高的评价。[图表](https://github.com/jev-skills/openjev-multimodal/blob/main/assets/benchmark-max.svg) · [汇总](https://github.com/jev-skills/openjev-multimodal/blob/main/benchmarks/max/summary.json) · [原始记录](https://github.com/jev-skills/openjev-multimodal/blob/main/benchmarks/max/decisions.jsonl)
+
 ## 任务解释
 
 [MMLU](https://huggingface.co/datasets/cais/mmlu) 从合并测试集采样，不是各学科宏平均。[GPQA Diamond](https://github.com/idavidrein/gpqa) 来自作者公开的加密压缩包，题目和答案文字不公开提交。[ARC](https://huggingface.co/datasets/allenai/ai2_arc) 使用测试集，[WinoGrande](https://huggingface.co/datasets/allenai/winogrande) 和 [HellaSwag](https://huggingface.co/datasets/Rowan/hellaswag) 使用有标签的验证集。

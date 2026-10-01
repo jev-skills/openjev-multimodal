@@ -36,7 +36,7 @@ uv run openjev serve
 | `fast` | Qwen3.5-0.8B | Q4_K_M | 低占用、简单判断 |
 | `balanced`，默认 | Qwen3.5-4B | Q4_K_M | 日常文字与图片 |
 | `quality` | Qwen3.6-35B-A3B | UD-Q4_K_XL | 大内存 Mac、较强知识能力 |
-| `max` | Qwen3.8-27B | UD-Q4_K_XL | 最强判断力 |
+| `max` | Qwen3.8-27B | UD-Q4_K_XL | Qwen 最强的本地模型 |
 
 ```bash
 uv run openjev serve --profile quality

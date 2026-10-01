@@ -12,7 +12,7 @@ description: 对比本地 Qwen3.5 0.8B、4B、Qwen3.6 35B-A3B 与 Qwen3.8 27B �
 | `fast` | Qwen3.5-0.8B | Q4_K_M | 低内存占用、简单判断 |
 | `balanced`，默认 | Qwen3.5-4B | Q4_K_M | 日常文字与图片任务 |
 | `quality` | Qwen3.6-35B-A3B | UD-Q4_K_XL | 大内存 Mac 上更强的知识与判断 |
-| `max` | Qwen3.8-27B | UD-Q4_K_XL | 最强判断力 |
+| `max` | Qwen3.8-27B | UD-Q4_K_XL | Qwen 最强的本地模型 |
 
 16 GB 或更大内存的 Mac 可从 balanced 开始，更小的内存预算可选 fast。quality 权重约 23.3 GB，max 约 17.6 GB，另需 0.9 GB 投影器。**实际验证机器是 M3 Max、128 GB 内存、40 核 GPU，未测量其他机器的最低内存要求。**
 

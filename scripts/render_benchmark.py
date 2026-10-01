@@ -75,7 +75,9 @@ def render(directory: Path, samples: int):
     fig = plt.figure(figsize=(18, 11.2), facecolor=bg)
     fig.text(0.055, 0.927, "OPENJEV  /  MULTIMODAL", color=accent, size=12, weight="bold")
     fig.text(0.055, 0.866, "One token. Nine benchmarks.", size=36, weight="bold")
-    fig.text(0.055, 0.819, "Qwen3.6-35B-A3B  ·  UD-Q4_K_XL  ·  Apple M3 Max", color=muted, size=15)
+    model = manifest["model"].split("/")[-1]
+    subtitle = f"{model}  ·  {manifest['quantization']}  ·  {manifest['hardware'].split(' · ')[0]}"
+    fig.text(0.055, 0.819, subtitle, color=muted, size=15)
     fig.text(
         0.945,
         0.921,
@@ -173,11 +175,12 @@ def render(directory: Path, samples: int):
     )
     artifacts = Path("assets")
     artifacts.mkdir(exist_ok=True)
-    fig.savefig(artifacts / "benchmark.png", dpi=100, facecolor=bg)
-    fig.savefig(artifacts / "benchmark.svg", facecolor=bg)
+    stem = "benchmark" if directory.name == "quality" else f"benchmark-{directory.name}"
+    fig.savefig(artifacts / f"{stem}.png", dpi=100, facecolor=bg)
+    fig.savefig(artifacts / f"{stem}.svg", facecolor=bg)
     plt.close(fig)
     Path("site/public").mkdir(parents=True, exist_ok=True)
-    shutil.copy2(artifacts / "benchmark.png", "site/public/benchmark.png")
+    shutil.copy2(artifacts / f"{stem}.png", f"site/public/{stem}.png")
     print(json.dumps(report, indent=2))
 
 

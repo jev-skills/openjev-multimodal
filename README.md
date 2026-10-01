@@ -41,7 +41,7 @@ Open **http://localhost:8000/playground** for live text/image input or **http://
 | `fast` | Qwen3.5-0.8B | Q4_K_M | Small footprint, simple decisions |
 | `balanced` (default) | Qwen3.5-4B | Q4_K_M | Everyday text and vision |
 | `quality` | Qwen3.6-35B-A3B | UD-Q4_K_XL | Larger Macs, stronger knowledge |
-| `max` | Qwen3.8-27B | UD-Q4_K_XL | The strongest judgment |
+| `max` | Qwen3.8-27B | UD-Q4_K_XL | Qwen's strongest local model |
 
 ```bash
 uv run openjev serve --profile quality  # one profile at a time

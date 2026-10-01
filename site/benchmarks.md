@@ -34,6 +34,25 @@ Median HTTP latency over the selected 180 cases: **281 ms**. This subset is expl
 
 An initial larger sequential run was interrupted to limit local load. All **886 completed decisions** remain archived. The chart uses 180 of those existing observations; it did not trigger another inference run.
 
+## Qwen3.8-27B on the same cases
+
+The `max` profile replayed the same 180 cases on September 22, 2026, on OpenJev's llama.cpp build (`b52-61053cc`), with the same IDs, dataset revisions and protocol.
+
+| Task | quality 35B-A3B | max 27B |
+| --- | --- | --- |
+| MMLU | 17/20 | 16/20 |
+| GPQA Diamond | 10/20 | 9/20 |
+| ARC Easy | 20/20 | 20/20 |
+| ARC Challenge | 19/20 | 19/20 |
+| WinoGrande | 15/20 | 16/20 |
+| HellaSwag | 20/20 | 20/20 |
+| GSM8K · 4 choices | 8/20 | 8/20 |
+| GSM8K · 10 choices | 8/20 | 9/20 |
+| Chess · 4 moves | 10/20 | 9/20 |
+| **Total** | **127/180** | **126/180** |
+
+Median HTTP latency was **1.24 s**, against 281 ms for quality. On this sample the two profiles are indistinguishable, and every interval overlaps; Qwen's published benchmarks rank Qwen3.8-27B higher overall. [Chart](https://github.com/jev-skills/openjev-multimodal/blob/main/assets/benchmark-max.svg) · [Summary](https://github.com/jev-skills/openjev-multimodal/blob/main/benchmarks/max/summary.json) · [Receipts](https://github.com/jev-skills/openjev-multimodal/blob/main/benchmarks/max/decisions.jsonl)
+
 ## Tasks and interpretation
 
 [MMLU](https://huggingface.co/datasets/cais/mmlu) samples the combined test split, not a subject-macro average. [GPQA Diamond](https://github.com/idavidrein/gpqa) uses the authors' public password-protected archive; prompts and answer texts are not republished. [ARC](https://huggingface.co/datasets/allenai/ai2_arc) uses test splits; [WinoGrande](https://huggingface.co/datasets/allenai/winogrande) and [HellaSwag](https://huggingface.co/datasets/Rowan/hellaswag) use labeled validation splits.
