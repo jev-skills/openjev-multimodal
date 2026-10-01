@@ -1,0 +1,19 @@
+name: Package
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.11"
+      - run: uv sync --frozen
+      - run: uv run ruff check src scripts examples
+      - run: uv run openjev schema > /tmp/openapi.json
+      - run: uv build

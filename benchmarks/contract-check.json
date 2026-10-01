@@ -1,0 +1,50 @@
+[
+  {
+    "options": 255,
+    "returned": 255,
+    "sum": 0.9999999999999994,
+    "choice": "173",
+    "elapsed_ms": 1639.35
+  },
+  {
+    "case": "structured_chinese",
+    "status": 200,
+    "response": {
+      "model": "jev-latest",
+      "answers": {
+        "refund": {
+          "type": "noul",
+          "noul": 0.9968485757943348
+        },
+        "route": {
+          "type": "choice",
+          "choice": "billing",
+          "probabilities": {
+            "billing": 0.9779767753301224,
+            "technical": 0.02202322466987759
+          },
+          "confidence": 0.8473455517095423
+        },
+        "urgency": {
+          "type": "score",
+          "score": 0.6290964126723815,
+          "legend": {
+            "0": "{\"等级\": \"普通\"}",
+            "1": "[\"紧急\"]",
+            "2": "{\"等级\": \"严重事故\"}"
+          },
+          "probabilities": {
+            "0": 0.3946185512927542,
+            "1": 0.5816664847421102,
+            "2": 0.02371496396513562
+          },
+          "confidence": 0.298347423149132
+        }
+      },
+      "usage": {
+        "input_tokens": 241,
+        "output_tokens": 3
+      }
+    }
+  }
+]

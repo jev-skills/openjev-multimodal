@@ -1,0 +1,65 @@
+[
+  {
+    "state": "I was charged twice. Please refund the duplicate payment.",
+    "question": "Which team should handle this request?",
+    "criteria": {
+      "billing": "Payments and refunds",
+      "technical": "Software bugs and integrations",
+      "other": "Other requests"
+    },
+    "response": {
+      "model": "jev-latest",
+      "answers": {
+        "decision": {
+          "type": "choice",
+          "choice": "billing",
+          "probabilities": {
+            "billing": 0.9994419620450848,
+            "technical": 0.0001948183452167096,
+            "other": 0.00036321960969848464
+          },
+          "confidence": 0.995358523036678
+        }
+      },
+      "usage": {
+        "input_tokens": 82,
+        "output_tokens": 1
+      }
+    },
+    "elapsed_ms": 223.0,
+    "model": "Qwen/Qwen3.6-35B-A3B",
+    "server_timing": "prepare;dur=15.31, queue;dur=0.01, inference;dur=202.64"
+  },
+  {
+    "state": "Read the attached checkout screenshot.",
+    "question": "What payment status is shown?",
+    "criteria": {
+      "paid": "Payment was successful",
+      "pending": "Payment is still processing",
+      "failed": "Payment failed"
+    },
+    "image": "/checkout.png",
+    "response": {
+      "model": "jev-latest",
+      "answers": {
+        "decision": {
+          "type": "choice",
+          "choice": "paid",
+          "probabilities": {
+            "paid": 0.9962098365372306,
+            "pending": 0.0021171059429717374,
+            "failed": 0.001673057519797636
+          },
+          "confidence": 0.9749542995962465
+        }
+      },
+      "usage": {
+        "input_tokens": 342,
+        "output_tokens": 1
+      }
+    },
+    "elapsed_ms": 650.48,
+    "model": "Qwen/Qwen3.6-35B-A3B",
+    "server_timing": "prepare;dur=16.89, queue;dur=0.00, inference;dur=626.77"
+  }
+]

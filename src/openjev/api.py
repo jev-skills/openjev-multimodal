@@ -146,7 +146,8 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     @app.get("/v1/limits", tags=["Discovery"])
     async def limits():
         return {
-            "max_answers_per_question": 64,
+            "max_answers_per_question": 255,
+            "max_score_levels": 64,
             "max_questions": 64,
             "max_body_bytes": settings.max_body_bytes,
             "max_input_tokens": backend.context_size,

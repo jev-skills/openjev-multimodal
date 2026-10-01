@@ -6,7 +6,7 @@ from uuid import uuid4
 from .backend import LlamaBackend
 from .config import Settings
 from .errors import APIError
-from .prompts import Branch, choices, question_text, state_messages
+from .prompts import Branch, choices, question_text, state_messages, text
 from .schema import ChoiceResult, Evaluation, Noul, NoulResult, Result, Score, ScoreResult, Usage
 
 
@@ -19,7 +19,7 @@ def scored(question, keys: list[str], values: list[float]):
     if isinstance(question, Score):
         return ScoreResult(
             score=math.fsum(i * p for i, p in enumerate(values)),
-            legend={str(i): meaning for i, meaning in enumerate(question.criteria)},
+            legend={str(i): text(meaning) for i, meaning in enumerate(question.criteria)},
             probabilities=distribution,
             confidence=confidence,
         )

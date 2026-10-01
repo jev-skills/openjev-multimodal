@@ -1,0 +1,62 @@
+{
+  "started_at": "2026-09-21T07:49:34.110632+00:00",
+  "model": "Qwen/Qwen3.6-35B-A3B",
+  "quantization": "UD-Q4_K_XL",
+  "hardware": "Apple M3 Max \u00b7 40-core GPU \u00b7 128 GB",
+  "platform": "macOS-15.7.4-arm64-arm-64bit",
+  "seed": 42,
+  "samples_per_task": 100,
+  "protocol": "Zero-shot choice, one output token, no chain of thought, shuffled options.",
+  "sampling": "Uniform random subset per dataset; fixed seed. Not a full benchmark run.",
+  "sources": {
+    "cais/mmlu/all": {
+      "revision": "c30699e8356da336a370243923dbaf21066bb9fe",
+      "split": "test"
+    },
+    "gpqa_diamond": {
+      "url": "https://raw.githubusercontent.com/idavidrein/gpqa/main/dataset.zip",
+      "archive_sha256": "461ae7329f15a3e35f8184d2dac24b990f34fdf12f366ca4062d8e6638cd08dc",
+      "member": "dataset/gpqa_diamond.csv",
+      "split": "diamond",
+      "total": 198
+    },
+    "allenai/ai2_arc/ARC-Easy": {
+      "revision": "210d026faf9955653af8916fad021475a3f00453",
+      "split": "test"
+    },
+    "allenai/ai2_arc/ARC-Challenge": {
+      "revision": "210d026faf9955653af8916fad021475a3f00453",
+      "split": "test"
+    },
+    "allenai/winogrande/winogrande_xl": {
+      "revision": "01e74176c63542e6b0bcb004dcdea22d94fb67b5",
+      "split": "validation"
+    },
+    "Rowan/hellaswag/default": {
+      "revision": "218ec52e09a7e7462a5400043bb9a69a41d06b76",
+      "split": "validation"
+    },
+    "openai/gsm8k/main": {
+      "revision": "740312add88f781978c0658806c59bc2815b9866",
+      "split": "test"
+    },
+    "chess": {
+      "generator": "random legal playout, 4-60 plies; one legal UCI move and three illegal moves",
+      "python_chess": "1.11.2",
+      "seed": 42,
+      "meaning": "Move legality, not playing strength or best-move search."
+    }
+  },
+  "api_limits": {
+    "max_answers_per_question": 64,
+    "max_questions": 64,
+    "max_body_bytes": 16777216,
+    "max_input_tokens": 8192,
+    "max_total_input_tokens": 131072,
+    "max_concurrent_requests": 4,
+    "max_images": 8,
+    "image_max_edge": 1024,
+    "request_timeout_seconds": 120.0
+  },
+  "git_revision": "691670b65a259904ebb55b134398c068b7ddd7d3"
+}

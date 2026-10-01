@@ -11,3 +11,5 @@ Likely misfire: a JSON-generating chat wrapper with invented probabilities, a te
 References: https://github.com/ekzhang/openjev-sglang ; https://news.ycombinator.com/item?id=49752041 ; https://huggingface.co/AlexWortega/openjev . The upstream SGLang repository has no license file at inspection; implement independently from its documented wire contract.
 
 User steering: Superpowers globally disabled; do not use its approval/planning/test workflows. User requests a real nine-axis benchmark and a polished README chart using only our measured results.
+
+Latest owner constraint: keep evaluation small and avoid heavy local load. The initial sequential run was interrupted at 886 completed cases; use the first 20 per task for the public chart, archive all completed records, and do not rerun the large evaluation. Only a handful of demo/contract calls remain authorized. One live TypeSafe Jev call succeeded through the local typesafe-ai skill.

@@ -104,9 +104,9 @@ class LlamaBackend:
                     decoded = await self.call("/detokenize", {"tokens": ids})
                     if decoded.get("content") == label:
                         self.labels.append((label, ids[0]))
-                if len(self.labels) == 64:
+                if len(self.labels) == 255:
                     return
-        raise APIError("The backend needs 64 distinct single-token answer labels.", 503)
+        raise APIError("The backend needs 255 distinct single-token answer labels.", 503)
 
     async def template(self, messages: list[dict]) -> str:
         data = await self.call(

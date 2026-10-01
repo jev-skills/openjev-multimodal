@@ -12,8 +12,8 @@ class Strict(BaseModel):
 
 
 class BinaryCriteria(Strict):
-    positive: str = Field(default="Yes", alias="true")
-    negative: str = Field(default="No", alias="false")
+    positive: Content = Field(default="Yes", alias="true")
+    negative: Content = Field(default="No", alias="false")
 
 
 class Noul(Strict):
@@ -25,13 +25,13 @@ class Noul(Strict):
 class Choice(Strict):
     type: Literal["choice"]
     instructions: Content | None = None
-    criteria: dict[str, str | None] = Field(min_length=2, max_length=64)
+    criteria: dict[str, Content | None] = Field(min_length=2, max_length=255)
 
 
 class Score(Strict):
     type: Literal["score"]
     instructions: Content | None = None
-    criteria: list[str] = Field(min_length=2, max_length=64)
+    criteria: list[Content] = Field(min_length=2, max_length=64)
 
 
 Question = Annotated[Noul | Choice | Score, Field(discriminator="type")]

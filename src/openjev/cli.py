@@ -5,6 +5,8 @@ import json
 import os
 import platform
 import shutil
+import signal
+import socket
 import subprocess
 import sys
 import time
@@ -34,6 +36,7 @@ def parser():
     serve.add_argument("--llama-server", default="llama-server")
     serve.add_argument("--context", type=int, default=8192)
     serve.add_argument("--image-tokens", type=int, default=512)
+    serve.add_argument("--threads", type=int, default=4, help="Bound CPU threads (default: 4)")
     serve.add_argument("--startup-timeout", type=float, default=300)
     download = sub.add_parser("download", help="Cache pinned model and projector weights")
     download.add_argument("--profile", choices=PROFILES, default="balanced")
@@ -76,11 +79,23 @@ def serve(args):
     )
     process = None
     log = None
+    previous_term = signal.getsignal(signal.SIGTERM)
+
+    def terminate(signum, frame):
+        raise KeyboardInterrupt
+
+    signal.signal(signal.SIGTERM, terminate)
     try:
         if not args.connect:
             executable = shutil.which(args.llama_server)
             if not executable:
                 raise ValueError("llama-server is missing. On macOS run: brew install llama.cpp")
+            with socket.socket() as probe:
+                if probe.connect_ex(("127.0.0.1", args.backend_port)) == 0:
+                    raise ValueError(
+                        f"Backend port {args.backend_port} is occupied; "
+                        "use --connect or choose --backend-port."
+                    )
             model, projector = weights(profile, args.model_file, args.mmproj_file)
             logs = Path.home() / ".cache" / "openjev-multimodal"
             logs.mkdir(parents=True, exist_ok=True)
@@ -111,6 +126,10 @@ def serve(args):
                 '{"enable_thinking":false}',
                 "--image-max-tokens",
                 str(args.image_tokens),
+                "-t",
+                str(args.threads),
+                "-tb",
+                str(args.threads),
             ]
             process = subprocess.Popen(command, stdout=log, stderr=subprocess.STDOUT)
             print(f"Loading {profile.model} on Metal. Backend log: {log_path}", flush=True)
@@ -141,6 +160,7 @@ def serve(args):
                 process.wait()
         if log:
             log.close()
+        signal.signal(signal.SIGTERM, previous_term)
 
 
 def main():

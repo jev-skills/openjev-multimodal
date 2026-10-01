@@ -1,0 +1,18 @@
+OpenJev Multimodal is an independent implementation, not affiliated with TypeSafe.
+It does not include TypeSafe's proprietary Jev model or guarantee identical predictions.
+
+References:
+- TypeSafe public SystemOne API: https://docs.typesafe.ai/api
+- ekzhang/openjev-sglang: https://github.com/ekzhang/openjev-sglang
+- AlexWortega/openjev: https://huggingface.co/AlexWortega/openjev
+- Discussion: https://news.ycombinator.com/item?id=49752041
+
+The implementation is original. The referenced SGLang repository had no license
+file at inspection and its source was not copied into this project.
+
+Qwen model weights, GGUF conversions, datasets, llama.cpp and software dependencies
+retain their respective licenses. See model cards, lockfiles and the benchmark
+manifest. No weights or benchmark question text are distributed here.
+
+The chart and replay GIF contain only this project's actual model results.
+The checkout image is an original synthetic fixture, not a real payment receipt.

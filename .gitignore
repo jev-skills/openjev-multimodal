@@ -9,6 +9,8 @@ dist/
 .local/
 .superpowers/
 node_modules/
+benchmarks/local/
+benchmarks/replay/
 *.gguf
 *.log
 site/.vitepress/cache/

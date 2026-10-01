@@ -1,0 +1,16 @@
+# OpenJev Multimodal
+
+Open-source Jev-compatible SystemOne API for local text and image classification on Apple Silicon.
+Not affiliated with TypeSafe; open-model predictions are not proprietary Jev outputs.
+
+- [Quickstart](https://hand-in.github.io/openjev-multimodal/guide)
+- [API](https://hand-in.github.io/openjev-multimodal/api)
+- [Models](https://hand-in.github.io/openjev-multimodal/models)
+- [Benchmarks](https://hand-in.github.io/openjev-multimodal/benchmarks)
+- [中文文档](https://hand-in.github.io/openjev-multimodal/zh/guide)
+- [Source](https://github.com/Hand-In/openjev-multimodal)
+
+POST /v1/systemone accepts model, state, questions and optional images (PNG/JPEG/WebP data URLs).
+Question types: noul (P(true)), choice (argmax with complete probabilities), score (expected rubric index).
+One output token per question. Probabilities are conditional on supplied labels; confidence is entropy concentration.
+GitHub Pages hosts static documentation, not the inference API.

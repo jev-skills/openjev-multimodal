@@ -69,10 +69,15 @@ def state_messages(request: Evaluation, settings: Settings) -> tuple[list[dict],
 
 def choices(question: Question) -> list[tuple[str, str]]:
     if isinstance(question, Noul):
-        return [("true", question.criteria.positive), ("false", question.criteria.negative)]
+        return [
+            ("true", text(question.criteria.positive)),
+            ("false", text(question.criteria.negative)),
+        ]
     if isinstance(question, Choice):
-        return [(key, key if value is None else value) for key, value in question.criteria.items()]
-    return [(str(i), value) for i, value in enumerate(question.criteria)]
+        return [
+            (key, key if value is None else text(value)) for key, value in question.criteria.items()
+        ]
+    return [(str(i), text(value)) for i, value in enumerate(question.criteria)]
 
 
 @dataclass

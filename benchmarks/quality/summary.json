@@ -1,0 +1,375 @@
+{
+  "metadata": {
+    "started_at": "2026-09-21T07:49:34.110632+00:00",
+    "model": "Qwen/Qwen3.6-35B-A3B",
+    "quantization": "UD-Q4_K_XL",
+    "hardware": "Apple M3 Max \u00b7 40-core GPU \u00b7 128 GB",
+    "platform": "macOS-15.7.4-arm64-arm-64bit",
+    "seed": 42,
+    "samples_per_task": 100,
+    "protocol": "Zero-shot choice, one output token, no chain of thought, shuffled options.",
+    "sampling": "Uniform random subset per dataset; fixed seed. Not a full benchmark run.",
+    "sources": {
+      "cais/mmlu/all": {
+        "revision": "c30699e8356da336a370243923dbaf21066bb9fe",
+        "split": "test"
+      },
+      "gpqa_diamond": {
+        "url": "https://raw.githubusercontent.com/idavidrein/gpqa/main/dataset.zip",
+        "archive_sha256": "461ae7329f15a3e35f8184d2dac24b990f34fdf12f366ca4062d8e6638cd08dc",
+        "member": "dataset/gpqa_diamond.csv",
+        "split": "diamond",
+        "total": 198
+      },
+      "allenai/ai2_arc/ARC-Easy": {
+        "revision": "210d026faf9955653af8916fad021475a3f00453",
+        "split": "test"
+      },
+      "allenai/ai2_arc/ARC-Challenge": {
+        "revision": "210d026faf9955653af8916fad021475a3f00453",
+        "split": "test"
+      },
+      "allenai/winogrande/winogrande_xl": {
+        "revision": "01e74176c63542e6b0bcb004dcdea22d94fb67b5",
+        "split": "validation"
+      },
+      "Rowan/hellaswag/default": {
+        "revision": "218ec52e09a7e7462a5400043bb9a69a41d06b76",
+        "split": "validation"
+      },
+      "openai/gsm8k/main": {
+        "revision": "740312add88f781978c0658806c59bc2815b9866",
+        "split": "test"
+      },
+      "chess": {
+        "generator": "random legal playout, 4-60 plies; one legal UCI move and three illegal moves",
+        "python_chess": "1.11.2",
+        "seed": 42,
+        "meaning": "Move legality, not playing strength or best-move search."
+      }
+    },
+    "api_limits": {
+      "max_answers_per_question": 64,
+      "max_questions": 64,
+      "max_body_bytes": 16777216,
+      "max_input_tokens": 8192,
+      "max_total_input_tokens": 131072,
+      "max_concurrent_requests": 4,
+      "max_images": 8,
+      "image_max_edge": 1024,
+      "request_timeout_seconds": 120.0
+    },
+    "git_revision": "691670b65a259904ebb55b134398c068b7ddd7d3"
+  },
+  "report_samples_per_task": 20,
+  "available_recorded_evaluations": 886,
+  "selection": "First 20 observations per task in the original seed-42 random sample order. No selection by correctness. The initial larger run was stopped to limit load; all completed decisions remain archived. Exploratory subset, not a leaderboard score.",
+  "tasks": [
+    {
+      "task": "mmlu",
+      "n": 20,
+      "correct": 17,
+      "accuracy_pct": 85.0,
+      "wilson_95_pct": [
+        63.96,
+        94.76
+      ],
+      "p50_ms": 228.24,
+      "p95_ms": 379.09,
+      "ids": [
+        "10476",
+        "1824",
+        "409",
+        "12149",
+        "4506",
+        "4012",
+        "3657",
+        "2286",
+        "12066",
+        "1679",
+        "11087",
+        "12135",
+        "8935",
+        "1424",
+        "9674",
+        "6912",
+        "520",
+        "488",
+        "1535",
+        "3582"
+      ]
+    },
+    {
+      "task": "gpqa_diamond",
+      "n": 20,
+      "correct": 10,
+      "accuracy_pct": 50.0,
+      "wilson_95_pct": [
+        29.93,
+        70.07
+      ],
+      "p50_ms": 293.9,
+      "p95_ms": 371.74,
+      "ids": [
+        "105",
+        "171",
+        "188",
+        "63",
+        "68",
+        "40",
+        "179",
+        "27",
+        "97",
+        "9",
+        "120",
+        "56",
+        "51",
+        "117",
+        "89",
+        "78",
+        "58",
+        "57",
+        "6",
+        "168"
+      ]
+    },
+    {
+      "task": "arc_easy",
+      "n": 20,
+      "correct": 20,
+      "accuracy_pct": 100.0,
+      "wilson_95_pct": [
+        83.89,
+        100.0
+      ],
+      "p50_ms": 241.81,
+      "p95_ms": 251.61,
+      "ids": [
+        "Mercury_SC_403014",
+        "Mercury_7042543",
+        "Mercury_SC_402074",
+        "Mercury_SC_401803",
+        "Mercury_404987",
+        "Mercury_189980",
+        "Mercury_SC_LBS11012",
+        "Mercury_SC_409157",
+        "Mercury_SC_400125",
+        "LEAP__4_10227",
+        "NYSEDREGENTS_2010_8_39",
+        "Mercury_7170853",
+        "TIMSS_1995_8_I10",
+        "Mercury_SC_406543",
+        "Mercury_402634",
+        "LEAP_2006_4_10275",
+        "Mercury_7159425",
+        "ACTAAP_2013_5_5",
+        "Mercury_410467",
+        "Mercury_SC_401331"
+      ]
+    },
+    {
+      "task": "arc_challenge",
+      "n": 20,
+      "correct": 19,
+      "accuracy_pct": 95.0,
+      "wilson_95_pct": [
+        76.39,
+        99.11
+      ],
+      "p50_ms": 244.56,
+      "p95_ms": 276.02,
+      "ids": [
+        "Mercury_7056525",
+        "Mercury_7223370",
+        "MSA_2012_5_2",
+        "AKDE&ED_2008_4_25",
+        "Mercury_7150728",
+        "Mercury_417117",
+        "Mercury_406550",
+        "Mercury_410602",
+        "Mercury_SC_405019",
+        "Mercury_SC_408657",
+        "Mercury_7252753",
+        "NCEOGA_2013_5_20",
+        "NYSEDREGENTS_2008_8_42",
+        "Mercury_405685",
+        "Mercury_7130655",
+        "MCAS_2006_9_28-v1",
+        "Mercury_SC_406725",
+        "Mercury_7016310",
+        "ACTAAP_2010_7_3",
+        "NYSEDREGENTS_2010_8_35"
+      ]
+    },
+    {
+      "task": "winogrande",
+      "n": 20,
+      "correct": 15,
+      "accuracy_pct": 75.0,
+      "wilson_95_pct": [
+        53.13,
+        88.81
+      ],
+      "p50_ms": 210.2,
+      "p95_ms": 215.14,
+      "ids": [
+        "227",
+        "590",
+        "486",
+        "616",
+        "249",
+        "97",
+        "488",
+        "859",
+        "936",
+        "128",
+        "1023",
+        "1222",
+        "1097",
+        "33",
+        "1055",
+        "1177",
+        "495",
+        "294",
+        "596",
+        "879"
+      ]
+    },
+    {
+      "task": "hellaswag",
+      "n": 20,
+      "correct": 20,
+      "accuracy_pct": 100.0,
+      "wilson_95_pct": [
+        83.89,
+        100.0
+      ],
+      "p50_ms": 362.46,
+      "p95_ms": 387.88,
+      "ids": [
+        "8488",
+        "2507",
+        "4982",
+        "2697",
+        "2653",
+        "5286",
+        "3694",
+        "5669",
+        "8501",
+        "4653",
+        "1292",
+        "4105",
+        "3216",
+        "9024",
+        "4496",
+        "2050",
+        "4961",
+        "8740",
+        "1530",
+        "8234"
+      ]
+    },
+    {
+      "task": "gsm8k_4",
+      "n": 20,
+      "correct": 8,
+      "accuracy_pct": 40.0,
+      "wilson_95_pct": [
+        21.88,
+        61.34
+      ],
+      "p50_ms": 305.71,
+      "p95_ms": 364.1,
+      "ids": [
+        "44",
+        "810",
+        "521",
+        "6",
+        "446",
+        "1184",
+        "149",
+        "92",
+        "867",
+        "705",
+        "130",
+        "1108",
+        "123",
+        "141",
+        "966",
+        "64",
+        "587",
+        "837",
+        "368",
+        "277"
+      ]
+    },
+    {
+      "task": "gsm8k_10",
+      "n": 20,
+      "correct": 8,
+      "accuracy_pct": 40.0,
+      "wilson_95_pct": [
+        21.88,
+        61.34
+      ],
+      "p50_ms": 340.09,
+      "p95_ms": 392.73,
+      "ids": [
+        "44",
+        "810",
+        "521",
+        "6",
+        "446",
+        "1184",
+        "149",
+        "92",
+        "867",
+        "705",
+        "130",
+        "1108",
+        "123",
+        "141",
+        "966",
+        "64",
+        "587",
+        "837",
+        "368",
+        "277"
+      ]
+    },
+    {
+      "task": "chess",
+      "n": 20,
+      "correct": 10,
+      "accuracy_pct": 50.0,
+      "wilson_95_pct": [
+        29.93,
+        70.07
+      ],
+      "p50_ms": 554.45,
+      "p95_ms": 671.62,
+      "ids": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19"
+      ]
+    }
+  ]
+}

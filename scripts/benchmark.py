@@ -1,6 +1,6 @@
 """Reproducible, resumable HTTP benchmark. No proprietary Jev/Terra scores.
 
-uv run --group bench python scripts/benchmark.py --url http://127.0.0.1:8000 --samples 100
+uv run --group bench python scripts/benchmark.py --url http://127.0.0.1:8000 --samples 20
 Results contain IDs and hashes, never GPQA questions or answer texts.
 """
 
@@ -46,18 +46,21 @@ def digest(value):
     ).hexdigest()
 
 
-def prepare(samples, seed):
+def prepare(samples, seed, pinned_sources=None):
     cache = ROOT / ".local" / "benchmark"
     cache.mkdir(parents=True, exist_ok=True)
     target = cache / f"cases-{samples}-{seed}.json"
     if target.exists():
-        return json.loads(target.read_text())
+        cached = json.loads(target.read_text())
+        if not pinned_sources or cached["sources"] == pinned_sources:
+            return cached
     rng = random.Random(seed)
     sources, cases = {}, []
     api = HfApi()
 
     def dataset(repo, config, split):
-        revision = api.dataset_info(repo).sha
+        pinned = (pinned_sources or {}).get(repo + "/" + config)
+        revision = pinned["revision"] if pinned else api.dataset_info(repo).sha
         sources[repo + "/" + config] = {"revision": revision, "split": split}
         ds = load_dataset(repo, config, split=split, revision=revision)
         indices = rng.sample(range(len(ds)), min(samples, len(ds)))
@@ -102,6 +105,9 @@ def prepare(samples, seed):
     gpqa_url = "https://raw.githubusercontent.com/idavidrein/gpqa/56686c06f5e19865c153de0fdb11be3890014df7/dataset.zip"
     response = httpx.get(gpqa_url, follow_redirects=True, timeout=120)
     response.raise_for_status()
+    expected_hash = (pinned_sources or {}).get("gpqa_diamond", {}).get("archive_sha256")
+    if expected_hash and hashlib.sha256(response.content).hexdigest() != expected_hash:
+        raise RuntimeError("GPQA archive differs from the published run.")
     archive = zipfile.ZipFile(io.BytesIO(response.content))
     member = next(x for x in archive.namelist() if x.endswith("gpqa_diamond.csv"))
     rows = list(
@@ -223,7 +229,25 @@ def wilson(correct, n):
 
 
 def run(args):
-    data = prepare(args.samples, args.seed)
+    if args.samples < 1 or args.cooldown < 0:
+        raise ValueError("Samples must be positive and cooldown nonnegative.")
+    if args.replay_report:
+        report = json.loads(Path(args.replay_report).read_text())
+        meta = report["metadata"]
+        data = prepare(meta["samples_per_task"], meta["seed"], meta["sources"])
+        selected_ids = {row["task"]: set(row["ids"]) for row in report["tasks"]}
+        data = {
+            **data,
+            "cases": [
+                case
+                for case in data["cases"]
+                if case["id"] in selected_ids.get(case["task"], set())
+            ],
+        }
+        args.samples = report["report_samples_per_task"]
+        args.seed = meta["seed"]
+    else:
+        data = prepare(args.samples, args.seed)
     print(f"Prepared {len(data['cases'])} cases.", flush=True)
     if args.prepare_only:
         return
@@ -251,7 +275,7 @@ def run(args):
             "platform": platform.platform(),
             "seed": args.seed,
             "samples_per_task": args.samples,
-            "protocol": "Zero-shot choice, one output token, no chain of thought, shuffled options.",
+            "protocol": "Zero-shot, one output token, no chain of thought, shuffled options.",
             "sampling": "Uniform random subset per dataset; fixed seed. Not a full benchmark run.",
             "sources": data["sources"],
             "api_limits": client.get("/v1/limits").json(),
@@ -297,9 +321,11 @@ def run(args):
                 log.write(json.dumps(row) + "\n")
                 log.flush()
                 done[key] = row
+                time.sleep(args.cooldown)
                 if len(done) % 20 == 0:
                     print(
-                        f"{len(done)}/{len(data['cases'])} · {case['task']} · {row['elapsed_ms']:.0f} ms",
+                        f"{len(done)}/{len(data['cases'])} · {case['task']} · "
+                        f"{row['elapsed_ms']:.0f} ms",
                         flush=True,
                     )
     summaries = []
@@ -330,9 +356,16 @@ def run(args):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--url", default="http://127.0.0.1:8000")
-    parser.add_argument("--samples", type=int, default=100)
+    parser.add_argument("--samples", type=int, default=20)
+    parser.add_argument(
+        "--cooldown",
+        type=float,
+        default=0.25,
+        help="Rest between sequential calls to limit local load",
+    )
     parser.add_argument("--seed", type=int, default=42)
-    parser.add_argument("--output", default="benchmarks/quality")
+    parser.add_argument("--output", default="benchmarks/local")
+    parser.add_argument("--replay-report", help="Replay published IDs and dataset revisions")
     parser.add_argument("--quantization", default="UD-Q4_K_XL")
     parser.add_argument("--hardware", default="Apple M3 Max · 40-core GPU · 128 GB")
     parser.add_argument("--prepare-only", action="store_true")

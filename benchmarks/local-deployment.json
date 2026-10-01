@@ -1,0 +1,59 @@
+{
+  "profile": "balanced",
+  "health": {
+    "status": "ok",
+    "model": "Qwen/Qwen3.5-4B",
+    "multimodal": true,
+    "backend": "llama.cpp"
+  },
+  "requests": [
+    {
+      "input_kind": "text",
+      "elapsed_ms": 183.6,
+      "response": {
+        "model": "jev-latest",
+        "answers": {
+          "decision": {
+            "type": "choice",
+            "choice": "billing",
+            "probabilities": {
+              "billing": 0.9835572634398737,
+              "technical": 0.0008635626111475371,
+              "other": 0.015579173948978708
+            },
+            "confidence": 0.9205939305584172
+          }
+        },
+        "usage": {
+          "input_tokens": 82,
+          "output_tokens": 1
+        }
+      },
+      "model": "Qwen/Qwen3.5-4B"
+    },
+    {
+      "input_kind": "image",
+      "elapsed_ms": 515.3,
+      "response": {
+        "model": "jev-latest",
+        "answers": {
+          "decision": {
+            "type": "choice",
+            "choice": "paid",
+            "probabilities": {
+              "paid": 0.8640247212654838,
+              "pending": 0.09602444124285538,
+              "failed": 0.0399508374916608
+            },
+            "confidence": 0.5631521556421173
+          }
+        },
+        "usage": {
+          "input_tokens": 342,
+          "output_tokens": 1
+        }
+      },
+      "model": "Qwen/Qwen3.5-4B"
+    }
+  ]
+}
