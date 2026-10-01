@@ -105,6 +105,8 @@ uv run openjev serve --backend llama.cpp
 | `OPENJEV_PRIME_SHARED_PREFIX` | `true` | Read the shared state once for multi-question requests |
 | `OPENJEV_PRIME_REPEATED_STATE` | `true` | Keep a state that consecutive requests repeat, so each reads only its question |
 | `OPENJEV_TEMPLATE_CACHE` | `true` | Reuse a chat-template skeleton verified against the backend |
+| `OPENJEV_COMPACT_JSON` | `true` | Send JSON states without spaces: about a fifth fewer tokens |
+| `OPENJEV_CHECKPOINT_EVERY` | `512` | Checkpoint prompts at this token interval, so a follow-up on a similar state resumes where the two differ (OpenJev's llama.cpp build) |
 | `OPENJEV_RESPONSE_TIMING` | `true` | Add the `timing` object to responses; headers always carry it |
 
 Use environment variables or a local `.env`. Keep credentials out of Git. The API binds to `127.0.0.1`. For an intentional network deployment, use authentication and a TLS reverse proxy.

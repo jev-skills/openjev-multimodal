@@ -8,9 +8,12 @@ other processes affects all of them alike and answers can be compared one to one
 nonce at the start of the state makes each request cold, like a new user request; the
 "repeat" case sends one identical request twice and measures the second. Give every
 endpoint its own inference process: two APIs sharing one llama.cpp server would answer the
-second request of a trial from the first one's prompt cache. Fixtures are generated
-in-process, so the benchmark needs no dataset. With --quiet, a sample is retaken when
-another local llama.cpp log grew during it (up to three tries, then kept and flagged).
+second request of a trial from the first one's prompt cache. To keep a large model in
+memory only once, point every API at one llama.cpp server started with `--cache-ram 0` and
+pass it as --flush: its cached prompt is replaced before each endpoint's request. Fixtures
+are generated in-process, so the benchmark needs no dataset. With --quiet, a sample is
+retaken when another local llama.cpp log grew during it (up to three tries, then kept and
+flagged). --pause idles the GPU before each trial, against thermal throttling.
 """
 
 import argparse
@@ -88,6 +91,144 @@ QUESTIONS = {
 }
 FOUR = list(QUESTIONS)
 
+# A browser agent's turn: the page as JSON nodes (about 4k tokens) and twelve questions.
+CATEGORIES = (
+    "Gizmos Widgets Sprockets Gears Valves Pumps Fasteners Bearings Motors Sensors Cables Switches "
+    "Filters Seals Hoses Brackets Clamps Springs Pulleys Belts Chains Couplings Shafts Nozzles"
+).split()
+FOOTER = (
+    "Shipping, Returns, Warranty, Track an order, Payment options, Gift cards, Business "
+    "accounts, Tax exemption, Bulk pricing, Quotes, Careers, Press, Sustainability, "
+    "Accessibility, Privacy, Terms, Cookies, Sitemap, Contact sales, Support center, "
+    "Community, Developer API, Status, Stores, Install guides, Safety data, Recalls, "
+    "Affiliates, Blog, Events"
+).split(", ")
+FIELDS = [
+    ("first_name", "First name"),
+    ("last_name", "Last name"),
+    ("email", "Email"),
+    ("phone", "Phone"),
+    ("street", "Street address"),
+    ("city", "City"),
+    ("postal_code", "Postal code"),
+    ("company", "Company (optional)"),
+]
+INPUTS = {
+    "first_name": "Ada",
+    "last_name": "Lovelace",
+    "email": "ada@example.com",
+    "phone": "+44 20 7946 0000",
+    "street": "12 Analytical Way",
+    "city": "London",
+    "postal_code": "NW1 6XE",
+}
+
+
+def page_nodes() -> list[dict]:
+    nodes = [{"role": "link", "name": "Example Store", "href": "/"}]
+    nodes += [{"role": "link", "name": c, "href": f"/c/{c.lower()}"} for c in CATEGORIES]
+    nodes += [{"role": "heading", "name": "Checkout", "level": 1}]
+    nodes += [
+        {"role": "table", "name": "Your cart", "columns": ["Item", "Qty", "Price"], "rows": 6}
+    ]
+    for field, label in FIELDS:
+        nodes.append({"role": "textbox", "name": label, "field": field, "near": "Shipping details"})
+    nodes += [
+        {"role": "combobox", "name": "Country", "options": ["United Kingdom", "Canada", "France"]}
+    ]
+    for label in ("I agree to the terms of sale", "Send me product news", "Save this address"):
+        nodes.append({"role": "checkbox", "name": label, "checked": False})
+    for label in ("Place order", "Save cart for later", "Apply coupon"):
+        nodes.append({"role": "button", "name": label})
+    for i in range(40):
+        product = f"{CATEGORIES[i % len(CATEGORIES)][:-1]} {100 + i * 7} · ${4.5 + i * 3.25:.2f}"
+        near = "Recommended for you"
+        nodes.append(
+            {
+                "role": "link",
+                "name": product,
+                "href": f"/p/{1000 + i}",
+                "near": near,
+                "offscreen": True,
+            }
+        )
+    nodes += [
+        {"role": "link", "name": f, "href": f"/help/{i}", "offscreen": True}
+        for i, f in enumerate(FOOTER)
+    ]
+    return [{"ref": f"e{i + 1}", **node} for i, node in enumerate(nodes)]
+
+
+NODES = page_nodes()
+
+
+def page(nonce: str, history: bool = True, filled: bool = False) -> dict:
+    """The page; `filled` types into the Email field, a change in the middle of the nodes."""
+    nodes = [{**n, "value": INPUTS["email"]} if filled and n["ref"] == "e30" else n for n in NODES]
+    view = {
+        "id": nonce,
+        "page": {"url": "https://store.example/checkout", "title": "Checkout", "nodes": nodes},
+    }
+    if history:
+        view["recent"] = [{"did": 'click "Checkout"', "ok": True, "pageChanged": True}]
+    view["task"] = {"goal": "Fill in the shipping details and place the order", "inputs": INPUTS}
+    return view
+
+
+def page_questions() -> dict:
+    links = [n for n in NODES if n["role"] in ("link", "button")][:30]
+    step = {f"click:{n['ref']}": f'Click {n["role"]} "{n["name"]}"' for n in links}
+    step |= {
+        "fill": "Type the task inputs into the form fields",
+        "done": "The goal is already reached",
+        "ask": "None of these: ask for help",
+    }
+    inputs = {f"in:{k}": f'The task input "{k}" ({v})' for k, v in INPUTS.items()} | {
+        "none": "No task input"
+    }
+    questions = {
+        "next": {
+            "type": "choice",
+            "instructions": "Which single step moves the task forward?",
+            "criteria": step,
+        },
+        "done": {"type": "noul", "instructions": "Does the page show the goal accomplished?"},
+        "blocked": {
+            "type": "noul",
+            "instructions": "Does an obstacle such as a CAPTCHA or an error stop the task?",
+        },
+        "loading": {"type": "noul", "instructions": "Is the page still loading?"},
+        "expect": {
+            "type": "choice",
+            "instructions": "What should the chosen step change?",
+            "criteria": {
+                "same": "Nothing visible",
+                "update": "Part of the page",
+                "dialog": "A dialog opens",
+                "navigate": "A new page loads",
+            },
+        },
+        "after": {
+            "type": "choice",
+            "instructions": "After filling, what should happen?",
+            "criteria": {
+                "place": 'Click "Place order"',
+                "save": 'Click "Save cart for later"',
+                "nothing": "Nothing yet",
+            },
+        },
+    }
+    for node in [n for n in NODES if n["role"] == "textbox"][:6]:
+        questions[f"field:{node['ref']}"] = {
+            "type": "choice",
+            "instructions": f'Which task input belongs in the textbox "{node["name"]}"?',
+            "criteria": inputs,
+        }
+    return questions
+
+
+PAGE_QUESTIONS = page_questions()
+
 
 def data_url(image: Image.Image, fmt: str) -> str:
     buffer = io.BytesIO()
@@ -140,6 +281,40 @@ def cases():
         "screenshot_4q": lambda n: payload(f"Screenshot {n}.", FOUR, [shot]),
         "photo_1q": lambda n: payload(f"Photo {n}.", ["refund"], [picture]),
         "repeat_1q": lambda n: payload({"id": "fixed", **TICKET}, ["team"]),
+        "page_12q": lambda n: {
+            "model": "jev-latest",
+            "state": page(n),
+            "questions": PAGE_QUESTIONS,
+        },
+        # after page_12q: the same page without its history, one question (an extraction)
+        "page_followup": lambda n: {
+            "model": "jev-latest",
+            "state": page(n, history=False),
+            "questions": {"email": PAGE_QUESTIONS["field:e30"]},
+        },
+        # after page_12q: the identical state with a new question
+        "page_again": lambda n: {
+            "model": "jev-latest",
+            "state": page(n),
+            "questions": {"email": PAGE_QUESTIONS["field:e30"]},
+        },
+        # after page_12q: the next turn, after typing into the Email field
+        "page_filled": lambda n: {
+            "model": "jev-latest",
+            "state": page(n, filled=True),
+            "questions": PAGE_QUESTIONS,
+        },
+    }
+
+
+def preludes():
+    """Untimed requests sent just before a timed one, with the same nonce."""
+    made = cases()
+    return {
+        "repeat_1q": made["repeat_1q"],
+        "page_followup": made["page_12q"],
+        "page_again": made["page_12q"],
+        "page_filled": made["page_12q"],
     }
 
 
@@ -157,6 +332,12 @@ async def settle(seconds: float = 3.0, limit: float = 300.0):
             last, since = now, time.monotonic()
         elif time.monotonic() - since >= seconds:
             return
+
+
+async def flush(client, url):
+    """Replace a shared llama.cpp server's cached prompt, so the next request starts cold."""
+    response = await client.post(url + "/completion", json={"prompt": "Flush.", "n_predict": 1})
+    response.raise_for_status()
 
 
 async def call(client, url, body):
@@ -203,6 +384,11 @@ async def main():
     parser.add_argument(
         "--quiet", action="store_true", help="retake samples that overlap other local inference"
     )
+    parser.add_argument(
+        "--flush", metavar="URL", help="the llama.cpp server all endpoints share (--cache-ram 0)"
+    )
+    parser.add_argument("--pause", type=float, default=0, help="seconds of idle before each trial")
+    parser.add_argument("--cases", help="comma-separated case names to run (default: all)")
     args = parser.parse_args()
     endpoints = dict(item.split("=", 1) for item in args.endpoints)
     names = list(endpoints)
@@ -213,6 +399,8 @@ async def main():
             ["sysctl", "-n", "machdep.cpu.brand_string"], capture_output=True, text=True
         ).stdout.strip(),
         "trials": args.trials,
+        "shared_backend": args.flush,
+        "pause_s": args.pause,
         "endpoints": {},
         "cases": {},
     }
@@ -222,18 +410,25 @@ async def main():
             report["endpoints"][name] = {"url": url, **health}
             for make in (cases()["text_4q"], cases()["screenshot_4q"]):  # warm kernels and caches
                 await call(client, url, make(uuid.uuid4().hex))
-        for case, make in cases().items():
+        preface = preludes()
+        made = cases()
+        chosen = args.cases.split(",") if args.cases else list(made)
+        for case, make in [(name, made[name]) for name in chosen]:
             rows = {name: [] for name in names}
             for trial in range(args.trials):
-                body = make(uuid.uuid4().hex)
+                nonce = uuid.uuid4().hex
+                body = make(nonce)
                 order = names[trial % len(names) :] + names[: trial % len(names)]
+                await asyncio.sleep(args.pause)
                 for attempt in range(3):
                     if args.quiet:
                         await settle()
                     before, sample = snapshot(), {}
                     for name in order:
-                        if case == "repeat_1q":
-                            await call(client, endpoints[name], body)
+                        if args.flush:
+                            await flush(client, args.flush)
+                        if case in preface:
+                            await call(client, endpoints[name], preface[case](nonce))
                         sample[name] = await call(client, endpoints[name], body)
                     clean = snapshot() == before
                     if clean or not args.quiet or attempt == 2:

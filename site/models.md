@@ -20,7 +20,7 @@ Balanced is a practical start on a 16 GB or larger Mac; fast suits a smaller foo
 
 Qwen3.8-27B is a dense model: every prompt token runs all 27 billion parameters, about 5 ms per token on an M3 Max. A full 305-token decision in the [Tetris demo](./tetris) takes 1.9 s. When consecutive requests repeat their state, the API keeps it cached and reads only each new question: 0.7 s.
 
-For that speed, build llama.cpp with OpenJev's patch once; `openjev serve` then uses it automatically:
+For that speed, build llama.cpp with OpenJev's patches once; `openjev serve` then uses it automatically:
 
 ```bash
 scripts/build-llama.sh

@@ -105,6 +105,8 @@ uv run openjev serve --backend llama.cpp
 | `OPENJEV_PRIME_SHARED_PREFIX` | `true` | 多问题请求只读取一次共享 state |
 | `OPENJEV_PRIME_REPEATED_STATE` | `true` | 连续请求重复同一 state 时保留它，每个请求只读取自己的问题 |
 | `OPENJEV_TEMPLATE_CACHE` | `true` | 复用经后端核验的聊天模板骨架 |
+| `OPENJEV_COMPACT_JSON` | `true` | JSON state 去掉空格发送，token 约少五分之一 |
+| `OPENJEV_CHECKPOINT_EVERY` | `512` | 每隔这么多 token 保存一个检查点，相近 state 的后续请求从分叉处附近续算（需 OpenJev 的 llama.cpp 构建） |
 | `OPENJEV_RESPONSE_TIMING` | `true` | 在响应中加入 `timing` 对象；响应头始终包含耗时 |
 
 可通过环境变量或本地 `.env` 设置，密钥不要提交到 Git。服务默认绑定 `127.0.0.1`。如需主动对外开放，请配置鉴权和 TLS 反向代理。

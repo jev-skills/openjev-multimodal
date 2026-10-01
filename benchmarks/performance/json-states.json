@@ -1,0 +1,6632 @@
+{
+ "created": "2026-09-22T05:21:06+00:00",
+ "machine": "arm64",
+ "chip": "Apple M3 Max",
+ "trials": 7,
+ "shared_backend": "http://127.0.0.1:18140",
+ "pause_s": 0,
+ "endpoints": {
+  "before": {
+   "url": "http://127.0.0.1:8140",
+   "status": "ok",
+   "model": "Qwen/Qwen3.5-4B",
+   "multimodal": true,
+   "backend": "llama.cpp",
+   "backend_build": "b51-91c0769",
+   "weights": "Qwen3.5-4B-Q4_K_M.gguf"
+  },
+  "after": {
+   "url": "http://127.0.0.1:8141",
+   "status": "ok",
+   "model": "Qwen/Qwen3.5-4B",
+   "multimodal": true,
+   "backend": "llama.cpp",
+   "backend_build": "b51-91c0769",
+   "weights": "Qwen3.5-4B-Q4_K_M.gguf"
+  }
+ },
+ "cases": {
+  "text_1q": {
+   "summary": {
+    "before": {
+     "median_ms": 620.1,
+     "min_ms": 529.42,
+     "max_ms": 672.94,
+     "server_ms": 618.5,
+     "cached_tokens": 0,
+     "input_tokens": 278,
+     "same_decisions_as_reference": 1.0,
+     "max_probability_difference": 0.0
+    },
+    "after": {
+     "median_ms": 553.1,
+     "min_ms": 494.13,
+     "max_ms": 612.2,
+     "server_ms": 551.4,
+     "cached_tokens": 0,
+     "input_tokens": 253,
+     "same_decisions_as_reference": 1.0,
+     "max_probability_difference": 0.017491913964257845
+    }
+   },
+   "rows": {
+    "before": [
+     {
+      "client_ms": 588.88,
+      "processing_ms": 587.15,
+      "timing": {
+       "processing_ms": 587.15,
+       "parse_ms": 0.16,
+       "prepare_ms": 4.51,
+       "queue_ms": 0.0,
+       "inference_ms": 582.36
+      },
+      "cached_tokens": 0,
+      "input_tokens": 278,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9465145206462526,
+        0.0022539716986420956,
+        0.04294766739225657,
+        0.008283840262848653
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 529.42,
+      "processing_ms": 528.0,
+      "timing": {
+       "processing_ms": 528.0,
+       "parse_ms": 0.2,
+       "prepare_ms": 3.32,
+       "queue_ms": 0.0,
+       "inference_ms": 524.37
+      },
+      "cached_tokens": 0,
+      "input_tokens": 276,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9541438470743855,
+        0.002110737430956818,
+        0.035783586094100414,
+        0.007961829400557301
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 620.09,
+      "processing_ms": 618.51,
+      "timing": {
+       "processing_ms": 618.51,
+       "parse_ms": 0.18,
+       "prepare_ms": 2.59,
+       "queue_ms": 0.0,
+       "inference_ms": 615.6
+      },
+      "cached_tokens": 0,
+      "input_tokens": 276,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9471237535963463,
+        0.0021105613284298605,
+        0.04246005360554834,
+        0.008305631469675489
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 563.09,
+      "processing_ms": 561.74,
+      "timing": {
+       "processing_ms": 561.74,
+       "parse_ms": 0.15,
+       "prepare_ms": 2.41,
+       "queue_ms": 0.0,
+       "inference_ms": 559.07
+      },
+      "cached_tokens": 0,
+      "input_tokens": 276,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9476617574691772,
+        0.002228320110589266,
+        0.04268723726272583,
+        0.007422685157507658
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 635.8,
+      "processing_ms": 634.33,
+      "timing": {
+       "processing_ms": 634.33,
+       "parse_ms": 0.2,
+       "prepare_ms": 2.34,
+       "queue_ms": 0.0,
+       "inference_ms": 631.66
+      },
+      "cached_tokens": 0,
+      "input_tokens": 277,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9529677113301208,
+        0.0019612088963863253,
+        0.03676048697051069,
+        0.008310592802982159
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 646.71,
+      "processing_ms": 645.14,
+      "timing": {
+       "processing_ms": 645.14,
+       "parse_ms": 0.16,
+       "prepare_ms": 2.55,
+       "queue_ms": 0.01,
+       "inference_ms": 642.28
+      },
+      "cached_tokens": 0,
+      "input_tokens": 273,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9470494475529828,
+        0.0022505189030827574,
+        0.04262744674050958,
+        0.008072586803424844
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 672.94,
+      "processing_ms": 671.66,
+      "timing": {
+       "processing_ms": 671.66,
+       "parse_ms": 0.15,
+       "prepare_ms": 2.0,
+       "queue_ms": 0.0,
+       "inference_ms": 669.41
+      },
+      "cached_tokens": 0,
+      "input_tokens": 279,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9506254455128631,
+        0.002153596200973437,
+        0.039754067699244694,
+        0.007466890586918732
+       ]
+      },
+      "clean": true
+     }
+    ],
+    "after": [
+     {
+      "client_ms": 583.44,
+      "processing_ms": 581.87,
+      "timing": {
+       "processing_ms": 581.87,
+       "parse_ms": 0.23,
+       "prepare_ms": 4.65,
+       "queue_ms": 0.0,
+       "inference_ms": 576.8
+      },
+      "cached_tokens": 0,
+      "input_tokens": 253,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9316039414640319,
+        0.0028684322366450995,
+        0.057799356265617344,
+        0.007728270033705697
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 494.13,
+      "processing_ms": 492.66,
+      "timing": {
+       "processing_ms": 492.66,
+       "parse_ms": 0.21,
+       "prepare_ms": 4.02,
+       "queue_ms": 0.0,
+       "inference_ms": 488.32
+      },
+      "cached_tokens": 0,
+      "input_tokens": 251,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9434097246703879,
+        0.0025593773020911215,
+        0.047246347298792166,
+        0.006784550728728819
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 558.58,
+      "processing_ms": 556.81,
+      "timing": {
+       "processing_ms": 556.81,
+       "parse_ms": 0.21,
+       "prepare_ms": 2.22,
+       "queue_ms": 0.0,
+       "inference_ms": 554.25
+      },
+      "cached_tokens": 0,
+      "input_tokens": 251,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9298981285250567,
+        0.0026492415520246275,
+        0.05995196756980618,
+        0.007500662353112429
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 553.08,
+      "processing_ms": 551.41,
+      "timing": {
+       "processing_ms": 551.41,
+       "parse_ms": 0.19,
+       "prepare_ms": 2.08,
+       "queue_ms": 0.0,
+       "inference_ms": 549.02
+      },
+      "cached_tokens": 0,
+      "input_tokens": 251,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9376496198839458,
+        0.002860365007114699,
+        0.05246649378401312,
+        0.007023521324926334
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 612.2,
+      "processing_ms": 610.59,
+      "timing": {
+       "processing_ms": 610.59,
+       "parse_ms": 0.27,
+       "prepare_ms": 2.35,
+       "queue_ms": 0.0,
+       "inference_ms": 607.85
+      },
+      "cached_tokens": 0,
+      "input_tokens": 252,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9384607447633854,
+        0.002605273093017021,
+        0.05073033524089853,
+        0.00820364690269911
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 533.04,
+      "processing_ms": 531.69,
+      "timing": {
+       "processing_ms": 531.69,
+       "parse_ms": 0.14,
+       "prepare_ms": 2.29,
+       "queue_ms": 0.0,
+       "inference_ms": 529.14
+      },
+      "cached_tokens": 0,
+      "input_tokens": 248,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9335323030451097,
+        0.002767673011215363,
+        0.05643460932440712,
+        0.00726541461926777
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 531.49,
+      "processing_ms": 530.23,
+      "timing": {
+       "processing_ms": 530.23,
+       "parse_ms": 0.13,
+       "prepare_ms": 2.04,
+       "queue_ms": 0.0,
+       "inference_ms": 527.97
+      },
+      "cached_tokens": 0,
+      "input_tokens": 254,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9359963599461817,
+        0.002777032805731043,
+        0.05459719933181041,
+        0.006629407916276909
+       ]
+      },
+      "clean": true
+     }
+    ]
+   }
+  },
+  "text_4q": {
+   "summary": {
+    "before": {
+     "median_ms": 932.7,
+     "min_ms": 843.59,
+     "max_ms": 1015.5,
+     "server_ms": 931.2,
+     "cached_tokens": 920,
+     "input_tokens": 1069,
+     "same_decisions_as_reference": 1.0,
+     "max_probability_difference": 0.0
+    },
+    "after": {
+     "median_ms": 893.6,
+     "min_ms": 848.14,
+     "max_ms": 954.43,
+     "server_ms": 892.2,
+     "cached_tokens": 820,
+     "input_tokens": 969,
+     "same_decisions_as_reference": 1.0,
+     "max_probability_difference": 0.021894347286479654
+    }
+   },
+   "rows": {
+    "before": [
+     {
+      "client_ms": 970.79,
+      "processing_ms": 969.39,
+      "timing": {
+       "processing_ms": 969.39,
+       "parse_ms": 0.15,
+       "prepare_ms": 5.15,
+       "queue_ms": 0.0,
+       "inference_ms": 963.96
+      },
+      "cached_tokens": 916,
+      "input_tokens": 1069,
+      "decisions": {
+       "refund": true,
+       "team": "billing",
+       "urgency": 2,
+       "mood": "frustrated"
+      },
+      "probabilities": {
+       "refund": [
+        0.9888940389060804
+       ],
+       "team": [
+        0.9480584484538633,
+        0.001933619425017839,
+        0.04202442714070033,
+        0.007983504980418481
+       ],
+       "urgency": [
+        0.01221773879080557,
+        0.023045521465596498,
+        0.6530965633541925,
+        0.31164017638940544
+       ],
+       "mood": [
+        0.01001798000206776,
+        0.9328252181354003,
+        0.05715680186253192
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 861.63,
+      "processing_ms": 860.29,
+      "timing": {
+       "processing_ms": 860.29,
+       "parse_ms": 0.23,
+       "prepare_ms": 5.54,
+       "queue_ms": 0.0,
+       "inference_ms": 854.42
+      },
+      "cached_tokens": 912,
+      "input_tokens": 1065,
+      "decisions": {
+       "refund": true,
+       "team": "billing",
+       "urgency": 2,
+       "mood": "frustrated"
+      },
+      "probabilities": {
+       "refund": [
+        0.9886199374024748
+       ],
+       "team": [
+        0.9471727625071559,
+        0.002076965061607481,
+        0.04282566166943396,
+        0.007924610761802708
+       ],
+       "urgency": [
+        0.010945224991782429,
+        0.022119749049026066,
+        0.6311702049929808,
+        0.3357648209662107
+       ],
+       "mood": [
+        0.00910831229227316,
+        0.9311736087326168,
+        0.05971807897511007
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 843.59,
+      "processing_ms": 842.04,
+      "timing": {
+       "processing_ms": 842.04,
+       "parse_ms": 0.13,
+       "prepare_ms": 5.08,
+       "queue_ms": 0.0,
+       "inference_ms": 836.72
+      },
+      "cached_tokens": 912,
+      "input_tokens": 1065,
+      "decisions": {
+       "refund": true,
+       "team": "billing",
+       "urgency": 2,
+       "mood": "frustrated"
+      },
+      "probabilities": {
+       "refund": [
+        0.9879413136697414
+       ],
+       "team": [
+        0.9412504169411723,
+        0.0020758539319088855,
+        0.0490930737135322,
+        0.007580655413386574
+       ],
+       "urgency": [
+        0.011168974836591695,
+        0.025017091003835545,
+        0.6332560399831025,
+        0.3305578941764702
+       ],
+       "mood": [
+        0.009364209355884449,
+        0.9328707673789647,
+        0.05776502326515092
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 932.67,
+      "processing_ms": 931.24,
+      "timing": {
+       "processing_ms": 931.24,
+       "parse_ms": 0.2,
+       "prepare_ms": 5.93,
+       "queue_ms": 0.0,
+       "inference_ms": 925.01
+      },
+      "cached_tokens": 920,
+      "input_tokens": 1073,
+      "decisions": {
+       "refund": true,
+       "team": "billing",
+       "urgency": 2,
+       "mood": "frustrated"
+      },
+      "probabilities": {
+       "refund": [
+        0.9880970974142838
+       ],
+       "team": [
+        0.946743084525533,
+        0.002143132297958031,
+        0.042930845780945755,
+        0.008182937395563158
+       ],
+       "urgency": [
+        0.012391440593435318,
+        0.024889146955477347,
+        0.654295266893311,
+        0.30842414555777636
+       ],
+       "mood": [
+        0.00975825758884287,
+        0.9321994454582992,
+        0.05804229695285783
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 973.57,
+      "processing_ms": 972.08,
+      "timing": {
+       "processing_ms": 972.08,
+       "parse_ms": 0.14,
+       "prepare_ms": 5.42,
+       "queue_ms": 0.0,
+       "inference_ms": 966.39
+      },
+      "cached_tokens": 928,
+      "input_tokens": 1081,
+      "decisions": {
+       "refund": true,
+       "team": "billing",
+       "urgency": 2,
+       "mood": "frustrated"
+      },
+      "probabilities": {
+       "refund": [
+        0.9885020879707358
+       ],
+       "team": [
+        0.9487823060139791,
+        0.0022844878970222846,
+        0.04007858703688721,
+        0.008854619052111493
+       ],
+       "urgency": [
+        0.011786643108328798,
+        0.022555104799994327,
+        0.6325377060928794,
+        0.3331205459987975
+       ],
+       "mood": [
+        0.008986843800098693,
+        0.9310191325714018,
+        0.05999402362849949
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 864.21,
+      "processing_ms": 862.76,
+      "timing": {
+       "processing_ms": 862.76,
+       "parse_ms": 0.28,
+       "prepare_ms": 5.04,
+       "queue_ms": 0.0,
+       "inference_ms": 857.29
+      },
+      "cached_tokens": 920,
+      "input_tokens": 1073,
+      "decisions": {
+       "refund": true,
+       "team": "billing",
+       "urgency": 2,
+       "mood": "frustrated"
+      },
+      "probabilities": {
+       "refund": [
+        0.9878893952645912
+       ],
+       "team": [
+        0.9497759311234432,
+        0.002121029880434643,
+        0.03968946250256792,
+        0.008413576493554266
+       ],
+       "urgency": [
+        0.01154172977145439,
+        0.023059662388526532,
+        0.6564656483820348,
+        0.30893295945798427
+       ],
+       "mood": [
+        0.010018051629936468,
+        0.9298972513430676,
+        0.06008469702699603
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1015.5,
+      "processing_ms": 1014.1,
+      "timing": {
+       "processing_ms": 1014.1,
+       "parse_ms": 0.27,
+       "prepare_ms": 5.21,
+       "queue_ms": 0.0,
+       "inference_ms": 1008.49
+      },
+      "cached_tokens": 920,
+      "input_tokens": 1073,
+      "decisions": {
+       "refund": true,
+       "team": "billing",
+       "urgency": 2,
+       "mood": "frustrated"
+      },
+      "probabilities": {
+       "refund": [
+        0.9881307894712167
+       ],
+       "team": [
+        0.9443440747529432,
+        0.002058946930881799,
+        0.04536284741545791,
+        0.008234130900717104
+       ],
+       "urgency": [
+        0.011895035249520599,
+        0.024045504338488396,
+        0.6772838152901366,
+        0.2867756451218544
+       ],
+       "mood": [
+        0.009115127727750886,
+        0.9312946674990231,
+        0.05959020477322594
+       ]
+      },
+      "clean": true
+     }
+    ],
+    "after": [
+     {
+      "client_ms": 897.1,
+      "processing_ms": 895.72,
+      "timing": {
+       "processing_ms": 895.72,
+       "parse_ms": 0.17,
+       "prepare_ms": 5.22,
+       "queue_ms": 0.0,
+       "inference_ms": 890.21
+      },
+      "cached_tokens": 816,
+      "input_tokens": 969,
+      "decisions": {
+       "refund": true,
+       "team": "billing",
+       "urgency": 2,
+       "mood": "frustrated"
+      },
+      "probabilities": {
+       "refund": [
+        0.987028637247478
+       ],
+       "team": [
+        0.933475063677073,
+        0.0025431327154687073,
+        0.05689935304043817,
+        0.007082450567020118
+       ],
+       "urgency": [
+        0.010476091228245428,
+        0.01975252718927645,
+        0.6749909106406722,
+        0.29478047094180587
+       ],
+       "mood": [
+        0.013762699209406426,
+        0.9384639105830803,
+        0.047773390207513214
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 882.61,
+      "processing_ms": 881.16,
+      "timing": {
+       "processing_ms": 881.16,
+       "parse_ms": 0.16,
+       "prepare_ms": 5.7,
+       "queue_ms": 0.0,
+       "inference_ms": 875.18
+      },
+      "cached_tokens": 812,
+      "input_tokens": 965,
+      "decisions": {
+       "refund": true,
+       "team": "billing",
+       "urgency": 2,
+       "mood": "frustrated"
+      },
+      "probabilities": {
+       "refund": [
+        0.9863943273873194
+       ],
+       "team": [
+        0.937196192507084,
+        0.002555453211379834,
+        0.05339430257660997,
+        0.006854051704926272
+       ],
+       "urgency": [
+        0.010330198602048271,
+        0.019607907672432638,
+        0.6484732200924774,
+        0.32158867363304167
+       ],
+       "mood": [
+        0.013033800454954607,
+        0.9358941098699787,
+        0.05107208967506677
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 893.56,
+      "processing_ms": 892.25,
+      "timing": {
+       "processing_ms": 892.25,
+       "parse_ms": 0.17,
+       "prepare_ms": 5.31,
+       "queue_ms": 0.0,
+       "inference_ms": 886.64
+      },
+      "cached_tokens": 812,
+      "input_tokens": 965,
+      "decisions": {
+       "refund": true,
+       "team": "billing",
+       "urgency": 2,
+       "mood": "frustrated"
+      },
+      "probabilities": {
+       "refund": [
+        0.9863965786918042
+       ],
+       "team": [
+        0.9340775728631454,
+        0.0026529182554014268,
+        0.05568848621632595,
+        0.007581022665127238
+       ],
+       "urgency": [
+        0.010266400816293056,
+        0.020546404530034933,
+        0.65495699278103,
+        0.31423020187264195
+       ],
+       "mood": [
+        0.012221105351220424,
+        0.940197941138603,
+        0.04758095351017656
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 848.14,
+      "processing_ms": 846.66,
+      "timing": {
+       "processing_ms": 846.66,
+       "parse_ms": 0.12,
+       "prepare_ms": 5.18,
+       "queue_ms": 0.0,
+       "inference_ms": 841.23
+      },
+      "cached_tokens": 820,
+      "input_tokens": 973,
+      "decisions": {
+       "refund": true,
+       "team": "billing",
+       "urgency": 2,
+       "mood": "frustrated"
+      },
+      "probabilities": {
+       "refund": [
+        0.9859751444571183
+       ],
+       "team": [
+        0.937844353064862,
+        0.0026586829236189993,
+        0.05227559154794927,
+        0.007221372463569756
+       ],
+       "urgency": [
+        0.010687282149683204,
+        0.021434301191057246,
+        0.6613551279700528,
+        0.3065232886892067
+       ],
+       "mood": [
+        0.013581298342277476,
+        0.9376115833878949,
+        0.04880711826982766
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 857.73,
+      "processing_ms": 856.26,
+      "timing": {
+       "processing_ms": 856.26,
+       "parse_ms": 0.14,
+       "prepare_ms": 5.53,
+       "queue_ms": 0.0,
+       "inference_ms": 850.46
+      },
+      "cached_tokens": 828,
+      "input_tokens": 981,
+      "decisions": {
+       "refund": true,
+       "team": "billing",
+       "urgency": 2,
+       "mood": "frustrated"
+      },
+      "probabilities": {
+       "refund": [
+        0.9862653292603417
+       ],
+       "team": [
+        0.9368304841462596,
+        0.0028204150262670573,
+        0.05275889243754619,
+        0.007590208389927188
+       ],
+       "urgency": [
+        0.010770764402500622,
+        0.020135030525457683,
+        0.6465273023867477,
+        0.322566902685294
+       ],
+       "mood": [
+        0.012328353423430737,
+        0.9374133726252855,
+        0.050258273951283794
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 954.43,
+      "processing_ms": 953.1,
+      "timing": {
+       "processing_ms": 953.1,
+       "parse_ms": 0.18,
+       "prepare_ms": 4.54,
+       "queue_ms": 0.0,
+       "inference_ms": 948.28
+      },
+      "cached_tokens": 820,
+      "input_tokens": 973,
+      "decisions": {
+       "refund": true,
+       "team": "billing",
+       "urgency": 2,
+       "mood": "frustrated"
+      },
+      "probabilities": {
+       "refund": [
+        0.9859363721348602
+       ],
+       "team": [
+        0.9364403516776313,
+        0.0028144051412590017,
+        0.05274375917818691,
+        0.008001484002922842
+       ],
+       "urgency": [
+        0.010420169526038027,
+        0.019650686239440943,
+        0.6659039159729493,
+        0.3040252282615717
+       ],
+       "mood": [
+        0.013621271220020143,
+        0.9370267138129336,
+        0.049352014967046276
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 925.55,
+      "processing_ms": 924.27,
+      "timing": {
+       "processing_ms": 924.27,
+       "parse_ms": 0.18,
+       "prepare_ms": 5.28,
+       "queue_ms": 0.0,
+       "inference_ms": 918.71
+      },
+      "cached_tokens": 820,
+      "input_tokens": 973,
+      "decisions": {
+       "refund": true,
+       "team": "billing",
+       "urgency": 2,
+       "mood": "frustrated"
+      },
+      "probabilities": {
+       "refund": [
+        0.9858962223984582
+       ],
+       "team": [
+        0.9331441887390605,
+        0.002774681827492017,
+        0.05641373107678827,
+        0.007667398356659285
+       ],
+       "urgency": [
+        0.010668739974556677,
+        0.020559358053636498,
+        0.6776247213862293,
+        0.29114718058557754
+       ],
+       "mood": [
+        0.013048183415982564,
+        0.9364837582499489,
+        0.050468058334068554
+       ]
+      },
+      "clean": true
+     }
+    ]
+   }
+  },
+  "long_1q": {
+   "summary": {
+    "before": {
+     "median_ms": 2133.9,
+     "min_ms": 2107.23,
+     "max_ms": 2244.26,
+     "server_ms": 2132.4,
+     "cached_tokens": 0,
+     "input_tokens": 1180,
+     "same_decisions_as_reference": 1.0,
+     "max_probability_difference": 0.0
+    },
+    "after": {
+     "median_ms": 2230.2,
+     "min_ms": 1996.52,
+     "max_ms": 2346.79,
+     "server_ms": 2228.7,
+     "cached_tokens": 0,
+     "input_tokens": 1177,
+     "same_decisions_as_reference": 1.0,
+     "max_probability_difference": 0.004014046266940314
+    }
+   },
+   "rows": {
+    "before": [
+     {
+      "client_ms": 2244.26,
+      "processing_ms": 2242.74,
+      "timing": {
+       "processing_ms": 2242.74,
+       "parse_ms": 0.17,
+       "prepare_ms": 3.39,
+       "queue_ms": 0.0,
+       "inference_ms": 2239.06
+      },
+      "cached_tokens": 0,
+      "input_tokens": 1180,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.021648594907963697
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 2130.22,
+      "processing_ms": 2128.78,
+      "timing": {
+       "processing_ms": 2128.78,
+       "parse_ms": 0.15,
+       "prepare_ms": 3.71,
+       "queue_ms": 0.0,
+       "inference_ms": 2124.81
+      },
+      "cached_tokens": 0,
+      "input_tokens": 1179,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.017630847663549176
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 2144.08,
+      "processing_ms": 2142.84,
+      "timing": {
+       "processing_ms": 2142.84,
+       "parse_ms": 0.17,
+       "prepare_ms": 2.88,
+       "queue_ms": 0.0,
+       "inference_ms": 2139.67
+      },
+      "cached_tokens": 0,
+      "input_tokens": 1178,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.015854882283106775
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 2215.38,
+      "processing_ms": 2214.02,
+      "timing": {
+       "processing_ms": 2214.02,
+       "parse_ms": 0.2,
+       "prepare_ms": 3.77,
+       "queue_ms": 0.0,
+       "inference_ms": 2209.94
+      },
+      "cached_tokens": 0,
+      "input_tokens": 1180,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.015789540925702294
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 2133.89,
+      "processing_ms": 2132.36,
+      "timing": {
+       "processing_ms": 2132.36,
+       "parse_ms": 0.16,
+       "prepare_ms": 3.22,
+       "queue_ms": 0.0,
+       "inference_ms": 2128.85
+      },
+      "cached_tokens": 0,
+      "input_tokens": 1176,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.015049314490782261
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 2132.52,
+      "processing_ms": 2131.18,
+      "timing": {
+       "processing_ms": 2131.18,
+       "parse_ms": 0.14,
+       "prepare_ms": 4.2,
+       "queue_ms": 0.0,
+       "inference_ms": 2126.71
+      },
+      "cached_tokens": 0,
+      "input_tokens": 1179,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.016901090489311658
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 2107.23,
+      "processing_ms": 2105.88,
+      "timing": {
+       "processing_ms": 2105.88,
+       "parse_ms": 0.18,
+       "prepare_ms": 2.8,
+       "queue_ms": 0.0,
+       "inference_ms": 2102.78
+      },
+      "cached_tokens": 0,
+      "input_tokens": 1175,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.01508293884945372
+       ]
+      },
+      "clean": true
+     }
+    ],
+    "after": [
+     {
+      "client_ms": 2230.24,
+      "processing_ms": 2228.72,
+      "timing": {
+       "processing_ms": 2228.72,
+       "parse_ms": 0.17,
+       "prepare_ms": 3.02,
+       "queue_ms": 0.0,
+       "inference_ms": 2225.43
+      },
+      "cached_tokens": 0,
+      "input_tokens": 1177,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.017634548641023384
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1996.52,
+      "processing_ms": 1995.2,
+      "timing": {
+       "processing_ms": 1995.2,
+       "parse_ms": 0.18,
+       "prepare_ms": 2.98,
+       "queue_ms": 0.0,
+       "inference_ms": 1991.93
+      },
+      "cached_tokens": 0,
+      "input_tokens": 1176,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.013817179184056195
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 2273.7,
+      "processing_ms": 2271.85,
+      "timing": {
+       "processing_ms": 2271.85,
+       "parse_ms": 0.13,
+       "prepare_ms": 4.45,
+       "queue_ms": 0.0,
+       "inference_ms": 2267.12
+      },
+      "cached_tokens": 0,
+      "input_tokens": 1175,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.014522675370713042
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 2346.79,
+      "processing_ms": 2345.41,
+      "timing": {
+       "processing_ms": 2345.41,
+       "parse_ms": 0.13,
+       "prepare_ms": 3.45,
+       "queue_ms": 0.0,
+       "inference_ms": 2341.7
+      },
+      "cached_tokens": 0,
+      "input_tokens": 1177,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.013043354131768554
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 2025.05,
+      "processing_ms": 2023.4,
+      "timing": {
+       "processing_ms": 2023.4,
+       "parse_ms": 0.26,
+       "prepare_ms": 4.4,
+       "queue_ms": 0.0,
+       "inference_ms": 2018.63
+      },
+      "cached_tokens": 0,
+      "input_tokens": 1173,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.013229592912740147
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 2237.02,
+      "processing_ms": 2235.64,
+      "timing": {
+       "processing_ms": 2235.64,
+       "parse_ms": 0.26,
+       "prepare_ms": 3.58,
+       "queue_ms": 0.0,
+       "inference_ms": 2231.67
+      },
+      "cached_tokens": 0,
+      "input_tokens": 1176,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.013437758981014502
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 2215.76,
+      "processing_ms": 2214.4,
+      "timing": {
+       "processing_ms": 2214.4,
+       "parse_ms": 0.13,
+       "prepare_ms": 4.16,
+       "queue_ms": 0.0,
+       "inference_ms": 2209.99
+      },
+      "cached_tokens": 0,
+      "input_tokens": 1172,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.014876816809690437
+       ]
+      },
+      "clean": true
+     }
+    ]
+   }
+  },
+  "long_4q": {
+   "summary": {
+    "before": {
+     "median_ms": 2514.1,
+     "min_ms": 2405.31,
+     "max_ms": 2635.22,
+     "server_ms": 2512.5,
+     "cached_tokens": 4596,
+     "input_tokens": 4745,
+     "same_decisions_as_reference": 1.0,
+     "max_probability_difference": 0.0
+    },
+    "after": {
+     "median_ms": 2451.7,
+     "min_ms": 2410.24,
+     "max_ms": 2674.06,
+     "server_ms": 2450.4,
+     "cached_tokens": 4584,
+     "input_tokens": 4733,
+     "same_decisions_as_reference": 1.0,
+     "max_probability_difference": 0.05930406762361573
+    }
+   },
+   "rows": {
+    "before": [
+     {
+      "client_ms": 2514.1,
+      "processing_ms": 2512.5,
+      "timing": {
+       "processing_ms": 2512.5,
+       "parse_ms": 0.25,
+       "prepare_ms": 5.18,
+       "queue_ms": 0.0,
+       "inference_ms": 2506.94
+      },
+      "cached_tokens": 4592,
+      "input_tokens": 4745,
+      "decisions": {
+       "refund": false,
+       "team": "other",
+       "urgency": 1,
+       "mood": "calm"
+      },
+      "probabilities": {
+       "refund": [
+        0.016186576638120724
+       ],
+       "team": [
+        0.1318103263321616,
+        0.10731648973573714,
+        0.034458839430178384,
+        0.7264143445019229
+       ],
+       "urgency": [
+        0.6720815150719542,
+        0.15153614837968019,
+        0.11231523501168411,
+        0.06406710153668146
+       ],
+       "mood": [
+        0.7405635880059805,
+        0.23123640338859863,
+        0.02820000860542078
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 2421.98,
+      "processing_ms": 2420.51,
+      "timing": {
+       "processing_ms": 2420.51,
+       "parse_ms": 0.14,
+       "prepare_ms": 5.28,
+       "queue_ms": 0.0,
+       "inference_ms": 2414.99
+      },
+      "cached_tokens": 4592,
+      "input_tokens": 4745,
+      "decisions": {
+       "refund": false,
+       "team": "other",
+       "urgency": 1,
+       "mood": "calm"
+      },
+      "probabilities": {
+       "refund": [
+        0.016336939863779994
+       ],
+       "team": [
+        0.12204856016324073,
+        0.1097212695051304,
+        0.035701269949557524,
+        0.7325289003820713
+       ],
+       "urgency": [
+        0.6520003822147932,
+        0.16766231136759321,
+        0.11450424301261253,
+        0.06583306340500109
+       ],
+       "mood": [
+        0.7384853390547832,
+        0.23339636710806327,
+        0.028118293837153516
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 2576.35,
+      "processing_ms": 2574.68,
+      "timing": {
+       "processing_ms": 2574.68,
+       "parse_ms": 0.24,
+       "prepare_ms": 5.92,
+       "queue_ms": 0.0,
+       "inference_ms": 2568.38
+      },
+      "cached_tokens": 4596,
+      "input_tokens": 4749,
+      "decisions": {
+       "refund": false,
+       "team": "other",
+       "urgency": 1,
+       "mood": "calm"
+      },
+      "probabilities": {
+       "refund": [
+        0.015749398560265457
+       ],
+       "team": [
+        0.1312675664206614,
+        0.11041783870511766,
+        0.04113974544822411,
+        0.7171748494259969
+       ],
+       "urgency": [
+        0.6768404144519505,
+        0.14813974278957034,
+        0.1107908247293409,
+        0.06422901802913818
+       ],
+       "mood": [
+        0.7316271189314203,
+        0.24035008654585252,
+        0.028022794522727188
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 2436.98,
+      "processing_ms": 2434.66,
+      "timing": {
+       "processing_ms": 2434.66,
+       "parse_ms": 0.23,
+       "prepare_ms": 5.9,
+       "queue_ms": 0.0,
+       "inference_ms": 2428.39
+      },
+      "cached_tokens": 4612,
+      "input_tokens": 4765,
+      "decisions": {
+       "refund": false,
+       "team": "other",
+       "urgency": 1,
+       "mood": "calm"
+      },
+      "probabilities": {
+       "refund": [
+        0.01662981876496293
+       ],
+       "team": [
+        0.1297252803234446,
+        0.11902807918998776,
+        0.036323123492072305,
+        0.7149235169944953
+       ],
+       "urgency": [
+        0.6698147158297109,
+        0.15360948672308752,
+        0.11166431921220302,
+        0.06491147823499856
+       ],
+       "mood": [
+        0.7042434706651647,
+        0.26754754383046114,
+        0.028208985504374125
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 2405.31,
+      "processing_ms": 2403.63,
+      "timing": {
+       "processing_ms": 2403.63,
+       "parse_ms": 0.15,
+       "prepare_ms": 5.49,
+       "queue_ms": 0.0,
+       "inference_ms": 2397.84
+      },
+      "cached_tokens": 4596,
+      "input_tokens": 4749,
+      "decisions": {
+       "refund": false,
+       "team": "other",
+       "urgency": 1,
+       "mood": "calm"
+      },
+      "probabilities": {
+       "refund": [
+        0.016965988960243802
+       ],
+       "team": [
+        0.13147930556015475,
+        0.12606097523009452,
+        0.037064510638555315,
+        0.7053952085711954
+       ],
+       "urgency": [
+        0.673720824090376,
+        0.1535733164553844,
+        0.1112197691347493,
+        0.06148609031949024
+       ],
+       "mood": [
+        0.7277235320981263,
+        0.2460175282692767,
+        0.02625893963259701
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 2635.22,
+      "processing_ms": 2632.96,
+      "timing": {
+       "processing_ms": 2632.96,
+       "parse_ms": 0.19,
+       "prepare_ms": 5.97,
+       "queue_ms": 0.0,
+       "inference_ms": 2626.64
+      },
+      "cached_tokens": 4604,
+      "input_tokens": 4757,
+      "decisions": {
+       "refund": false,
+       "team": "other",
+       "urgency": 1,
+       "mood": "calm"
+      },
+      "probabilities": {
+       "refund": [
+        0.014758536454676311
+       ],
+       "team": [
+        0.11662803590297699,
+        0.10970911383628845,
+        0.033598288893699646,
+        0.7400645613670349
+       ],
+       "urgency": [
+        0.6597424843868983,
+        0.15773894127814383,
+        0.11528546534904041,
+        0.0672331089859174
+       ],
+       "mood": [
+        0.713039946588426,
+        0.2589581950206752,
+        0.028001858390898863
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 2532.03,
+      "processing_ms": 2530.46,
+      "timing": {
+       "processing_ms": 2530.46,
+       "parse_ms": 0.2,
+       "prepare_ms": 5.23,
+       "queue_ms": 0.0,
+       "inference_ms": 2524.89
+      },
+      "cached_tokens": 4588,
+      "input_tokens": 4741,
+      "decisions": {
+       "refund": false,
+       "team": "other",
+       "urgency": 1,
+       "mood": "calm"
+      },
+      "probabilities": {
+       "refund": [
+        0.016498950780398657
+       ],
+       "team": [
+        0.12808111548574858,
+        0.10941408778380766,
+        0.03521313956404365,
+        0.7272916571664001
+       ],
+       "urgency": [
+        0.6444100833596301,
+        0.16530008860379589,
+        0.12613900193779173,
+        0.06415082609878221
+       ],
+       "mood": [
+        0.7151091085465455,
+        0.255308985234594,
+        0.029581906218860473
+       ]
+      },
+      "clean": true
+     }
+    ],
+    "after": [
+     {
+      "client_ms": 2451.73,
+      "processing_ms": 2450.38,
+      "timing": {
+       "processing_ms": 2450.38,
+       "parse_ms": 0.17,
+       "prepare_ms": 6.65,
+       "queue_ms": 0.01,
+       "inference_ms": 2443.43
+      },
+      "cached_tokens": 4580,
+      "input_tokens": 4733,
+      "decisions": {
+       "refund": false,
+       "team": "other",
+       "urgency": 1,
+       "mood": "calm"
+      },
+      "probabilities": {
+       "refund": [
+        0.015399660513558896
+       ],
+       "team": [
+        0.12378584777989757,
+        0.09900894163562271,
+        0.037851185170578734,
+        0.7393540254139009
+       ],
+       "urgency": [
+        0.693978921189433,
+        0.14237724562832518,
+        0.10078357385360243,
+        0.06286025932863934
+       ],
+       "mood": [
+        0.7684692540046395,
+        0.20573374092528154,
+        0.025797005070078986
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 2410.24,
+      "processing_ms": 2408.8,
+      "timing": {
+       "processing_ms": 2408.8,
+       "parse_ms": 0.14,
+       "prepare_ms": 4.68,
+       "queue_ms": 0.0,
+       "inference_ms": 2403.87
+      },
+      "cached_tokens": 4580,
+      "input_tokens": 4733,
+      "decisions": {
+       "refund": false,
+       "team": "other",
+       "urgency": 1,
+       "mood": "calm"
+      },
+      "probabilities": {
+       "refund": [
+        0.014468725824612103
+       ],
+       "team": [
+        0.11336130944464046,
+        0.09650180740472918,
+        0.037073005957570085,
+        0.7530638771930603
+       ],
+       "urgency": [
+        0.6751468231912465,
+        0.1498375248151833,
+        0.10871560952600545,
+        0.06630004246756466
+       ],
+       "mood": [
+        0.78512192211182,
+        0.18845944211888746,
+        0.02641863576929254
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 2674.06,
+      "processing_ms": 2672.22,
+      "timing": {
+       "processing_ms": 2672.22,
+       "parse_ms": 0.21,
+       "prepare_ms": 5.93,
+       "queue_ms": 0.0,
+       "inference_ms": 2665.95
+      },
+      "cached_tokens": 4584,
+      "input_tokens": 4737,
+      "decisions": {
+       "refund": false,
+       "team": "other",
+       "urgency": 1,
+       "mood": "calm"
+      },
+      "probabilities": {
+       "refund": [
+        0.014594917117641694
+       ],
+       "team": [
+        0.11909639312133925,
+        0.09612251252164156,
+        0.04868577138866803,
+        0.7360953229683511
+       ],
+       "urgency": [
+        0.6851276159286499,
+        0.1451394110918045,
+        0.1071089431643486,
+        0.06262402981519699
+       ],
+       "mood": [
+        0.7412224356739041,
+        0.23141209608754443,
+        0.027365468238551405
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 2511.22,
+      "processing_ms": 2509.23,
+      "timing": {
+       "processing_ms": 2509.23,
+       "parse_ms": 0.34,
+       "prepare_ms": 5.73,
+       "queue_ms": 0.0,
+       "inference_ms": 2503.03
+      },
+      "cached_tokens": 4600,
+      "input_tokens": 4753,
+      "decisions": {
+       "refund": false,
+       "team": "other",
+       "urgency": 1,
+       "mood": "calm"
+      },
+      "probabilities": {
+       "refund": [
+        0.014137552317290832
+       ],
+       "team": [
+        0.11715664231382256,
+        0.09910237265607058,
+        0.03982284754118728,
+        0.7439181374889196
+       ],
+       "urgency": [
+        0.6809306690027515,
+        0.1510312247944532,
+        0.10706204841239714,
+        0.060976057790398164
+       ],
+       "mood": [
+        0.7635475382887804,
+        0.2099369313382787,
+        0.02651553037294088
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 2444.99,
+      "processing_ms": 2443.47,
+      "timing": {
+       "processing_ms": 2443.47,
+       "parse_ms": 0.21,
+       "prepare_ms": 5.93,
+       "queue_ms": 0.0,
+       "inference_ms": 2437.21
+      },
+      "cached_tokens": 4584,
+      "input_tokens": 4737,
+      "decisions": {
+       "refund": false,
+       "team": "other",
+       "urgency": 1,
+       "mood": "calm"
+      },
+      "probabilities": {
+       "refund": [
+        0.014929234981536865
+       ],
+       "team": [
+        0.12174711693908952,
+        0.11164135031956975,
+        0.03735667192003393,
+        0.7292548608213067
+       ],
+       "urgency": [
+        0.6924731032181813,
+        0.14657020350441033,
+        0.10039087235345137,
+        0.06056582092395692
+       ],
+       "mood": [
+        0.7505366844155081,
+        0.22421325868487316,
+        0.025250056899618675
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 2496.21,
+      "processing_ms": 2494.72,
+      "timing": {
+       "processing_ms": 2494.72,
+       "parse_ms": 0.13,
+       "prepare_ms": 5.51,
+       "queue_ms": 0.0,
+       "inference_ms": 2488.97
+      },
+      "cached_tokens": 4592,
+      "input_tokens": 4745,
+      "decisions": {
+       "refund": false,
+       "team": "other",
+       "urgency": 1,
+       "mood": "calm"
+      },
+      "probabilities": {
+       "refund": [
+        0.012702504433184022
+       ],
+       "team": [
+        0.10787694861040656,
+        0.093242972741861,
+        0.03642598898550127,
+        0.7624540896622312
+       ],
+       "urgency": [
+        0.6830475483025807,
+        0.1474424037510694,
+        0.10522291299453929,
+        0.06428713495181057
+       ],
+       "mood": [
+        0.7543142395784282,
+        0.21931038674352474,
+        0.026375373678046984
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 2422.8,
+      "processing_ms": 2420.7,
+      "timing": {
+       "processing_ms": 2420.7,
+       "parse_ms": 0.18,
+       "prepare_ms": 5.73,
+       "queue_ms": 0.0,
+       "inference_ms": 2414.67
+      },
+      "cached_tokens": 4576,
+      "input_tokens": 4729,
+      "decisions": {
+       "refund": false,
+       "team": "other",
+       "urgency": 1,
+       "mood": "calm"
+      },
+      "probabilities": {
+       "refund": [
+        0.014222232227523841
+       ],
+       "team": [
+        0.11948340564196416,
+        0.10250724259774749,
+        0.03845642564380803,
+        0.7395529261164803
+       ],
+       "urgency": [
+        0.6614506047531782,
+        0.15378064948974104,
+        0.12045818208282644,
+        0.0643105636742543
+       ],
+       "mood": [
+        0.7547510111662352,
+        0.21694373639974537,
+        0.028305252434019414
+       ]
+      },
+      "clean": true
+     }
+    ]
+   }
+  },
+  "screenshot_1q": {
+   "summary": {
+    "before": {
+     "median_ms": 1161.1,
+     "min_ms": 1019.13,
+     "max_ms": 1223.41,
+     "server_ms": 1159.7,
+     "cached_tokens": 0,
+     "input_tokens": 414,
+     "same_decisions_as_reference": 1.0,
+     "max_probability_difference": 0.0
+    },
+    "after": {
+     "median_ms": 1093.7,
+     "min_ms": 1018.79,
+     "max_ms": 1180.19,
+     "server_ms": 1092.3,
+     "cached_tokens": 0,
+     "input_tokens": 414,
+     "same_decisions_as_reference": 1.0,
+     "max_probability_difference": 0.0
+    }
+   },
+   "rows": {
+    "before": [
+     {
+      "client_ms": 1043.21,
+      "processing_ms": 1041.64,
+      "timing": {
+       "processing_ms": 1041.64,
+       "parse_ms": 0.21,
+       "prepare_ms": 7.0,
+       "queue_ms": 0.0,
+       "inference_ms": 1034.29
+      },
+      "cached_tokens": 0,
+      "input_tokens": 414,
+      "decisions": {
+       "team": "technical"
+      },
+      "probabilities": {
+       "team": [
+        0.14195245504379272,
+        0.3964636027812958,
+        0.10346633195877075,
+        0.35811761021614075
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1141.53,
+      "processing_ms": 1140.05,
+      "timing": {
+       "processing_ms": 1140.05,
+       "parse_ms": 0.15,
+       "prepare_ms": 5.83,
+       "queue_ms": 0.0,
+       "inference_ms": 1133.96
+      },
+      "cached_tokens": 0,
+      "input_tokens": 409,
+      "decisions": {
+       "team": "technical"
+      },
+      "probabilities": {
+       "team": [
+        0.1548355370759964,
+        0.446495920419693,
+        0.08664770424365997,
+        0.31202083826065063
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1161.09,
+      "processing_ms": 1159.69,
+      "timing": {
+       "processing_ms": 1159.69,
+       "parse_ms": 0.12,
+       "prepare_ms": 4.25,
+       "queue_ms": 0.0,
+       "inference_ms": 1155.2
+      },
+      "cached_tokens": 0,
+      "input_tokens": 411,
+      "decisions": {
+       "team": "technical"
+      },
+      "probabilities": {
+       "team": [
+        0.13080161712466465,
+        0.4170112578793521,
+        0.10011095479048077,
+        0.3520761702055024
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1223.41,
+      "processing_ms": 1222.12,
+      "timing": {
+       "processing_ms": 1222.12,
+       "parse_ms": 0.17,
+       "prepare_ms": 4.24,
+       "queue_ms": 0.0,
+       "inference_ms": 1217.61
+      },
+      "cached_tokens": 0,
+      "input_tokens": 411,
+      "decisions": {
+       "team": "technical"
+      },
+      "probabilities": {
+       "team": [
+        0.13670095393952864,
+        0.3845825676744411,
+        0.10311725428351003,
+        0.3755992241025202
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1168.54,
+      "processing_ms": 1167.1,
+      "timing": {
+       "processing_ms": 1167.1,
+       "parse_ms": 0.19,
+       "prepare_ms": 3.85,
+       "queue_ms": 0.0,
+       "inference_ms": 1162.95
+      },
+      "cached_tokens": 0,
+      "input_tokens": 412,
+      "decisions": {
+       "team": "technical"
+      },
+      "probabilities": {
+       "team": [
+        0.13684396343794492,
+        0.40848758512372085,
+        0.09909885302857419,
+        0.35556959840976
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1188.93,
+      "processing_ms": 1187.5,
+      "timing": {
+       "processing_ms": 1187.5,
+       "parse_ms": 0.18,
+       "prepare_ms": 3.82,
+       "queue_ms": 0.0,
+       "inference_ms": 1183.38
+      },
+      "cached_tokens": 0,
+      "input_tokens": 411,
+      "decisions": {
+       "team": "technical"
+      },
+      "probabilities": {
+       "team": [
+        0.14355409038399092,
+        0.39581861797110274,
+        0.1050753064075462,
+        0.3555519852373601
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1019.13,
+      "processing_ms": 1017.7,
+      "timing": {
+       "processing_ms": 1017.7,
+       "parse_ms": 0.18,
+       "prepare_ms": 4.67,
+       "queue_ms": 0.0,
+       "inference_ms": 1012.75
+      },
+      "cached_tokens": 0,
+      "input_tokens": 410,
+      "decisions": {
+       "team": "technical"
+      },
+      "probabilities": {
+       "team": [
+        0.14405777728428446,
+        0.38834368314570894,
+        0.10860370601854386,
+        0.3589948335514627
+       ]
+      },
+      "clean": true
+     }
+    ],
+    "after": [
+     {
+      "client_ms": 1117.47,
+      "processing_ms": 1116.06,
+      "timing": {
+       "processing_ms": 1116.06,
+       "parse_ms": 0.16,
+       "prepare_ms": 7.09,
+       "queue_ms": 0.0,
+       "inference_ms": 1108.7
+      },
+      "cached_tokens": 0,
+      "input_tokens": 414,
+      "decisions": {
+       "team": "technical"
+      },
+      "probabilities": {
+       "team": [
+        0.14195245504379272,
+        0.3964636027812958,
+        0.10346633195877075,
+        0.35811761021614075
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1024.21,
+      "processing_ms": 1022.81,
+      "timing": {
+       "processing_ms": 1022.81,
+       "parse_ms": 0.11,
+       "prepare_ms": 5.93,
+       "queue_ms": 0.0,
+       "inference_ms": 1016.66
+      },
+      "cached_tokens": 0,
+      "input_tokens": 409,
+      "decisions": {
+       "team": "technical"
+      },
+      "probabilities": {
+       "team": [
+        0.1548355370759964,
+        0.446495920419693,
+        0.08664770424365997,
+        0.31202083826065063
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1180.19,
+      "processing_ms": 1178.81,
+      "timing": {
+       "processing_ms": 1178.81,
+       "parse_ms": 0.2,
+       "prepare_ms": 4.17,
+       "queue_ms": 0.0,
+       "inference_ms": 1174.3
+      },
+      "cached_tokens": 0,
+      "input_tokens": 411,
+      "decisions": {
+       "team": "technical"
+      },
+      "probabilities": {
+       "team": [
+        0.13080161712466465,
+        0.4170112578793521,
+        0.10011095479048077,
+        0.3520761702055024
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1060.89,
+      "processing_ms": 1059.5,
+      "timing": {
+       "processing_ms": 1059.5,
+       "parse_ms": 0.16,
+       "prepare_ms": 4.37,
+       "queue_ms": 0.0,
+       "inference_ms": 1054.86
+      },
+      "cached_tokens": 0,
+      "input_tokens": 411,
+      "decisions": {
+       "team": "technical"
+      },
+      "probabilities": {
+       "team": [
+        0.13670095393952864,
+        0.3845825676744411,
+        0.10311725428351003,
+        0.3755992241025202
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1093.71,
+      "processing_ms": 1092.33,
+      "timing": {
+       "processing_ms": 1092.33,
+       "parse_ms": 0.12,
+       "prepare_ms": 3.91,
+       "queue_ms": 0.0,
+       "inference_ms": 1088.2
+      },
+      "cached_tokens": 0,
+      "input_tokens": 412,
+      "decisions": {
+       "team": "technical"
+      },
+      "probabilities": {
+       "team": [
+        0.13684396343794492,
+        0.40848758512372085,
+        0.09909885302857419,
+        0.35556959840976
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1136.01,
+      "processing_ms": 1134.44,
+      "timing": {
+       "processing_ms": 1134.44,
+       "parse_ms": 0.18,
+       "prepare_ms": 4.45,
+       "queue_ms": 0.0,
+       "inference_ms": 1129.71
+      },
+      "cached_tokens": 0,
+      "input_tokens": 411,
+      "decisions": {
+       "team": "technical"
+      },
+      "probabilities": {
+       "team": [
+        0.14355409038399092,
+        0.39581861797110274,
+        0.1050753064075462,
+        0.3555519852373601
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1018.79,
+      "processing_ms": 1017.43,
+      "timing": {
+       "processing_ms": 1017.43,
+       "parse_ms": 0.25,
+       "prepare_ms": 4.49,
+       "queue_ms": 0.0,
+       "inference_ms": 1012.56
+      },
+      "cached_tokens": 0,
+      "input_tokens": 410,
+      "decisions": {
+       "team": "technical"
+      },
+      "probabilities": {
+       "team": [
+        0.14405777728428446,
+        0.38834368314570894,
+        0.10860370601854386,
+        0.3589948335514627
+       ]
+      },
+      "clean": true
+     }
+    ]
+   }
+  },
+  "screenshot_4q": {
+   "summary": {
+    "before": {
+     "median_ms": 1461.4,
+     "min_ms": 1383.11,
+     "max_ms": 1524.26,
+     "server_ms": 1459.9,
+     "cached_tokens": 1452,
+     "input_tokens": 1593,
+     "same_decisions_as_reference": 1.0,
+     "max_probability_difference": 0.0
+    },
+    "after": {
+     "median_ms": 1496.3,
+     "min_ms": 1320.61,
+     "max_ms": 1518.36,
+     "server_ms": 1494.9,
+     "cached_tokens": 1452,
+     "input_tokens": 1593,
+     "same_decisions_as_reference": 1.0,
+     "max_probability_difference": 0.0
+    }
+   },
+   "rows": {
+    "before": [
+     {
+      "client_ms": 1461.36,
+      "processing_ms": 1459.92,
+      "timing": {
+       "processing_ms": 1459.92,
+       "parse_ms": 0.19,
+       "prepare_ms": 8.16,
+       "queue_ms": 0.0,
+       "inference_ms": 1451.45
+      },
+      "cached_tokens": 1440,
+      "input_tokens": 1593,
+      "decisions": {
+       "refund": false,
+       "team": "technical",
+       "urgency": 2,
+       "mood": "frustrated"
+      },
+      "probabilities": {
+       "refund": [
+        0.17307846506056881
+       ],
+       "team": [
+        0.13621537184394342,
+        0.39628099804697936,
+        0.10249650325631346,
+        0.36500712685276376
+       ],
+       "urgency": [
+        0.17575645577726107,
+        0.08801054275043713,
+        0.16899240142846406,
+        0.5672406000438377
+       ],
+       "mood": [
+        0.3046834812266153,
+        0.5294910152180644,
+        0.16582550355532025
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1503.64,
+      "processing_ms": 1502.34,
+      "timing": {
+       "processing_ms": 1502.34,
+       "parse_ms": 0.18,
+       "prepare_ms": 8.35,
+       "queue_ms": 0.0,
+       "inference_ms": 1493.71
+      },
+      "cached_tokens": 1452,
+      "input_tokens": 1605,
+      "decisions": {
+       "refund": false,
+       "team": "technical",
+       "urgency": 2,
+       "mood": "frustrated"
+      },
+      "probabilities": {
+       "refund": [
+        0.18694822768789868
+       ],
+       "team": [
+        0.13923172341514253,
+        0.38057031376875233,
+        0.10594210536907378,
+        0.3742558574470313
+       ],
+       "urgency": [
+        0.18232952194161356,
+        0.09314257720964086,
+        0.17596507203552925,
+        0.5485628288132163
+       ],
+       "mood": [
+        0.31719860907194924,
+        0.5107600765043508,
+        0.17204131442369988
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1524.26,
+      "processing_ms": 1522.85,
+      "timing": {
+       "processing_ms": 1522.85,
+       "parse_ms": 0.14,
+       "prepare_ms": 7.49,
+       "queue_ms": 0.0,
+       "inference_ms": 1515.08
+      },
+      "cached_tokens": 1464,
+      "input_tokens": 1617,
+      "decisions": {
+       "refund": false,
+       "team": "technical",
+       "urgency": 2,
+       "mood": "frustrated"
+      },
+      "probabilities": {
+       "refund": [
+        0.17640319992313386
+       ],
+       "team": [
+        0.14251194788134136,
+        0.3838981659419971,
+        0.10648273597298014,
+        0.36710715020368134
+       ],
+       "urgency": [
+        0.17892918123997137,
+        0.08987657047716208,
+        0.1750779015949212,
+        0.5561163466879453
+       ],
+       "mood": [
+        0.3056247027404518,
+        0.5187519347295741,
+        0.17562336252997407
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1465.19,
+      "processing_ms": 1463.77,
+      "timing": {
+       "processing_ms": 1463.77,
+       "parse_ms": 0.19,
+       "prepare_ms": 6.75,
+       "queue_ms": 0.0,
+       "inference_ms": 1456.69
+      },
+      "cached_tokens": 1460,
+      "input_tokens": 1613,
+      "decisions": {
+       "refund": false,
+       "team": "technical",
+       "urgency": 2,
+       "mood": "frustrated"
+      },
+      "probabilities": {
+       "refund": [
+        0.16238003969192505
+       ],
+       "team": [
+        0.1431050130262224,
+        0.44763346839497287,
+        0.08906903730229977,
+        0.32019248127650496
+       ],
+       "urgency": [
+        0.19370671673774606,
+        0.09162071887506427,
+        0.18120862138550084,
+        0.5334639430016888
+       ],
+       "mood": [
+        0.31642817979413,
+        0.5166476887964057,
+        0.1669241314094643
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1455.41,
+      "processing_ms": 1453.94,
+      "timing": {
+       "processing_ms": 1453.94,
+       "parse_ms": 0.13,
+       "prepare_ms": 7.41,
+       "queue_ms": 0.0,
+       "inference_ms": 1446.25
+      },
+      "cached_tokens": 1452,
+      "input_tokens": 1605,
+      "decisions": {
+       "refund": false,
+       "team": "technical",
+       "urgency": 2,
+       "mood": "frustrated"
+      },
+      "probabilities": {
+       "refund": [
+        0.16671037673950195
+       ],
+       "team": [
+        0.13644699955652653,
+        0.4088780642878721,
+        0.0898830308002685,
+        0.36479190535533285
+       ],
+       "urgency": [
+        0.18039383397386596,
+        0.09612786239671399,
+        0.17089119935537575,
+        0.5525871042740442
+       ],
+       "mood": [
+        0.31384307613735013,
+        0.5122548418083018,
+        0.173902082054348
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1448.86,
+      "processing_ms": 1447.46,
+      "timing": {
+       "processing_ms": 1447.46,
+       "parse_ms": 0.15,
+       "prepare_ms": 6.95,
+       "queue_ms": 0.0,
+       "inference_ms": 1440.25
+      },
+      "cached_tokens": 1452,
+      "input_tokens": 1605,
+      "decisions": {
+       "refund": false,
+       "team": "technical",
+       "urgency": 2,
+       "mood": "frustrated"
+      },
+      "probabilities": {
+       "refund": [
+        0.15931752798907542
+       ],
+       "team": [
+        0.14916811772310645,
+        0.43159272945230653,
+        0.09017594836521187,
+        0.3290632044593751
+       ],
+       "urgency": [
+        0.20517057027540675,
+        0.09126991710610749,
+        0.1812545047606937,
+        0.522305007857792
+       ],
+       "mood": [
+        0.3273479640483856,
+        0.5112988352775574,
+        0.161353200674057
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1383.11,
+      "processing_ms": 1381.52,
+      "timing": {
+       "processing_ms": 1381.52,
+       "parse_ms": 0.27,
+       "prepare_ms": 8.04,
+       "queue_ms": 0.0,
+       "inference_ms": 1373.09
+      },
+      "cached_tokens": 1452,
+      "input_tokens": 1605,
+      "decisions": {
+       "refund": false,
+       "team": "technical",
+       "urgency": 2,
+       "mood": "frustrated"
+      },
+      "probabilities": {
+       "refund": [
+        0.1831104037629128
+       ],
+       "team": [
+        0.14576122490527985,
+        0.3900594202442338,
+        0.10608775405781912,
+        0.3580916007926673
+       ],
+       "urgency": [
+        0.18667344331726185,
+        0.09191504660438642,
+        0.17759447892916622,
+        0.5438170311491854
+       ],
+       "mood": [
+        0.3318858792168778,
+        0.5037196353632157,
+        0.16439448541990645
+       ]
+      },
+      "clean": true
+     }
+    ],
+    "after": [
+     {
+      "client_ms": 1492.57,
+      "processing_ms": 1491.08,
+      "timing": {
+       "processing_ms": 1491.08,
+       "parse_ms": 0.14,
+       "prepare_ms": 8.01,
+       "queue_ms": 0.0,
+       "inference_ms": 1482.81
+      },
+      "cached_tokens": 1440,
+      "input_tokens": 1593,
+      "decisions": {
+       "refund": false,
+       "team": "technical",
+       "urgency": 2,
+       "mood": "frustrated"
+      },
+      "probabilities": {
+       "refund": [
+        0.17307846506056881
+       ],
+       "team": [
+        0.13621537184394342,
+        0.39628099804697936,
+        0.10249650325631346,
+        0.36500712685276376
+       ],
+       "urgency": [
+        0.17575645577726107,
+        0.08801054275043713,
+        0.16899240142846406,
+        0.5672406000438377
+       ],
+       "mood": [
+        0.3046834812266153,
+        0.5294910152180644,
+        0.16582550355532025
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1359.91,
+      "processing_ms": 1358.4,
+      "timing": {
+       "processing_ms": 1358.4,
+       "parse_ms": 0.21,
+       "prepare_ms": 7.66,
+       "queue_ms": 0.0,
+       "inference_ms": 1350.42
+      },
+      "cached_tokens": 1452,
+      "input_tokens": 1605,
+      "decisions": {
+       "refund": false,
+       "team": "technical",
+       "urgency": 2,
+       "mood": "frustrated"
+      },
+      "probabilities": {
+       "refund": [
+        0.18694822768789868
+       ],
+       "team": [
+        0.13923172341514253,
+        0.38057031376875233,
+        0.10594210536907378,
+        0.3742558574470313
+       ],
+       "urgency": [
+        0.18232952194161356,
+        0.09314257720964086,
+        0.17596507203552925,
+        0.5485628288132163
+       ],
+       "mood": [
+        0.31719860907194924,
+        0.5107600765043508,
+        0.17204131442369988
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1496.35,
+      "processing_ms": 1494.94,
+      "timing": {
+       "processing_ms": 1494.94,
+       "parse_ms": 0.13,
+       "prepare_ms": 6.81,
+       "queue_ms": 0.0,
+       "inference_ms": 1487.88
+      },
+      "cached_tokens": 1464,
+      "input_tokens": 1617,
+      "decisions": {
+       "refund": false,
+       "team": "technical",
+       "urgency": 2,
+       "mood": "frustrated"
+      },
+      "probabilities": {
+       "refund": [
+        0.17640319992313386
+       ],
+       "team": [
+        0.14251194788134136,
+        0.3838981659419971,
+        0.10648273597298014,
+        0.36710715020368134
+       ],
+       "urgency": [
+        0.17892918123997137,
+        0.08987657047716208,
+        0.1750779015949212,
+        0.5561163466879453
+       ],
+       "mood": [
+        0.3056247027404518,
+        0.5187519347295741,
+        0.17562336252997407
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1501.74,
+      "processing_ms": 1500.17,
+      "timing": {
+       "processing_ms": 1500.17,
+       "parse_ms": 0.14,
+       "prepare_ms": 7.61,
+       "queue_ms": 0.0,
+       "inference_ms": 1492.32
+      },
+      "cached_tokens": 1460,
+      "input_tokens": 1613,
+      "decisions": {
+       "refund": false,
+       "team": "technical",
+       "urgency": 2,
+       "mood": "frustrated"
+      },
+      "probabilities": {
+       "refund": [
+        0.16238003969192505
+       ],
+       "team": [
+        0.1431050130262224,
+        0.44763346839497287,
+        0.08906903730229977,
+        0.32019248127650496
+       ],
+       "urgency": [
+        0.19370671673774606,
+        0.09162071887506427,
+        0.18120862138550084,
+        0.5334639430016888
+       ],
+       "mood": [
+        0.31642817979413,
+        0.5166476887964057,
+        0.1669241314094643
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1320.61,
+      "processing_ms": 1319.17,
+      "timing": {
+       "processing_ms": 1319.17,
+       "parse_ms": 0.14,
+       "prepare_ms": 7.9,
+       "queue_ms": 0.0,
+       "inference_ms": 1311.03
+      },
+      "cached_tokens": 1452,
+      "input_tokens": 1605,
+      "decisions": {
+       "refund": false,
+       "team": "technical",
+       "urgency": 2,
+       "mood": "frustrated"
+      },
+      "probabilities": {
+       "refund": [
+        0.16671037673950195
+       ],
+       "team": [
+        0.13644699955652653,
+        0.4088780642878721,
+        0.0898830308002685,
+        0.36479190535533285
+       ],
+       "urgency": [
+        0.18039383397386596,
+        0.09612786239671399,
+        0.17089119935537575,
+        0.5525871042740442
+       ],
+       "mood": [
+        0.31384307613735013,
+        0.5122548418083018,
+        0.173902082054348
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1497.9,
+      "processing_ms": 1496.62,
+      "timing": {
+       "processing_ms": 1496.62,
+       "parse_ms": 0.19,
+       "prepare_ms": 6.43,
+       "queue_ms": 0.0,
+       "inference_ms": 1489.9
+      },
+      "cached_tokens": 1452,
+      "input_tokens": 1605,
+      "decisions": {
+       "refund": false,
+       "team": "technical",
+       "urgency": 2,
+       "mood": "frustrated"
+      },
+      "probabilities": {
+       "refund": [
+        0.15931752798907542
+       ],
+       "team": [
+        0.14916811772310645,
+        0.43159272945230653,
+        0.09017594836521187,
+        0.3290632044593751
+       ],
+       "urgency": [
+        0.20517057027540675,
+        0.09126991710610749,
+        0.1812545047606937,
+        0.522305007857792
+       ],
+       "mood": [
+        0.3273479640483856,
+        0.5112988352775574,
+        0.161353200674057
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1518.36,
+      "processing_ms": 1516.79,
+      "timing": {
+       "processing_ms": 1516.79,
+       "parse_ms": 0.14,
+       "prepare_ms": 7.94,
+       "queue_ms": 0.0,
+       "inference_ms": 1508.58
+      },
+      "cached_tokens": 1452,
+      "input_tokens": 1605,
+      "decisions": {
+       "refund": false,
+       "team": "technical",
+       "urgency": 2,
+       "mood": "frustrated"
+      },
+      "probabilities": {
+       "refund": [
+        0.1831104037629128
+       ],
+       "team": [
+        0.14576122490527985,
+        0.3900594202442338,
+        0.10608775405781912,
+        0.3580916007926673
+       ],
+       "urgency": [
+        0.18667344331726185,
+        0.09191504660438642,
+        0.17759447892916622,
+        0.5438170311491854
+       ],
+       "mood": [
+        0.3318858792168778,
+        0.5037196353632157,
+        0.16439448541990645
+       ]
+      },
+      "clean": true
+     }
+    ]
+   }
+  },
+  "photo_1q": {
+   "summary": {
+    "before": {
+     "median_ms": 1682.0,
+     "min_ms": 1582.93,
+     "max_ms": 1750.98,
+     "server_ms": 1676.9,
+     "cached_tokens": 0,
+     "input_tokens": 594,
+     "same_decisions_as_reference": 1.0,
+     "max_probability_difference": 0.0
+    },
+    "after": {
+     "median_ms": 1628.7,
+     "min_ms": 1535.01,
+     "max_ms": 1799.45,
+     "server_ms": 1623.6,
+     "cached_tokens": 0,
+     "input_tokens": 594,
+     "same_decisions_as_reference": 1.0,
+     "max_probability_difference": 0.0
+    }
+   },
+   "rows": {
+    "before": [
+     {
+      "client_ms": 1682.02,
+      "processing_ms": 1676.92,
+      "timing": {
+       "processing_ms": 1676.92,
+       "parse_ms": 2.64,
+       "prepare_ms": 36.11,
+       "queue_ms": 0.0,
+       "inference_ms": 1638.03
+      },
+      "cached_tokens": 0,
+      "input_tokens": 594,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.08384700677140787
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1693.34,
+      "processing_ms": 1688.25,
+      "timing": {
+       "processing_ms": 1688.25,
+       "parse_ms": 2.34,
+       "prepare_ms": 37.67,
+       "queue_ms": 0.0,
+       "inference_ms": 1648.12
+      },
+      "cached_tokens": 0,
+      "input_tokens": 591,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.08361522295211009
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1582.93,
+      "processing_ms": 1577.72,
+      "timing": {
+       "processing_ms": 1577.72,
+       "parse_ms": 2.51,
+       "prepare_ms": 36.18,
+       "queue_ms": 0.0,
+       "inference_ms": 1538.9
+      },
+      "cached_tokens": 0,
+      "input_tokens": 591,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.06252484116740288
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1643.21,
+      "processing_ms": 1638.44,
+      "timing": {
+       "processing_ms": 1638.44,
+       "parse_ms": 2.22,
+       "prepare_ms": 36.6,
+       "queue_ms": 0.0,
+       "inference_ms": 1599.52
+      },
+      "cached_tokens": 0,
+      "input_tokens": 594,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.08096849918365479
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1750.98,
+      "processing_ms": 1746.0,
+      "timing": {
+       "processing_ms": 1746.0,
+       "parse_ms": 2.75,
+       "prepare_ms": 36.53,
+       "queue_ms": 0.0,
+       "inference_ms": 1706.6
+      },
+      "cached_tokens": 0,
+      "input_tokens": 590,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.08079551280730236
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1722.52,
+      "processing_ms": 1717.52,
+      "timing": {
+       "processing_ms": 1717.52,
+       "parse_ms": 3.21,
+       "prepare_ms": 37.92,
+       "queue_ms": 0.0,
+       "inference_ms": 1676.26
+      },
+      "cached_tokens": 0,
+      "input_tokens": 594,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.06986182235078381
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1662.79,
+      "processing_ms": 1657.19,
+      "timing": {
+       "processing_ms": 1657.19,
+       "parse_ms": 2.41,
+       "prepare_ms": 35.25,
+       "queue_ms": 0.0,
+       "inference_ms": 1619.41
+      },
+      "cached_tokens": 0,
+      "input_tokens": 595,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.07202343058638493
+       ]
+      },
+      "clean": true
+     }
+    ],
+    "after": [
+     {
+      "client_ms": 1781.64,
+      "processing_ms": 1776.75,
+      "timing": {
+       "processing_ms": 1776.75,
+       "parse_ms": 2.31,
+       "prepare_ms": 35.76,
+       "queue_ms": 0.0,
+       "inference_ms": 1738.57
+      },
+      "cached_tokens": 0,
+      "input_tokens": 594,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.08384700677140787
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1628.69,
+      "processing_ms": 1623.56,
+      "timing": {
+       "processing_ms": 1623.56,
+       "parse_ms": 2.52,
+       "prepare_ms": 36.25,
+       "queue_ms": 0.0,
+       "inference_ms": 1584.67
+      },
+      "cached_tokens": 0,
+      "input_tokens": 591,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.08361522295211009
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1582.29,
+      "processing_ms": 1577.44,
+      "timing": {
+       "processing_ms": 1577.44,
+       "parse_ms": 2.31,
+       "prepare_ms": 36.16,
+       "queue_ms": 0.0,
+       "inference_ms": 1538.86
+      },
+      "cached_tokens": 0,
+      "input_tokens": 591,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.06252484116740288
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1622.37,
+      "processing_ms": 1617.41,
+      "timing": {
+       "processing_ms": 1617.41,
+       "parse_ms": 2.7,
+       "prepare_ms": 37.34,
+       "queue_ms": 0.0,
+       "inference_ms": 1577.25
+      },
+      "cached_tokens": 0,
+      "input_tokens": 594,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.08096849918365479
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1741.65,
+      "processing_ms": 1736.77,
+      "timing": {
+       "processing_ms": 1736.77,
+       "parse_ms": 2.39,
+       "prepare_ms": 36.38,
+       "queue_ms": 0.0,
+       "inference_ms": 1697.89
+      },
+      "cached_tokens": 0,
+      "input_tokens": 590,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.08079551280730236
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1799.45,
+      "processing_ms": 1794.29,
+      "timing": {
+       "processing_ms": 1794.29,
+       "parse_ms": 2.52,
+       "prepare_ms": 36.33,
+       "queue_ms": 0.0,
+       "inference_ms": 1755.33
+      },
+      "cached_tokens": 0,
+      "input_tokens": 594,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.06986182235078381
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1535.01,
+      "processing_ms": 1529.62,
+      "timing": {
+       "processing_ms": 1529.62,
+       "parse_ms": 2.53,
+       "prepare_ms": 36.41,
+       "queue_ms": 0.0,
+       "inference_ms": 1490.54
+      },
+      "cached_tokens": 0,
+      "input_tokens": 595,
+      "decisions": {
+       "refund": false
+      },
+      "probabilities": {
+       "refund": [
+        0.07202343058638493
+       ]
+      },
+      "clean": true
+     }
+    ]
+   }
+  },
+  "repeat_1q": {
+   "summary": {
+    "before": {
+     "median_ms": 66.6,
+     "min_ms": 59.95,
+     "max_ms": 74.46,
+     "server_ms": 65.3,
+     "cached_tokens": 245,
+     "input_tokens": 249,
+     "same_decisions_as_reference": 1.0,
+     "max_probability_difference": 0.0
+    },
+    "after": {
+     "median_ms": 67.7,
+     "min_ms": 60.11,
+     "max_ms": 74.02,
+     "server_ms": 66.3,
+     "cached_tokens": 220,
+     "input_tokens": 224,
+     "same_decisions_as_reference": 1.0,
+     "max_probability_difference": 0.006781064823736971
+    }
+   },
+   "rows": {
+    "before": [
+     {
+      "client_ms": 62.72,
+      "processing_ms": 61.29,
+      "timing": {
+       "processing_ms": 61.29,
+       "parse_ms": 0.2,
+       "prepare_ms": 2.37,
+       "queue_ms": 0.0,
+       "inference_ms": 58.62
+      },
+      "cached_tokens": 245,
+      "input_tokens": 249,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9427186831368527,
+        0.0024118812249779775,
+        0.04651952154803168,
+        0.008349914090137604
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 59.95,
+      "processing_ms": 58.74,
+      "timing": {
+       "processing_ms": 58.74,
+       "parse_ms": 0.18,
+       "prepare_ms": 2.17,
+       "queue_ms": 0.0,
+       "inference_ms": 56.28
+      },
+      "cached_tokens": 245,
+      "input_tokens": 249,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9427186831368527,
+        0.0024118812249779775,
+        0.04651952154803168,
+        0.008349914090137604
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 66.59,
+      "processing_ms": 65.11,
+      "timing": {
+       "processing_ms": 65.11,
+       "parse_ms": 0.14,
+       "prepare_ms": 2.32,
+       "queue_ms": 0.0,
+       "inference_ms": 62.54
+      },
+      "cached_tokens": 245,
+      "input_tokens": 249,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9427186831368527,
+        0.0024118812249779775,
+        0.04651952154803168,
+        0.008349914090137604
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 66.64,
+      "processing_ms": 65.32,
+      "timing": {
+       "processing_ms": 65.32,
+       "parse_ms": 0.16,
+       "prepare_ms": 1.9,
+       "queue_ms": 0.0,
+       "inference_ms": 63.16
+      },
+      "cached_tokens": 245,
+      "input_tokens": 249,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9427186831368527,
+        0.0024118812249779775,
+        0.04651952154803168,
+        0.008349914090137604
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 68.96,
+      "processing_ms": 67.6,
+      "timing": {
+       "processing_ms": 67.6,
+       "parse_ms": 0.18,
+       "prepare_ms": 2.15,
+       "queue_ms": 0.0,
+       "inference_ms": 65.17
+      },
+      "cached_tokens": 245,
+      "input_tokens": 249,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9427186831368527,
+        0.0024118812249779775,
+        0.04651952154803168,
+        0.008349914090137604
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 69.06,
+      "processing_ms": 67.71,
+      "timing": {
+       "processing_ms": 67.71,
+       "parse_ms": 0.16,
+       "prepare_ms": 2.14,
+       "queue_ms": 0.0,
+       "inference_ms": 65.31
+      },
+      "cached_tokens": 245,
+      "input_tokens": 249,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9427186831368527,
+        0.0024118812249779775,
+        0.04651952154803168,
+        0.008349914090137604
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 74.46,
+      "processing_ms": 73.04,
+      "timing": {
+       "processing_ms": 73.04,
+       "parse_ms": 0.11,
+       "prepare_ms": 2.11,
+       "queue_ms": 0.0,
+       "inference_ms": 70.71
+      },
+      "cached_tokens": 245,
+      "input_tokens": 249,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9427186831368527,
+        0.0024118812249779775,
+        0.04651952154803168,
+        0.008349914090137604
+       ]
+      },
+      "clean": true
+     }
+    ],
+    "after": [
+     {
+      "client_ms": 72.19,
+      "processing_ms": 70.72,
+      "timing": {
+       "processing_ms": 70.72,
+       "parse_ms": 0.18,
+       "prepare_ms": 2.04,
+       "queue_ms": 0.0,
+       "inference_ms": 68.39
+      },
+      "cached_tokens": 220,
+      "input_tokens": 224,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9494997479605897,
+        0.002503647526110862,
+        0.041285906929061485,
+        0.006710697584237988
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 67.38,
+      "processing_ms": 65.94,
+      "timing": {
+       "processing_ms": 65.94,
+       "parse_ms": 0.17,
+       "prepare_ms": 1.86,
+       "queue_ms": 0.0,
+       "inference_ms": 63.81
+      },
+      "cached_tokens": 220,
+      "input_tokens": 224,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9494997479605897,
+        0.002503647526110862,
+        0.041285906929061485,
+        0.006710697584237988
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 72.2,
+      "processing_ms": 70.96,
+      "timing": {
+       "processing_ms": 70.96,
+       "parse_ms": 0.18,
+       "prepare_ms": 2.03,
+       "queue_ms": 0.0,
+       "inference_ms": 68.64
+      },
+      "cached_tokens": 220,
+      "input_tokens": 224,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9494997479605897,
+        0.002503647526110862,
+        0.041285906929061485,
+        0.006710697584237988
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 60.11,
+      "processing_ms": 58.34,
+      "timing": {
+       "processing_ms": 58.34,
+       "parse_ms": 0.13,
+       "prepare_ms": 2.68,
+       "queue_ms": 0.0,
+       "inference_ms": 55.39
+      },
+      "cached_tokens": 220,
+      "input_tokens": 224,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9494997479605897,
+        0.002503647526110862,
+        0.041285906929061485,
+        0.006710697584237988
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 74.02,
+      "processing_ms": 72.67,
+      "timing": {
+       "processing_ms": 72.67,
+       "parse_ms": 0.16,
+       "prepare_ms": 2.06,
+       "queue_ms": 0.0,
+       "inference_ms": 70.3
+      },
+      "cached_tokens": 220,
+      "input_tokens": 224,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9494997479605897,
+        0.002503647526110862,
+        0.041285906929061485,
+        0.006710697584237988
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 60.54,
+      "processing_ms": 59.41,
+      "timing": {
+       "processing_ms": 59.41,
+       "parse_ms": 0.17,
+       "prepare_ms": 2.59,
+       "queue_ms": 0.0,
+       "inference_ms": 56.53
+      },
+      "cached_tokens": 220,
+      "input_tokens": 224,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9494997479605897,
+        0.002503647526110862,
+        0.041285906929061485,
+        0.006710697584237988
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 67.72,
+      "processing_ms": 66.3,
+      "timing": {
+       "processing_ms": 66.3,
+       "parse_ms": 0.17,
+       "prepare_ms": 1.91,
+       "queue_ms": 0.0,
+       "inference_ms": 64.09
+      },
+      "cached_tokens": 220,
+      "input_tokens": 224,
+      "decisions": {
+       "team": "billing"
+      },
+      "probabilities": {
+       "team": [
+        0.9494997479605897,
+        0.002503647526110862,
+        0.041285906929061485,
+        0.006710697584237988
+       ]
+      },
+      "clean": true
+     }
+    ]
+   }
+  },
+  "page_12q": {
+   "summary": {
+    "before": {
+     "median_ms": 12195.3,
+     "min_ms": 11883.07,
+     "max_ms": 12317.8,
+     "server_ms": 12192.9,
+     "cached_tokens": 57696,
+     "input_tokens": 59088,
+     "same_decisions_as_reference": 1.0,
+     "max_probability_difference": 0.0
+    },
+    "after": {
+     "median_ms": 10110.9,
+     "min_ms": 9979.04,
+     "max_ms": 10338.21,
+     "server_ms": 10109.2,
+     "cached_tokens": 44664,
+     "input_tokens": 46056,
+     "same_decisions_as_reference": 0.2857142857142857,
+     "max_probability_difference": 0.1519225915953093
+    }
+   },
+   "rows": {
+    "before": [
+     {
+      "client_ms": 11883.07,
+      "processing_ms": 11881.48,
+      "timing": {
+       "processing_ms": 11881.48,
+       "parse_ms": 0.31,
+       "prepare_ms": 12.35,
+       "queue_ms": 0.0,
+       "inference_ms": 11868.68
+      },
+      "cached_tokens": 57696,
+      "input_tokens": 59088,
+      "decisions": {
+       "next": "fill",
+       "done": false,
+       "blocked": false,
+       "loading": false,
+       "expect": "update",
+       "after": "place",
+       "field:e28": "in:first_name",
+       "field:e29": "in:last_name",
+       "field:e30": "in:email",
+       "field:e31": "in:phone",
+       "field:e32": "in:street",
+       "field:e33": "in:city"
+      },
+      "probabilities": {
+       "next": [
+        0.09651732918969884,
+        0.0013217124717071435,
+        0.0005298117609096681,
+        0.0004904782261894928,
+        0.007251706702162291,
+        0.0005578705884426227,
+        0.0002761449063469162,
+        4.174670785860629e-05,
+        0.0006883528356055405,
+        0.0013838540374319416,
+        0.00011260824660482517,
+        0.00010884678035066152,
+        0.00014587048963145757,
+        3.809180891464824e-05,
+        4.476445121217044e-05,
+        4.7275991656805923e-05,
+        0.00010800301667365322,
+        5.0766581292552594e-05,
+        5.487292065199293e-05,
+        0.00016903854956064202,
+        1.6591256542666797e-05,
+        2.060896382691719e-05,
+        4.884260715058313e-05,
+        9.609024985833034e-06,
+        9.558031620223969e-05,
+        0.004474947103449729,
+        0.004421530633020368,
+        6.44595766162636e-05,
+        0.000563177613569819,
+        0.0012293330747242435,
+        0.8617604729100827,
+        0.017146113778796154,
+        0.0002095868781299913
+       ],
+       "done": [
+        0.22681574861430748
+       ],
+       "blocked": [
+        0.045375708321572436
+       ],
+       "loading": [
+        0.025778371360555826
+       ],
+       "expect": [
+        0.14483186710500617,
+        0.4147621424105923,
+        0.033032529302183755,
+        0.40737346118221773
+       ],
+       "after": [
+        0.8396525752265708,
+        0.0028880209813335832,
+        0.15745940379209564
+       ],
+       "field:e28": [
+        0.9774937689157726,
+        0.0005705687252120366,
+        0.00019939043098340627,
+        0.00018612051030211113,
+        0.0025002022891579627,
+        0.002184811759991154,
+        0.002510140898073425,
+        0.0143549964705073
+       ],
+       "field:e29": [
+        0.0026791892569623522,
+        0.9865567888607164,
+        0.0003464284308329528,
+        0.00039894664322637284,
+        0.0006221817586045192,
+        0.007174861766063305,
+        0.0008397575758254212,
+        0.0013818457077686367
+       ],
+       "field:e30": [
+        0.001959159755356847,
+        0.0004934821672200168,
+        0.9880983919796678,
+        0.0007800256206225616,
+        0.0008598860664643645,
+        0.0015407097666693987,
+        0.001571217333355518,
+        0.004697127310643496
+       ],
+       "field:e31": [
+        0.003976891759024009,
+        0.00022515479999896871,
+        0.00022565695749098453,
+        0.992768111445159,
+        0.00023708984434308035,
+        0.00033978658118811414,
+        0.00044850204839502647,
+        0.0017788065644008047
+       ],
+       "field:e32": [
+        0.002400290488770272,
+        0.0002265718536625853,
+        0.0003204110008770864,
+        0.0028114312272263147,
+        0.9928540136002538,
+        0.0005709285698176172,
+        0.0005162240779717147,
+        0.00030012918142062424
+       ],
+       "field:e33": [
+        0.0033490930595464017,
+        0.0018710040232422342,
+        0.000582411484367716,
+        0.0010117209863248287,
+        0.0013294458771850783,
+        0.9885989538914232,
+        0.0028466352116563306,
+        0.000410735466254253
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 11955.76,
+      "processing_ms": 11953.57,
+      "timing": {
+       "processing_ms": 11953.57,
+       "parse_ms": 0.35,
+       "prepare_ms": 11.87,
+       "queue_ms": 0.0,
+       "inference_ms": 11941.19
+      },
+      "cached_tokens": 57696,
+      "input_tokens": 59088,
+      "decisions": {
+       "next": "fill",
+       "done": false,
+       "blocked": false,
+       "loading": false,
+       "expect": "update",
+       "after": "place",
+       "field:e28": "in:first_name",
+       "field:e29": "in:last_name",
+       "field:e30": "in:email",
+       "field:e31": "in:phone",
+       "field:e32": "in:street",
+       "field:e33": "in:city"
+      },
+      "probabilities": {
+       "next": [
+        0.09906228510131436,
+        0.0013359493877657688,
+        0.0005922317432183701,
+        0.0005035724545480503,
+        0.00764650190175886,
+        0.0005806529008286159,
+        0.0002749934176685327,
+        4.477582787845736e-05,
+        0.0006986025751493444,
+        0.0013719780667837877,
+        0.00012129986713518128,
+        0.00010882295330813268,
+        0.00014759145961575822,
+        3.8636593197699675e-05,
+        4.5203505023790325e-05,
+        4.816552914227018e-05,
+        0.00011417172068743119,
+        5.275438824171399e-05,
+        5.573845123553667e-05,
+        0.00017132275178269703,
+        1.731987301012275e-05,
+        2.1683419351883356e-05,
+        5.095411989920853e-05,
+        1.0732105561281762e-05,
+        0.00010389109829500908,
+        0.004809580684273069,
+        0.00450864475273813,
+        6.567193405646858e-05,
+        0.0007083112636245668,
+        0.0011949180478697519,
+        0.8583176626700938,
+        0.016963857949157328,
+        0.0002115214857850283
+       ],
+       "done": [
+        0.225888538746365
+       ],
+       "blocked": [
+        0.04625957848973415
+       ],
+       "loading": [
+        0.026788308817322422
+       ],
+       "expect": [
+        0.14663016577616086,
+        0.4245896276147719,
+        0.032529696337436194,
+        0.39625051027163105
+       ],
+       "after": [
+        0.8406343833002449,
+        0.002945300579125931,
+        0.15642031612062918
+       ],
+       "field:e28": [
+        0.9786419197372118,
+        0.0005809610548579588,
+        0.0002071069595819373,
+        0.00019142719828404176,
+        0.002434506295205431,
+        0.002175329003564571,
+        0.0024120986742320236,
+        0.013356651077062196
+       ],
+       "field:e29": [
+        0.002686674001108603,
+        0.9863886211307552,
+        0.0003477409472893724,
+        0.00040859018811102965,
+        0.0006026743196928673,
+        0.007386180087203503,
+        0.0008623037115435776,
+        0.001317215614295873
+       ],
+       "field:e30": [
+        0.0019993159948066565,
+        0.0004919762615473548,
+        0.9885311506404709,
+        0.0008041012739796378,
+        0.0007843245231251919,
+        0.0015439620136440664,
+        0.0015060918774519496,
+        0.004339077414974273
+       ],
+       "field:e31": [
+        0.003958336615984747,
+        0.00023316141296890713,
+        0.00021262170438900052,
+        0.992866772765379,
+        0.00024378128448227627,
+        0.0003590149347012171,
+        0.0004270830619349555,
+        0.0016992282201597994
+       ],
+       "field:e32": [
+        0.0024657430537948213,
+        0.00023286205632200519,
+        0.0003193305679691744,
+        0.002860726495405628,
+        0.9927047281465703,
+        0.0005534950643323633,
+        0.0005527101922491785,
+        0.0003104044233565682
+       ],
+       "field:e33": [
+        0.003457513423525451,
+        0.0020671289059203037,
+        0.0005635758892079455,
+        0.000988193792926254,
+        0.0013260723861166428,
+        0.9884177499296163,
+        0.0027874682713560227,
+        0.0003922974013310951
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 12175.67,
+      "processing_ms": 12174.19,
+      "timing": {
+       "processing_ms": 12174.19,
+       "parse_ms": 0.37,
+       "prepare_ms": 14.24,
+       "queue_ms": 0.0,
+       "inference_ms": 12159.45
+      },
+      "cached_tokens": 57708,
+      "input_tokens": 59100,
+      "decisions": {
+       "next": "fill",
+       "done": false,
+       "blocked": false,
+       "loading": false,
+       "expect": "update",
+       "after": "place",
+       "field:e28": "in:first_name",
+       "field:e29": "in:last_name",
+       "field:e30": "in:email",
+       "field:e31": "in:phone",
+       "field:e32": "in:street",
+       "field:e33": "in:city"
+      },
+      "probabilities": {
+       "next": [
+        0.09720502785310635,
+        0.001372808240088013,
+        0.0005803397502345016,
+        0.00051389762621254,
+        0.007420368486131216,
+        0.0005922285485503861,
+        0.00028519250893305106,
+        3.9659891592206045e-05,
+        0.0006994734279298473,
+        0.0013532169384254894,
+        0.00011106779119789825,
+        0.00010555555481803115,
+        0.00014053788605926834,
+        3.609861957136802e-05,
+        4.607055594153129e-05,
+        4.9504611481575084e-05,
+        0.00011096530933499186,
+        5.0680897358140116e-05,
+        5.476735163709064e-05,
+        0.00017169736368972938,
+        1.72662148392571e-05,
+        2.1085235839363357e-05,
+        4.8969319280366494e-05,
+        1.0606368041252148e-05,
+        0.0001062058435292316,
+        0.005142685021444927,
+        0.004753340497192354,
+        6.412387296086781e-05,
+        0.0005990084604723515,
+        0.00141959893393378,
+        0.8599975697645844,
+        0.016661442801725275,
+        0.0002189384538633367
+       ],
+       "done": [
+        0.23757593687736894
+       ],
+       "blocked": [
+        0.043536081261395194
+       ],
+       "loading": [
+        0.02589454625429753
+       ],
+       "expect": [
+        0.15021689460004709,
+        0.4120622934708341,
+        0.03388741662930573,
+        0.4038333952998131
+       ],
+       "after": [
+        0.8340903613800968,
+        0.0029344596296674717,
+        0.1629751789902357
+       ],
+       "field:e28": [
+        0.977304122507647,
+        0.0006050296493836484,
+        0.00021498074529904796,
+        0.00019564216630542938,
+        0.002436730598663757,
+        0.002306522153809318,
+        0.002563940417592557,
+        0.01437303176129931
+       ],
+       "field:e29": [
+        0.0026763661506873835,
+        0.9860135989515586,
+        0.00035791594114747006,
+        0.00041830566221870283,
+        0.0006404781065359611,
+        0.007604331768535677,
+        0.0008806145702000966,
+        0.0014083888491161582
+       ],
+       "field:e30": [
+        0.0019597712057066222,
+        0.0005239317689868105,
+        0.9878714957829833,
+        0.0008155280603727165,
+        0.0008131547593477062,
+        0.0016561957773686365,
+        0.001587519233882443,
+        0.004772403411351752
+       ],
+       "field:e31": [
+        0.003912687789901058,
+        0.000231004175900433,
+        0.00022253452463113653,
+        0.992864197268021,
+        0.00023177564569072174,
+        0.0003385178589726506,
+        0.0004470558804675411,
+        0.001752226856415423
+       ],
+       "field:e32": [
+        0.002413910994296634,
+        0.00023571912097332978,
+        0.0003199216374911538,
+        0.002961310959689628,
+        0.9926318907810731,
+        0.0006003155010480475,
+        0.0005400524125146645,
+        0.00029687859291349433
+       ],
+       "field:e33": [
+        0.003345874742601445,
+        0.0021178779993826133,
+        0.0005737364247258116,
+        0.0009989350520490186,
+        0.001233181415845953,
+        0.9885913451732125,
+        0.0027606533064160293,
+        0.0003783958857666461
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 12195.34,
+      "processing_ms": 12192.85,
+      "timing": {
+       "processing_ms": 12192.85,
+       "parse_ms": 0.43,
+       "prepare_ms": 10.47,
+       "queue_ms": 0.0,
+       "inference_ms": 12181.77
+      },
+      "cached_tokens": 57672,
+      "input_tokens": 59064,
+      "decisions": {
+       "next": "fill",
+       "done": false,
+       "blocked": false,
+       "loading": false,
+       "expect": "update",
+       "after": "place",
+       "field:e28": "in:first_name",
+       "field:e29": "in:last_name",
+       "field:e30": "in:email",
+       "field:e31": "in:phone",
+       "field:e32": "in:street",
+       "field:e33": "in:city"
+      },
+      "probabilities": {
+       "next": [
+        0.10366299926639992,
+        0.0014687453183466394,
+        0.0006241066255802139,
+        0.0005639882389560349,
+        0.007676558235389148,
+        0.0006062632414434066,
+        0.00031579236926465744,
+        4.4844274132348175e-05,
+        0.0007487493695895039,
+        0.0014722681624610096,
+        0.0001257429706828765,
+        0.0001222859448822157,
+        0.00015790965970606185,
+        4.0425119335992375e-05,
+        4.781302132306295e-05,
+        4.869062551770084e-05,
+        0.00013645729866716675,
+        5.635212898162017e-05,
+        5.683961451217259e-05,
+        0.00017245213099146225,
+        1.854486104144008e-05,
+        2.3862265562518956e-05,
+        5.4142064094273736e-05,
+        1.0990735252342227e-05,
+        0.00011618858315733886,
+        0.005769645894418879,
+        0.004773798480745529,
+        6.490396592824224e-05,
+        0.0006713948211576065,
+        0.0011448640340325845,
+        0.8496665504619585,
+        0.01931344750945036,
+        0.00022238270703719564
+       ],
+       "done": [
+        0.2331834549727521
+       ],
+       "blocked": [
+        0.04398463375837791
+       ],
+       "loading": [
+        0.025348305702209473
+       ],
+       "expect": [
+        0.14847339247246408,
+        0.41257126889910495,
+        0.03508250310771158,
+        0.4038728355207194
+       ],
+       "after": [
+        0.8478649086867815,
+        0.0028987877880701477,
+        0.14923630352514833
+       ],
+       "field:e28": [
+        0.9786496228921078,
+        0.0005946248460923351,
+        0.0002145765480266309,
+        0.00019729447510524943,
+        0.002468716602785435,
+        0.002132164794540163,
+        0.0025880022615979697,
+        0.013154997579744433
+       ],
+       "field:e29": [
+        0.0027361729175328395,
+        0.9867264197776797,
+        0.00034831415398014223,
+        0.00039609740570164593,
+        0.0005662244024612375,
+        0.00715182780170152,
+        0.0008831223388167117,
+        0.0011918212021261284
+       ],
+       "field:e30": [
+        0.00202958220661232,
+        0.0005305520148924379,
+        0.9883299102864289,
+        0.0008193124275471984,
+        0.0009063912067063909,
+        0.001531471417374305,
+        0.0016089650243734986,
+        0.004243815416064959
+       ],
+       "field:e31": [
+        0.004117085119986745,
+        0.00024010428676931458,
+        0.00023429725770394267,
+        0.9927149980292845,
+        0.000235460246765389,
+        0.00034510844745806973,
+        0.000475595616425535,
+        0.0016373509956064552
+       ],
+       "field:e32": [
+        0.0024212862432029915,
+        0.00024083609407744624,
+        0.00033993923736835315,
+        0.003152272034876446,
+        0.9924187878574188,
+        0.0005645204925321011,
+        0.0005649901119506838,
+        0.0002973679285732259
+       ],
+       "field:e33": [
+        0.00345840651115024,
+        0.0022326085974219384,
+        0.0005710543429380809,
+        0.0010320518535370765,
+        0.0012695132636510464,
+        0.9882356432430852,
+        0.002841597163662341,
+        0.00035912502455408664
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 12237.96,
+      "processing_ms": 12236.4,
+      "timing": {
+       "processing_ms": 12236.4,
+       "parse_ms": 0.38,
+       "prepare_ms": 12.95,
+       "queue_ms": 0.0,
+       "inference_ms": 12222.93
+      },
+      "cached_tokens": 57708,
+      "input_tokens": 59100,
+      "decisions": {
+       "next": "fill",
+       "done": false,
+       "blocked": false,
+       "loading": false,
+       "expect": "navigate",
+       "after": "place",
+       "field:e28": "in:first_name",
+       "field:e29": "in:last_name",
+       "field:e30": "in:email",
+       "field:e31": "in:phone",
+       "field:e32": "in:street",
+       "field:e33": "in:city"
+      },
+      "probabilities": {
+       "next": [
+        0.09749182192222818,
+        0.0013633533211075575,
+        0.0005964780501285019,
+        0.0005243098647206383,
+        0.007652888910498157,
+        0.0005812398667678065,
+        0.00025858761769801894,
+        4.4500800313861e-05,
+        0.0007114657694313263,
+        0.0012818663221341878,
+        0.00011894594205903421,
+        0.0001100876165692351,
+        0.00014433586149870041,
+        3.666293878067433e-05,
+        4.6903343316005705e-05,
+        4.7629607568132667e-05,
+        0.00011495524670439685,
+        5.2060458335177686e-05,
+        5.691912449067043e-05,
+        0.0001752269723508479,
+        1.765143111534662e-05,
+        2.1121486234440345e-05,
+        5.207714210577915e-05,
+        9.955565350199927e-06,
+        0.00010246351903011119,
+        0.00511377717516687,
+        0.004493378046799724,
+        6.505429256220514e-05,
+        0.0006706537013209396,
+        0.0014916838659400258,
+        0.8586414349395723,
+        0.017698859575431033,
+        0.00021164970266984015
+       ],
+       "done": [
+        0.22579514980316162
+       ],
+       "blocked": [
+        0.04455176484533531
+       ],
+       "loading": [
+        0.024766997950332274
+       ],
+       "expect": [
+        0.15141357425073693,
+        0.4002477511754343,
+        0.033759940289855225,
+        0.4145787342839735
+       ],
+       "after": [
+        0.8352614000414004,
+        0.0027713232990958644,
+        0.16196727665950372
+       ],
+       "field:e28": [
+        0.9781086386640319,
+        0.0005655389361883073,
+        0.00019996693180602634,
+        0.00019242960728728636,
+        0.0023448627768222815,
+        0.0021741767284513005,
+        0.0026188588079659784,
+        0.01379552754744697
+       ],
+       "field:e29": [
+        0.0027463689846568082,
+        0.9867981052690463,
+        0.00034672999671800473,
+        0.00039754004588472066,
+        0.0005747661912135423,
+        0.006966703089091762,
+        0.0008463312967971675,
+        0.0013234551265916287
+       ],
+       "field:e30": [
+        0.0019982882688528085,
+        0.0004975271157265304,
+        0.9882641161427917,
+        0.0007977073325943794,
+        0.0008814536024181602,
+        0.001528614624048819,
+        0.0015500237503868247,
+        0.004482269163180733
+       ],
+       "field:e31": [
+        0.004068961471518807,
+        0.00023197236309979374,
+        0.00023461547118635364,
+        0.9926233546572654,
+        0.00024741984724381517,
+        0.000338877589065217,
+        0.00048569754082209197,
+        0.0017691010597986078
+       ],
+       "field:e32": [
+        0.002474868970751097,
+        0.0002311207853956212,
+        0.00033557398465761524,
+        0.0030085836430249475,
+        0.9925018224876975,
+        0.0005686701780477007,
+        0.0005634962153426513,
+        0.0003158637350828418
+       ],
+       "field:e33": [
+        0.0034625265792474456,
+        0.0019988262192597206,
+        0.0005801314418829095,
+        0.0010535483312818785,
+        0.0013127436765949423,
+        0.9883415381686922,
+        0.002849152857694691,
+        0.0004015327253461935
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 12317.8,
+      "processing_ms": 12315.36,
+      "timing": {
+       "processing_ms": 12315.36,
+       "parse_ms": 0.46,
+       "prepare_ms": 11.83,
+       "queue_ms": 0.0,
+       "inference_ms": 12302.88
+      },
+      "cached_tokens": 57684,
+      "input_tokens": 59076,
+      "decisions": {
+       "next": "fill",
+       "done": false,
+       "blocked": false,
+       "loading": false,
+       "expect": "update",
+       "after": "place",
+       "field:e28": "in:first_name",
+       "field:e29": "in:last_name",
+       "field:e30": "in:email",
+       "field:e31": "in:phone",
+       "field:e32": "in:street",
+       "field:e33": "in:city"
+      },
+      "probabilities": {
+       "next": [
+        0.09707535851444643,
+        0.0014039278099997415,
+        0.0005704670357860012,
+        0.000529790066946485,
+        0.007691690270737493,
+        0.0005788232112128438,
+        0.00028526657984456337,
+        4.1396128131646306e-05,
+        0.0007295827999559659,
+        0.0013839134549413867,
+        0.00011924841296606528,
+        0.00011479913575910368,
+        0.00013992915115773377,
+        3.902626868942406e-05,
+        4.418478805823841e-05,
+        4.707287030814243e-05,
+        0.00013343679959449583,
+        5.293797247628835e-05,
+        5.5873981459234595e-05,
+        0.00017123563241821596,
+        1.6480444255498608e-05,
+        2.0662277268120372e-05,
+        4.942386319217756e-05,
+        9.907517827747033e-06,
+        0.00010051074836872803,
+        0.005227499667394205,
+        0.004492414671847794,
+        6.887051165487097e-05,
+        0.0005769141745484005,
+        0.0014980350462481412,
+        0.8599125189497346,
+        0.01661004320571132,
+        0.0002087580370588876
+       ],
+       "done": [
+        0.23242855072021484
+       ],
+       "blocked": [
+        0.04285312412043568
+       ],
+       "loading": [
+        0.025814609169342587
+       ],
+       "expect": [
+        0.14794874521975396,
+        0.4234812652352735,
+        0.03522492278870023,
+        0.39334506675627234
+       ],
+       "after": [
+        0.8405769055276712,
+        0.0027746339935845687,
+        0.1566484604787443
+       ],
+       "field:e28": [
+        0.9772425484622691,
+        0.0005678645213120956,
+        0.0002132211125852993,
+        0.000189693415513886,
+        0.0025765442326540623,
+        0.0022681958950364887,
+        0.002564542045570137,
+        0.01437739031505888
+       ],
+       "field:e29": [
+        0.002701209567918507,
+        0.9862548499665053,
+        0.00034578909247414417,
+        0.00039547034864378266,
+        0.0006682009992911909,
+        0.007456173496450342,
+        0.0008475126053137737,
+        0.0013307939234029975
+       ],
+       "field:e30": [
+        0.0019854321737381806,
+        0.0004995392086137793,
+        0.9877139028800437,
+        0.0008080470384173172,
+        0.0009483205786957672,
+        0.001607986797165197,
+        0.0016620703305025863,
+        0.0047747009928234396
+       ],
+       "field:e31": [
+        0.004032814795609307,
+        0.00023557223438297627,
+        0.0002244196031164407,
+        0.9926265878167138,
+        0.0002516930349295224,
+        0.0003638690032855049,
+        0.00047046131456713187,
+        0.0017945821973953855
+       ],
+       "field:e32": [
+        0.0024411843034269124,
+        0.00023182856406732147,
+        0.00032841314466836307,
+        0.0030398882656850834,
+        0.9924850224120726,
+        0.0005703376817580931,
+        0.0005812006862136603,
+        0.00032212494210794967
+       ],
+       "field:e33": [
+        0.0034125799835751846,
+        0.0020789979627764254,
+        0.0005537407865914307,
+        0.001039246592963183,
+        0.0013148639499061285,
+        0.9883153724767557,
+        0.002897434486162014,
+        0.0003877637612698874
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 12244.02,
+      "processing_ms": 12242.34,
+      "timing": {
+       "processing_ms": 12242.34,
+       "parse_ms": 0.44,
+       "prepare_ms": 13.42,
+       "queue_ms": 0.0,
+       "inference_ms": 12228.31
+      },
+      "cached_tokens": 57684,
+      "input_tokens": 59076,
+      "decisions": {
+       "next": "fill",
+       "done": false,
+       "blocked": false,
+       "loading": false,
+       "expect": "navigate",
+       "after": "place",
+       "field:e28": "in:first_name",
+       "field:e29": "in:last_name",
+       "field:e30": "in:email",
+       "field:e31": "in:phone",
+       "field:e32": "in:street",
+       "field:e33": "in:city"
+      },
+      "probabilities": {
+       "next": [
+        0.10089564277745147,
+        0.001523522303992564,
+        0.0006521666043713727,
+        0.0006012579515362976,
+        0.009493787729970723,
+        0.000763222397109238,
+        0.00031956698367975654,
+        4.850871460669043e-05,
+        0.0007230345476279891,
+        0.0013997168216812585,
+        0.000121805845441168,
+        0.00011528210545850532,
+        0.00014377770938542612,
+        3.679693310625668e-05,
+        4.752802830208154e-05,
+        5.0866961598134605e-05,
+        0.000143306794858853,
+        5.4698164356261745e-05,
+        5.61895865032859e-05,
+        0.0001715498211942986,
+        1.829044586788783e-05,
+        2.1998281127246223e-05,
+        5.479548392688965e-05,
+        1.0211280777337601e-05,
+        0.0001163690316577367,
+        0.006138682803286099,
+        0.004464066101516327,
+        7.518738823429628e-05,
+        0.0006647808447184806,
+        0.0011688292672093375,
+        0.8478494844197533,
+        0.021773982694511793,
+        0.00028109317518166627
+       ],
+       "done": [
+        0.21909983129650606
+       ],
+       "blocked": [
+        0.042787768903101285
+       ],
+       "loading": [
+        0.02382217383119723
+       ],
+       "expect": [
+        0.14207041051878913,
+        0.40346308941449094,
+        0.030439063453092226,
+        0.42402743661362774
+       ],
+       "after": [
+        0.8343190084908562,
+        0.002535476621677385,
+        0.16314551488746645
+       ],
+       "field:e28": [
+        0.9770560179705725,
+        0.0005821387116515425,
+        0.00020662783756623948,
+        0.00018309423308081376,
+        0.002931861181418628,
+        0.002270065228291366,
+        0.0025175304399022475,
+        0.014252664397516627
+       ],
+       "field:e29": [
+        0.002626337301251773,
+        0.9860565502536047,
+        0.00033177335907245986,
+        0.00038652048634563364,
+        0.0007127828314836359,
+        0.007675015243149144,
+        0.0008841941455467563,
+        0.0013268263795458974
+       ],
+       "field:e30": [
+        0.0018817187680753797,
+        0.00049245113462619,
+        0.9877806986451476,
+        0.000781812071504908,
+        0.001087485938324851,
+        0.0016342793963988703,
+        0.0016143771492243652,
+        0.004727176896697783
+       ],
+       "field:e31": [
+        0.003961224481386308,
+        0.0002298648269542693,
+        0.0002307997147261174,
+        0.9926743869850982,
+        0.0002875243013124157,
+        0.00036792037142837594,
+        0.0004823508966370515,
+        0.0017659284224572729
+       ],
+       "field:e32": [
+        0.002347004814632738,
+        0.00023217937090051584,
+        0.00032860159737421426,
+        0.0029416931566643226,
+        0.9927439017168723,
+        0.0005895483727818488,
+        0.0005290083313616137,
+        0.0002880626394124536
+       ],
+       "field:e33": [
+        0.0032747948807749514,
+        0.0020551702347704633,
+        0.0005689090432287515,
+        0.0009937016232673386,
+        0.0014976297879328994,
+        0.9882708727516908,
+        0.0029597498761272443,
+        0.00037917180220753427
+       ]
+      },
+      "clean": true
+     }
+    ],
+    "after": [
+     {
+      "client_ms": 9979.04,
+      "processing_ms": 9976.94,
+      "timing": {
+       "processing_ms": 9976.94,
+       "parse_ms": 0.34,
+       "prepare_ms": 10.68,
+       "queue_ms": 0.0,
+       "inference_ms": 9965.6
+      },
+      "cached_tokens": 44664,
+      "input_tokens": 46056,
+      "decisions": {
+       "next": "fill",
+       "done": false,
+       "blocked": false,
+       "loading": false,
+       "expect": "navigate",
+       "after": "place",
+       "field:e28": "in:first_name",
+       "field:e29": "in:last_name",
+       "field:e30": "in:email",
+       "field:e31": "in:phone",
+       "field:e32": "in:street",
+       "field:e33": "in:city"
+      },
+      "probabilities": {
+       "next": [
+        0.13854080583919548,
+        0.0018230703617733955,
+        0.0010866798807288363,
+        0.001384804272647273,
+        0.013257372332085668,
+        0.0014010423475672908,
+        0.0005864032489284021,
+        8.276708190757744e-05,
+        0.0010978214092211387,
+        0.002152876252536743,
+        0.0002135999261220007,
+        0.0001391714482496583,
+        0.00015342359417380147,
+        4.730917184639963e-05,
+        7.405394795022414e-05,
+        8.438921301892733e-05,
+        0.00026079718646316284,
+        7.839757827612709e-05,
+        9.156728725061289e-05,
+        0.00021526043063421028,
+        3.3456999868418394e-05,
+        3.2968215582686265e-05,
+        8.524402163223754e-05,
+        2.1929085280941044e-05,
+        0.00029312153072194407,
+        0.03666403183052318,
+        0.004792425831752784,
+        9.037974909211631e-05,
+        0.0004888119925790124,
+        0.0010728731398306746,
+        0.7460644323397128,
+        0.04719622855215394,
+        0.00039248390069235425
+       ],
+       "done": [
+        0.24134967450349554
+       ],
+       "blocked": [
+        0.021095866455300896
+       ],
+       "loading": [
+        0.015108461562117849
+       ],
+       "expect": [
+        0.10550634954289666,
+        0.3136432959780482,
+        0.02155430170152815,
+        0.559296052777527
+       ],
+       "after": [
+        0.89820658930571,
+        0.0024722691096377186,
+        0.09932114158465234
+       ],
+       "field:e28": [
+        0.9787939849724083,
+        0.00028706249033849684,
+        0.00014677050151987048,
+        0.0001149100579012205,
+        0.0025473605073549842,
+        0.0011855186970615432,
+        0.0026674934368400805,
+        0.014256899336575481
+       ],
+       "field:e29": [
+        0.002236092237008197,
+        0.990790012468682,
+        0.00030199249249141506,
+        0.00030158495155230774,
+        0.000541246788801754,
+        0.004433551350860385,
+        0.0005606604989661146,
+        0.0008348592116378277
+       ],
+       "field:e30": [
+        0.0017337668388386382,
+        0.0007111782784044759,
+        0.9908876248342721,
+        0.0007232986848046764,
+        0.0005567343227569154,
+        0.0012642481379317207,
+        0.0010938902662722674,
+        0.003029258636719282
+       ],
+       "field:e31": [
+        0.003624944013541651,
+        0.00022826233162635029,
+        0.0002003204716221519,
+        0.9945697776753194,
+        0.00022867193893588245,
+        0.00017189573541530302,
+        0.00023315186245080187,
+        0.0007429759710884867
+       ],
+       "field:e32": [
+        0.0018677589908256376,
+        0.0003231594658810464,
+        0.00048264629877444967,
+        0.003340479594383884,
+        0.9929716913771811,
+        0.0004460242514121753,
+        0.0003252296794929407,
+        0.00024301034204878266
+       ],
+       "field:e33": [
+        0.0027076500122139684,
+        0.004243706444775275,
+        0.0005026717662545015,
+        0.0011402800692952033,
+        0.001320993207089427,
+        0.9885158156530015,
+        0.0013226672594534982,
+        0.0002462155879166147
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 10067.45,
+      "processing_ms": 10065.84,
+      "timing": {
+       "processing_ms": 10065.84,
+       "parse_ms": 0.33,
+       "prepare_ms": 11.93,
+       "queue_ms": 0.01,
+       "inference_ms": 10053.43
+      },
+      "cached_tokens": 44664,
+      "input_tokens": 46056,
+      "decisions": {
+       "next": "fill",
+       "done": false,
+       "blocked": false,
+       "loading": false,
+       "expect": "navigate",
+       "after": "place",
+       "field:e28": "in:first_name",
+       "field:e29": "in:last_name",
+       "field:e30": "in:email",
+       "field:e31": "in:phone",
+       "field:e32": "in:street",
+       "field:e33": "in:city"
+      },
+      "probabilities": {
+       "next": [
+        0.14440648461619845,
+        0.0020258561994063637,
+        0.001109290185214032,
+        0.001428176319833264,
+        0.014325366557738552,
+        0.001545027967936234,
+        0.0006148511397850135,
+        8.769414249524186e-05,
+        0.001102271156116019,
+        0.0020022236559111843,
+        0.0002120544552707846,
+        0.0001341467596671412,
+        0.000146609281979147,
+        4.744443207212258e-05,
+        7.552097774567997e-05,
+        8.134301721181055e-05,
+        0.0002634071607545891,
+        8.049293069195506e-05,
+        9.370599714629125e-05,
+        0.00022470327120417422,
+        3.700335998877577e-05,
+        3.594624700602211e-05,
+        8.76286006681279e-05,
+        2.547531803018395e-05,
+        0.00032752051364189213,
+        0.040510748153691434,
+        0.005262936074088265,
+        9.970233945548818e-05,
+        0.0005503926154636201,
+        0.001109840364032754,
+        0.7305365307955518,
+        0.05094267499847236,
+        0.0004669303955312239
+       ],
+       "done": [
+        0.24623303482283704
+       ],
+       "blocked": [
+        0.020574167064217223
+       ],
+       "loading": [
+        0.01588526782094268
+       ],
+       "expect": [
+        0.10622338067076417,
+        0.3266522841778286,
+        0.021535193266819505,
+        0.5455891418845877
+       ],
+       "after": [
+        0.8951611475091464,
+        0.0026367578992219838,
+        0.10220209459163156
+       ],
+       "field:e28": [
+        0.9794020632390384,
+        0.0002890500757881941,
+        0.0001431480338146478,
+        0.00011273943504607102,
+        0.0024923486583225043,
+        0.0011219163401920518,
+        0.0025325440748979774,
+        0.013906190142900083
+       ],
+       "field:e29": [
+        0.0022395455390193607,
+        0.9909886561186623,
+        0.00029425118817661436,
+        0.00030534321076116283,
+        0.0005378231204802301,
+        0.004241132576049568,
+        0.0005362907456232387,
+        0.000856957501227504
+       ],
+       "field:e30": [
+        0.0017965464862840948,
+        0.0006968654256528048,
+        0.9907380219649524,
+        0.0007269122780514698,
+        0.0005947478274651054,
+        0.0011679652235018676,
+        0.0010712374800249478,
+        0.003207703314067283
+       ],
+       "field:e31": [
+        0.0035863014254699497,
+        0.0002259393126395739,
+        0.00018562304144505382,
+        0.9946854927552857,
+        0.00021466710781949214,
+        0.00016131147628484037,
+        0.0002167621471006199,
+        0.0007239027339547494
+       ],
+       "field:e32": [
+        0.00190630508492447,
+        0.00032633444045356924,
+        0.0004642643614237751,
+        0.0034789193870051055,
+        0.9928237790917627,
+        0.000424968136729892,
+        0.0003251266605940428,
+        0.00025030283710642404
+       ],
+       "field:e33": [
+        0.0027248071843967605,
+        0.004333880169838776,
+        0.0004960917759578227,
+        0.001123089435242757,
+        0.0013672891939029912,
+        0.9883795761184213,
+        0.0013210429754847081,
+        0.000254223146754866
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 10153.88,
+      "processing_ms": 10151.37,
+      "timing": {
+       "processing_ms": 10151.37,
+       "parse_ms": 0.39,
+       "prepare_ms": 11.09,
+       "queue_ms": 0.0,
+       "inference_ms": 10139.75
+      },
+      "cached_tokens": 44676,
+      "input_tokens": 46068,
+      "decisions": {
+       "next": "fill",
+       "done": false,
+       "blocked": false,
+       "loading": false,
+       "expect": "navigate",
+       "after": "place",
+       "field:e28": "in:first_name",
+       "field:e29": "in:last_name",
+       "field:e30": "in:email",
+       "field:e31": "in:phone",
+       "field:e32": "in:street",
+       "field:e33": "in:city"
+      },
+      "probabilities": {
+       "next": [
+        0.13828807979654112,
+        0.0019285260807601274,
+        0.0011679177329661705,
+        0.0013956087551018521,
+        0.01379260784394232,
+        0.0015013875575342515,
+        0.00065126531568393,
+        8.971930161444028e-05,
+        0.0011471472606263136,
+        0.0022452170815172976,
+        0.00022720543927957156,
+        0.0001480542259246775,
+        0.0001590366581397947,
+        4.864351981592413e-05,
+        8.015617589001314e-05,
+        8.5888146157508e-05,
+        0.0002740495529435239,
+        8.562186793842653e-05,
+        9.85644431221081e-05,
+        0.00023028040446655993,
+        3.5465301832497174e-05,
+        3.62523639903981e-05,
+        8.889487013847495e-05,
+        2.3992446430498417e-05,
+        0.0003174594873954025,
+        0.03891587604706832,
+        0.004785143739282108,
+        9.813749720803093e-05,
+        0.0005353771231848842,
+        0.0011040511236723868,
+        0.7458179544776472,
+        0.04415806726820506,
+        0.0004383510939788389
+       ],
+       "done": [
+        0.2490903251008641
+       ],
+       "blocked": [
+        0.021189657379230745
+       ],
+       "loading": [
+        0.015801283041051117
+       ],
+       "expect": [
+        0.10803245410444044,
+        0.31590850337998955,
+        0.023720719803896537,
+        0.5523383227116735
+       ],
+       "after": [
+        0.8972640970580401,
+        0.002432889234815197,
+        0.10030301370714473
+       ],
+       "field:e28": [
+        0.9788416257850034,
+        0.00030044298160304244,
+        0.00014971483675711917,
+        0.00011746680959961227,
+        0.0026797606307633944,
+        0.0011692636455206504,
+        0.002749973274142858,
+        0.01399175203660986
+       ],
+       "field:e29": [
+        0.0022678107781289197,
+        0.990813923735712,
+        0.00029388748604665036,
+        0.0003108265267713039,
+        0.0005392690142295374,
+        0.004397578128500816,
+        0.0005659170638159051,
+        0.0008107872667949053
+       ],
+       "field:e30": [
+        0.0017900635780553347,
+        0.0007025677501250968,
+        0.9912609490858085,
+        0.0007268688665604874,
+        0.0005672663119816094,
+        0.0011746960265420887,
+        0.0010025653788555777,
+        0.002775023002071324
+       ],
+       "field:e31": [
+        0.0036394163664026803,
+        0.00022619631299634376,
+        0.0001894864286457578,
+        0.994617240934244,
+        0.00022070712675049533,
+        0.0001638392742409059,
+        0.00022319292860852437,
+        0.0007199206281113687
+       ],
+       "field:e32": [
+        0.001917537779634062,
+        0.00032900698925042606,
+        0.0004309498499544146,
+        0.0033769060606676496,
+        0.9929454389772896,
+        0.00042185749311977595,
+        0.00034038961382976064,
+        0.00023791323625436175
+       ],
+       "field:e33": [
+        0.0027916777637798907,
+        0.004694911532436584,
+        0.0004942552061401648,
+        0.0011066551971368602,
+        0.0012870572647155547,
+        0.98803923012473,
+        0.0013428383632484657,
+        0.00024337454781239338
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 10110.86,
+      "processing_ms": 10109.24,
+      "timing": {
+       "processing_ms": 10109.24,
+       "parse_ms": 0.31,
+       "prepare_ms": 13.63,
+       "queue_ms": 0.0,
+       "inference_ms": 10095.16
+      },
+      "cached_tokens": 44640,
+      "input_tokens": 46032,
+      "decisions": {
+       "next": "fill",
+       "done": false,
+       "blocked": false,
+       "loading": false,
+       "expect": "navigate",
+       "after": "place",
+       "field:e28": "in:first_name",
+       "field:e29": "in:last_name",
+       "field:e30": "in:email",
+       "field:e31": "in:phone",
+       "field:e32": "in:street",
+       "field:e33": "in:city"
+      },
+      "probabilities": {
+       "next": [
+        0.14296166927312656,
+        0.001972521002096724,
+        0.0011638662812458692,
+        0.001407150560729011,
+        0.01509393693173789,
+        0.0014555335844993456,
+        0.0005879451772261954,
+        8.419769631231156e-05,
+        0.0011141333053726085,
+        0.0021304456075339102,
+        0.00022407669681481077,
+        0.00014861046270633955,
+        0.00014920918672025373,
+        4.7462531437475556e-05,
+        7.647768682753416e-05,
+        8.458916466882313e-05,
+        0.0002508640230538098,
+        8.143119526488643e-05,
+        9.409715346688124e-05,
+        0.0002307596640370081,
+        3.6260252196508674e-05,
+        3.4844285328632134e-05,
+        8.805416493921851e-05,
+        2.447116514148407e-05,
+        0.00032886010768286674,
+        0.03828610195281422,
+        0.005009339306130611,
+        9.69575434735173e-05,
+        0.0004891858664994016,
+        0.0010616220777801058,
+        0.7385109236667786,
+        0.04628343614003579,
+        0.0003909662863208307
+       ],
+       "done": [
+        0.24270869429843583
+       ],
+       "blocked": [
+        0.02055987289578054
+       ],
+       "loading": [
+        0.015647776308299777
+       ],
+       "expect": [
+        0.10254518859629835,
+        0.3226027840812226,
+        0.021740047625564838,
+        0.5531119796969142
+       ],
+       "after": [
+        0.8936559824244971,
+        0.0024354682098468605,
+        0.10390854936565606
+       ],
+       "field:e28": [
+        0.9787432858946773,
+        0.000320540062250018,
+        0.000158909019637646,
+        0.00012141940902896731,
+        0.0027501163193612505,
+        0.0011204690342200042,
+        0.002531709540519257,
+        0.014253550720305546
+       ],
+       "field:e29": [
+        0.002292498779612689,
+        0.9910723853429919,
+        0.00030753873013268337,
+        0.00031479574136296785,
+        0.0005592479881403634,
+        0.004124566100528875,
+        0.0005302129582997141,
+        0.0007987543589308357
+       ],
+       "field:e30": [
+        0.0018034934629307445,
+        0.0007315961356288811,
+        0.9910695478408614,
+        0.0007470222716006757,
+        0.0005935957261492819,
+        0.0011600602796739098,
+        0.0009704282783678938,
+        0.002924256004787223
+       ],
+       "field:e31": [
+        0.003594380515393693,
+        0.00021886919812958507,
+        0.00019492191196124453,
+        0.9946395602114392,
+        0.0002315037673654082,
+        0.000162446403244671,
+        0.00022425449807504636,
+        0.0007340634943912011
+       ],
+       "field:e32": [
+        0.0018142034236028784,
+        0.00030087492868358757,
+        0.0004877426174391445,
+        0.003555101284402499,
+        0.992863698469796,
+        0.0004076175034023697,
+        0.0003303355425164509,
+        0.00024042623015704657
+       ],
+       "field:e33": [
+        0.0026554886833663055,
+        0.004373786990130755,
+        0.0004988373279069498,
+        0.0011707579302659454,
+        0.0013912855708444398,
+        0.988322321929227,
+        0.0013450689207073555,
+        0.0002424526475512284
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 10234.33,
+      "processing_ms": 10232.15,
+      "timing": {
+       "processing_ms": 10232.15,
+       "parse_ms": 0.38,
+       "prepare_ms": 11.3,
+       "queue_ms": 0.0,
+       "inference_ms": 10220.33
+      },
+      "cached_tokens": 44676,
+      "input_tokens": 46068,
+      "decisions": {
+       "next": "fill",
+       "done": false,
+       "blocked": false,
+       "loading": false,
+       "expect": "navigate",
+       "after": "place",
+       "field:e28": "in:first_name",
+       "field:e29": "in:last_name",
+       "field:e30": "in:email",
+       "field:e31": "in:phone",
+       "field:e32": "in:street",
+       "field:e33": "in:city"
+      },
+      "probabilities": {
+       "next": [
+        0.1435387709969294,
+        0.0018270561441830603,
+        0.0011004564427008403,
+        0.001316561577546685,
+        0.013469664186370543,
+        0.0014460814210442744,
+        0.000577568475703868,
+        7.971862100047142e-05,
+        0.0010878764867896969,
+        0.0019639322717611707,
+        0.0001984331873830877,
+        0.00013405574816865835,
+        0.0001428094235446456,
+        4.378329986878843e-05,
+        7.549393085996135e-05,
+        7.970767796037697e-05,
+        0.00025217665462615017,
+        8.172436237927434e-05,
+        9.054624985691422e-05,
+        0.00021653408164486648,
+        3.460189641666223e-05,
+        3.428132136676737e-05,
+        8.665993539634629e-05,
+        2.2986435976025257e-05,
+        0.00030590532257163805,
+        0.03751724531971603,
+        0.005185258500262121,
+        9.601167265175131e-05,
+        0.000548238625321331,
+        0.0011450884466333376,
+        0.7402260197113251,
+        0.04666710205362183,
+        0.0004076495184184044
+       ],
+       "done": [
+        0.23804057779847715
+       ],
+       "blocked": [
+        0.021280517999832688
+       ],
+       "loading": [
+        0.015048296625257652
+       ],
+       "expect": [
+        0.10789473515592121,
+        0.3161660181904736,
+        0.022260070178807826,
+        0.5536791764747974
+       ],
+       "after": [
+        0.8962139286947117,
+        0.0023390352203167554,
+        0.10144703608497152
+       ],
+       "field:e28": [
+        0.9798866022429726,
+        0.000280017676592301,
+        0.00014236367290012514,
+        0.00011187816686002261,
+        0.002552423188677302,
+        0.001075647433977294,
+        0.0026481536043473234,
+        0.013302914013672982
+       ],
+       "field:e29": [
+        0.002312028811330592,
+        0.9909127486417747,
+        0.0003008593088450348,
+        0.000310135019877102,
+        0.0005316342065040031,
+        0.004302270302029138,
+        0.0005645805579264798,
+        0.0007657431517129479
+       ],
+       "field:e30": [
+        0.0018158489950280633,
+        0.0007253210105050837,
+        0.9909024895771676,
+        0.0007298784957597452,
+        0.0005497696726976187,
+        0.0011484265631142314,
+        0.0011000244480442833,
+        0.0030282412376833132
+       ],
+       "field:e31": [
+        0.003842335994771253,
+        0.00022065090018799806,
+        0.00019822374977756258,
+        0.9943410421937547,
+        0.00023458079416946258,
+        0.00017558702267844845,
+        0.00023948503711408153,
+        0.0007480943075465027
+       ],
+       "field:e32": [
+        0.00189029472138544,
+        0.00031576983778778406,
+        0.00046903340309455675,
+        0.0033874460530021137,
+        0.9929338703588646,
+        0.000447230530420477,
+        0.0003348196918247058,
+        0.00022153540362030534
+       ],
+       "field:e33": [
+        0.00282220722884197,
+        0.004393118808857062,
+        0.0005041519658207103,
+        0.0011531527615194332,
+        0.001239022563775988,
+        0.9883906041712514,
+        0.0012687246519599957,
+        0.00022901784797344218
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 10081.6,
+      "processing_ms": 10079.85,
+      "timing": {
+       "processing_ms": 10079.85,
+       "parse_ms": 0.48,
+       "prepare_ms": 14.09,
+       "queue_ms": 0.0,
+       "inference_ms": 10064.92
+      },
+      "cached_tokens": 44652,
+      "input_tokens": 46044,
+      "decisions": {
+       "next": "fill",
+       "done": false,
+       "blocked": false,
+       "loading": false,
+       "expect": "navigate",
+       "after": "place",
+       "field:e28": "in:first_name",
+       "field:e29": "in:last_name",
+       "field:e30": "in:email",
+       "field:e31": "in:phone",
+       "field:e32": "in:street",
+       "field:e33": "in:city"
+      },
+      "probabilities": {
+       "next": [
+        0.14063300285470928,
+        0.0018931294451085545,
+        0.0011028634690127056,
+        0.0013803487036502143,
+        0.013634199366840195,
+        0.0015310808186279868,
+        0.0005635841554093464,
+        8.006872720479835e-05,
+        0.0011106317470743299,
+        0.0022822611650689046,
+        0.0002211325205369983,
+        0.000149147062152943,
+        0.00014704774464053806,
+        4.6182456877621265e-05,
+        7.179066644551863e-05,
+        8.493864935949511e-05,
+        0.0002622790069921313,
+        8.308063170700461e-05,
+        9.506873965810921e-05,
+        0.00022839235467717693,
+        3.4702458153909804e-05,
+        3.3564025438268895e-05,
+        9.03884507879665e-05,
+        2.3211370870720912e-05,
+        0.00030432324475939207,
+        0.03909291725412589,
+        0.0046470561372466985,
+        9.493609167396676e-05,
+        0.00048452581134128916,
+        0.0011478382005918886,
+        0.7392178822824519,
+        0.04879801380161511,
+        0.00043041058518919186
+       ],
+       "done": [
+        0.24415738516811453
+       ],
+       "blocked": [
+        0.0201372358223384
+       ],
+       "loading": [
+        0.014772854415189003
+       ],
+       "expect": [
+        0.10727002271879423,
+        0.3297500846954047,
+        0.021739091319235203,
+        0.5412408012665659
+       ],
+       "after": [
+        0.8998500654482279,
+        0.0022860672197151898,
+        0.0978638673320569
+       ],
+       "field:e28": [
+        0.9796690115715595,
+        0.00032222680576060554,
+        0.00014698131073675227,
+        0.00011539071877730188,
+        0.0026777318518271917,
+        0.0011936699459587166,
+        0.0024764404518698604,
+        0.013398547343510064
+       ],
+       "field:e29": [
+        0.00218809739613153,
+        0.9909796458383526,
+        0.0002926187223016155,
+        0.0003056853814122062,
+        0.0005358563946683328,
+        0.004382737333180456,
+        0.0005185661004796489,
+        0.0007967928334736257
+       ],
+       "field:e30": [
+        0.001773479709588267,
+        0.0007613396590596084,
+        0.9909436511228972,
+        0.0007245768070826598,
+        0.0006088156251861488,
+        0.001180680329446572,
+        0.0010166768719479021,
+        0.002990779874791687
+       ],
+       "field:e31": [
+        0.0036887092628562585,
+        0.00022882832346712248,
+        0.00018630882137046206,
+        0.9945516365596087,
+        0.0002370523236240145,
+        0.0001688111186749745,
+        0.0002186595908503532,
+        0.0007199939995481567
+       ],
+       "field:e32": [
+        0.001887196641850868,
+        0.0003175116088444849,
+        0.0004599088198419467,
+        0.0035628470898776033,
+        0.9927748267612527,
+        0.000440706869542893,
+        0.00032398153576071855,
+        0.00023302067302880588
+       ],
+       "field:e33": [
+        0.002663178439315727,
+        0.004432575427874196,
+        0.00048721495664992516,
+        0.0011090351326958536,
+        0.0013646778310340423,
+        0.9884430429541863,
+        0.001263035727293994,
+        0.00023723953095002964
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 10338.21,
+      "processing_ms": 10336.16,
+      "timing": {
+       "processing_ms": 10336.16,
+       "parse_ms": 0.35,
+       "prepare_ms": 10.78,
+       "queue_ms": 0.0,
+       "inference_ms": 10324.9
+      },
+      "cached_tokens": 44652,
+      "input_tokens": 46044,
+      "decisions": {
+       "next": "fill",
+       "done": false,
+       "blocked": false,
+       "loading": false,
+       "expect": "navigate",
+       "after": "place",
+       "field:e28": "in:first_name",
+       "field:e29": "in:last_name",
+       "field:e30": "in:email",
+       "field:e31": "in:phone",
+       "field:e32": "in:street",
+       "field:e33": "in:city"
+      },
+      "probabilities": {
+       "next": [
+        0.1457806365813667,
+        0.0020600110111710216,
+        0.0011650066487730744,
+        0.0016864449569152858,
+        0.017014307751996954,
+        0.00216484347321777,
+        0.0007384752324257241,
+        9.85418073919079e-05,
+        0.001153306559786147,
+        0.002539081709535838,
+        0.0002200570141915978,
+        0.0001538192286864248,
+        0.00017176147807111992,
+        5.347782960975824e-05,
+        8.229017767573982e-05,
+        9.154812789067979e-05,
+        0.00027671755863664877,
+        8.618147618898864e-05,
+        9.778464214538812e-05,
+        0.0002365230008931568,
+        3.791914753877054e-05,
+        3.577125940405534e-05,
+        9.734918336195712e-05,
+        2.479126284093898e-05,
+        0.00033631318070176624,
+        0.044213313221478874,
+        0.004949897484269322,
+        0.00010432655016635735,
+        0.0005145721907287558,
+        0.001059230291305234,
+        0.7120657500740106,
+        0.06013531930142081,
+        0.0005546305862026505
+       ],
+       "done": [
+        0.23771139270927333
+       ],
+       "blocked": [
+        0.02195071081017007
+       ],
+       "loading": [
+        0.015044679088044417
+       ],
+       "expect": [
+        0.11048501462432521,
+        0.3150236232293637,
+        0.024334305308114795,
+        0.5501570568381963
+       ],
+       "after": [
+        0.8912531828967962,
+        0.0022790623141538506,
+        0.1064677547890499
+       ],
+       "field:e28": [
+        0.9801496411019,
+        0.00027099936084460724,
+        0.00013165401662469116,
+        0.00011498759872993113,
+        0.0028119890897226143,
+        0.0011699241757552753,
+        0.002699501619204935,
+        0.01265130303721799
+       ],
+       "field:e29": [
+        0.00217176025477862,
+        0.9909924554543548,
+        0.0002851926047187843,
+        0.0003142352888653745,
+        0.0005213696427141932,
+        0.004442855378230733,
+        0.0005591175447359415,
+        0.0007130138316016151
+       ],
+       "field:e30": [
+        0.001741226432848297,
+        0.0007021410353198426,
+        0.991437625101969,
+        0.0007214729056719383,
+        0.0005578429035180993,
+        0.0012515011616947434,
+        0.001022607215992361,
+        0.0025655832429857437
+       ],
+       "field:e31": [
+        0.003552376679474045,
+        0.00020869238770310924,
+        0.00019108221325731756,
+        0.9947175758869808,
+        0.0002448046816669064,
+        0.00018483479970203087,
+        0.00023164736407834817,
+        0.0006689859871373682
+       ],
+       "field:e32": [
+        0.001846346986254307,
+        0.0002923730907057637,
+        0.00047313671798354786,
+        0.003595717216400322,
+        0.9927725099524939,
+        0.0004770986805928286,
+        0.0003309913704175961,
+        0.00021182598515169328
+       ],
+       "field:e33": [
+        0.00272365469045237,
+        0.004168759502043158,
+        0.0004972988896383157,
+        0.0011971795282699797,
+        0.0013606973017144938,
+        0.9884666649322249,
+        0.0013530780354327723,
+        0.0002326671202240229
+       ]
+      },
+      "clean": true
+     }
+    ]
+   }
+  },
+  "page_followup": {
+   "summary": {
+    "before": {
+     "median_ms": 1697.4,
+     "min_ms": 1604.91,
+     "max_ms": 1784.6,
+     "server_ms": 1695.7,
+     "cached_tokens": 4096,
+     "input_tokens": 4928,
+     "same_decisions_as_reference": 1.0,
+     "max_probability_difference": 0.0
+    },
+    "after": {
+     "median_ms": 1599.8,
+     "min_ms": 1429.48,
+     "max_ms": 1711.89,
+     "server_ms": 1598.5,
+     "cached_tokens": 3072,
+     "input_tokens": 3845,
+     "same_decisions_as_reference": 1.0,
+     "max_probability_difference": 0.00322496633276248
+    }
+   },
+   "rows": {
+    "before": [
+     {
+      "client_ms": 1730.93,
+      "processing_ms": 1729.44,
+      "timing": {
+       "processing_ms": 1729.44,
+       "parse_ms": 0.39,
+       "prepare_ms": 4.74,
+       "queue_ms": 0.0,
+       "inference_ms": 1724.17
+      },
+      "cached_tokens": 4096,
+      "input_tokens": 4928,
+      "decisions": {
+       "email": "in:email"
+      },
+      "probabilities": {
+       "email": [
+        0.002100090471488172,
+        0.0004129522373188038,
+        0.9872310045225151,
+        0.0007994065432646414,
+        0.000794196783051311,
+        0.0025458058507923454,
+        0.002007118169774684,
+        0.004109425421794955
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1784.6,
+      "processing_ms": 1782.97,
+      "timing": {
+       "processing_ms": 1782.97,
+       "parse_ms": 0.27,
+       "prepare_ms": 4.29,
+       "queue_ms": 0.0,
+       "inference_ms": 1778.25
+      },
+      "cached_tokens": 4096,
+      "input_tokens": 4926,
+      "decisions": {
+       "email": "in:email"
+      },
+      "probabilities": {
+       "email": [
+        0.001974875300866855,
+        0.0003837564941823599,
+        0.9883186024090321,
+        0.0007450226545816835,
+        0.0008268384098079896,
+        0.002266850044462123,
+        0.001953371994370251,
+        0.0035306826926966416
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1635.34,
+      "processing_ms": 1634.01,
+      "timing": {
+       "processing_ms": 1634.01,
+       "parse_ms": 0.31,
+       "prepare_ms": 4.74,
+       "queue_ms": 0.0,
+       "inference_ms": 1628.83
+      },
+      "cached_tokens": 4096,
+      "input_tokens": 4929,
+      "decisions": {
+       "email": "in:email"
+      },
+      "probabilities": {
+       "email": [
+        0.001984206222884109,
+        0.00038044730166857734,
+        0.9873602200057222,
+        0.0007841788314071488,
+        0.000818570943610569,
+        0.0025429939361212898,
+        0.0020100015293975297,
+        0.004119381229188574
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1619.29,
+      "processing_ms": 1617.94,
+      "timing": {
+       "processing_ms": 1617.94,
+       "parse_ms": 0.32,
+       "prepare_ms": 4.27,
+       "queue_ms": 0.0,
+       "inference_ms": 1613.21
+      },
+      "cached_tokens": 4096,
+      "input_tokens": 4929,
+      "decisions": {
+       "email": "in:email"
+      },
+      "probabilities": {
+       "email": [
+        0.0020297560989710776,
+        0.00039217341978882035,
+        0.9875326229043485,
+        0.0008022234019055118,
+        0.0008370108614596171,
+        0.0023750534920986242,
+        0.002042540829707877,
+        0.003988618991719908
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1720.41,
+      "processing_ms": 1719.0,
+      "timing": {
+       "processing_ms": 1719.0,
+       "parse_ms": 0.32,
+       "prepare_ms": 5.51,
+       "queue_ms": 0.0,
+       "inference_ms": 1712.86
+      },
+      "cached_tokens": 4096,
+      "input_tokens": 4926,
+      "decisions": {
+       "email": "in:email"
+      },
+      "probabilities": {
+       "email": [
+        0.0020012249920830275,
+        0.0004927879138001815,
+        0.9874612566015736,
+        0.0008192357970799517,
+        0.0008922350714601166,
+        0.0023806146049492804,
+        0.002157970770389904,
+        0.0037946742486639246
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1697.36,
+      "processing_ms": 1695.73,
+      "timing": {
+       "processing_ms": 1695.73,
+       "parse_ms": 0.36,
+       "prepare_ms": 4.32,
+       "queue_ms": 0.0,
+       "inference_ms": 1690.59
+      },
+      "cached_tokens": 4096,
+      "input_tokens": 4927,
+      "decisions": {
+       "email": "in:email"
+      },
+      "probabilities": {
+       "email": [
+        0.002023027066966047,
+        0.0004013381009363916,
+        0.9873802169875602,
+        0.0007943592583631996,
+        0.0008211396139013971,
+        0.002510524381324935,
+        0.0021406423991695207,
+        0.0039287521917782805
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1604.91,
+      "processing_ms": 1603.41,
+      "timing": {
+       "processing_ms": 1603.41,
+       "parse_ms": 0.31,
+       "prepare_ms": 4.88,
+       "queue_ms": 0.0,
+       "inference_ms": 1598.09
+      },
+      "cached_tokens": 4096,
+      "input_tokens": 4925,
+      "decisions": {
+       "email": "in:email"
+      },
+      "probabilities": {
+       "email": [
+        0.0019563569706183563,
+        0.00041292221726025474,
+        0.9881538397434318,
+        0.000789891133090637,
+        0.000842285770829336,
+        0.0023785974488182236,
+        0.0019850892040794398,
+        0.0034810175118719314
+       ]
+      },
+      "clean": true
+     }
+    ],
+    "after": [
+     {
+      "client_ms": 1711.89,
+      "processing_ms": 1710.6,
+      "timing": {
+       "processing_ms": 1710.6,
+       "parse_ms": 0.28,
+       "prepare_ms": 4.06,
+       "queue_ms": 0.0,
+       "inference_ms": 1706.13
+      },
+      "cached_tokens": 3072,
+      "input_tokens": 3845,
+      "decisions": {
+       "email": "in:email"
+      },
+      "probabilities": {
+       "email": [
+        0.0021236359347843363,
+        0.0005046040107282553,
+        0.9898128984577076,
+        0.0007340601206435457,
+        0.0007173565594336904,
+        0.0012720052463048427,
+        0.001286066703610471,
+        0.0035493729667872933
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1636.47,
+      "processing_ms": 1635.21,
+      "timing": {
+       "processing_ms": 1635.21,
+       "parse_ms": 0.29,
+       "prepare_ms": 4.69,
+       "queue_ms": 0.0,
+       "inference_ms": 1630.12
+      },
+      "cached_tokens": 3072,
+      "input_tokens": 3843,
+      "decisions": {
+       "email": "in:email"
+      },
+      "probabilities": {
+       "email": [
+        0.0019766816486558574,
+        0.00047844549608696695,
+        0.9911111634783449,
+        0.0007129088656120839,
+        0.0006392180247944604,
+        0.0010207508500603762,
+        0.001194808869973421,
+        0.002866022766471936
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1599.84,
+      "processing_ms": 1598.51,
+      "timing": {
+       "processing_ms": 1598.51,
+       "parse_ms": 0.23,
+       "prepare_ms": 3.54,
+       "queue_ms": 0.0,
+       "inference_ms": 1594.62
+      },
+      "cached_tokens": 3072,
+      "input_tokens": 3846,
+      "decisions": {
+       "email": "in:email"
+      },
+      "probabilities": {
+       "email": [
+        0.0020532538118495313,
+        0.000519294406517764,
+        0.9899818270083622,
+        0.0007419731095394499,
+        0.0007431911630478965,
+        0.0013052669778417087,
+        0.001284099645601738,
+        0.0033710938772396727
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1429.48,
+      "processing_ms": 1428.13,
+      "timing": {
+       "processing_ms": 1428.13,
+       "parse_ms": 0.36,
+       "prepare_ms": 4.26,
+       "queue_ms": 0.0,
+       "inference_ms": 1423.33
+      },
+      "cached_tokens": 3072,
+      "input_tokens": 3846,
+      "decisions": {
+       "email": "in:email"
+      },
+      "probabilities": {
+       "email": [
+        0.0021203492622838306,
+        0.0005048928287624178,
+        0.9902660561386905,
+        0.0007640357724043013,
+        0.0006649564410819766,
+        0.0011286463961773573,
+        0.001320850764528084,
+        0.0032302123960715754
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1648.18,
+      "processing_ms": 1646.65,
+      "timing": {
+       "processing_ms": 1646.65,
+       "parse_ms": 0.28,
+       "prepare_ms": 5.07,
+       "queue_ms": 0.0,
+       "inference_ms": 1641.14
+      },
+      "cached_tokens": 3072,
+      "input_tokens": 3843,
+      "decisions": {
+       "email": "in:email"
+      },
+      "probabilities": {
+       "email": [
+        0.0019941890778427023,
+        0.0005803066218668183,
+        0.9906862229343361,
+        0.0007454696348675547,
+        0.0006783126635124985,
+        0.0010713530776318458,
+        0.0011707412601651597,
+        0.0030734047297773406
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1472.16,
+      "processing_ms": 1470.83,
+      "timing": {
+       "processing_ms": 1470.83,
+       "parse_ms": 0.34,
+       "prepare_ms": 4.48,
+       "queue_ms": 0.0,
+       "inference_ms": 1465.89
+      },
+      "cached_tokens": 3072,
+      "input_tokens": 3844,
+      "decisions": {
+       "email": "in:email"
+      },
+      "probabilities": {
+       "email": [
+        0.002029229620454064,
+        0.0005111083071006719,
+        0.9903470114072231,
+        0.000739714176738703,
+        0.0006714446242729741,
+        0.0011827995572288594,
+        0.0012715365527479223,
+        0.003247155754233697
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 1433.88,
+      "processing_ms": 1432.69,
+      "timing": {
+       "processing_ms": 1432.69,
+       "parse_ms": 0.27,
+       "prepare_ms": 3.81,
+       "queue_ms": 0.0,
+       "inference_ms": 1428.37
+      },
+      "cached_tokens": 3072,
+      "input_tokens": 3842,
+      "decisions": {
+       "email": "in:email"
+      },
+      "probabilities": {
+       "email": [
+        0.0019231337441644456,
+        0.00048611458841657865,
+        0.9911211177425183,
+        0.000705583955529726,
+        0.0006287383176626667,
+        0.0010230767120826586,
+        0.0011750591273000204,
+        0.002937175812325588
+       ]
+      },
+      "clean": true
+     }
+    ]
+   }
+  },
+  "page_again": {
+   "summary": {
+    "before": {
+     "median_ms": 321.6,
+     "min_ms": 277.9,
+     "max_ms": 334.99,
+     "server_ms": 320.2,
+     "cached_tokens": 4808,
+     "input_tokens": 4951,
+     "same_decisions_as_reference": 1.0,
+     "max_probability_difference": 0.0
+    },
+    "after": {
+     "median_ms": 319.7,
+     "min_ms": 278.84,
+     "max_ms": 370.76,
+     "server_ms": 318.4,
+     "cached_tokens": 3722,
+     "input_tokens": 3865,
+     "same_decisions_as_reference": 1.0,
+     "max_probability_difference": 0.003554507135247742
+    }
+   },
+   "rows": {
+    "before": [
+     {
+      "client_ms": 290.29,
+      "processing_ms": 288.89,
+      "timing": {
+       "processing_ms": 288.89,
+       "parse_ms": 0.33,
+       "prepare_ms": 5.01,
+       "queue_ms": 0.0,
+       "inference_ms": 283.43
+      },
+      "cached_tokens": 4808,
+      "input_tokens": 4951,
+      "decisions": {
+       "email": "in:email"
+      },
+      "probabilities": {
+       "email": [
+        0.0019976875742972826,
+        0.0005370962773500532,
+        0.9884043104633146,
+        0.0008077732447578546,
+        0.0008228383183723197,
+        0.001503453554795803,
+        0.0015366428637801186,
+        0.004390197703331972
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 287.75,
+      "processing_ms": 286.4,
+      "timing": {
+       "processing_ms": 286.4,
+       "parse_ms": 0.34,
+       "prepare_ms": 4.56,
+       "queue_ms": 0.0,
+       "inference_ms": 281.37
+      },
+      "cached_tokens": 4811,
+      "input_tokens": 4954,
+      "decisions": {
+       "email": "in:email"
+      },
+      "probabilities": {
+       "email": [
+        0.0020512318929949767,
+        0.0005531820287468385,
+        0.9875517371984955,
+        0.0008248867137705541,
+        0.0008899576392210156,
+        0.0016010639768900665,
+        0.0016045121986822369,
+        0.004923428351198725
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 323.29,
+      "processing_ms": 321.76,
+      "timing": {
+       "processing_ms": 321.76,
+       "parse_ms": 0.3,
+       "prepare_ms": 4.41,
+       "queue_ms": 0.0,
+       "inference_ms": 316.91
+      },
+      "cached_tokens": 4807,
+      "input_tokens": 4950,
+      "decisions": {
+       "email": "in:email"
+      },
+      "probabilities": {
+       "email": [
+        0.002002309347430428,
+        0.0005640968554920791,
+        0.9880491683196787,
+        0.0008243646163939981,
+        0.0009038965971892575,
+        0.0015948950616602486,
+        0.0015475835247232936,
+        0.004513685677431944
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 321.61,
+      "processing_ms": 320.18,
+      "timing": {
+       "processing_ms": 320.18,
+       "parse_ms": 0.32,
+       "prepare_ms": 4.48,
+       "queue_ms": 0.0,
+       "inference_ms": 315.24
+      },
+      "cached_tokens": 4808,
+      "input_tokens": 4951,
+      "decisions": {
+       "email": "in:email"
+      },
+      "probabilities": {
+       "email": [
+        0.002067730811531502,
+        0.0005062478133516765,
+        0.9884339807465653,
+        0.0007890487511350679,
+        0.0007574788941608175,
+        0.0015183574650462785,
+        0.0015353180136889978,
+        0.004391837504520385
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 334.99,
+      "processing_ms": 333.55,
+      "timing": {
+       "processing_ms": 333.55,
+       "parse_ms": 0.34,
+       "prepare_ms": 5.13,
+       "queue_ms": 0.0,
+       "inference_ms": 327.96
+      },
+      "cached_tokens": 4809,
+      "input_tokens": 4952,
+      "decisions": {
+       "email": "in:email"
+      },
+      "probabilities": {
+       "email": [
+        0.002056503401600816,
+        0.0005229014118374325,
+        0.9876451925088632,
+        0.0008419870143334665,
+        0.0008691985132840708,
+        0.0017462506368794025,
+        0.001667555859685767,
+        0.004650410653515916
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 277.9,
+      "processing_ms": 276.76,
+      "timing": {
+       "processing_ms": 276.76,
+       "parse_ms": 0.3,
+       "prepare_ms": 4.31,
+       "queue_ms": 0.0,
+       "inference_ms": 272.04
+      },
+      "cached_tokens": 4807,
+      "input_tokens": 4950,
+      "decisions": {
+       "email": "in:email"
+      },
+      "probabilities": {
+       "email": [
+        0.0019864724377282503,
+        0.0005459294869671617,
+        0.9874175965720131,
+        0.0008435545758312494,
+        0.0008987611671627221,
+        0.0015535006813669292,
+        0.0015928544159616415,
+        0.0051613306629689085
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 322.37,
+      "processing_ms": 321.02,
+      "timing": {
+       "processing_ms": 321.02,
+       "parse_ms": 0.4,
+       "prepare_ms": 4.63,
+       "queue_ms": 0.0,
+       "inference_ms": 315.83
+      },
+      "cached_tokens": 4808,
+      "input_tokens": 4951,
+      "decisions": {
+       "email": "in:email"
+      },
+      "probabilities": {
+       "email": [
+        0.0020098648945470515,
+        0.0004920577625531598,
+        0.9882425656076449,
+        0.0007843828053833854,
+        0.0008586347676699054,
+        0.001570799386437075,
+        0.0015504866590282022,
+        0.004491208116736348
+       ]
+      },
+      "clean": true
+     }
+    ],
+    "after": [
+     {
+      "client_ms": 319.68,
+      "processing_ms": 318.42,
+      "timing": {
+       "processing_ms": 318.42,
+       "parse_ms": 0.34,
+       "prepare_ms": 4.3,
+       "queue_ms": 0.0,
+       "inference_ms": 313.66
+      },
+      "cached_tokens": 3722,
+      "input_tokens": 3865,
+      "decisions": {
+       "email": "in:email"
+      },
+      "probabilities": {
+       "email": [
+        0.0018034234244713502,
+        0.000696805724832604,
+        0.9907059834421328,
+        0.0007158870113049451,
+        0.0005783204784034552,
+        0.001187152831089084,
+        0.0010968148890934568,
+        0.003215612198672321
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 325.43,
+      "processing_ms": 324.16,
+      "timing": {
+       "processing_ms": 324.16,
+       "parse_ms": 0.29,
+       "prepare_ms": 3.75,
+       "queue_ms": 0.0,
+       "inference_ms": 320.01
+      },
+      "cached_tokens": 3725,
+      "input_tokens": 3868,
+      "decisions": {
+       "email": "in:email"
+      },
+      "probabilities": {
+       "email": [
+        0.0018084084159976385,
+        0.0007769564404018202,
+        0.9910371905373393,
+        0.0006954822460512411,
+        0.0005698229655214952,
+        0.0011327096733338604,
+        0.0009902609750804614,
+        0.002989168746274179
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 370.76,
+      "processing_ms": 369.33,
+      "timing": {
+       "processing_ms": 369.33,
+       "parse_ms": 0.36,
+       "prepare_ms": 5.15,
+       "queue_ms": 0.0,
+       "inference_ms": 363.68
+      },
+      "cached_tokens": 3721,
+      "input_tokens": 3864,
+      "decisions": {
+       "email": "in:email"
+      },
+      "probabilities": {
+       "email": [
+        0.0017931040294853903,
+        0.0008615493609715582,
+        0.9906594369422338,
+        0.0007507805291264804,
+        0.0006135550924686409,
+        0.0012629352547670815,
+        0.0010472658547452788,
+        0.0030113729362018196
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 339.67,
+      "processing_ms": 338.45,
+      "timing": {
+       "processing_ms": 338.45,
+       "parse_ms": 0.33,
+       "prepare_ms": 4.32,
+       "queue_ms": 0.0,
+       "inference_ms": 333.68
+      },
+      "cached_tokens": 3722,
+      "input_tokens": 3865,
+      "decisions": {
+       "email": "in:email"
+      },
+      "probabilities": {
+       "email": [
+        0.0018187800514261844,
+        0.0006894782858792556,
+        0.9912910853788633,
+        0.0007172120238435546,
+        0.0005660902708867876,
+        0.0010737752088437178,
+        0.0009465411809430785,
+        0.0028970375993141047
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 318.16,
+      "processing_ms": 316.71,
+      "timing": {
+       "processing_ms": 316.71,
+       "parse_ms": 0.27,
+       "prepare_ms": 3.99,
+       "queue_ms": 0.0,
+       "inference_ms": 312.33
+      },
+      "cached_tokens": 3723,
+      "input_tokens": 3866,
+      "decisions": {
+       "email": "in:email"
+      },
+      "probabilities": {
+       "email": [
+        0.001778876449006213,
+        0.0007045715041848116,
+        0.9911799058077522,
+        0.0007146137811101235,
+        0.0005659404105401445,
+        0.0011497125055721692,
+        0.0009596245579523211,
+        0.002946754983882081
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 316.28,
+      "processing_ms": 314.88,
+      "timing": {
+       "processing_ms": 314.88,
+       "parse_ms": 0.33,
+       "prepare_ms": 4.21,
+       "queue_ms": 0.0,
+       "inference_ms": 310.21
+      },
+      "cached_tokens": 3721,
+      "input_tokens": 3864,
+      "decisions": {
+       "email": "in:email"
+      },
+      "probabilities": {
+       "email": [
+        0.0018519772021576763,
+        0.0008181626925149289,
+        0.9909721037072609,
+        0.0007223620792666144,
+        0.0005979050777926272,
+        0.0011549303331658339,
+        0.000978488127831782,
+        0.002904070780009641
+       ]
+      },
+      "clean": true
+     },
+     {
+      "client_ms": 278.84,
+      "processing_ms": 277.3,
+      "timing": {
+       "processing_ms": 277.3,
+       "parse_ms": 0.34,
+       "prepare_ms": 5.71,
+       "queue_ms": 0.0,
+       "inference_ms": 271.12
+      },
+      "cached_tokens": 3722,
+      "input_tokens": 3865,
+      "decisions": {
+       "email": "in:email"
+      },
+      "probabilities": {
+       "email": [
+        0.0018075193318785145,
+        0.0006656648985915424,
+        0.9908825649570494,
+        0.0007195028516190929,
+        0.0005713881631053499,
+        0.0011960471620040113,
+        0.0010944187990227575,
+        0.00306289383672937
+       ]
+      },
+      "clean": true
+     }
+    ]
+   }
+  }
+ }
+}

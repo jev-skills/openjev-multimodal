@@ -1,0 +1,98 @@
+From 434bae309b82c97f8d46ac9cace0e9cf2972b567 Mon Sep 17 00:00:00 2001
+From: QAI <qai@q.local>
+Date: Mon, 21 Sep 2026 21:57:09 -0700
+Subject: [PATCH] server: optional periodic context checkpoints per request
+
+checkpoint_every (default 0 = off): also checkpoint the prompt every N
+tokens while processing it. A later prompt that shares only the start of
+this one, such as the same document with a different ending, can then
+resume from the nearest checkpoint. Hybrid models otherwise keep
+checkpoints only near the end of each prompt.
+
+Assisted-by: Claude Opus 5
+---
+ tools/server/server-context.cpp | 11 +++++++++--
+ tools/server/server-schema.cpp  |  4 ++++
+ tools/server/server-task.h      |  1 +
+ 3 files changed, 14 insertions(+), 2 deletions(-)
+
+diff --git a/tools/server/server-context.cpp b/tools/server/server-context.cpp
+index f09e22b..04b5777 100644
+--- a/tools/server/server-context.cpp
++++ b/tools/server/server-context.cpp
+@@ -3522,6 +3522,7 @@ private:
+ 
+                     const auto & spans = slot.task->params.message_spans;
+                     const auto last_user_pos = spans.last_user_message_pos();
++                    const int32_t checkpoint_every = slot.task->params.checkpoint_every;
+ 
+                     // add prompt tokens for processing in the current batch
+                     while (slot.prompt.n_tokens() < slot.task->n_tokens() && batch.size() < n_batch) {
+@@ -3559,6 +3560,11 @@ private:
+                             }
+                         }
+ 
++                        // break every checkpoint_every tokens, to checkpoint there
++                        if (do_checkpoint && checkpoint_every > 0 && slot.prompt.n_tokens() % checkpoint_every == 0) {
++                            break;
++                        }
++
+                         // process the last few tokens of the prompt separately in order to allow for a checkpoint to be created.
+                         // create checkpoints that many tokens before the end of the prompt:
+                         //  - 4 + n_ubatch
+@@ -3590,6 +3596,7 @@ private:
+ 
+                     const bool is_user_start = spans.is_user_start(n_tokens_start);
+                     const bool is_last_user_message = n_tokens_start == last_user_pos;
++                    const bool is_periodic = checkpoint_every > 0 && n_tokens_start > 0 && n_tokens_start % checkpoint_every == 0;
+ 
+                     // entire prompt has been processed
+                     if (slot.prompt.n_tokens() == slot.task->n_tokens()) {
+@@ -3607,7 +3614,7 @@ private:
+                     } else {
+                         // skip ordinary mid-prompt checkpoints, unless the batch starts a user
+                         // message or we are near the end of the prompt
+-                        if (!is_user_start && !near_prompt_end) {
++                        if (!is_user_start && !near_prompt_end && !is_periodic) {
+                             do_checkpoint = false;
+                         }
+                     }
+@@ -3627,7 +3634,7 @@ private:
+                     // no need to create checkpoints that are too close together, unless it's the last user message
+                     do_checkpoint = do_checkpoint && (
+                             slot.prompt.checkpoints.empty() ||
+-                            is_last_user_message || near_prompt_end ||
++                            is_last_user_message || near_prompt_end || is_periodic ||
+                             n_tokens_start > slot.prompt.checkpoints.back().n_tokens + params_base.checkpoint_min_step);
+                     SLT_DBG(slot, "main/do_checkpoint = %s, pos_min = %d, pos_max = %d\n", do_checkpoint ? "yes" : "no", pos_min, pos_max);
+ 
+diff --git a/tools/server/server-schema.cpp b/tools/server/server-schema.cpp
+index c310ebb..2dfc6c3 100644
+--- a/tools/server/server-schema.cpp
++++ b/tools/server/server-schema.cpp
+@@ -37,6 +37,10 @@ std::vector<std::unique_ptr<field>> make_llama_cmpl_schema(const common_params &
+     add((new field_bool("checkpoint_end", params.checkpoint_end))
+         ->set_desc("Checkpoint the whole prompt after processing it, in one batch, instead of a few tokens before its end. Use with n_predict = 0 to prime a prefix that later prompts extend"));
+ 
++    add((new field_num("checkpoint_every", params.checkpoint_every))
++        ->set_hard_limits(0, INT32_MAX)
++        ->set_desc("Also checkpoint the prompt every this many tokens, so a later prompt that shares only its start can resume from the nearest checkpoint. 0 disables"));
++
+     add((new field_bool("return_tokens", params.return_tokens))
+         ->set_desc("Return the raw generated token ids in the `tokens` field"));
+ 
+diff --git a/tools/server/server-task.h b/tools/server/server-task.h
+index 3533393..a517dd8 100644
+--- a/tools/server/server-task.h
++++ b/tools/server/server-task.h
+@@ -57,6 +57,7 @@ struct task_params {
+     bool return_progress = false;
+ 
+     int32_t sse_ping_interval = 30; // seconds between SSE comment pings while the stream stays silent, -1 disables
++    int32_t checkpoint_every  = 0;  // also checkpoint the prompt every this many tokens, 0 = off
+ 
+     int32_t n_keep    =  0; // number of tokens to keep from initial prompt
+     int32_t n_discard =  0; // number of tokens after n_keep that may be discarded when shifting context, 0 defaults to half
+-- 
+2.54.0
+

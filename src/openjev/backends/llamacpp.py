@@ -228,6 +228,7 @@ class LlamaBackend:
                 "cache_prompt": True,
                 "id_slot": 0,
                 "checkpoint_end": True,
+                "checkpoint_every": self.settings.checkpoint_every,
             },
         )
 
@@ -266,7 +267,9 @@ class LlamaBackend:
             "cache_prompt": True,
             "id_slot": 0,
         }
-        if not checkpoints:
+        if checkpoints:
+            payload["checkpoint_every"] = self.settings.checkpoint_every
+        else:
             payload["ctx_checkpoints"] = False
         result = await self.call("/completion", payload)
         try:

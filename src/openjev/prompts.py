@@ -25,7 +25,13 @@ def state_messages(request: Evaluation, settings: Settings) -> tuple[list[dict],
         and bool(candidate)
         and all(isinstance(m, dict) and "role" in m for m in candidate)
     )
-    messages = candidate if is_chat else [{"role": "user", "content": text(request.state)}]
+    if is_chat:
+        messages = candidate
+    elif isinstance(request.state, str) or not settings.compact_json:
+        messages = [{"role": "user", "content": text(request.state)}]
+    else:
+        compact = json.dumps(request.state, ensure_ascii=False, separators=(",", ":"))
+        messages = [{"role": "user", "content": compact}]
     result, images = [], []
 
     def add_image(url: str) -> str:

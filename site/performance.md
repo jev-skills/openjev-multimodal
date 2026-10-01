@@ -87,6 +87,16 @@ Sixteen decisions per setup, one server at a time ([receipts](https://github.com
 
 Several states can take turns. The llama.cpp that `scripts/build-llama.sh` builds keeps earlier prompts in memory with their checkpoints, so four 800-token states used in rotation each answered in 0.11 s on Qwen3.5-4B, against 0.69 s with llama.cpp b9670, which re-read every state.
 
+## Browser agents
+
+A browser agent sends each page as JSON, with a dozen questions on every turn. `page_12q` in `scripts/latency.py` is such a turn: a 112-node checkout page and 12 questions.
+
+- **Compact JSON.** JSON states now reach the model without spaces after `,` and `:`. The page takes 22% fewer tokens, and the turn took 10.1 s instead of 12.2 s on Qwen3.5-4B. Decisions were identical except on one question that was already close, what the chosen step will change (0.41 against 0.56). `OPENJEV_COMPACT_JSON=false` restores the spaced form, which the tables above used.
+- **Checkpoints every 512 tokens.** OpenJev's llama.cpp build now checkpoints each prompt along the way, so a follow-up that shares only the start of a state resumes near where the two differ. The same page without its history took 0.65 s instead of 3.61 s; the next turn after filling one field, 8.66 s instead of 9.65 s. Answers were identical.
+- **Ask later, not every turn.** A request with the identical state reads only its new questions: one more question about the page took 0.27 s. Questions that are rarely needed belong in a follow-up.
+
+Medians of 7 interleaved trials on one llama.cpp process, cleared before each request (`--flush`), while another app kept the GPU busy: compare within a line. Receipts: [compact JSON](https://github.com/Hand-In/openjev-multimodal/blob/main/benchmarks/performance/json-states.json) · [checkpoints](https://github.com/Hand-In/openjev-multimodal/blob/main/benchmarks/performance/checkpoints.json)
+
 ## Accuracy
 
 Every trial sends the identical request to both versions.

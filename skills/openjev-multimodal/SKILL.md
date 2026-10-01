@@ -101,9 +101,10 @@ facts plus a small picture of each option's outcome gave the lowest regret for e
 model size.
 
 **Ask only the questions you will use.** The API reads a request's state once and
-resumes every question from a checkpoint, but each question still adds its own text and
-readout, so latency grows with the number of questions. Batch the questions you need
-about one state in one request; otherwise ask one.
+resumes every question from a checkpoint, but each question still costs its own text and
+a readout: a long option list costs as much as the same text in the state. A follow-up
+request with the identical state reads only its new questions, so questions that are
+rarely needed can wait for a second request instead of riding along on every turn.
 
 More patterns, prompts and measured trade-offs: [references/design.md](references/design.md).
 

@@ -87,6 +87,16 @@ Qwen3.5、Qwen3.6 与 Qwen3.8 都是混合架构，循环层无法回滚到任�
 
 多个 state 也可以轮流使用。`scripts/build-llama.sh` 构建的 llama.cpp 会把之前的提示连同检查点保存在内存中：在 Qwen3.5-4B 上轮流使用 4 个 800 token 的 state，每次回答 0.11 秒；llama.cpp b9670 每次都要重读 state，需 0.69 秒。
 
+## 浏览器智能体
+
+浏览器智能体把每个页面作为 JSON 发送，每一轮都附带十几个问题。`scripts/latency.py` 中的 `page_12q` 就是这样一轮：一个 112 个节点的结账页面和 12 个问题。
+
+- **紧凑 JSON。** JSON state 送入模型时去掉 `,` 与 `:` 后的空格。页面的 token 数减少 22%，这一轮在 Qwen3.5-4B 上从 12.2 秒降到 10.1 秒。判断结果只有一道原本就接近的题不同：选中的步骤会带来什么变化（0.41 对 0.56）。设置 `OPENJEV_COMPACT_JSON=false` 可恢复带空格的形式，上面的表格即用此形式测得。
+- **每 512 token 一个检查点。** OpenJev 的 llama.cpp 构建现在会沿途为每个提示保存检查点，只共享 state 开头的后续请求可以从分叉处附近续算。同一页面去掉历史后，从 3.61 秒降到 0.65 秒；填写一个字段后的下一轮，从 9.65 秒降到 8.66 秒。答案完全一致。
+- **少用的问题晚点再问。** state 完全相同的请求只读取新问题：再问一题只需 0.27 秒。很少用到的问题应放到后续请求里。
+
+交替测量 7 次的中位数，共用一个 llama.cpp 进程，每次请求前清空（`--flush`），期间另一个应用占用着 GPU：请在同一行内比较。测量记录：[紧凑 JSON](https://github.com/Hand-In/openjev-multimodal/blob/main/benchmarks/performance/json-states.json) · [检查点](https://github.com/Hand-In/openjev-multimodal/blob/main/benchmarks/performance/checkpoints.json)
+
 ## 准确性
 
 每次试验向两个版本发送完全相同的请求。

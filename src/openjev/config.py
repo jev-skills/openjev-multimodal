@@ -33,5 +33,12 @@ class Settings(BaseSettings):
     # Reuse a chat-template skeleton verified against the backend instead of rendering it
     # remotely on every request.
     template_cache: bool = True
+    # Render JSON states without spaces after separators: the same content in about a fifth
+    # fewer prompt tokens. Questions keep their rendering.
+    compact_json: bool = True
+    # llama.cpp backend: checkpoint prompts every this many tokens (OpenJev's llama.cpp build;
+    # others ignore it), so a later request that shares only the start of a state, such as
+    # the same page with a new history, resumes from the nearest checkpoint. 0 disables.
+    checkpoint_every: int = Field(default=512, ge=0)
     # Add the `timing` extension object to responses. Headers always carry timings.
     response_timing: bool = True
