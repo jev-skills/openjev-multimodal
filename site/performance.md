@@ -85,6 +85,8 @@ When consecutive requests repeat a state with new questions, the API keeps a che
 
 Sixteen decisions per setup, one server at a time ([receipts](https://github.com/Hand-In/openjev-multimodal/tree/main/examples/tetris/report/probes)). All 32 answers of a fixed check set matched stock llama.cpp. `OPENJEV_PRIME_REPEATED_STATE=false` turns the cache off.
 
+Several states can take turns. The llama.cpp that `scripts/build-llama.sh` builds keeps earlier prompts in memory with their checkpoints, so four 800-token states used in rotation each answered in 0.11 s on Qwen3.5-4B, against 0.69 s with llama.cpp b9670, which re-read every state.
+
 ## Accuracy
 
 Every trial sends the identical request to both versions.

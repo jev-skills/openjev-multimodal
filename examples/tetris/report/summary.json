@@ -1449,6 +1449,12 @@
   }
  },
  "probes": {
+  "patched-cache-q8": {
+   "median_ms": 625.5,
+   "calls": 16,
+   "llama_cpp": "b51-91c0769",
+   "model": "Qwen/Qwen3.8-27B"
+  },
   "patched-cache": {
    "median_ms": 661.8,
    "calls": 16,

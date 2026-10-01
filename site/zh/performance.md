@@ -85,6 +85,8 @@ Qwen3.5 与 Qwen3.6 是混合架构，循环层无法回滚到任意位置，而
 
 每种配置 16 次决策，同一时间只运行一个服务（[测量记录](https://github.com/Hand-In/openjev-multimodal/tree/main/examples/tetris/report/probes)）。固定检查集的 32 个答案与原版 llama.cpp 完全一致。设置 `OPENJEV_PRIME_REPEATED_STATE=false` 可关闭该缓存。
 
+多个 state 也可以轮流使用。`scripts/build-llama.sh` 构建的 llama.cpp 会把之前的提示连同检查点保存在内存中：在 Qwen3.5-4B 上轮流使用 4 个 800 token 的 state，每次回答 0.11 秒；llama.cpp b9670 每次都要重读 state，需 0.69 秒。
+
 ## 准确性
 
 每次试验向两个版本发送完全相同的请求。

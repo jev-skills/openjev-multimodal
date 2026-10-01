@@ -20,14 +20,14 @@ Balanced is a practical start on a 16 GB or larger Mac; fast suits a smaller foo
 
 Qwen3.8-27B is a dense model: every prompt token runs all 27 billion parameters, about 5 ms per token on an M3 Max. A full 305-token decision in the [Tetris demo](./tetris) takes 1.9 s. When consecutive requests repeat their state, the API keeps it cached and reads only each new question: 0.7 s.
 
-For that speed, build llama.cpp with OpenJev's patch, which lets a request skip a checkpoint it will never reuse:
+For that speed, build llama.cpp with OpenJev's patch once; `openjev serve` then uses it automatically:
 
 ```bash
 scripts/build-llama.sh
-uv run openjev serve --profile max --llama-server .llamacpp/llama.cpp/build/bin/llama-server
+uv run openjev serve --profile max
 ```
 
-Stock llama.cpp runs the same profile, about 0.2 s slower per cached request. MTP heads and speculative decoding do not help here: OpenJev reads one output token.
+Stock llama.cpp runs the same profile, about 0.2 s slower per cached request. `--quant Q8_0` loads the 8-bit weights (29 GB): on an M3 Max they process short prompts about 5% faster than UD-Q4_K_XL, and all 32 answers of our check set matched. MTP heads and speculative decoding do not help: OpenJev reads one output token.
 
 ## Measured behavior
 

@@ -20,14 +20,14 @@ description: 对比本地 Qwen3.5 0.8B、4B、Qwen3.6 35B-A3B 与 Qwen3.8 27B �
 
 Qwen3.8-27B 是稠密模型：每个提示 token 都要经过全部 270 亿参数，在 M3 Max 上约 5 毫秒一个 token。[俄罗斯方块演示](./tetris)中一次完整的 305 token 决策需 1.9 秒；若连续请求的 state 相同，API 会缓存它，只读取新的问题：0.7 秒。
 
-要达到这个速度，请用 OpenJev 补丁构建 llama.cpp，让请求跳过不会再用到的检查点：
+要达到这个速度，请用 OpenJev 补丁构建一次 llama.cpp，之后 `openjev serve` 会自动使用它：
 
 ```bash
 scripts/build-llama.sh
-uv run openjev serve --profile max --llama-server .llamacpp/llama.cpp/build/bin/llama-server
+uv run openjev serve --profile max
 ```
 
-原版 llama.cpp 同样可以运行该档位，只是每个命中缓存的请求慢约 0.2 秒。MTP 与推测解码在这里没有帮助：OpenJev 只读取一个输出 token。
+原版 llama.cpp 同样可以运行该档位，只是每个命中缓存的请求慢约 0.2 秒。`--quant Q8_0` 加载 8-bit 权重（29 GB）：在 M3 Max 上处理短提示比 UD-Q4_K_XL 快约 5%，固定检查集的 32 个答案全部一致。MTP 与推测解码在这里没有帮助：OpenJev 只读取一个输出 token。
 
 ## 实测结果
 
