@@ -41,13 +41,14 @@ Open **http://localhost:8000/playground** for live text/image input or **http://
 | `fast` | Qwen3.5-0.8B | Q4_K_M | Small footprint, simple decisions |
 | `balanced` (default) | Qwen3.5-4B | Q4_K_M | Everyday text and vision |
 | `quality` | Qwen3.6-35B-A3B | UD-Q4_K_XL | Larger Macs, stronger knowledge |
+| `max` | Qwen3.8-27B | UD-Q4_K_XL | The strongest judgment |
 
 ```bash
 uv run openjev serve --profile quality  # one profile at a time
 uv run openjev doctor
 ```
 
-Quality weights are approximately 23.3 GB plus a 0.9 GB projector. Published measurements use an M3 Max with 128 GB memory; smaller-machine minimums were not benchmarked.
+Quality weights are about 23.3 GB and max weights 17.6 GB, each plus a 0.9 GB projector. For sub-second `max` decisions on a repeated state, build the [patched llama.cpp](https://hand-in.github.io/openjev-multimodal/models#max-qwen3-8-27b) with `scripts/build-llama.sh`. Published measurements use an M3 Max with 128 GB memory; smaller-machine minimums were not benchmarked.
 
 ## A decision is an API call
 
@@ -80,9 +81,9 @@ A **replay of actual local API responses**, with measured latency. The checkout 
 
 ## Tetris: decisions under time pressure
 
-[![Qwen3.5-4B plays Tetris through OpenJev Multimodal](examples/tetris/report/videos/balanced.jpg)](https://hand-in.github.io/openjev-multimodal/tetris)
+[![Qwen3.8-27B plays Tetris through OpenJev Multimodal](examples/tetris/report/videos/max.jpg)](https://hand-in.github.io/openjev-multimodal/tetris)
 
-Three local models play Tetris through the API. Code enumerates every legal two-piece plan and presses the keys; **one Choice token picks the plan**, guided by exact facts and a token-aligned image of each outcome. All 15 vision-mode games reached 10 line clears; median decisions took 0.15 s (0.8B), 0.65 s (4B) and 0.91 s (35B-A3B). [Demo page](https://hand-in.github.io/openjev-multimodal/tetris) · [Play in the browser](https://hand-in.github.io/openjev-multimodal/demos/tetris/web/) · [Test report](examples/tetris/report/README.md) · [Code](examples/tetris).
+Four local models play Tetris through the API. Code simulates every legal two-piece plan and presses the keys; **one Choice token picks the plan**. Random picks among the same plans clear 14.3 lines per game. Qwen3.8-27B clears 38.2 and decides in 0.73 s, with the rules cached as an unchanging state. [Demo page](https://hand-in.github.io/openjev-multimodal/tetris) · [Play in the browser](https://hand-in.github.io/openjev-multimodal/demos/tetris/web/) · [Test report](examples/tetris/report/README.md) · [Code](examples/tetris).
 
 ## Use it from an agent
 

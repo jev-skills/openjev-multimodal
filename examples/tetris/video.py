@@ -295,7 +295,8 @@ def background(scene: Scene) -> Image.Image:
     paste(image, rounded((pill_w, 20), 5, None, (73, 99, 59)), x1 - PAD - pill_w, y0 + 16)
     text(draw, (x1 - PAD - pill_w / 2, y0 + 26), pill, pill_font, ACCENT, "mm", spacing=1.4)
     draw.line((x0 + PAD, y0 + 72, x1 - PAD, y0 + 72), fill=LINE)
-    text(draw, (x0 + PAD, y0 + 90), "IMAGE SENT", face("mono", 11), MUTED, "lm", spacing=1.8)
+    heading = "IMAGE SENT" if scene.run["mode"] in ("vision", "pixels", "board") else "OUTCOMES"
+    text(draw, (x0 + PAD, y0 + 90), heading, face("mono", 11), MUTED, "lm", spacing=1.8)
     text(draw, (x0 + PAD, y0 + 262), "PLANS", face("mono", 11), MUTED, "lm", spacing=1.8)
     text(draw, (x1 - PAD, y0 + 262), "PROBABILITY", face("mono", 11), MUTED, "rm", spacing=1.8)
     draw.line((x0 + PAD, y1 - 52, x1 - PAD, y1 - 52), fill=LINE)
@@ -453,7 +454,11 @@ def draw_card(image: Image.Image, draw, scene: Scene) -> None:
     info = record["image"]
     if info.get("tokens"):
         meta = f"{info['width']} × {info['height']} px  ·  {info['tokens']} image tokens"
-        text(draw, (x1 - PAD, y0 + 90), meta, face("mono", 11), MUTED, "rm")
+    elif scene.run["mode"] == "compact":
+        meta = "no image sent  ·  rules cached"
+    else:
+        meta = "no image sent"
+    text(draw, (x1 - PAD, y0 + 90), meta, face("mono", 11), MUTED, "rm")
     sx, sy, scale = sheet_box(scene)
     paste(image, scene.thumb, sx, sy)
     names = labels(n)

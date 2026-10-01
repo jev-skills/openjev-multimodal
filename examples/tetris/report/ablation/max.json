@@ -1,0 +1,103 @@
+{
+ "schema": 1,
+ "profile": "max",
+ "server": {
+  "model": "Qwen/Qwen3.8-27B",
+  "backend_build": "b51-91c0769",
+  "profile": "max",
+  "multimodal": true,
+  "openjev": "0.1.0",
+  "image_max_edge": 1024
+ },
+ "machine": {
+  "system": "Darwin arm64",
+  "chip": "Apple M3 Max",
+  "memory_gb": 128,
+  "llama_cpp": "b51-91c0769",
+  "python": "3.11.12"
+ },
+ "measured": "2026-09-21T07:25:13-07:00",
+ "results": {
+  "vision": {
+   "states": 48,
+   "agreement": 0.8958333333333334,
+   "mean_regret": 0.23769593749999998,
+   "avoidable_holes": 7,
+   "hole_traps": 46,
+   "median_ms": 3855.5239790002815,
+   "median_input_tokens": 492.5
+  },
+  "compact": {
+   "states": 48,
+   "agreement": 0.8541666666666666,
+   "mean_regret": 0.2788124791666666,
+   "avoidable_holes": 7,
+   "hole_traps": 46,
+   "median_ms": 903.4884789998614,
+   "median_input_tokens": 305.0
+  },
+  "text": {
+   "states": 48,
+   "agreement": 0.875,
+   "mean_regret": 0.43659695833333334,
+   "avoidable_holes": 3,
+   "hole_traps": 46,
+   "median_ms": 2893.532750000304,
+   "median_input_tokens": 373.5
+  },
+  "pixels": {
+   "states": 48,
+   "agreement": 0.25,
+   "mean_regret": 2.5231637083333336,
+   "avoidable_holes": 30,
+   "hole_traps": 46,
+   "median_ms": 3417.0323955013373,
+   "median_input_tokens": 409.5
+  },
+  "board": {
+   "states": 48,
+   "agreement": 0.8333333333333334,
+   "mean_regret": 0.5832900625,
+   "avoidable_holes": 4,
+   "hole_traps": 46,
+   "median_ms": 6110.467958000299,
+   "median_input_tokens": 696.5
+  },
+  "board@0.5": {
+   "states": 48,
+   "agreement": 0.7916666666666666,
+   "mean_regret": 0.8067732291666667,
+   "avoidable_holes": 2,
+   "hole_traps": 46,
+   "median_ms": 3776.21058349996,
+   "median_input_tokens": 479.5
+  },
+  "board@2.0": {
+   "states": 48,
+   "agreement": 0.8125,
+   "mean_regret": 0.7027184375000001,
+   "avoidable_holes": 3,
+   "hole_traps": 46,
+   "median_ms": 6974.513937499978,
+   "median_input_tokens": 888.5
+  },
+  "vision@0.5": {
+   "states": 48,
+   "agreement": 0.9166666666666666,
+   "mean_regret": 0.13364114583333334,
+   "avoidable_holes": 7,
+   "hole_traps": 46,
+   "median_ms": 3730.1703544990232,
+   "median_input_tokens": 438.5
+  },
+  "vision@2.0": {
+   "states": 48,
+   "agreement": 0.8958333333333334,
+   "mean_regret": 0.23769593749999998,
+   "avoidable_holes": 7,
+   "hole_traps": 46,
+   "median_ms": 5792.881520500487,
+   "median_input_tokens": 642.0
+  }
+ }
+}

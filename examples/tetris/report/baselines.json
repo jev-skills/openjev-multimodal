@@ -1,0 +1,927 @@
+{
+ "schema": 1,
+ "seeds": [
+  101,
+  202,
+  303,
+  404,
+  505
+ ],
+ "pieces": 100,
+ "goal": 10,
+ "policies": {
+  "random": {
+   "games": 100,
+   "goal_reached": 73,
+   "topped_out": 90,
+   "mean_lines": 14.3,
+   "mean_score": 3538,
+   "best_score": 9492,
+   "median_max_holes": 31.0,
+   "runs": [
+    {
+     "seed": 101,
+     "lines": 8,
+     "score": 1948,
+     "goal_reached": false,
+     "topped_out": true,
+     "max_holes": 28
+    },
+    {
+     "seed": 101,
+     "lines": 14,
+     "score": 3208,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 33
+    },
+    {
+     "seed": 101,
+     "lines": 13,
+     "score": 3032,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 32
+    },
+    {
+     "seed": 101,
+     "lines": 20,
+     "score": 4822,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 28
+    },
+    {
+     "seed": 101,
+     "lines": 16,
+     "score": 4042,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 25
+    },
+    {
+     "seed": 101,
+     "lines": 11,
+     "score": 2620,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 35
+    },
+    {
+     "seed": 101,
+     "lines": 25,
+     "score": 7086,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 32
+    },
+    {
+     "seed": 101,
+     "lines": 8,
+     "score": 1890,
+     "goal_reached": false,
+     "topped_out": true,
+     "max_holes": 32
+    },
+    {
+     "seed": 101,
+     "lines": 11,
+     "score": 2392,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 24
+    },
+    {
+     "seed": 101,
+     "lines": 6,
+     "score": 1710,
+     "goal_reached": false,
+     "topped_out": true,
+     "max_holes": 39
+    },
+    {
+     "seed": 101,
+     "lines": 13,
+     "score": 3006,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 28
+    },
+    {
+     "seed": 101,
+     "lines": 9,
+     "score": 2000,
+     "goal_reached": false,
+     "topped_out": true,
+     "max_holes": 30
+    },
+    {
+     "seed": 101,
+     "lines": 17,
+     "score": 3726,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 24
+    },
+    {
+     "seed": 101,
+     "lines": 6,
+     "score": 1850,
+     "goal_reached": false,
+     "topped_out": true,
+     "max_holes": 27
+    },
+    {
+     "seed": 101,
+     "lines": 18,
+     "score": 4474,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 22
+    },
+    {
+     "seed": 101,
+     "lines": 13,
+     "score": 3156,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 33
+    },
+    {
+     "seed": 101,
+     "lines": 26,
+     "score": 7048,
+     "goal_reached": true,
+     "topped_out": false,
+     "max_holes": 25
+    },
+    {
+     "seed": 101,
+     "lines": 8,
+     "score": 2046,
+     "goal_reached": false,
+     "topped_out": true,
+     "max_holes": 24
+    },
+    {
+     "seed": 101,
+     "lines": 30,
+     "score": 9492,
+     "goal_reached": true,
+     "topped_out": false,
+     "max_holes": 20
+    },
+    {
+     "seed": 101,
+     "lines": 26,
+     "score": 7518,
+     "goal_reached": true,
+     "topped_out": false,
+     "max_holes": 24
+    },
+    {
+     "seed": 202,
+     "lines": 18,
+     "score": 4086,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 38
+    },
+    {
+     "seed": 202,
+     "lines": 20,
+     "score": 4870,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 24
+    },
+    {
+     "seed": 202,
+     "lines": 4,
+     "score": 1370,
+     "goal_reached": false,
+     "topped_out": true,
+     "max_holes": 26
+    },
+    {
+     "seed": 202,
+     "lines": 14,
+     "score": 3146,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 41
+    },
+    {
+     "seed": 202,
+     "lines": 10,
+     "score": 2148,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 38
+    },
+    {
+     "seed": 202,
+     "lines": 14,
+     "score": 3204,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 32
+    },
+    {
+     "seed": 202,
+     "lines": 6,
+     "score": 1486,
+     "goal_reached": false,
+     "topped_out": true,
+     "max_holes": 34
+    },
+    {
+     "seed": 202,
+     "lines": 11,
+     "score": 2508,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 31
+    },
+    {
+     "seed": 202,
+     "lines": 11,
+     "score": 2428,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 31
+    },
+    {
+     "seed": 202,
+     "lines": 7,
+     "score": 1546,
+     "goal_reached": false,
+     "topped_out": true,
+     "max_holes": 39
+    },
+    {
+     "seed": 202,
+     "lines": 13,
+     "score": 2956,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 33
+    },
+    {
+     "seed": 202,
+     "lines": 11,
+     "score": 2390,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 38
+    },
+    {
+     "seed": 202,
+     "lines": 25,
+     "score": 6484,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 37
+    },
+    {
+     "seed": 202,
+     "lines": 9,
+     "score": 1926,
+     "goal_reached": false,
+     "topped_out": true,
+     "max_holes": 32
+    },
+    {
+     "seed": 202,
+     "lines": 19,
+     "score": 4158,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 31
+    },
+    {
+     "seed": 202,
+     "lines": 16,
+     "score": 3442,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 35
+    },
+    {
+     "seed": 202,
+     "lines": 24,
+     "score": 6072,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 31
+    },
+    {
+     "seed": 202,
+     "lines": 9,
+     "score": 2124,
+     "goal_reached": false,
+     "topped_out": true,
+     "max_holes": 29
+    },
+    {
+     "seed": 202,
+     "lines": 12,
+     "score": 2960,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 31
+    },
+    {
+     "seed": 202,
+     "lines": 27,
+     "score": 7264,
+     "goal_reached": true,
+     "topped_out": false,
+     "max_holes": 25
+    },
+    {
+     "seed": 303,
+     "lines": 14,
+     "score": 3226,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 32
+    },
+    {
+     "seed": 303,
+     "lines": 8,
+     "score": 1878,
+     "goal_reached": false,
+     "topped_out": true,
+     "max_holes": 32
+    },
+    {
+     "seed": 303,
+     "lines": 29,
+     "score": 8270,
+     "goal_reached": true,
+     "topped_out": false,
+     "max_holes": 31
+    },
+    {
+     "seed": 303,
+     "lines": 16,
+     "score": 3446,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 23
+    },
+    {
+     "seed": 303,
+     "lines": 10,
+     "score": 2034,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 34
+    },
+    {
+     "seed": 303,
+     "lines": 7,
+     "score": 1784,
+     "goal_reached": false,
+     "topped_out": true,
+     "max_holes": 22
+    },
+    {
+     "seed": 303,
+     "lines": 13,
+     "score": 3146,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 39
+    },
+    {
+     "seed": 303,
+     "lines": 16,
+     "score": 3792,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 24
+    },
+    {
+     "seed": 303,
+     "lines": 14,
+     "score": 3200,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 40
+    },
+    {
+     "seed": 303,
+     "lines": 11,
+     "score": 2588,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 31
+    },
+    {
+     "seed": 303,
+     "lines": 12,
+     "score": 2642,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 33
+    },
+    {
+     "seed": 303,
+     "lines": 15,
+     "score": 3518,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 24
+    },
+    {
+     "seed": 303,
+     "lines": 17,
+     "score": 3776,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 30
+    },
+    {
+     "seed": 303,
+     "lines": 6,
+     "score": 1720,
+     "goal_reached": false,
+     "topped_out": true,
+     "max_holes": 28
+    },
+    {
+     "seed": 303,
+     "lines": 9,
+     "score": 2140,
+     "goal_reached": false,
+     "topped_out": true,
+     "max_holes": 31
+    },
+    {
+     "seed": 303,
+     "lines": 13,
+     "score": 2894,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 33
+    },
+    {
+     "seed": 303,
+     "lines": 28,
+     "score": 7914,
+     "goal_reached": true,
+     "topped_out": false,
+     "max_holes": 18
+    },
+    {
+     "seed": 303,
+     "lines": 8,
+     "score": 2056,
+     "goal_reached": false,
+     "topped_out": true,
+     "max_holes": 37
+    },
+    {
+     "seed": 303,
+     "lines": 13,
+     "score": 3180,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 31
+    },
+    {
+     "seed": 303,
+     "lines": 16,
+     "score": 3956,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 33
+    },
+    {
+     "seed": 404,
+     "lines": 17,
+     "score": 4440,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 26
+    },
+    {
+     "seed": 404,
+     "lines": 9,
+     "score": 2098,
+     "goal_reached": false,
+     "topped_out": true,
+     "max_holes": 33
+    },
+    {
+     "seed": 404,
+     "lines": 8,
+     "score": 1830,
+     "goal_reached": false,
+     "topped_out": true,
+     "max_holes": 46
+    },
+    {
+     "seed": 404,
+     "lines": 15,
+     "score": 3474,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 21
+    },
+    {
+     "seed": 404,
+     "lines": 11,
+     "score": 2310,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 27
+    },
+    {
+     "seed": 404,
+     "lines": 11,
+     "score": 2342,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 30
+    },
+    {
+     "seed": 404,
+     "lines": 19,
+     "score": 4472,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 28
+    },
+    {
+     "seed": 404,
+     "lines": 3,
+     "score": 1150,
+     "goal_reached": false,
+     "topped_out": true,
+     "max_holes": 40
+    },
+    {
+     "seed": 404,
+     "lines": 20,
+     "score": 5224,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 31
+    },
+    {
+     "seed": 404,
+     "lines": 21,
+     "score": 5246,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 25
+    },
+    {
+     "seed": 404,
+     "lines": 14,
+     "score": 3096,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 33
+    },
+    {
+     "seed": 404,
+     "lines": 15,
+     "score": 3556,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 27
+    },
+    {
+     "seed": 404,
+     "lines": 15,
+     "score": 3434,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 28
+    },
+    {
+     "seed": 404,
+     "lines": 20,
+     "score": 4484,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 35
+    },
+    {
+     "seed": 404,
+     "lines": 26,
+     "score": 7288,
+     "goal_reached": true,
+     "topped_out": false,
+     "max_holes": 31
+    },
+    {
+     "seed": 404,
+     "lines": 9,
+     "score": 2144,
+     "goal_reached": false,
+     "topped_out": true,
+     "max_holes": 30
+    },
+    {
+     "seed": 404,
+     "lines": 15,
+     "score": 3468,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 22
+    },
+    {
+     "seed": 404,
+     "lines": 18,
+     "score": 4044,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 30
+    },
+    {
+     "seed": 404,
+     "lines": 27,
+     "score": 7546,
+     "goal_reached": true,
+     "topped_out": false,
+     "max_holes": 30
+    },
+    {
+     "seed": 404,
+     "lines": 9,
+     "score": 2016,
+     "goal_reached": false,
+     "topped_out": true,
+     "max_holes": 34
+    },
+    {
+     "seed": 505,
+     "lines": 14,
+     "score": 2994,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 34
+    },
+    {
+     "seed": 505,
+     "lines": 27,
+     "score": 7612,
+     "goal_reached": true,
+     "topped_out": false,
+     "max_holes": 32
+    },
+    {
+     "seed": 505,
+     "lines": 20,
+     "score": 4966,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 28
+    },
+    {
+     "seed": 505,
+     "lines": 8,
+     "score": 1968,
+     "goal_reached": false,
+     "topped_out": true,
+     "max_holes": 27
+    },
+    {
+     "seed": 505,
+     "lines": 6,
+     "score": 1814,
+     "goal_reached": false,
+     "topped_out": true,
+     "max_holes": 27
+    },
+    {
+     "seed": 505,
+     "lines": 16,
+     "score": 3956,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 29
+    },
+    {
+     "seed": 505,
+     "lines": 8,
+     "score": 1918,
+     "goal_reached": false,
+     "topped_out": true,
+     "max_holes": 36
+    },
+    {
+     "seed": 505,
+     "lines": 27,
+     "score": 7356,
+     "goal_reached": true,
+     "topped_out": false,
+     "max_holes": 23
+    },
+    {
+     "seed": 505,
+     "lines": 5,
+     "score": 1466,
+     "goal_reached": false,
+     "topped_out": true,
+     "max_holes": 34
+    },
+    {
+     "seed": 505,
+     "lines": 8,
+     "score": 2238,
+     "goal_reached": false,
+     "topped_out": true,
+     "max_holes": 34
+    },
+    {
+     "seed": 505,
+     "lines": 18,
+     "score": 4210,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 33
+    },
+    {
+     "seed": 505,
+     "lines": 15,
+     "score": 3674,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 32
+    },
+    {
+     "seed": 505,
+     "lines": 19,
+     "score": 4302,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 31
+    },
+    {
+     "seed": 505,
+     "lines": 12,
+     "score": 2812,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 37
+    },
+    {
+     "seed": 505,
+     "lines": 11,
+     "score": 2520,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 30
+    },
+    {
+     "seed": 505,
+     "lines": 15,
+     "score": 3454,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 34
+    },
+    {
+     "seed": 505,
+     "lines": 18,
+     "score": 4730,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 35
+    },
+    {
+     "seed": 505,
+     "lines": 11,
+     "score": 2622,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 36
+    },
+    {
+     "seed": 505,
+     "lines": 8,
+     "score": 2032,
+     "goal_reached": false,
+     "topped_out": true,
+     "max_holes": 39
+    },
+    {
+     "seed": 505,
+     "lines": 12,
+     "score": 2698,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 27
+    }
+   ]
+  },
+  "first": {
+   "games": 5,
+   "goal_reached": 3,
+   "topped_out": 4,
+   "mean_lines": 16.0,
+   "mean_score": 4188,
+   "best_score": 7744,
+   "median_max_holes": 27,
+   "runs": [
+    {
+     "seed": 101,
+     "lines": 28,
+     "score": 7744,
+     "goal_reached": true,
+     "topped_out": false,
+     "max_holes": 28
+    },
+    {
+     "seed": 202,
+     "lines": 8,
+     "score": 1956,
+     "goal_reached": false,
+     "topped_out": true,
+     "max_holes": 27
+    },
+    {
+     "seed": 303,
+     "lines": 7,
+     "score": 1994,
+     "goal_reached": false,
+     "topped_out": true,
+     "max_holes": 39
+    },
+    {
+     "seed": 404,
+     "lines": 16,
+     "score": 3980,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 25
+    },
+    {
+     "seed": 505,
+     "lines": 21,
+     "score": 5264,
+     "goal_reached": true,
+     "topped_out": true,
+     "max_holes": 23
+    }
+   ]
+  },
+  "reference": {
+   "games": 5,
+   "goal_reached": 5,
+   "topped_out": 0,
+   "mean_lines": 37.8,
+   "mean_score": 13285,
+   "best_score": 13882,
+   "median_max_holes": 2,
+   "runs": [
+    {
+     "seed": 101,
+     "lines": 37,
+     "score": 13076,
+     "goal_reached": true,
+     "topped_out": false,
+     "max_holes": 1
+    },
+    {
+     "seed": 202,
+     "lines": 38,
+     "score": 13312,
+     "goal_reached": true,
+     "topped_out": false,
+     "max_holes": 4
+    },
+    {
+     "seed": 303,
+     "lines": 39,
+     "score": 13882,
+     "goal_reached": true,
+     "topped_out": false,
+     "max_holes": 2
+    },
+    {
+     "seed": 404,
+     "lines": 36,
+     "score": 12936,
+     "goal_reached": true,
+     "topped_out": false,
+     "max_holes": 3
+    },
+    {
+     "seed": 505,
+     "lines": 39,
+     "score": 13218,
+     "goal_reached": true,
+     "topped_out": false,
+     "max_holes": 2
+    }
+   ]
+  }
+ }
+}

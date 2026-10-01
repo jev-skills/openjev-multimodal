@@ -1,8 +1,8 @@
 # Designing decisions for OpenJev
 
 These notes come from building and measuring the Tetris example
-(`examples/tetris` in the repository): three Qwen profiles, 30 games, 1,427 decisions
-and a design study of eight presentations over the same 48 states.
+(`examples/tetris` in the repository): four Qwen profiles, 60 games, 2,884 decisions
+and a design study of nine presentations over the same 48 states.
 
 ## Shape the problem
 
@@ -19,6 +19,10 @@ and a design study of eight presentations over the same 48 states.
 - **Order neutrally.** List options by position, time or name. Never sort by your own
   score: small models favour early labels, and a sorted list lets that bias pass for
   judgment.
+- **Keep what never changes in the state.** Send fixed rules and context as the state,
+  byte for byte the same on every request, and put what changes in the question.
+  OpenJev caches a repeated state, so each request reads only its question: a
+  Qwen3.8-27B Tetris decision fell from 1.9 s to 0.7 s.
 - **Offer an exit.** Add `none`, `other` or `ask a person` whenever the listed options
   may not cover the situation.
 
@@ -93,6 +97,10 @@ Tetris results on an Apple M3 Max (vision prompt, 5 seeds × 100 pieces):
 | fast | Qwen3.5-0.8B Q4_K_M | 5 / 5 | 26.6 | 42% | 0.15 s |
 | balanced | Qwen3.5-4B Q4_K_M | 5 / 5 | 35.8 | 73% | 0.65 s |
 | quality | Qwen3.6-35B-A3B UD-Q4_K_XL | 5 / 5 | 38.2 | 84% | 0.91 s |
+| max | Qwen3.8-27B UD-Q4_K_XL | 5 / 5 | 38.4 | 85% | 4.08 s |
+
+With the compact prompt (rules as a cached state), quality cleared 38.2 lines at 0.14 s
+per call and max 38.2 at 0.73 s. Random picks among the same plans clear 14.3.
 
 ## Act on the answer
 

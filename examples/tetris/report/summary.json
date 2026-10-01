@@ -3,7 +3,8 @@
  "measured": {
   "fast": "2026-09-21T02:41:17-07:00",
   "balanced": "2026-09-21T02:46:26-07:00",
-  "quality": "2026-09-21T02:52:57-07:00"
+  "quality": "2026-09-21T02:52:57-07:00",
+  "max": "2026-09-21T06:53:27-07:00"
  },
  "machine": {
   "system": "Darwin arm64",
@@ -11,6 +12,28 @@
   "memory_gb": 128,
   "llama_cpp": "b9670",
   "python": "3.11.12"
+ },
+ "llama_cpp": {
+  "fast": {
+   "vision": "b9670",
+   "text": "b9670",
+   "compact": "b51-91c0769"
+  },
+  "balanced": {
+   "vision": "b9670",
+   "text": "b9670",
+   "compact": "b51-91c0769"
+  },
+  "quality": {
+   "vision": "b9670",
+   "text": "b9670",
+   "compact": "b51-91c0769"
+  },
+  "max": {
+   "vision": "b51-91c0769",
+   "text": "b51-91c0769",
+   "compact": "b51-91c0769"
+  }
  },
  "openjev": "0.1.0",
  "protocol": {
@@ -197,6 +220,89 @@
      "input_tokens_median": 380.5,
      "image_tokens_median": 0.0,
      "options_median": 3
+    },
+    "compact": {
+     "games": 5,
+     "seeds": [
+      101,
+      202,
+      303,
+      404,
+      505
+     ],
+     "goal_reached": 4,
+     "clean_goal": 0,
+     "topped_out": 5,
+     "pieces_to_goal": [
+      54,
+      42,
+      42,
+      48
+     ],
+     "think_to_goal_s": [
+      0.84,
+      0.69,
+      0.57,
+      0.57
+     ],
+     "score": [
+      2052,
+      5694,
+      3870,
+      5848,
+      3644
+     ],
+     "lines": [
+      9,
+      23,
+      16,
+      23,
+      16
+     ],
+     "clears": [
+      9,
+      21,
+      16,
+      22,
+      16
+     ],
+     "pieces": [
+      60,
+      96,
+      80,
+      98,
+      80
+     ],
+     "max_holes": [
+      34,
+      28,
+      25,
+      28,
+      23
+     ],
+     "max_height": [
+      19,
+      19,
+      19,
+      20,
+      19
+     ],
+     "agreement": 0.388,
+     "mean_regret": 2.329,
+     "decisions": 207,
+     "calls": 187,
+     "forced": 20,
+     "latency_ms": {
+      "median": 29.5,
+      "p90": 37.8,
+      "min": 24.7,
+      "max": 94.0
+     },
+     "server_ms_median": 28.6,
+     "plan_ms_median": 21.1,
+     "input_tokens_median": 308,
+     "image_tokens_median": 0,
+     "options_median": 3
     }
    },
    "ablation": {
@@ -271,6 +377,15 @@
      "hole_traps": 46,
      "median_ms": 162.15566647588275,
      "median_input_tokens": 642.0
+    },
+    "compact": {
+     "states": 48,
+     "agreement": 0.4166666666666667,
+     "mean_regret": 1.5369118541666669,
+     "avoidable_holes": 26,
+     "hole_traps": 46,
+     "median_ms": 29.161561999899277,
+     "median_input_tokens": 305.0
     }
    }
   },
@@ -446,6 +561,91 @@
      "input_tokens_median": 378.0,
      "image_tokens_median": 0.0,
      "options_median": 3.0
+    },
+    "compact": {
+     "games": 5,
+     "seeds": [
+      101,
+      202,
+      303,
+      404,
+      505
+     ],
+     "goal_reached": 5,
+     "clean_goal": 1,
+     "topped_out": 0,
+     "pieces_to_goal": [
+      36,
+      36,
+      34,
+      42,
+      38
+     ],
+     "think_to_goal_s": [
+      2.29,
+      2.23,
+      1.71,
+      2.17,
+      2.25
+     ],
+     "score": [
+      9278,
+      10336,
+      11446,
+      10542,
+      11346
+     ],
+     "lines": [
+      31,
+      33,
+      33,
+      33,
+      35
+     ],
+     "clears": [
+      29,
+      31,
+      27,
+      29,
+      31
+     ],
+     "pieces": [
+      100,
+      100,
+      100,
+      100,
+      100
+     ],
+     "max_holes": [
+      15,
+      9,
+      10,
+      8,
+      11
+     ],
+     "max_height": [
+      12,
+      10,
+      10,
+      11,
+      8
+     ],
+     "agreement": 0.572,
+     "mean_regret": 1.204,
+     "decisions": 250,
+     "calls": 240,
+     "forced": 10,
+     "latency_ms": {
+      "median": 115.7,
+      "p90": 173.4,
+      "min": 95.6,
+      "max": 323.1
+     },
+     "server_ms_median": 114.8,
+     "plan_ms_median": 26.1,
+     "input_tokens_median": 305.0,
+     "image_tokens_median": 0.0,
+     "options_median": 3.0
     }
    },
    "ablation": {
@@ -520,6 +720,15 @@
      "hole_traps": 46,
      "median_ms": 646.5464794891886,
      "median_input_tokens": 642.0
+    },
+    "compact": {
+     "states": 48,
+     "agreement": 0.5416666666666666,
+     "mean_regret": 0.6882223958333334,
+     "avoidable_holes": 22,
+     "hole_traps": 46,
+     "median_ms": 115.28502100009064,
+     "median_input_tokens": 305.0
     }
    }
   },
@@ -695,6 +904,91 @@
      "input_tokens_median": 377,
      "image_tokens_median": 0,
      "options_median": 3.0
+    },
+    "compact": {
+     "games": 5,
+     "seeds": [
+      101,
+      202,
+      303,
+      404,
+      505
+     ],
+     "goal_reached": 5,
+     "clean_goal": 5,
+     "topped_out": 0,
+     "pieces_to_goal": [
+      36,
+      34,
+      28,
+      26,
+      28
+     ],
+     "think_to_goal_s": [
+      2.67,
+      2.37,
+      1.66,
+      1.67,
+      1.73
+     ],
+     "score": [
+      13798,
+      15262,
+      14148,
+      13788,
+      13374
+     ],
+     "lines": [
+      38,
+      39,
+      39,
+      38,
+      37
+     ],
+     "clears": [
+      32,
+      30,
+      35,
+      34,
+      32
+     ],
+     "pieces": [
+      100,
+      100,
+      100,
+      100,
+      100
+     ],
+     "max_holes": [
+      4,
+      2,
+      1,
+      1,
+      3
+     ],
+     "max_height": [
+      6,
+      6,
+      5,
+      6,
+      5
+     ],
+     "agreement": 0.786,
+     "mean_regret": 0.259,
+     "decisions": 250,
+     "calls": 226,
+     "forced": 24,
+     "latency_ms": {
+      "median": 143.1,
+      "p90": 175.8,
+      "min": 119.5,
+      "max": 387.8
+     },
+     "server_ms_median": 142.2,
+     "plan_ms_median": 30.6,
+     "input_tokens_median": 305.0,
+     "image_tokens_median": 0.0,
+     "options_median": 3.0
     }
    },
    "ablation": {
@@ -769,8 +1063,409 @@
      "hole_traps": 46,
      "median_ms": 863.8952494948171,
      "median_input_tokens": 642.0
+    },
+    "compact": {
+     "states": 48,
+     "agreement": 0.8333333333333334,
+     "mean_regret": 0.41129281249999994,
+     "avoidable_holes": 7,
+     "hole_traps": 46,
+     "median_ms": 144.58160399954068,
+     "median_input_tokens": 305.0
     }
    }
+  },
+  "max": {
+   "model": "Qwen/Qwen3.8-27B",
+   "modes": {
+    "vision": {
+     "games": 5,
+     "seeds": [
+      101,
+      202,
+      303,
+      404,
+      505
+     ],
+     "goal_reached": 5,
+     "clean_goal": 3,
+     "topped_out": 0,
+     "pieces_to_goal": [
+      32,
+      34,
+      28,
+      26,
+      28
+     ],
+     "think_to_goal_s": [
+      56.97,
+      73.27,
+      46.38,
+      51.08,
+      48.81
+     ],
+     "score": [
+      13778,
+      12896,
+      13188,
+      13458,
+      13792
+     ],
+     "lines": [
+      39,
+      38,
+      37,
+      39,
+      39
+     ],
+     "clears": [
+      35,
+      35,
+      34,
+      37,
+      35
+     ],
+     "pieces": [
+      100,
+      100,
+      100,
+      100,
+      100
+     ],
+     "max_holes": [
+      2,
+      3,
+      2,
+      2,
+      3
+     ],
+     "max_height": [
+      4,
+      6,
+      4,
+      6,
+      5
+     ],
+     "agreement": 0.847,
+     "mean_regret": 0.072,
+     "decisions": 250,
+     "calls": 225,
+     "forced": 25,
+     "latency_ms": {
+      "median": 4081.9,
+      "p90": 5112.1,
+      "min": 3255.8,
+      "max": 7785.6
+     },
+     "server_ms_median": 4080.7,
+     "plan_ms_median": 32.9,
+     "input_tokens_median": 495,
+     "image_tokens_median": 72,
+     "options_median": 3.0
+    },
+    "text": {
+     "games": 5,
+     "seeds": [
+      101,
+      202,
+      303,
+      404,
+      505
+     ],
+     "goal_reached": 5,
+     "clean_goal": 4,
+     "topped_out": 0,
+     "pieces_to_goal": [
+      32,
+      34,
+      26,
+      26,
+      46
+     ],
+     "think_to_goal_s": [
+      29.99,
+      50.15,
+      29.77,
+      36.03,
+      77.95
+     ],
+     "score": [
+      13282,
+      12902,
+      13126,
+      13242,
+      14446
+     ],
+     "lines": [
+      37,
+      38,
+      38,
+      37,
+      39
+     ],
+     "clears": [
+      32,
+      35,
+      36,
+      33,
+      30
+     ],
+     "pieces": [
+      100,
+      100,
+      100,
+      100,
+      100
+     ],
+     "max_holes": [
+      1,
+      3,
+      3,
+      2,
+      5
+     ],
+     "max_height": [
+      5,
+      6,
+      8,
+      6,
+      11
+     ],
+     "agreement": 0.802,
+     "mean_regret": 0.299,
+     "decisions": 250,
+     "calls": 233,
+     "forced": 17,
+     "latency_ms": {
+      "median": 2984.0,
+      "p90": 3708.9,
+      "min": 1932.3,
+      "max": 4744.9
+     },
+     "server_ms_median": 2982.8,
+     "plan_ms_median": 29.4,
+     "input_tokens_median": 379,
+     "image_tokens_median": 0,
+     "options_median": 3.0
+    },
+    "compact": {
+     "games": 5,
+     "seeds": [
+      101,
+      202,
+      303,
+      404,
+      505
+     ],
+     "goal_reached": 5,
+     "clean_goal": 4,
+     "topped_out": 0,
+     "pieces_to_goal": [
+      32,
+      34,
+      26,
+      32,
+      26
+     ],
+     "think_to_goal_s": [
+      11.24,
+      12.35,
+      6.79,
+      10.8,
+      10.67
+     ],
+     "score": [
+      13778,
+      12902,
+      13754,
+      13528,
+      12254
+     ],
+     "lines": [
+      39,
+      38,
+      38,
+      39,
+      37
+     ],
+     "clears": [
+      35,
+      35,
+      34,
+      36,
+      36
+     ],
+     "pieces": [
+      100,
+      100,
+      100,
+      100,
+      100
+     ],
+     "max_holes": [
+      2,
+      3,
+      2,
+      1,
+      3
+     ],
+     "max_height": [
+      4,
+      6,
+      6,
+      5,
+      6
+     ],
+     "agreement": 0.812,
+     "mean_regret": 0.137,
+     "decisions": 250,
+     "calls": 234,
+     "forced": 16,
+     "latency_ms": {
+      "median": 730.5,
+      "p90": 1032.9,
+      "min": 529.5,
+      "max": 1818.2
+     },
+     "server_ms_median": 729.0,
+     "plan_ms_median": 32.9,
+     "input_tokens_median": 305.0,
+     "image_tokens_median": 0.0,
+     "options_median": 3.0
+    }
+   },
+   "ablation": {
+    "vision": {
+     "states": 48,
+     "agreement": 0.8958333333333334,
+     "mean_regret": 0.23769593749999998,
+     "avoidable_holes": 7,
+     "hole_traps": 46,
+     "median_ms": 3855.5239790002815,
+     "median_input_tokens": 492.5
+    },
+    "compact": {
+     "states": 48,
+     "agreement": 0.8541666666666666,
+     "mean_regret": 0.2788124791666666,
+     "avoidable_holes": 7,
+     "hole_traps": 46,
+     "median_ms": 903.4884789998614,
+     "median_input_tokens": 305.0
+    },
+    "text": {
+     "states": 48,
+     "agreement": 0.875,
+     "mean_regret": 0.43659695833333334,
+     "avoidable_holes": 3,
+     "hole_traps": 46,
+     "median_ms": 2893.532750000304,
+     "median_input_tokens": 373.5
+    },
+    "pixels": {
+     "states": 48,
+     "agreement": 0.25,
+     "mean_regret": 2.5231637083333336,
+     "avoidable_holes": 30,
+     "hole_traps": 46,
+     "median_ms": 3417.0323955013373,
+     "median_input_tokens": 409.5
+    },
+    "board": {
+     "states": 48,
+     "agreement": 0.8333333333333334,
+     "mean_regret": 0.5832900625,
+     "avoidable_holes": 4,
+     "hole_traps": 46,
+     "median_ms": 6110.467958000299,
+     "median_input_tokens": 696.5
+    },
+    "board@0.5": {
+     "states": 48,
+     "agreement": 0.7916666666666666,
+     "mean_regret": 0.8067732291666667,
+     "avoidable_holes": 2,
+     "hole_traps": 46,
+     "median_ms": 3776.21058349996,
+     "median_input_tokens": 479.5
+    },
+    "board@2.0": {
+     "states": 48,
+     "agreement": 0.8125,
+     "mean_regret": 0.7027184375000001,
+     "avoidable_holes": 3,
+     "hole_traps": 46,
+     "median_ms": 6974.513937499978,
+     "median_input_tokens": 888.5
+    },
+    "vision@0.5": {
+     "states": 48,
+     "agreement": 0.9166666666666666,
+     "mean_regret": 0.13364114583333334,
+     "avoidable_holes": 7,
+     "hole_traps": 46,
+     "median_ms": 3730.1703544990232,
+     "median_input_tokens": 438.5
+    },
+    "vision@2.0": {
+     "states": 48,
+     "agreement": 0.8958333333333334,
+     "mean_regret": 0.23769593749999998,
+     "avoidable_holes": 7,
+     "hole_traps": 46,
+     "median_ms": 5792.881520500487,
+     "median_input_tokens": 642.0
+    }
+   }
+  }
+ },
+ "baselines": {
+  "random": {
+   "games": 100,
+   "goal_reached": 73,
+   "topped_out": 90,
+   "mean_lines": 14.3,
+   "mean_score": 3538,
+   "best_score": 9492,
+   "median_max_holes": 31.0
+  },
+  "first": {
+   "games": 5,
+   "goal_reached": 3,
+   "topped_out": 4,
+   "mean_lines": 16.0,
+   "mean_score": 4188,
+   "best_score": 7744,
+   "median_max_holes": 27
+  },
+  "reference": {
+   "games": 5,
+   "goal_reached": 5,
+   "topped_out": 0,
+   "mean_lines": 37.8,
+   "mean_score": 13285,
+   "best_score": 13882,
+   "median_max_holes": 2
+  }
+ },
+ "probes": {
+  "patched-cache": {
+   "median_ms": 661.8,
+   "calls": 16,
+   "llama_cpp": "b51-91c0769",
+   "model": "Qwen/Qwen3.8-27B"
+  },
+  "stock-cache": {
+   "median_ms": 831.5,
+   "calls": 16,
+   "llama_cpp": "b9670-02810c7aa",
+   "model": "Qwen/Qwen3.8-27B"
+  },
+  "stock": {
+   "median_ms": 1934.2,
+   "calls": 16,
+   "llama_cpp": "b9670-02810c7aa",
+   "model": "Qwen/Qwen3.8-27B"
   }
  }
 }

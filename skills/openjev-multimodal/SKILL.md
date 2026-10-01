@@ -31,7 +31,8 @@ Silicon (`brew install uv llama.cpp`, llama.cpp b9670 or newer):
 uv sync --frozen
 uv run openjev serve                     # balanced: Qwen3.5-4B, text + images
 uv run openjev serve --profile fast      # Qwen3.5-0.8B: smallest and fastest
-uv run openjev serve --profile quality   # Qwen3.6-35B-A3B: best judgment, ~24 GB of weights
+uv run openjev serve --profile quality   # Qwen3.6-35B-A3B: strong and quick, ~24 GB of weights
+uv run openjev serve --profile max       # Qwen3.8-27B: most capable, dense, ~18 GB of weights
 uv run openjev doctor                    # prerequisites, without downloading anything
 ```
 
@@ -130,8 +131,10 @@ tokens and model size set the pace. Inspect `usage.input_tokens`, the
 `x-openjev-cached-tokens`. Inference runs on one slot: concurrent requests queue, and
 HTTP 529 means the queue is full, so retry after `Retry-After`. Measured on an Apple
 M3 Max for a ~500-token decision with one small image: fast 0.15 s, balanced 0.65 s,
-quality 0.91 s. The quality model activates about 3B parameters per token, so it is
-only about 1.4 times slower than balanced while choosing much better.
+quality 0.91 s, max about 4 s. Keep whatever does not change in the state and send it
+unchanged: the API caches a repeated state, so each request reads only its question.
+For Qwen3.8-27B that took a Tetris decision from 1.9 s to 0.7 s (with the llama.cpp
+patch from `scripts/build-llama.sh`).
 
 ## Use the probabilities
 
@@ -147,8 +150,8 @@ data and consequences.
 plays Tetris through the API. Code enumerates every two-piece plan, prunes dominated
 ones, and sends one Choice with each plan's keys and measured result plus a lettered
 image of the outcomes; Jev's single token picks the plan. It includes the benchmark
-across all three profiles, a design study of image resolution, replay videos and a
-browser game.
+across all four profiles, a no-model baseline, a design study of image resolution,
+replay videos and a browser game.
 
 ## Care
 

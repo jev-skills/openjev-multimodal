@@ -1,0 +1,217 @@
+{
+ "schema": 1,
+ "name": "patched-cache",
+ "server": {
+  "model": "Qwen/Qwen3.8-27B",
+  "backend_build": "b51-91c0769",
+  "profile": "max",
+  "multimodal": true,
+  "openjev": "0.1.0",
+  "image_max_edge": 1024
+ },
+ "machine": {
+  "system": "Darwin arm64",
+  "chip": "Apple M3 Max",
+  "memory_gb": 128,
+  "llama_cpp": "b51-91c0769",
+  "python": "3.11.12"
+ },
+ "measured": "2026-09-21T07:55:26-07:00",
+ "seed": 7,
+ "mode": "compact",
+ "median_ms": 661.8,
+ "calls": [
+  {
+   "client_ms": 1758.4,
+   "timing": {
+    "parse": 0.52,
+    "prepare": 5.88,
+    "queue": 0.0,
+    "inference": 1751.14,
+    "compute": 1749.45,
+    "total": 1757.66
+   },
+   "input_tokens": 305
+  },
+  {
+   "client_ms": 1825.6,
+   "timing": {
+    "parse": 0.13,
+    "prepare": 4.0,
+    "queue": 0.0,
+    "inference": 1820.36,
+    "compute": 658.62,
+    "total": 1824.61
+   },
+   "input_tokens": 330
+  },
+  {
+   "client_ms": 668.5,
+   "timing": {
+    "parse": 0.13,
+    "prepare": 3.5,
+    "queue": 0.0,
+    "inference": 663.95,
+    "compute": 662.25,
+    "total": 667.7
+   },
+   "input_tokens": 330
+  },
+  {
+   "client_ms": 843.9,
+   "timing": {
+    "parse": 0.14,
+    "prepare": 1.76,
+    "queue": 0.0,
+    "inference": 840.89,
+    "compute": 839.34,
+    "total": 842.91
+   },
+   "input_tokens": 355
+  },
+  {
+   "client_ms": 531.1,
+   "timing": {
+    "parse": 0.12,
+    "prepare": 1.73,
+    "queue": 0.0,
+    "inference": 528.23,
+    "compute": 526.77,
+    "total": 530.19
+   },
+   "input_tokens": 280
+  },
+  {
+   "client_ms": 666.1,
+   "timing": {
+    "parse": 0.11,
+    "prepare": 1.8,
+    "queue": 0.0,
+    "inference": 663.1,
+    "compute": 661.61,
+    "total": 665.12
+   },
+   "input_tokens": 330
+  },
+  {
+   "client_ms": 530.6,
+   "timing": {
+    "parse": 0.1,
+    "prepare": 1.59,
+    "queue": 0.0,
+    "inference": 528.15,
+    "compute": 526.77,
+    "total": 529.94
+   },
+   "input_tokens": 280
+  },
+  {
+   "client_ms": 656.1,
+   "timing": {
+    "parse": 0.09,
+    "prepare": 1.62,
+    "queue": 0.0,
+    "inference": 653.56,
+    "compute": 652.19,
+    "total": 655.37
+   },
+   "input_tokens": 305
+  },
+  {
+   "client_ms": 666.9,
+   "timing": {
+    "parse": 0.09,
+    "prepare": 1.66,
+    "queue": 0.0,
+    "inference": 664.16,
+    "compute": 662.65,
+    "total": 666.0
+   },
+   "input_tokens": 330
+  },
+  {
+   "client_ms": 664.9,
+   "timing": {
+    "parse": 0.1,
+    "prepare": 1.67,
+    "queue": 0.0,
+    "inference": 662.31,
+    "compute": 660.85,
+    "total": 664.17
+   },
+   "input_tokens": 330
+  },
+  {
+   "client_ms": 976.7,
+   "timing": {
+    "parse": 0.1,
+    "prepare": 1.8,
+    "queue": 0.0,
+    "inference": 974.02,
+    "compute": 972.5,
+    "total": 976.01
+   },
+   "input_tokens": 380
+  },
+  {
+   "client_ms": 529.4,
+   "timing": {
+    "parse": 0.09,
+    "prepare": 1.75,
+    "queue": 0.0,
+    "inference": 526.76,
+    "compute": 525.21,
+    "total": 528.69
+   },
+   "input_tokens": 280
+  },
+  {
+   "client_ms": 530.8,
+   "timing": {
+    "parse": 0.12,
+    "prepare": 1.72,
+    "queue": 0.0,
+    "inference": 527.99,
+    "compute": 526.55,
+    "total": 529.92
+   },
+   "input_tokens": 280
+  },
+  {
+   "client_ms": 527.9,
+   "timing": {
+    "parse": 0.1,
+    "prepare": 1.65,
+    "queue": 0.0,
+    "inference": 525.23,
+    "compute": 523.75,
+    "total": 527.08
+   },
+   "input_tokens": 280
+  },
+  {
+   "client_ms": 658.8,
+   "timing": {
+    "parse": 0.11,
+    "prepare": 1.66,
+    "queue": 0.0,
+    "inference": 656.02,
+    "compute": 654.51,
+    "total": 657.89
+   },
+   "input_tokens": 305
+  },
+  {
+   "client_ms": 658.3,
+   "timing": {
+    "parse": 0.1,
+    "prepare": 1.74,
+    "queue": 0.0,
+    "inference": 655.6,
+    "compute": 654.15,
+    "total": 657.53
+   },
+   "input_tokens": 305
+  }
+ ]
+}

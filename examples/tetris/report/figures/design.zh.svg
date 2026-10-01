@@ -1,113 +1,158 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 452" width="960" height="452" role="img" aria-labelledby="t d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 468" width="1120" height="468" role="img" aria-labelledby="t d">
 <title id="t">Jev 需要看到什么</title>
 <desc id="d">各档位在每种呈现方式下的平均遗憾值条形图。</desc>
-<rect x="0.5" y="0.5" width="959" height="451" rx="14" fill="#141e16" stroke="#2b382e"/>
+<rect x="0.5" y="0.5" width="1119" height="467" rx="14" fill="#141e16" stroke="#2b382e"/>
 <text x="32.0" y="44.0" font-family="'Space Grotesk', 'DM Sans', system-ui, sans-serif" font-size="20" font-weight="500" fill="#eef1e9" text-anchor="start">Jev 需要看到什么</text>
-<text x="32.0" y="68.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="13" font-weight="400" fill="#acb7ac" text-anchor="start">48 个固定决策状态、8 种呈现方式。遗憾值：相对参考评估器损失的价值（越低越好）。</text>
+<text x="32.0" y="68.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="13" font-weight="400" fill="#acb7ac" text-anchor="start">48 个固定决策状态、9 种呈现方式。遗憾值：相对参考评估器损失的价值（越低越好）。</text>
 <text x="32.0" y="132.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="600" fill="#eef1e9" text-anchor="start">文字事实 + 结果缩略图（默认）</text>
-<text x="32.0" y="166.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#acb7ac" text-anchor="start">文字事实 + ½ 尺寸缩略图</text>
-<text x="32.0" y="200.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#acb7ac" text-anchor="start">文字事实 + 2 倍缩略图</text>
-<text x="32.0" y="234.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#acb7ac" text-anchor="start">仅文字事实，不发图片</text>
-<text x="32.0" y="268.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#acb7ac" text-anchor="start">文字事实 + 棋盘截图</text>
-<text x="32.0" y="302.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#acb7ac" text-anchor="start">文字事实 + ½ 尺寸截图</text>
-<text x="32.0" y="336.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#acb7ac" text-anchor="start">文字事实 + 2 倍截图</text>
-<text x="32.0" y="370.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#acb7ac" text-anchor="start">仅结果缩略图，无文字事实</text>
+<text x="32.0" y="166.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="600" fill="#eef1e9" text-anchor="start">精简：规则缓存 + 简短事实</text>
+<text x="32.0" y="200.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#acb7ac" text-anchor="start">文字事实 + ½ 尺寸缩略图</text>
+<text x="32.0" y="234.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#acb7ac" text-anchor="start">文字事实 + 2 倍缩略图</text>
+<text x="32.0" y="268.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#acb7ac" text-anchor="start">仅文字事实，不发图片</text>
+<text x="32.0" y="302.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#acb7ac" text-anchor="start">文字事实 + 棋盘截图</text>
+<text x="32.0" y="336.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#acb7ac" text-anchor="start">文字事实 + ½ 尺寸截图</text>
+<text x="32.0" y="370.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#acb7ac" text-anchor="start">文字事实 + 2 倍截图</text>
+<text x="32.0" y="404.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#acb7ac" text-anchor="start">仅结果缩略图，无文字事实</text>
 <text x="262.0" y="96.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#eef1e9" text-anchor="start">fast</text>
-<text x="465.3" y="96.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="9.5" font-weight="400" fill="#7f967a" text-anchor="end">中位数</text>
-<line x1="262.0" y1="110.0" x2="262.0" y2="382.0" stroke="#223025" stroke-width="1" stroke-linecap="butt"/>
-<text x="262.0" y="396.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#7f967a" text-anchor="middle">0</text>
-<line x1="299.6" y1="110.0" x2="299.6" y2="382.0" stroke="#223025" stroke-width="1" stroke-linecap="butt"/>
-<text x="299.6" y="396.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#7f967a" text-anchor="middle">1</text>
-<line x1="337.2" y1="110.0" x2="337.2" y2="382.0" stroke="#223025" stroke-width="1" stroke-linecap="butt"/>
-<text x="337.2" y="396.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#7f967a" text-anchor="middle">2</text>
-<path d="M262.0,122.0 h50.2 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-50.2 z" fill="#b4f784"><title>fast · 文字事实 + 结果缩略图（默认）: 1.44, 137 ms</title></path>
-<text x="322.2" y="133.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">1.44</text>
-<text x="465.3" y="133.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">137 ms</text>
-<path d="M262.0,156.0 h40.5 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-40.5 z" fill="#7f967a"><title>fast · 文字事实 + ½ 尺寸缩略图: 1.18, 111 ms</title></path>
-<text x="312.5" y="167.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">1.18</text>
-<text x="465.3" y="167.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">111 ms</text>
-<path d="M262.0,190.0 h48.1 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-48.1 z" fill="#7f967a"><title>fast · 文字事实 + 2 倍缩略图: 1.38, 162 ms</title></path>
-<text x="320.1" y="201.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">1.38</text>
-<text x="465.3" y="201.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">162 ms</text>
-<path d="M262.0,224.0 h55.6 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-55.6 z" fill="#7f967a"><title>fast · 仅文字事实，不发图片: 1.58, 90 ms</title></path>
-<text x="327.6" y="235.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">1.58</text>
-<text x="465.3" y="235.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">90 ms</text>
-<path d="M262.0,258.0 h86.0 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-86.0 z" fill="#7f967a"><title>fast · 文字事实 + 棋盘截图: 2.39, 199 ms</title></path>
-<text x="358.0" y="269.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">2.39</text>
-<text x="465.3" y="269.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">199 ms</text>
-<path d="M262.0,292.0 h59.6 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-59.6 z" fill="#7f967a"><title>fast · 文字事实 + ½ 尺寸截图: 1.69, 128 ms</title></path>
-<text x="331.6" y="303.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">1.69</text>
-<text x="465.3" y="303.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">128 ms</text>
-<path d="M262.0,326.0 h62.7 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-62.7 z" fill="#7f967a"><title>fast · 文字事实 + 2 倍截图: 1.77, 272 ms</title></path>
-<text x="334.7" y="337.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">1.77</text>
-<text x="465.3" y="337.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">272 ms</text>
-<path d="M262.0,360.0 h87.5 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-87.5 z" fill="#7f967a"><title>fast · 仅结果缩略图，无文字事实: 2.43, 123 ms</title></path>
-<text x="359.5" y="371.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">2.43</text>
-<text x="465.3" y="371.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">123 ms</text>
-<text x="493.3" y="96.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#eef1e9" text-anchor="start">balanced</text>
-<text x="696.7" y="96.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="9.5" font-weight="400" fill="#7f967a" text-anchor="end">中位数</text>
-<line x1="493.3" y1="110.0" x2="493.3" y2="382.0" stroke="#223025" stroke-width="1" stroke-linecap="butt"/>
-<text x="493.3" y="396.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#7f967a" text-anchor="middle">0</text>
-<line x1="531.0" y1="110.0" x2="531.0" y2="382.0" stroke="#223025" stroke-width="1" stroke-linecap="butt"/>
-<text x="531.0" y="396.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#7f967a" text-anchor="middle">1</text>
-<line x1="568.6" y1="110.0" x2="568.6" y2="382.0" stroke="#223025" stroke-width="1" stroke-linecap="butt"/>
-<text x="568.6" y="396.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#7f967a" text-anchor="middle">2</text>
-<path d="M493.3,122.0 h4.4 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-4.4 z" fill="#b4f784"><title>balanced · 文字事实 + 结果缩略图（默认）: 0.22, 593 ms</title></path>
-<text x="507.7" y="133.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">0.22</text>
-<text x="696.7" y="133.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">593 ms</text>
-<path d="M493.3,156.0 h7.2 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-7.2 z" fill="#7f967a"><title>balanced · 文字事实 + ½ 尺寸缩略图: 0.30, 439 ms</title></path>
-<text x="510.5" y="167.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">0.30</text>
-<text x="696.7" y="167.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">439 ms</text>
-<path d="M493.3,190.0 h9.0 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-9.0 z" fill="#7f967a"><title>balanced · 文字事实 + 2 倍缩略图: 0.35, 647 ms</title></path>
-<text x="512.3" y="201.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">0.35</text>
-<text x="696.7" y="201.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">647 ms</text>
-<path d="M493.3,224.0 h6.2 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-6.2 z" fill="#7f967a"><title>balanced · 仅文字事实，不发图片: 0.27, 428 ms</title></path>
-<text x="509.5" y="235.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">0.27</text>
-<text x="696.7" y="235.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">428 ms</text>
-<path d="M493.3,258.0 h21.4 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-21.4 z" fill="#7f967a"><title>balanced · 文字事实 + 棋盘截图: 0.67, 936 ms</title></path>
-<text x="524.7" y="269.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">0.67</text>
-<text x="696.7" y="269.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">936 ms</text>
-<path d="M493.3,292.0 h15.7 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-15.7 z" fill="#7f967a"><title>balanced · 文字事实 + ½ 尺寸截图: 0.52, 675 ms</title></path>
-<text x="519.0" y="303.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">0.52</text>
-<text x="696.7" y="303.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">675 ms</text>
-<path d="M493.3,326.0 h21.6 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-21.6 z" fill="#7f967a"><title>balanced · 文字事实 + 2 倍截图: 0.68, 1414 ms</title></path>
-<text x="525.0" y="337.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">0.68</text>
-<text x="696.7" y="337.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">1414 ms</text>
-<path d="M493.3,360.0 h86.3 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-86.3 z" fill="#7f967a"><title>balanced · 仅结果缩略图，无文字事实: 2.40, 520 ms</title></path>
-<text x="589.7" y="371.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">2.40</text>
-<text x="696.7" y="371.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">520 ms</text>
-<text x="724.7" y="96.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#eef1e9" text-anchor="start">quality</text>
-<text x="928.0" y="96.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="9.5" font-weight="400" fill="#7f967a" text-anchor="end">中位数</text>
-<line x1="724.7" y1="110.0" x2="724.7" y2="382.0" stroke="#223025" stroke-width="1" stroke-linecap="butt"/>
-<text x="724.7" y="396.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#7f967a" text-anchor="middle">0</text>
-<line x1="762.3" y1="110.0" x2="762.3" y2="382.0" stroke="#223025" stroke-width="1" stroke-linecap="butt"/>
-<text x="762.3" y="396.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#7f967a" text-anchor="middle">1</text>
-<line x1="799.9" y1="110.0" x2="799.9" y2="382.0" stroke="#223025" stroke-width="1" stroke-linecap="butt"/>
-<text x="799.9" y="396.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#7f967a" text-anchor="middle">2</text>
-<path d="M724.7,122.0 h3.3 a3.3157326686507944,3.3157326686507944 0 0 1 3.3157326686507944,3.3157326686507944 v7.4 a3.3157326686507944,3.3157326686507944 0 0 1 -3.3157326686507944,3.3157326686507944 h-3.3 z" fill="#b4f784"><title>quality · 文字事实 + 结果缩略图（默认）: 0.18, 938 ms</title></path>
-<text x="737.3" y="133.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">0.18</text>
-<text x="928.0" y="133.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">938 ms</text>
-<path d="M724.7,156.0 h1.1 a1.069341805555556,1.069341805555556 0 0 1 1.069341805555556,1.069341805555556 v11.9 a1.069341805555556,1.069341805555556 0 0 1 -1.069341805555556,1.069341805555556 h-1.1 z" fill="#7f967a"><title>quality · 文字事实 + ½ 尺寸缩略图: 0.06, 587 ms</title></path>
-<text x="732.8" y="167.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">0.06</text>
-<text x="928.0" y="167.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">587 ms</text>
-<path d="M724.7,190.0 h3.2 a3.1711477777777786,3.1711477777777786 0 0 1 3.1711477777777786,3.1711477777777786 v7.7 a3.1711477777777786,3.1711477777777786 0 0 1 -3.1711477777777786,3.1711477777777786 h-3.2 z" fill="#7f967a"><title>quality · 文字事实 + 2 倍缩略图: 0.17, 864 ms</title></path>
-<text x="737.0" y="201.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">0.17</text>
-<text x="928.0" y="201.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">864 ms</text>
-<path d="M724.7,224.0 h6.3 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-6.3 z" fill="#7f967a"><title>quality · 仅文字事实，不发图片: 0.27, 566 ms</title></path>
-<text x="741.0" y="235.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">0.27</text>
-<text x="928.0" y="235.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">566 ms</text>
-<path d="M724.7,258.0 h5.2 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-5.2 z" fill="#7f967a"><title>quality · 文字事实 + 棋盘截图: 0.24, 1278 ms</title></path>
-<text x="739.9" y="269.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">0.24</text>
-<text x="928.0" y="269.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">1278 ms</text>
-<path d="M724.7,292.0 h4.2 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-4.2 z" fill="#7f967a"><title>quality · 文字事实 + ½ 尺寸截图: 0.22, 907 ms</title></path>
-<text x="738.9" y="303.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">0.22</text>
-<text x="928.0" y="303.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">907 ms</text>
-<path d="M724.7,326.0 h6.3 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-6.3 z" fill="#7f967a"><title>quality · 文字事实 + 2 倍截图: 0.27, 1645 ms</title></path>
-<text x="740.9" y="337.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">0.27</text>
-<text x="928.0" y="337.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">1645 ms</text>
-<path d="M724.7,360.0 h93.9 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-93.9 z" fill="#7f967a"><title>quality · 仅结果缩略图，无文字事实: 2.60, 817 ms</title></path>
-<text x="828.6" y="371.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">2.60</text>
-<text x="928.0" y="371.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">817 ms</text>
-<text x="32.0" y="430.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#7f967a" text-anchor="start">条形：每次决策的平均遗憾值 · 中位数：单次调用往返耗时</text>
-<text x="928.0" y="430.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="11" font-weight="400" fill="#7f967a" text-anchor="end">所有方式使用相同状态与提示词</text>
+<text x="450.5" y="96.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="9.5" font-weight="400" fill="#7f967a" text-anchor="end">中位数</text>
+<line x1="262.0" y1="110.0" x2="262.0" y2="416.0" stroke="#223025" stroke-width="1" stroke-linecap="butt"/>
+<text x="262.0" y="430.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#7f967a" text-anchor="middle">0</text>
+<line x1="296.5" y1="110.0" x2="296.5" y2="416.0" stroke="#223025" stroke-width="1" stroke-linecap="butt"/>
+<text x="296.5" y="430.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#7f967a" text-anchor="middle">1</text>
+<line x1="330.9" y1="110.0" x2="330.9" y2="416.0" stroke="#223025" stroke-width="1" stroke-linecap="butt"/>
+<text x="330.9" y="430.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#7f967a" text-anchor="middle">2</text>
+<path d="M262.0,122.0 h45.6 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-45.6 z" fill="#b4f784"><title>fast · 文字事实 + 结果缩略图（默认）: 1.44, 137 ms</title></path>
+<text x="317.6" y="133.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">1.44</text>
+<text x="450.5" y="133.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">137 ms</text>
+<path d="M262.0,156.0 h49.0 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-49.0 z" fill="#7cc4ff"><title>fast · 精简：规则缓存 + 简短事实: 1.54, 29 ms</title></path>
+<text x="321.0" y="167.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">1.54</text>
+<text x="450.5" y="167.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">29 ms</text>
+<path d="M262.0,190.0 h36.7 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-36.7 z" fill="#7f967a"><title>fast · 文字事实 + ½ 尺寸缩略图: 1.18, 111 ms</title></path>
+<text x="308.7" y="201.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">1.18</text>
+<text x="450.5" y="201.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">111 ms</text>
+<path d="M262.0,224.0 h43.7 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-43.7 z" fill="#7f967a"><title>fast · 文字事实 + 2 倍缩略图: 1.38, 162 ms</title></path>
+<text x="315.7" y="235.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">1.38</text>
+<text x="450.5" y="235.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">162 ms</text>
+<path d="M262.0,258.0 h50.6 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-50.6 z" fill="#7f967a"><title>fast · 仅文字事实，不发图片: 1.58, 90 ms</title></path>
+<text x="322.6" y="269.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">1.58</text>
+<text x="450.5" y="269.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">90 ms</text>
+<path d="M262.0,292.0 h78.5 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-78.5 z" fill="#7f967a"><title>fast · 文字事实 + 棋盘截图: 2.39, 199 ms</title></path>
+<text x="350.5" y="303.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">2.39</text>
+<text x="450.5" y="303.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">199 ms</text>
+<path d="M262.0,326.0 h54.2 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-54.2 z" fill="#7f967a"><title>fast · 文字事实 + ½ 尺寸截图: 1.69, 128 ms</title></path>
+<text x="326.2" y="337.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">1.69</text>
+<text x="450.5" y="337.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">128 ms</text>
+<path d="M262.0,360.0 h57.1 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-57.1 z" fill="#7f967a"><title>fast · 文字事实 + 2 倍截图: 1.77, 272 ms</title></path>
+<text x="329.1" y="371.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">1.77</text>
+<text x="450.5" y="371.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">272 ms</text>
+<path d="M262.0,394.0 h79.8 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-79.8 z" fill="#7f967a"><title>fast · 仅结果缩略图，无文字事实: 2.43, 123 ms</title></path>
+<text x="351.8" y="405.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">2.43</text>
+<text x="450.5" y="405.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">123 ms</text>
+<text x="474.5" y="96.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#eef1e9" text-anchor="start">balanced</text>
+<text x="663.0" y="96.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="9.5" font-weight="400" fill="#7f967a" text-anchor="end">中位数</text>
+<line x1="474.5" y1="110.0" x2="474.5" y2="416.0" stroke="#223025" stroke-width="1" stroke-linecap="butt"/>
+<text x="474.5" y="430.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#7f967a" text-anchor="middle">0</text>
+<line x1="509.0" y1="110.0" x2="509.0" y2="416.0" stroke="#223025" stroke-width="1" stroke-linecap="butt"/>
+<text x="509.0" y="430.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#7f967a" text-anchor="middle">1</text>
+<line x1="543.4" y1="110.0" x2="543.4" y2="416.0" stroke="#223025" stroke-width="1" stroke-linecap="butt"/>
+<text x="543.4" y="430.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#7f967a" text-anchor="middle">2</text>
+<path d="M474.5,122.0 h3.8 a3.844872332589287,3.844872332589287 0 0 1 3.844872332589287,3.844872332589287 v6.3 a3.844872332589287,3.844872332589287 0 0 1 -3.844872332589287,3.844872332589287 h-3.8 z" fill="#b4f784"><title>balanced · 文字事实 + 结果缩略图（默认）: 0.22, 593 ms</title></path>
+<text x="488.2" y="133.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">0.22</text>
+<text x="663.0" y="133.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">593 ms</text>
+<path d="M474.5,156.0 h19.7 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-19.7 z" fill="#7cc4ff"><title>balanced · 精简：规则缓存 + 简短事实: 0.69, 115 ms</title></path>
+<text x="504.2" y="167.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">0.69</text>
+<text x="663.0" y="167.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">115 ms</text>
+<path d="M474.5,190.0 h6.3 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-6.3 z" fill="#7f967a"><title>balanced · 文字事实 + ½ 尺寸缩略图: 0.30, 439 ms</title></path>
+<text x="490.8" y="201.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">0.30</text>
+<text x="663.0" y="201.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">439 ms</text>
+<path d="M474.5,224.0 h7.9 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-7.9 z" fill="#7f967a"><title>balanced · 文字事实 + 2 倍缩略图: 0.35, 647 ms</title></path>
+<text x="492.4" y="235.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">0.35</text>
+<text x="663.0" y="235.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">647 ms</text>
+<path d="M474.5,258.0 h5.3 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-5.3 z" fill="#7f967a"><title>balanced · 仅文字事实，不发图片: 0.27, 428 ms</title></path>
+<text x="489.8" y="269.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">0.27</text>
+<text x="663.0" y="269.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">428 ms</text>
+<path d="M474.5,292.0 h19.2 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-19.2 z" fill="#7f967a"><title>balanced · 文字事实 + 棋盘截图: 0.67, 936 ms</title></path>
+<text x="503.7" y="303.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">0.67</text>
+<text x="663.0" y="303.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">936 ms</text>
+<path d="M474.5,326.0 h14.0 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-14.0 z" fill="#7f967a"><title>balanced · 文字事实 + ½ 尺寸截图: 0.52, 675 ms</title></path>
+<text x="498.5" y="337.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">0.52</text>
+<text x="663.0" y="337.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">675 ms</text>
+<path d="M474.5,360.0 h19.5 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-19.5 z" fill="#7f967a"><title>balanced · 文字事实 + 2 倍截图: 0.68, 1414 ms</title></path>
+<text x="504.0" y="371.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">0.68</text>
+<text x="663.0" y="371.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">1414 ms</text>
+<path d="M474.5,394.0 h78.8 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-78.8 z" fill="#7f967a"><title>balanced · 仅结果缩略图，无文字事实: 2.40, 520 ms</title></path>
+<text x="563.3" y="405.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">2.40</text>
+<text x="663.0" y="405.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">520 ms</text>
+<text x="687.0" y="96.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#eef1e9" text-anchor="start">quality</text>
+<text x="875.5" y="96.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="9.5" font-weight="400" fill="#7f967a" text-anchor="end">中位数</text>
+<line x1="687.0" y1="110.0" x2="687.0" y2="416.0" stroke="#223025" stroke-width="1" stroke-linecap="butt"/>
+<text x="687.0" y="430.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#7f967a" text-anchor="middle">0</text>
+<line x1="721.5" y1="110.0" x2="721.5" y2="416.0" stroke="#223025" stroke-width="1" stroke-linecap="butt"/>
+<text x="721.5" y="430.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#7f967a" text-anchor="middle">1</text>
+<line x1="755.9" y1="110.0" x2="755.9" y2="416.0" stroke="#223025" stroke-width="1" stroke-linecap="butt"/>
+<text x="755.9" y="430.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#7f967a" text-anchor="middle">2</text>
+<path d="M687.0,122.0 h3.0 a3.0376728087797624,3.0376728087797624 0 0 1 3.0376728087797624,3.0376728087797624 v7.9 a3.0376728087797624,3.0376728087797624 0 0 1 -3.0376728087797624,3.0376728087797624 h-3.0 z" fill="#b4f784"><title>quality · 文字事实 + 结果缩略图（默认）: 0.18, 938 ms</title></path>
+<text x="699.1" y="133.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">0.18</text>
+<text x="875.5" y="133.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">938 ms</text>
+<path d="M687.0,156.0 h10.2 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-10.2 z" fill="#7cc4ff"><title>quality · 精简：规则缓存 + 简短事实: 0.41, 145 ms</title></path>
+<text x="707.2" y="167.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">0.41</text>
+<text x="875.5" y="167.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">145 ms</text>
+<path d="M687.0,190.0 h1.0 a0.9796659895833336,0.9796659895833336 0 0 1 0.9796659895833336,0.9796659895833336 v12.0 a0.9796659895833336,0.9796659895833336 0 0 1 -0.9796659895833336,0.9796659895833336 h-1.0 z" fill="#7f967a"><title>quality · 文字事实 + ½ 尺寸缩略图: 0.06, 587 ms</title></path>
+<text x="695.0" y="201.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">0.06</text>
+<text x="875.5" y="201.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">587 ms</text>
+<path d="M687.0,224.0 h2.9 a2.9052129166666676,2.9052129166666676 0 0 1 2.9052129166666676,2.9052129166666676 v8.2 a2.9052129166666676,2.9052129166666676 0 0 1 -2.9052129166666676,2.9052129166666676 h-2.9 z" fill="#7f967a"><title>quality · 文字事实 + 2 倍缩略图: 0.17, 864 ms</title></path>
+<text x="698.8" y="235.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">0.17</text>
+<text x="875.5" y="235.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">864 ms</text>
+<path d="M687.0,258.0 h5.5 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-5.5 z" fill="#7f967a"><title>quality · 仅文字事实，不发图片: 0.27, 566 ms</title></path>
+<text x="702.5" y="269.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">0.27</text>
+<text x="875.5" y="269.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">566 ms</text>
+<path d="M687.0,292.0 h4.4 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-4.4 z" fill="#7f967a"><title>quality · 文字事实 + 棋盘截图: 0.24, 1278 ms</title></path>
+<text x="701.4" y="303.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">0.24</text>
+<text x="875.5" y="303.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">1278 ms</text>
+<path d="M687.0,326.0 h3.8 a3.772422300967262,3.772422300967262 0 0 1 3.772422300967262,3.772422300967262 v6.5 a3.772422300967262,3.772422300967262 0 0 1 -3.772422300967262,3.772422300967262 h-3.8 z" fill="#7f967a"><title>quality · 文字事实 + ½ 尺寸截图: 0.22, 907 ms</title></path>
+<text x="700.5" y="337.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">0.22</text>
+<text x="875.5" y="337.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">907 ms</text>
+<path d="M687.0,360.0 h5.4 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-5.4 z" fill="#7f967a"><title>quality · 文字事实 + 2 倍截图: 0.27, 1645 ms</title></path>
+<text x="702.4" y="371.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">0.27</text>
+<text x="875.5" y="371.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">1645 ms</text>
+<path d="M687.0,394.0 h85.7 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-85.7 z" fill="#7f967a"><title>quality · 仅结果缩略图，无文字事实: 2.60, 817 ms</title></path>
+<text x="782.7" y="405.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">2.60</text>
+<text x="875.5" y="405.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">817 ms</text>
+<text x="899.5" y="96.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#eef1e9" text-anchor="start">max</text>
+<text x="1088.0" y="96.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="9.5" font-weight="400" fill="#7f967a" text-anchor="end">中位数</text>
+<line x1="899.5" y1="110.0" x2="899.5" y2="416.0" stroke="#223025" stroke-width="1" stroke-linecap="butt"/>
+<text x="899.5" y="430.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#7f967a" text-anchor="middle">0</text>
+<line x1="934.0" y1="110.0" x2="934.0" y2="416.0" stroke="#223025" stroke-width="1" stroke-linecap="butt"/>
+<text x="934.0" y="430.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#7f967a" text-anchor="middle">1</text>
+<line x1="968.4" y1="110.0" x2="968.4" y2="416.0" stroke="#223025" stroke-width="1" stroke-linecap="butt"/>
+<text x="968.4" y="430.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#7f967a" text-anchor="middle">2</text>
+<path d="M899.5,122.0 h4.2 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-4.2 z" fill="#b4f784"><title>max · 文字事实 + 结果缩略图（默认）: 0.24, 3856 ms</title></path>
+<text x="913.7" y="133.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">0.24</text>
+<text x="1088.0" y="133.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">3856 ms</text>
+<path d="M899.5,156.0 h5.6 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-5.6 z" fill="#7cc4ff"><title>max · 精简：规则缓存 + 简短事实: 0.28, 903 ms</title></path>
+<text x="915.1" y="167.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">0.28</text>
+<text x="1088.0" y="167.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">903 ms</text>
+<path d="M899.5,190.0 h2.3 a2.302923316592262,2.302923316592262 0 0 1 2.302923316592262,2.302923316592262 v9.4 a2.302923316592262,2.302923316592262 0 0 1 -2.302923316592262,2.302923316592262 h-2.3 z" fill="#7f967a"><title>max · 文字事实 + ½ 尺寸缩略图: 0.13, 3730 ms</title></path>
+<text x="910.1" y="201.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">0.13</text>
+<text x="1088.0" y="201.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">3730 ms</text>
+<path d="M899.5,224.0 h4.2 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-4.2 z" fill="#7f967a"><title>max · 文字事实 + 2 倍缩略图: 0.24, 5793 ms</title></path>
+<text x="913.7" y="235.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">0.24</text>
+<text x="1088.0" y="235.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">5793 ms</text>
+<path d="M899.5,258.0 h11.0 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-11.0 z" fill="#7f967a"><title>max · 仅文字事实，不发图片: 0.44, 2894 ms</title></path>
+<text x="920.5" y="269.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">0.44</text>
+<text x="1088.0" y="269.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">2894 ms</text>
+<path d="M899.5,292.0 h16.1 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-16.1 z" fill="#7f967a"><title>max · 文字事实 + 棋盘截图: 0.58, 6110 ms</title></path>
+<text x="925.6" y="303.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">0.58</text>
+<text x="1088.0" y="303.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">6110 ms</text>
+<path d="M899.5,326.0 h23.8 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-23.8 z" fill="#7f967a"><title>max · 文字事实 + ½ 尺寸截图: 0.81, 3776 ms</title></path>
+<text x="933.3" y="337.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">0.81</text>
+<text x="1088.0" y="337.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">3776 ms</text>
+<path d="M899.5,360.0 h20.2 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-20.2 z" fill="#7f967a"><title>max · 文字事实 + 2 倍截图: 0.70, 6975 ms</title></path>
+<text x="929.7" y="371.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">0.70</text>
+<text x="1088.0" y="371.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">6975 ms</text>
+<path d="M899.5,394.0 h83.0 a4,4 0 0 1 4,4 v6.0 a4,4 0 0 1 -4,4 h-83.0 z" fill="#7f967a"><title>max · 仅结果缩略图，无文字事实: 2.52, 3417 ms</title></path>
+<text x="992.5" y="405.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#acb7ac" text-anchor="start">2.52</text>
+<text x="1088.0" y="405.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="10.5" font-weight="400" fill="#7f967a" text-anchor="end">3417 ms</text>
+<text x="32.0" y="446.0" font-family="'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#7f967a" text-anchor="start">条形：每次决策的平均遗憾值 · 中位数：单次调用往返耗时</text>
+<text x="1088.0" y="446.0" font-family="'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace" font-size="11" font-weight="400" fill="#7f967a" text-anchor="end">所有方式使用相同状态</text>
 </svg>

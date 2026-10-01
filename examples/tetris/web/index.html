@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>OpenJev Tetris</title>
-  <meta name="description" content="Play Tetris in the browser, replay games recorded with OpenJev Multimodal on fast, balanced and quality models, or let a local model play live.">
+  <meta name="description" content="Play Tetris in the browser, replay games recorded with OpenJev Multimodal on four local Qwen models, or let a local model play live.">
   <meta name="theme-color" content="#101713">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Crect width='20' height='20' rx='4' fill='%23101713'/%3E%3Cpath d='M10 3 17 10 10 17 3 10Z' fill='%23b4f784'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -53,10 +53,10 @@
     <section class="panel">
       <div class="controls" id="controls-replay">
         <label><span lang="en">Model</span><span lang="zh">模型</span>
-          <select id="replay-profile"><option value="fast">fast · 0.8B</option><option value="balanced" selected>balanced · 4B</option><option value="quality">quality · 35B-A3B</option></select></label>
+          <select id="replay-profile"><option value="fast">fast · 0.8B</option><option value="balanced" selected>balanced · 4B</option><option value="quality">quality · 35B-A3B</option><option value="max">max · 27B</option></select></label>
         <label><span lang="en">Seed</span><span lang="zh">种子</span><select id="replay-seed"></select></label>
         <label><span lang="en">Prompt</span><span lang="zh">提示方式</span>
-          <select id="replay-mode"><option value="vision">vision</option><option value="text">text only</option></select></label>
+          <select id="replay-mode"><option value="vision">vision</option><option value="text">text only</option><option value="compact">compact</option></select></label>
         <button class="button primary" id="replay-toggle" type="button">▶ <span lang="en">Play</span><span lang="zh">播放</span></button>
         <div class="speed" role="group" aria-label="Speed"><button data-speed="1" aria-pressed="true">1×</button><button data-speed="2" aria-pressed="false">2×</button><button data-speed="4" aria-pressed="false">4×</button></div>
         <span class="status" id="replay-status"></span>
@@ -64,7 +64,7 @@
       <div class="controls" id="controls-live" hidden>
         <label><span lang="en">Seed</span><span lang="zh">种子</span><input id="live-seed" type="number" min="0" max="999999" value="101"></label>
         <label><span lang="en">Prompt</span><span lang="zh">提示方式</span>
-          <select id="live-mode"><option value="vision">vision</option><option value="text">text only</option></select></label>
+          <select id="live-mode"><option value="vision">vision</option><option value="text">text only</option><option value="compact">compact</option></select></label>
         <button class="button primary" id="live-toggle" type="button">▶ <span lang="en">Let Jev play</span><span lang="zh">让 Jev 来玩</span></button>
         <span class="status" id="live-status"></span>
       </div>
@@ -78,7 +78,7 @@
         <div class="card-head"><code>POST /v1/systemone</code><span class="count" id="count"></span><span class="pill">1 OUTPUT TOKEN</span></div>
         <p class="subtitle" id="subtitle"><span lang="en">Choose Replay to watch a recorded game, or Live Jev to run one on your model.</span><span lang="zh">选择“回放”观看已录制的对局，或选择“实时 Jev”用本机模型现场对局。</span></p>
         <div class="sweep"><i></i></div>
-        <div class="row-label"><span lang="en">Image sent</span><span lang="zh">发送的图片</span><span class="meta" id="image-meta"></span></div>
+        <div class="row-label"><span class="image-label"><span lang="en">Image sent</span><span lang="zh">发送的图片</span></span><span class="prompt-label"><span lang="en">Prompt</span><span lang="zh">提示</span></span><span class="meta" id="image-meta"></span></div>
         <div class="sheet-wrap"><canvas id="sheet" width="0" height="0"></canvas><img id="sheet-img" alt="Image sent to OpenJev" hidden></div>
         <div class="row-label"><span lang="en">Plans</span><span lang="zh">候选方案</span><span lang="en">Probability</span><span lang="zh">概率</span></div>
         <ol class="plans" id="plans"></ol>

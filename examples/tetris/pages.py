@@ -18,9 +18,16 @@ from tetris import Game, frontier
 from vision import labels, outcome_sheet
 
 SITE = "https://hand-in.github.io/openjev-multimodal/"
-PROFILES = ("fast", "balanced", "quality")
+PROFILES = ("fast", "balanced", "quality", "max")
+MODES = ("vision", "text", "compact")
+MODE_NAMES = {
+    "vision": ("vision", "视觉"),
+    "text": ("text only", "纯文字"),
+    "compact": ("compact", "精简"),
+}
 VARIANT_NAMES = {
     "vision": ("Facts + outcome sheet (default)", "文字事实 + 结果缩略图（默认）"),
+    "compact": ("Compact: cached rules, short facts", "精简：规则缓存 + 简短事实"),
     "vision@0.5": ("Facts + sheet at ½ size", "文字事实 + ½ 尺寸缩略图"),
     "vision@2.0": ("Facts + sheet at 2×", "文字事实 + 2 倍缩略图"),
     "text": ("Facts only, no image", "仅文字事实，不发图片"),
@@ -29,6 +36,7 @@ VARIANT_NAMES = {
     "board@2.0": ("Facts + screenshot at 2×", "文字事实 + 2 倍截图"),
     "pixels": ("Outcome sheet only, no facts", "仅结果缩略图，无文字事实"),
 }
+VIDEOS = {"fast": "vision", "balanced": "vision", "quality": "vision", "max": "compact"}
 
 
 # --------------------------------------------------------------------------- numbers
@@ -59,8 +67,8 @@ def game_of(runs: dict, profile: str, seed: int, mode: str) -> dict:
 
 
 def goal_video(runs: dict, profile: str, seed: int = 101) -> dict:
-    """Numbers for the video of one profile: its seed-101 vision game up to the tenth clear."""
-    run = game_of(runs, profile, seed, "vision")
+    """Numbers for the video of one profile: its seed-101 game up to the tenth clear."""
+    run = game_of(runs, profile, seed, VIDEOS[profile])
     goal = run["result"]["goal_run"]
     calls = [d["client_ms"] for d in run["decisions"][: goal["decision"]] if not d["forced"]]
     return {**goal, "median_ms": statistics.median(calls), "calls": len(calls)}
@@ -83,6 +91,7 @@ def example(runs: dict, figures: Path, profile="quality", seed=101, number=7) ->
     game = state_at(run, number)
     options = frontier(game.plans())
     body, image = payload(game, options, "vision")
+    compact, _ = payload(game, options, "compact")
     names = labels(len(options))
     if [o["label"] for o in record["options"]] != names:
         raise RuntimeError("example decision no longer matches the recording")
@@ -111,6 +120,7 @@ def example(runs: dict, figures: Path, profile="quality", seed=101, number=7) ->
         "record": record,
         "image": image,
         "request": json.dumps(body, indent=2, ensure_ascii=False),
+        "compact": json.dumps(compact, indent=2, ensure_ascii=False),
         "response": json.dumps(response, indent=2),
         "chosen": names[chosen],
     }
@@ -125,43 +135,47 @@ def build(summary: dict, runs: dict, figures: Path) -> list[tuple]:
     p = summary["profiles"]
     m = {name: p[name]["modes"] for name in PROFILES}
     v = {name: m[name]["vision"] for name in PROFILES}
-    t = {name: m[name]["text"] for name in PROFILES}
     ab = {name: p[name]["ablation"] for name in PROFILES}
+    base = summary["baselines"]
     video = {name: goal_video(runs, name) for name in PROFILES}
     ex = example(runs, figures)
     rec = ex["record"]
-    decisions = sum(v[n]["decisions"] + t[n]["decisions"] for n in PROFILES)
-    calls = sum(v[n]["calls"] + t[n]["calls"] for n in PROFILES)
+    played = [(n, mode) for n in PROFILES for mode in MODES if mode in m[n]]
+    games = sum(m[n][mode]["games"] for n, mode in played)
+    goals = sum(m[n][mode]["goal_reached"] for n, mode in played)
+    decisions = sum(m[n][mode]["decisions"] for n, mode in played)
+    calls = sum(m[n][mode]["calls"] for n, mode in played)
     best = max(
         (score, name, mode, seed)
-        for name in PROFILES
-        for mode in ("vision", "text")
+        for name, mode in played
         for seed, score in zip(m[name][mode]["seeds"], m[name][mode]["score"], strict=True)
     )
-    medians = " · ".join(f"{v[n]['latency_ms']['median'] / 1000:.2f}" for n in PROFILES)
-    lat = {n: v[n]["latency_ms"]["median"] for n in PROFILES}
-    tlat = {n: t[n]["latency_ms"]["median"] for n in PROFILES}
-    faster = sorted(lat[n] - tlat[n] for n in ("balanced", "quality"))
-    measured = summary["measured"]["balanced"][:10]
+    top = m["max"]["compact"]
+    top_lines = statistics.fmean(top["lines"])
+    top_ms = top["latency_ms"]["median"]
+    random, reference = base["random"], base["reference"]
+    probe = {name: summary["probes"][name]["median_ms"] for name in summary["probes"]}
+    measured = min(summary["measured"].values())[:10]
     machine = summary["machine"]
-    blocks: list[tuple] = []
+    names = {n: f"{n} · {model(runs, n)}" for n in PROFILES}
 
+    def prompt(mode: str) -> tuple[str, str]:
+        return MODE_NAMES[mode]
+
+    blocks: list[tuple] = []
     blocks.append(
         (
             "lede",
             (
-                f"Three local models each played ten games of 100 pieces through OpenJev "
-                f"Multimodal: five seeds, two prompt styles, the same piece sequences for every "
-                f"model. Every call asks one Choice question about the next two pieces and reads "
-                f"a single output token. The tables, charts, videos and the browser replay are "
-                f"all generated from the recordings (measured {measured} on an "
-                f"{machine['chip']})."
+                f"Four local Qwen models played Tetris through OpenJev Multimodal. Code lists every "
+                f"legal move and simulates its outcome; the model makes every choice, reading one "
+                f"output token per two pieces. {games} games of 100 pieces, the same five piece "
+                f"sequences for every model, measured {measured} on an {machine['chip']}."
             ),
             (
-                f"三个本地模型通过 OpenJev Multimodal 各下了 10 局、每局 100 个方块：5 个随机种子 × 2 种提示方式，"
-                f"所有模型面对完全相同的方块序列。每次调用只问一个 Choice 问题，一次规划接下来的两个方块，"
-                f"只读取 1 个输出 token。下文的表格、图表、视频与网页回放全部由录制数据生成"
-                f"（测于 {measured}，{machine['chip']}）。"
+                f"四个本地 Qwen 模型通过 OpenJev Multimodal 玩俄罗斯方块。代码列出所有合法走法并模拟结果，"
+                f"每一步都由模型选择，每两个方块只读取 1 个输出 token。共 {games} 局、每局 100 个方块，"
+                f"所有模型面对相同的 5 组方块序列，测于 {measured}，{machine['chip']}。"
             ),
         )
     )
@@ -170,50 +184,48 @@ def build(summary: dict, runs: dict, figures: Path) -> list[tuple]:
             "kpis",
             [
                 (
-                    f"{sum(v[n]['goal_reached'] for n in PROFILES)} / "
-                    f"{sum(v[n]['games'] for n in PROFILES)}",
-                    ("vision games reached 10 line clears", "视觉模式对局全部完成 10 次消除"),
+                    f"{goals} / {games}",
+                    ("games reached 10 line clears", "局达成 10 次消除"),
                     (
-                        "0 illegal keys · 0 API errors · 0 fallback moves",
-                        "非法按键 0 · API 错误 0 · 兜底操作 0",
+                        f"{len(PROFILES)} models × prompts × 5 seeds · 0 illegal keys",
+                        f"{len(PROFILES)} 个模型 × 提示方式 × 5 个种子 · 非法按键 0",
                     ),
                 ),
                 (
-                    f"{v['quality']['clean_goal']} / {v['quality']['games']}",
-                    ("quality games reached the goal with no hole", "quality 对局达成目标时零空洞"),
+                    seconds(top_ms),
+                    ("per decision on Qwen3.8-27B", "Qwen3.8-27B 每次决策"),
                     (
-                        f"{t['quality']['clean_goal']} / {t['quality']['games']} with the text-only prompt",
-                        f"纯文字提示下为 {t['quality']['clean_goal']} / {t['quality']['games']}",
+                        f"median of {top['calls']} compact calls · the same prompt uncached: "
+                        f"{seconds(probe['stock'])}",
+                        f"精简提示 {top['calls']} 次调用的中位数 · 同一提示不缓存时为 {seconds(probe['stock'], True)}",
                     ),
                 ),
                 (
-                    f"{medians} s",
-                    ("median time per decision", "每次决策耗时中位数"),
+                    f"{top_lines:.1f}",
+                    ("lines per game, max · compact", "每局消除行数，max · 精简"),
                     (
-                        "fast · balanced · quality; one call plans two pieces",
-                        "fast · balanced · quality；每次调用规划两个方块",
+                        f"random picks on the same plans: {random['mean_lines']:.1f}",
+                        f"同样的方案随机选择：{random['mean_lines']:.1f}",
                     ),
                 ),
                 (
                     number(best[0]),
                     ("best score after 100 pieces", "100 个方块后的最高分"),
                     (
-                        f"{best[1]} · {'text-only' if best[2] == 'text' else 'vision'} · seed {best[3]}",
-                        f"{best[1]} · {'纯文字提示' if best[2] == 'text' else '视觉提示'} · 种子 {best[3]}",
+                        f"{best[1]} · {prompt(best[2])[0]} · seed {best[3]}",
+                        f"{best[1]} · {prompt(best[2])[1]} · 种子 {best[3]}",
                     ),
                 ),
             ],
         )
     )
-    blocks.append(("h2", "Watch each model play", "观看三个模型对局"))
+    blocks.append(("h2", "Watch each model play", "观看每个模型对局"))
     blocks.append(
         (
             "p",
-            "Seed 101 with the vision prompt, from the first piece to the tenth line clear. "
-            "Waiting time is the measured round trip of each call; key presses, drops and "
-            "clears are animated at a fixed pace.",
-            "种子 101、视觉提示，从第一个方块播放到第 10 次消除。等待时间是每次调用实测的往返耗时；"
-            "按键、下落与消除动画按固定节奏播放。",
+            "Seed 101, from the first piece to the tenth line clear. Waiting time is the measured "
+            "round trip of each call.",
+            "种子 101，从第一个方块播放到第 10 次消除。等待时间是每次调用实测的往返耗时。",
         )
     )
     blocks.append(
@@ -222,12 +234,11 @@ def build(summary: dict, runs: dict, figures: Path) -> list[tuple]:
             [
                 (
                     name,
-                    f"{name} · {model(runs, name)}",
+                    names[name],
                     (
-                        f"goal after {video[name]['pieces']} pieces · "
-                        f"{plural(video[name]['holes'], 'hole')} · "
+                        f"{prompt(VIDEOS[name])[0]} · goal after {video[name]['pieces']} pieces · "
                         f"{seconds(video[name]['median_ms'])} per call",
-                        f"{video[name]['pieces']} 个方块达成目标 · {video[name]['holes']} 个空洞 · "
+                        f"{prompt(VIDEOS[name])[1]} · {video[name]['pieces']} 个方块达成 · "
                         f"每次调用 {seconds(video[name]['median_ms'], True)}",
                     ),
                 )
@@ -235,147 +246,38 @@ def build(summary: dict, runs: dict, figures: Path) -> list[tuple]:
             ],
         )
     )
-    blocks.append(("h2", "What the runs show", "测试结论"))
-    fast_lines_v = statistics.fmean(v["fast"]["lines"])
-    fast_lines_t = statistics.fmean(t["fast"]["lines"])
-    lowest = [f"{ab[n]['vision']['mean_regret']:.2f}" for n in PROFILES]
-    text_regret = [f"{ab[n]['text']['mean_regret']:.2f}" for n in ("balanced", "quality")]
-    same = text_regret[0] == text_regret[1]
-    text_en = f"to {text_regret[0]}" if same else f"to {text_regret[0]} and {text_regret[1]}"
-    text_zh = (
-        f"都降到 {text_regret[0]}" if same else f"分别降到 {text_regret[0]} 和 {text_regret[1]}"
-    )
-    extra_tokens = (
-        ab["balanced"]["vision@2.0"]["median_input_tokens"]
-        - ab["balanced"]["vision"]["median_input_tokens"]
-    )
-    blocks.append(
-        (
-            "list",
-            [
-                (
-                    f"**Every model reached the goal.** All {sum(v[n]['games'] for n in PROFILES)} "
-                    f"vision-mode games cleared 10 lines with no illegal key, no API error and no "
-                    f"fallback move. The quality model reached the goal with a hole-free stack in "
-                    f"{v['quality']['clean_goal']} of its 5 games ({t['quality']['clean_goal']} of 5 "
-                    f"with the text-only prompt).",
-                    f"**三个模型全部达成目标。** 视觉模式的 {sum(v[n]['games'] for n in PROFILES)} 局全部完成 "
-                    f"10 次消除，没有非法按键、API 错误或兜底操作。quality 模型在 5 局中有 "
-                    f"{v['quality']['clean_goal']} 局达成目标时盘面没有任何空洞（纯文字提示下为 "
-                    f"{t['quality']['clean_goal']} 局）。",
-                ),
-                (
-                    f"**A larger model buys better judgment.** Agreement with the reference evaluator "
-                    f"rises from {percent(v['fast']['agreement'])} (0.8B) to "
-                    f"{percent(v['balanced']['agreement'])} (4B) and "
-                    f"{percent(v['quality']['agreement'])} (35B-A3B); mean regret falls from "
-                    f"{v['fast']['mean_regret']:.2f} to {v['balanced']['mean_regret']:.2f} and "
-                    f"{v['quality']['mean_regret']:.2f}. The 35B mixture-of-experts model activates "
-                    f"about 3B parameters per token, so it decides in "
-                    f"{seconds(lat['quality'])}, only {lat['quality'] / lat['balanced']:.1f}× the 4B "
-                    f"model.",
-                    f"**模型越大，判断越好。** 与参考评估器的一致率从 {percent(v['fast']['agreement'])}（0.8B）"
-                    f"提升到 {percent(v['balanced']['agreement'])}（4B）和 {percent(v['quality']['agreement'])}"
-                    f"（35B-A3B），平均遗憾值从 {v['fast']['mean_regret']:.2f} 降到 "
-                    f"{v['balanced']['mean_regret']:.2f} 和 {v['quality']['mean_regret']:.2f}。35B 混合专家模型"
-                    f"每个 token 只激活约 3B 参数，单次决策 {seconds(lat['quality'], True)}，"
-                    f"仅为 4B 模型的 {lat['quality'] / lat['balanced']:.1f} 倍。",
-                ),
-                (
-                    f"**Exact facts decide; the image explains.** Shown only the outcome images, "
-                    f"every model loses {min(ab[n]['pixels']['mean_regret'] for n in PROFILES):.1f}–"
-                    f"{max(ab[n]['pixels']['mean_regret'] for n in PROFILES):.1f} points of value per "
-                    f"decision on the fixed states. Facts alone bring the 4B and 35B models down "
-                    f"{text_en}, and facts plus the outcome sheet "
-                    f"give every model its lowest regret: {', '.join(lowest)}.",
-                    f"**精确事实负责决策，图片负责解释。** 只给结果缩略图、不给文字事实时，三个模型在固定状态集上"
-                    f"每次决策损失 {min(ab[n]['pixels']['mean_regret'] for n in PROFILES):.1f}–"
-                    f"{max(ab[n]['pixels']['mean_regret'] for n in PROFILES):.1f} 分；只给文字事实，4B 与 35B "
-                    f"模型{text_zh}；文字事实加结果缩略图让三个模型都达到各自最低："
-                    f"{'、'.join(lowest)}。",
-                ),
-                (
-                    f"**The picture matters most to the smallest model.** In full games the 0.8B "
-                    f"model cleared {fast_lines_v:.1f} lines on average with the outcome sheet and "
-                    f"{fast_lines_t:.1f} without it, and topped out in {v['fast']['topped_out']} game "
-                    f"instead of {t['fast']['topped_out']}. For the 4B and 35B models the text-only "
-                    f"prompt played about as well and saved {faster[0]:.0f}–{faster[1]:.0f} ms per "
-                    f"call.",
-                    f"**模型越小，图片越重要。** 完整对局中，0.8B 模型有结果缩略图时平均消除 {fast_lines_v:.1f} 行，"
-                    f"没有时只有 {fast_lines_t:.1f} 行；堆满出局也从 {t['fast']['topped_out']} 局减少到 "
-                    f"{v['fast']['topped_out']} 局。对 4B 与 35B 模型，纯文字提示表现相当，每次调用还能快 "
-                    f"{faster[0]:.0f}–{faster[1]:.0f} 毫秒。",
-                ),
-                (
-                    f"**Choose the picture first, then the fewest tokens that stay legible.** Doubling "
-                    f"the outcome sheet adds about {extra_tokens:.0f} "
-                    f"input tokens without better decisions, and halving it changes little. A "
-                    f"full-board screenshot is the wrong picture for this decision: for the 4B model "
-                    f"it raised regret from {ab['balanced']['vision']['mean_regret']:.2f} to "
-                    f"{ab['balanced']['board']['mean_regret']:.2f} and the median call from "
-                    f"{seconds(ab['balanced']['vision']['median_ms'])} to "
-                    f"{seconds(ab['balanced']['board']['median_ms'])}.",
-                    f"**先选对画面，再用尽量少且清晰的 token。** 结果缩略图放大 2 倍会多出约 "
-                    f"{extra_tokens:.0f} 个输入 token，决策并未更好；缩小一半影响不大。整张棋盘截图并不适合这个决策：对 4B 模型，"
-                    f"它把遗憾值从 {ab['balanced']['vision']['mean_regret']:.2f} 抬高到 "
-                    f"{ab['balanced']['board']['mean_regret']:.2f}，调用中位数从 "
-                    f"{seconds(ab['balanced']['vision']['median_ms'], True)}增加到 "
-                    f"{seconds(ab['balanced']['board']['median_ms'], True)}。",
-                ),
-                (
-                    f"**Latency follows input tokens.** Every call returns one output token. Server "
-                    f"time matches the round trip within about 1 ms and planning in code takes "
-                    f"{min(v[n]['plan_ms_median'] for n in PROFILES):.0f}–"
-                    f"{max(v[n]['plan_ms_median'] for n in PROFILES):.0f} ms, so prompt length, image "
-                    f"tokens and model size set the pace.",
-                    f"**延迟由输入 token 决定。** 每次调用只输出 1 个 token。服务端耗时与往返耗时相差约 1 毫秒，"
-                    f"代码侧规划耗时 {min(v[n]['plan_ms_median'] for n in PROFILES):.0f}–"
-                    f"{max(v[n]['plan_ms_median'] for n in PROFILES):.0f} 毫秒；决定速度的是提示长度、图像 token "
-                    f"与模型规模。",
-                ),
-            ],
-        )
-    )
     blocks.append(("h2", "Results after 100 pieces", "100 个方块后的结果"))
     rows = []
-    for name in PROFILES:
-        for mode, label_en, label_zh in (
-            ("vision", "vision", "视觉"),
-            ("text", "text only", "纯文字"),
-        ):
-            s = m[name][mode]
-            rows.append(
-                [
-                    (f"{name} · {model(runs, name)}", f"{name} · {model(runs, name)}"),
-                    (label_en, label_zh),
-                    f"{s['goal_reached']} / {s['games']}",
-                    f"{s['clean_goal']} / {s['games']}",
-                    f"{s['topped_out']} / {s['games']}",
-                    f"{statistics.median(s['pieces_to_goal']):.0f}" if s["pieces_to_goal"] else "—",
-                    f"{statistics.fmean(s['lines']):.1f}",
-                    f"{number(statistics.fmean(s['score']))} / {number(max(s['score']))}",
-                    f"{statistics.median(s['max_holes']):.0f}",
-                    f"{seconds(s['latency_ms']['median'])} · {seconds(s['latency_ms']['p90'])}",
-                    percent(s["agreement"]),
-                    f"{s['mean_regret']:.2f}",
-                ]
-            )
+    for name, mode in played:
+        s = m[name][mode]
+        rows.append(
+            [
+                (names[name], names[name]),
+                prompt(mode),
+                f"{s['goal_reached']} / {s['games']}",
+                f"{s['clean_goal']} / {s['games']}",
+                f"{s['topped_out']} / {s['games']}",
+                f"{statistics.fmean(s['lines']):.1f}",
+                f"{number(statistics.fmean(s['score']))} / {number(max(s['score']))}",
+                f"{statistics.median(s['max_holes']):.0f}",
+                seconds(s["latency_ms"]["median"]),
+                percent(s["agreement"]),
+            ]
+        )
     blocks.append(
         (
             "table",
             [
                 ("Profile", "档位"),
                 ("Prompt", "提示方式"),
-                ("10 clears", "完成 10 次消除"),
+                ("10 clears", "10 次消除"),
                 ("Hole-free goal", "零空洞达成"),
                 ("Topped out", "堆满出局"),
-                ("Pieces to goal", "达成所需方块"),
                 ("Lines", "消除行数"),
                 ("Score (mean / best)", "得分（平均 / 最高）"),
                 ("Most holes", "最多空洞"),
-                ("Call median · p90", "调用中位数 · p90"),
+                ("Call median", "调用中位数"),
                 ("Agreement", "一致率"),
-                ("Regret", "遗憾值"),
             ],
             rows,
         )
@@ -383,12 +285,113 @@ def build(summary: dict, runs: dict, figures: Path) -> list[tuple]:
     blocks.append(
         (
             "note",
-            "Five games per row (seeds 101, 202, 303, 404, 505). Pieces to goal and most holes are "
-            "medians over the games; lines are means. Agreement and regret compare each "
-            "non-forced decision with the reference evaluator (Yiyuan Lee's tuned weights), which "
-            "never influences a move.",
-            "每行 5 局（种子 101、202、303、404、505）。“达成所需方块”与“最多空洞”取各局中位数，消除行数取平均值。"
-            "一致率与遗憾值把每个非强制决策与参考评估器（Yiyuan Lee 调优权重）比较；参考评估器从不参与落子。",
+            "Five games per row, seeds 101–505. Most holes is the median over games; lines are "
+            "means. Agreement compares each non-forced decision with a reference evaluator "
+            "(Yiyuan Lee's tuned weights) that never influences a move.",
+            "每行 5 局，种子 101–505。“最多空洞”取各局中位数，消除行数取平均值。一致率把每个非强制决策与参考评估器"
+            "（Yiyuan Lee 调优权重）比较；参考评估器从不参与落子。",
+        )
+    )
+    blocks.append(("h2", "Without a model", "没有模型会怎样"))
+    blocks.append(
+        (
+            "p",
+            "The same games with the model replaced by a fixed rule, on the same pruned plans. "
+            "Pruning removes only plans that another plan matches or beats on every fact; what "
+            "remains still has to be chosen.",
+            "同样的对局、同样的剪枝方案，把模型换成固定规则。剪枝只去掉在每项事实上都不优于另一方案的走法，"
+            "剩下的方案仍需要选择。",
+        )
+    )
+    policies = (
+        ("random", ("Random pick", "随机选择")),
+        ("first", ("Always the first plan", "总选第一个方案")),
+        ("reference", ("Reference evaluator", "参考评估器")),
+    )
+    rows = [
+        [
+            label,
+            f"{base[key]['goal_reached']} / {base[key]['games']}",
+            f"{base[key]['topped_out']} / {base[key]['games']}",
+            f"{base[key]['mean_lines']:.1f}",
+            f"{number(base[key]['mean_score'])} / {number(base[key]['best_score'])}",
+            f"{base[key]['median_max_holes']:.0f}",
+        ]
+        for key, label in policies
+    ]
+    blocks.append(
+        (
+            "table",
+            [
+                ("Policy", "规则"),
+                ("10 clears", "10 次消除"),
+                ("Topped out", "堆满出局"),
+                ("Lines", "消除行数"),
+                ("Score (mean / best)", "得分（平均 / 最高）"),
+                ("Most holes", "最多空洞"),
+            ],
+            rows,
+        )
+    )
+    blocks.append(
+        (
+            "note",
+            f"Random: {random['games'] // 5} games per seed. The reference evaluator is a tuned "
+            "heuristic, shown for scale; it plays no part in the model's games.",
+            f"随机选择：每个种子 {random['games'] // 5} 局。参考评估器是调优过的启发式规则，仅作对照，"
+            "不参与模型的对局。",
+        )
+    )
+    blocks.append(("h2", "What the runs show", "测试结论"))
+    fast_lines_v = statistics.fmean(v["fast"]["lines"])
+    fast_lines_t = statistics.fmean(m["fast"]["text"]["lines"])
+    fast_lines_c = statistics.fmean(m["fast"]["compact"]["lines"])
+    fast_lines_t, fast_lines_c = sorted((fast_lines_t, fast_lines_c))
+    qc = m["quality"]["compact"]
+    agreement = " · ".join(percent(v[n]["agreement"]) for n in PROFILES)
+    blocks.append(
+        (
+            "list",
+            [
+                (
+                    f"**The model makes the choices that matter.** On the same plans, random picks "
+                    f"top out in {random['topped_out']} of {random['games']} games and clear "
+                    f"{random['mean_lines']:.1f} lines. Qwen3.8-27B clears {top_lines:.1f} and never "
+                    f"tops out, level with the reference evaluator ({reference['mean_lines']:.1f}).",
+                    f"**关键的选择由模型做出。** 在同样的方案上，随机选择 {random['games']} 局中有 "
+                    f"{random['topped_out']} 局堆满出局，平均消除 {random['mean_lines']:.1f} 行；Qwen3.8-27B 平均消除 "
+                    f"{top_lines:.1f} 行且从未出局，与参考评估器（{reference['mean_lines']:.1f}）相当。",
+                ),
+                (
+                    f"**Larger models judge better.** Agreement with the reference evaluator, vision "
+                    f"prompt: {agreement} for 0.8B, 4B, 35B-A3B and 27B.",
+                    f"**模型越大，判断越好。** 视觉提示下与参考评估器的一致率：0.8B、4B、35B-A3B、27B 依次为 "
+                    f"{agreement.replace(' · ', '、')}。",
+                ),
+                (
+                    f"**A 27B model in well under a second.** A dense 27B model processes about 200 "
+                    f"prompt tokens per second on this Mac, so the full compact prompt takes "
+                    f"{seconds(probe['stock'])}. The compact prompt sends the rules as an unchanging "
+                    f"state, which the API keeps cached ({seconds(probe['stock-cache'])}), and "
+                    f"OpenJev's llama.cpp patch skips a checkpoint pass the cache never needs "
+                    f"({seconds(probe['patched-cache'])}). Sixteen decisions per setup.",
+                    f"**27B 模型也能在一秒内决策。** 稠密 27B 模型在这台 Mac 上每秒约处理 200 个提示 token，完整的精简提示需 "
+                    f"{seconds(probe['stock'], True)}。精简提示把规则作为不变的 state，由 API 缓存"
+                    f"（{seconds(probe['stock-cache'], True)}）；OpenJev 的 llama.cpp 补丁再跳过缓存用不到的检查点计算"
+                    f"（{seconds(probe['patched-cache'], True)}）。每种配置 16 次决策。",
+                ),
+                (
+                    f"**Large models need little; small ones need the picture.** With the compact "
+                    f"prompt, quality clears {statistics.fmean(qc['lines']):.1f} lines, hole-free in "
+                    f"{qc['clean_goal']} of {qc['games']} games, at {seconds(qc['latency_ms']['median'])} "
+                    f"per call. The 0.8B model clears {fast_lines_v:.1f} lines with the outcome sheet "
+                    f"and {fast_lines_t:.1f}–{fast_lines_c:.1f} without it.",
+                    f"**大模型需要的信息很少，小模型需要图片。** 使用精简提示时，quality 平均消除 "
+                    f"{statistics.fmean(qc['lines']):.1f} 行，{qc['games']} 局中有 {qc['clean_goal']} 局零空洞达成，"
+                    f"每次调用 {seconds(qc['latency_ms']['median'], True)}。0.8B 模型有结果缩略图时消除 "
+                    f"{fast_lines_v:.1f} 行，没有时只有 {fast_lines_t:.1f}–{fast_lines_c:.1f} 行。",
+                ),
+            ],
         )
     )
     blocks.append(("h2", "Charts", "图表"))
@@ -396,9 +399,8 @@ def build(summary: dict, runs: dict, figures: Path) -> list[tuple]:
         (
             "figure",
             "latency",
-            "Every vision-mode call per profile. The white tick marks the median, the gray tick the "
-            "text-only median.",
-            "视觉模式下每一次调用的往返耗时。白色短线为中位数，灰色短线为纯文字提示的中位数。",
+            "Every call per profile and prompt; ticks mark the medians.",
+            "每个档位、每种提示方式的每一次调用；短线为中位数。",
         )
     )
     blocks.append(
@@ -415,36 +417,30 @@ def build(summary: dict, runs: dict, figures: Path) -> list[tuple]:
             "steps",
             [
                 (
-                    "**Enumerate.** Code lists every legal placement of the falling piece (rotate, "
-                    "shift, hard drop) and every placement of the next piece after it: usually "
-                    "300–600 two-piece plans.",
-                    "**枚举。** 代码列出当前方块的所有合法落点（旋转、平移、硬降），再对每个落点列出下一个方块的所有落点，"
-                    "通常得到 300–600 个两步方案。",
+                    "**Enumerate.** Code lists every legal placement of the falling piece and of "
+                    "the next piece after it: usually 300–600 two-piece plans.",
+                    "**枚举。** 代码列出当前方块与下一个方块的所有合法落点，通常有 300–600 个两步方案。",
                 ),
                 (
                     f"**Prune without weights.** A plan is dropped only when another plan matches or "
-                    f"beats it on every measured fact: rows cleared, holes, stack height, aggregate "
-                    f"height and bumpiness. A median of {v['balanced']['options_median']:.0f} plans "
-                    f"remain; they are listed left to right, so their order carries no hint.",
-                    f"**无权重剪枝。** 只有当某个方案在每一项实测指标（消除行数、空洞、最高高度、总高度、凹凸度）上"
-                    f"都不优于另一个方案时，才会被剔除。剪枝后中位数只剩 {v['balanced']['options_median']:.0f} 个方案，"
-                    f"并按从左到右排列，顺序本身不提供任何暗示。",
+                    f"beats it on every measured fact. A median of "
+                    f"{v['balanced']['options_median']:.0f} plans remain, listed left to right.",
+                    f"**无权重剪枝。** 只有在每项实测事实上都不优于另一方案的走法才会被剔除。剪枝后中位数剩 "
+                    f"{v['balanced']['options_median']:.0f} 个方案，从左到右排列。",
                 ),
                 (
-                    "**Ask once.** One Choice question lists each plan as a complete key sequence "
-                    "with its measured result, and one image shows the outcome of every plan as a "
-                    "lettered tile.",
-                    "**只问一次。** 一个 Choice 问题把每个方案写成完整的按键序列并附上实测结果，"
-                    "同时用一张图片把每个方案的结果画成带字母的小图。",
+                    "**Ask once.** One Choice question lists every plan with its measured result. "
+                    "The vision prompt adds an image of each outcome; the compact prompt keeps the "
+                    "rules in the cached state.",
+                    "**只问一次。** 一个 Choice 问题列出每个方案及其实测结果。视觉提示另附每个结果的图片；"
+                    "精简提示把规则放在缓存的 state 中。",
                 ),
                 (
-                    f"**Read one token.** OpenJev returns the full distribution over the option "
-                    f"labels and code presses the chosen keys for both pieces. When pruning leaves a "
-                    f"single plan, it is played without a call and counted as forced "
-                    f"({decisions - calls} of {number(decisions)} decisions).",
-                    f"**读取 1 个 token。** OpenJev 返回全部选项标签上的完整概率分布，代码据此为两个方块依次按键。"
-                    f"若剪枝后只剩一个方案，则不调用模型、直接执行，并记为强制决策（{number(decisions)} 次决策中有 "
-                    f"{decisions - calls} 次）。",
+                    f"**Read one token.** OpenJev returns the full distribution over the plans and "
+                    f"code presses the keys of the chosen one. A plan left alone after pruning is "
+                    f"played without a call ({decisions - calls} of {number(decisions)} decisions).",
+                    f"**读取 1 个 token。** OpenJev 返回所有方案上的完整概率分布，代码按所选方案按键。"
+                    f"剪枝后只剩一个方案时不调用模型（{number(decisions)} 次决策中有 {decisions - calls} 次）。",
                 ),
             ],
         )
@@ -452,8 +448,8 @@ def build(summary: dict, runs: dict, figures: Path) -> list[tuple]:
     blocks.append(
         (
             "h3",
-            f"A real decision: the {ex['profile']} run, seed {ex['seed']}, decision {ex['number'] + 1}",
-            f"真实示例：{ex['profile']} 对局，种子 {ex['seed']}，第 {ex['number'] + 1} 次决策",
+            f"A real decision: {ex['profile']}, seed {ex['seed']}, decision {ex['number'] + 1}",
+            f"真实示例：{ex['profile']}，种子 {ex['seed']}，第 {ex['number'] + 1} 次决策",
         )
     )
     image = ex["image"]
@@ -461,13 +457,16 @@ def build(summary: dict, runs: dict, figures: Path) -> list[tuple]:
         (
             "image",
             "figures/example-sheet.png",
-            f"The image sent: {image['width']} × {image['height']} px, {image['tokens']} image tokens. "
-            f"Tile A clears a row (+1).",
+            f"The image sent: {image['width']} × {image['height']} px, {image['tokens']} image "
+            f"tokens. Tile A clears a row (+1).",
             f"发送的图片：{image['width']} × {image['height']} 像素，{image['tokens']} 个图像 token。"
             f"A 方案消除一行（+1）。",
         )
     )
-    blocks.append(("code", "json", ex["request"], ("Request", "请求")))
+    blocks.append(("code", "json", ex["request"], ("Vision request", "视觉提示请求")))
+    blocks.append(
+        ("code", "json", ex["compact"], ("Compact request, same state", "精简提示请求（同一局面）"))
+    )
     blocks.append(
         ("code", "json", ex["response"], ("Response (values rounded)", "响应（数值已取整）"))
     )
@@ -476,33 +475,30 @@ def build(summary: dict, runs: dict, figures: Path) -> list[tuple]:
         (
             "p",
             f"Jev put {percent(chosen['probability'])} on plan {ex['chosen']}, the only plan that "
-            f"clears a row without a new hole. The call took {seconds(rec['client_ms'])} with "
-            f"{rec['input_tokens']} input tokens.",
+            f"clears a row without a new hole, in {seconds(rec['client_ms'])} "
+            f"({rec['input_tokens']} input tokens).",
             f"Jev 把 {percent(chosen['probability'])} 的概率给了方案 {ex['chosen']}：唯一既能消行又不产生新空洞"
-            f"的方案。本次调用耗时 {seconds(rec['client_ms'], True)}，输入 {rec['input_tokens']} 个 token。",
+            f"的方案，耗时 {seconds(rec['client_ms'], True)}（输入 {rec['input_tokens']} 个 token）。",
         )
     )
     blocks.append(
         (
             "p",
-            "**Image resolution.** Qwen's vision encoder cuts images into 16 px patches and merges "
-            "each 2 × 2 group into one token (32 px). The outcome sheet draws one board cell per "
-            "16 px patch, crops each tile to the rows in use and keeps every tile on the 32 px grid, "
-            "so the server never resamples it (it stays under 1,024 px and 512 image tokens).",
-            "**图像分辨率。** Qwen 的视觉编码器把图片切成 16 像素的 patch，再把每 2 × 2 个 patch 合并成 1 个 "
-            "token（32 像素）。结果缩略图让每个棋盘格恰好落在一个 16 像素 patch 上，每个方案只截取实际用到的行，"
-            "所有小图都对齐 32 像素网格，因此服务端无需重新缩放（边长不超过 1,024 像素，图像 token 不超过 512）。",
+            "**Image resolution.** Qwen's vision encoder turns each 32 × 32 px block into one "
+            "token. The outcome sheet draws one board cell per 16 px patch and keeps every tile on "
+            "the 32 px grid, so the server never resamples it.",
+            "**图像分辨率。** Qwen 的视觉编码器把每个 32 × 32 像素块变成 1 个 token。结果缩略图让每个棋盘格"
+            "对应一个 16 像素 patch，所有小图都对齐 32 像素网格，服务端无需重新缩放。",
         )
     )
     blocks.append(("h2", "Design study", "设计实验"))
     blocks.append(
         (
             "p",
-            "Before the benchmark, the same 48 decision states were shown to each model in eight "
-            "ways. The states come from reference games on seeds 1–4; the benchmark seeds were "
-            "never used while designing the prompt.",
-            "正式测试前，同样的 48 个决策状态以 8 种方式分别呈现给每个模型。这些状态来自种子 1–4 上的参考对局；"
-            "设计提示词时从未使用正式测试的种子。",
+            f"The same 48 decision states, shown to each model in {len(VARIANT_NAMES)} ways. The "
+            "states come from reference games on seeds 1–4, never the benchmark seeds.",
+            f"同样的 48 个决策状态，以 {len(VARIANT_NAMES)} 种方式分别呈现给每个模型。这些状态来自种子 1–4 上的"
+            "参考对局，从未使用正式测试的种子。",
         )
     )
     blocks.append(
@@ -513,103 +509,78 @@ def build(summary: dict, runs: dict, figures: Path) -> list[tuple]:
             "每种呈现方式的平均遗憾值（越低越好）与调用耗时中位数。",
         )
     )
-    rows = []
-    for key, (en, zh) in VARIANT_NAMES.items():
-        rows.append(
-            [(en, zh), f"{ab['balanced'][key]['median_input_tokens']:.0f}"]
-            + [f"{ab[n][key]['mean_regret']:.2f}" for n in PROFILES]
-            + [f"{ab[n][key]['median_ms']:.0f} ms" for n in PROFILES]
-        )
+    rows = [
+        [
+            (en, zh),
+            f"{next(ab[n][key] for n in PROFILES if key in ab[n])['median_input_tokens']:.0f}",
+        ]
+        + [f"{ab[n][key]['mean_regret']:.2f}" if key in ab[n] else "—" for n in PROFILES]
+        for key, (en, zh) in VARIANT_NAMES.items()
+    ]
     blocks.append(
         (
             "table",
-            [
-                ("Presentation", "呈现方式"),
-                ("Input tokens", "输入 token"),
-                ("Regret · fast", "遗憾值 · fast"),
-                ("Regret · balanced", "遗憾值 · balanced"),
-                ("Regret · quality", "遗憾值 · quality"),
-                ("Call · fast", "调用 · fast"),
-                ("Call · balanced", "调用 · balanced"),
-                ("Call · quality", "调用 · quality"),
-            ],
+            [("Presentation", "呈现方式"), ("Input tokens", "输入 token")]
+            + [(f"Regret · {n}", f"遗憾值 · {n}") for n in PROFILES],
             rows,
         )
     )
-    blocks.append(("h2", "Method and provenance", "方法与来源"))
+    builds = sorted({b for per in summary["llama_cpp"].values() for b in per.values()})
+    blocks.append(("h2", "Method", "方法"))
     blocks.append(
         (
             "list",
             [
                 (
-                    f"**Machine.** {machine['chip']}, {machine['memory_gb']} GB; llama.cpp "
-                    f"{machine['llama_cpp']} on Metal with one inference slot, four CPU threads, an "
-                    f"8,192-token context and a 512-token image budget. Profiles ran one after another, "
-                    f"with one profile active at a time and no other inference running.",
-                    f"**硬件。** {machine['chip']}，{machine['memory_gb']} GB；llama.cpp {machine['llama_cpp']}"
-                    f"（Metal），单推理槽、4 个 CPU 线程、8,192 token 上下文、每张图 512 个图像 token 上限。"
-                    f"各档位依次测试，同一时间只有一个档位在推理，也没有其他推理任务。",
+                    f"**Machine.** {machine['chip']}, {machine['memory_gb']} GB; llama.cpp on Metal "
+                    f"({', '.join(builds)}) with one inference slot, an 8,192-token context and a "
+                    f"512-token image budget. One model at a time, no other inference running.",
+                    f"**硬件。** {machine['chip']}，{machine['memory_gb']} GB；llama.cpp（Metal，"
+                    f"{'、'.join(builds)}），单推理槽、8,192 token 上下文、每张图 512 个图像 token 上限。"
+                    f"同一时间只运行一个模型，没有其他推理任务。",
                 ),
                 (
-                    "**Models.** The pinned OpenJev profiles: Qwen3.5-0.8B Q4_K_M, Qwen3.5-4B Q4_K_M "
-                    "and Qwen3.6-35B-A3B UD-Q4_K_XL, each with its matching F16 vision projector. "
-                    "Weight files were checked by SHA-256 against the pinned Hugging Face revisions.",
-                    "**模型。** 使用 OpenJev 固定版本的三个档位：Qwen3.5-0.8B Q4_K_M、Qwen3.5-4B Q4_K_M 与 "
-                    "Qwen3.6-35B-A3B UD-Q4_K_XL，各自搭配对应的 F16 视觉投影器。权重文件均按 SHA-256 与固定的 "
-                    "Hugging Face 版本核对。",
+                    "**Models.** The pinned OpenJev profiles: Qwen3.5-0.8B Q4_K_M, Qwen3.5-4B "
+                    "Q4_K_M, Qwen3.6-35B-A3B UD-Q4_K_XL and Qwen3.8-27B UD-Q4_K_XL, each with its "
+                    "matching F16 vision projector.",
+                    "**模型。** OpenJev 固定版本的四个档位：Qwen3.5-0.8B Q4_K_M、Qwen3.5-4B Q4_K_M、"
+                    "Qwen3.6-35B-A3B UD-Q4_K_XL 与 Qwen3.8-27B UD-Q4_K_XL，各自搭配对应的 F16 视觉投影器。",
                 ),
                 (
-                    "**Protocol.** Seeds 101, 202, 303, 404 and 505; 100 pieces per game or until the "
-                    "stack tops out; the same seeds, prompt and pruning for every model. The goal "
-                    "counts ten separate line-clear events.",
-                    "**流程。** 种子 101、202、303、404、505；每局 100 个方块，或直到堆满出局；所有模型使用相同的种子、"
-                    "提示词与剪枝规则。目标按 10 次独立的消除事件计算。",
+                    "**Protocol.** Seeds 101–505, 100 pieces per game or until the stack tops out, "
+                    "the same pruning for every model. The goal counts ten line-clear events.",
+                    "**流程。** 种子 101–505，每局 100 个方块或直到堆满出局，所有模型使用相同的剪枝规则。"
+                    "目标按 10 次消除事件计算。",
                 ),
                 (
-                    "**Measured.** Client round trip (localhost), server time (`x-openjev-elapsed-ms`), "
-                    "input tokens, the full probability distribution and every key pressed. The "
-                    "reference evaluator only scores decisions after the fact.",
-                    "**记录内容。** 客户端往返耗时（本机）、服务端耗时（`x-openjev-elapsed-ms`）、输入 token、"
-                    "完整概率分布以及每一次按键。参考评估器只在事后为决策打分。",
+                    f"**Replays.** Videos and the browser replay re-simulate the recorded keys; the "
+                    f"Python and JavaScript engines reproduce all {games} games and "
+                    f"{number(decisions)} decisions exactly.",
+                    f"**回放。** 视频与网页回放按录制的按键重新模拟；Python 与 JavaScript 两套引擎逐一复现全部 "
+                    f"{games} 局、{number(decisions)} 次决策。",
                 ),
                 (
-                    f"**Replays.** Videos and the browser replay re-simulate the recorded keys. The "
-                    f"Python and JavaScript engines reproduce all 30 games, {number(decisions)} "
-                    f"decisions and every option exactly.",
-                    f"**回放。** 视频与网页回放都按录制的按键重新模拟。Python 与 JavaScript 两套引擎逐一复现了全部 "
-                    f"30 局、{number(decisions)} 次决策以及每一个候选方案。",
-                ),
-                (
-                    "**Limits.** Five seeds per configuration is a small sample; regret and agreement "
-                    "depend on the chosen reference evaluator; timings are for one Mac without "
-                    "concurrent load. Pieces spawn inside the visible well; there is no hold piece "
-                    "and no soft-drop tucks or spins.",
-                    "**局限。** 每种配置只有 5 个种子，样本较小；遗憾值与一致率取决于所选参考评估器；耗时只代表这台 Mac "
-                    "在无并发负载时的表现。方块在可见区域内生成，不支持暂存（hold），也不做软降塞入与旋转技巧。",
+                    "**Limits.** Five seeds per configuration is a small sample, and agreement "
+                    "depends on the chosen reference. Timings are for one 16-inch MacBook Pro: the "
+                    "max text and vision games ran after 20 minutes of continuous load, when it "
+                    "processed about 125 prompt tokens per second instead of 200.",
+                    "**局限。** 每种配置只有 5 个种子，一致率取决于所选参考评估器。耗时只代表这台 16 英寸 MacBook Pro："
+                    "max 的文字与视觉对局在连续运行 20 分钟后进行，当时每秒约处理 125 个提示 token，而不是 200 个。",
                 ),
             ],
         )
     )
     blocks.append(("h2", "Reproduce", "复现"))
-    blocks.append(
-        (
-            "code",
-            "bash",
-            (
-                "uv run openjev serve --profile balanced     # one profile at a time\n"
-                "uv run python examples/tetris/play.py bench --seeds 101,202,303,404,505 --modes vision,text\n"
-                "uv run python examples/tetris/play.py ablation\n"
-                "uv run python examples/tetris/report.py     # summary, figures, pages, replays\n"
-                "uv run python examples/tetris/video.py --profile balanced --seed 101",
-                "uv run openjev serve --profile balanced     # 一次只运行一个档位\n"
-                "uv run python examples/tetris/play.py bench --seeds 101,202,303,404,505 --modes vision,text\n"
-                "uv run python examples/tetris/play.py ablation\n"
-                "uv run python examples/tetris/report.py     # 汇总、图表、报告页面与回放数据\n"
-                "uv run python examples/tetris/video.py --profile balanced --seed 101",
-            ),
-            ("", ""),
-        )
+    reproduce = (
+        "scripts/build-llama.sh                        # optional: OpenJev's llama.cpp patch\n"
+        "uv run openjev serve --profile max --llama-server .llamacpp/llama.cpp/build/bin/llama-server\n"
+        "uv run python examples/tetris/play.py bench --seeds 101,202,303,404,505 --modes vision,text,compact\n"
+        "uv run python examples/tetris/play.py ablation --variants vision,compact,text\n"
+        "uv run python examples/tetris/play.py baseline   # no model needed\n"
+        "uv run python examples/tetris/report.py          # summary, figures, pages, replays\n"
+        "uv run python examples/tetris/video.py --profile max --mode compact"
     )
+    blocks.append(("code", "bash", (reproduce, reproduce), ("", "")))
     return blocks
 
 
@@ -678,8 +649,8 @@ def markdown(blocks: list[tuple], zh: bool) -> str:
             "",
             "- `runs/*.json`：每局每次决策的完整记录（每行一次决策）。",
             "- `ablation/*.json`：设计实验结果。",
-            "- `summary.json`：报告使用的汇总数据；`replays.json`：网页回放数据。",
-            "- `figures/`：SVG 图表与示例图片；`videos/`：三个档位的对局视频与封面。",
+            "- `summary.json`：报告使用的汇总数据；`replays.json`：网页回放数据；`baselines.json`：无模型对照。",
+            "- `figures/`：SVG 图表与示例图片；`videos/`：每个档位的对局视频与封面。",
         ]
         if zh
         else [
@@ -687,11 +658,224 @@ def markdown(blocks: list[tuple], zh: bool) -> str:
             "",
             "- `runs/*.json`: every decision of every game, one line per decision.",
             "- `ablation/*.json`: the design study.",
-            "- `summary.json`: the aggregates behind this page; `replays.json`: data for the web replay.",
+            "- `summary.json`: the aggregates behind this page; `replays.json`: data for the web replay; `baselines.json`: the no-model policies.",
             "- `figures/`: SVG charts and the example image; `videos/`: one video and poster per profile.",
         ]
     )
     return "\n".join(out + files) + "\n"
+
+
+# --------------------------------------------------------------------------- site page
+
+
+def site_page(summary: dict, runs: dict, zh: bool) -> str:
+    """The documentation site's Tetris page: the report's headline, shorter."""
+    up = "../../" if zh else "../"
+    p = summary["profiles"]
+    m = {name: p[name]["modes"] for name in PROFILES}
+    base = summary["baselines"]
+    played = [(n, mode) for n in PROFILES for mode in MODES if mode in m[n]]
+    games = sum(m[n][mode]["games"] for n, mode in played)
+    goals = sum(m[n][mode]["goal_reached"] for n, mode in played)
+    best = max(
+        (score, name, mode, seed)
+        for name, mode in played
+        for seed, score in zip(m[name][mode]["seeds"], m[name][mode]["score"], strict=True)
+    )
+    top = m["max"]["compact"]
+    video = {name: goal_video(runs, name) for name in PROFILES}
+    report = f"{SITE}demos/tetris/report/"
+    web = f"{SITE}demos/tetris/web/"
+    source = "https://github.com/Hand-In/openjev-multimodal/tree/main/examples/tetris"
+
+    def t(en: str, cn: str) -> str:
+        return cn if zh else en
+
+    out = [
+        "---",
+        t(
+            "title: Tetris demo — four local models play through OpenJev",
+            "title: 俄罗斯方块演示 —— 四个本地模型通过 OpenJev 对局",
+        ),
+        t(
+            "description: Four Qwen models play Tetris through the Jev-compatible OpenJev "
+            "Multimodal API, one output token per two pieces. Videos, results, a no-model "
+            "baseline and a 27B model deciding in under a second.",
+            "description: 四个 Qwen 模型通过兼容 Jev 的 OpenJev Multimodal API 玩俄罗斯方块，每两个方块只需 "
+            "1 个输出 token。包含对局视频、结果、无模型对照，以及一秒内完成决策的 27B 模型。",
+        ),
+        "---",
+        "",
+        t("# Tetris, played by a local model", "# 由本地模型来玩的俄罗斯方块"),
+        "",
+        t(
+            "Four Qwen models play a complete Tetris game through `POST /v1/systemone`. Code "
+            "knows the rules: it lists every legal move, simulates the outcome and presses the "
+            "keys. The model makes every choice, with **one output token per two pieces**.",
+            "四个 Qwen 模型通过 `POST /v1/systemone` 玩完整的俄罗斯方块。规则交给代码：列出所有合法走法、"
+            "模拟结果、按下按键。每一步都由模型选择，**每两个方块只用 1 个输出 token**。",
+        ),
+        "",
+        t(
+            f"**[Play in the browser →]({web})** &nbsp; [Full test report]({report}) · "
+            f"[Source and recordings]({source})",
+            f"**[在浏览器中试玩 →]({web})** &nbsp; [完整测试报告]({report}) · [源码与录制数据]({source})",
+        ),
+        "",
+        t("| Result | Measured |", "| 结果 | 实测 |"),
+        "| --- | --- |",
+        t(
+            f"| Games that reached 10 line clears | **{goals} / {games}** |",
+            f"| 完成 10 次消除的对局 | **{goals} / {games}** |",
+        ),
+        t(
+            f"| Qwen3.8-27B per decision, compact prompt | **{seconds(top['latency_ms']['median'])}** median |",
+            f"| Qwen3.8-27B 每次决策（精简提示） | 中位数 **{seconds(top['latency_ms']['median'], True)}** |",
+        ),
+        t(
+            f"| Lines per game, Qwen3.8-27B | **{statistics.fmean(top['lines']):.1f}** · random picks "
+            f"{base['random']['mean_lines']:.1f} · reference {base['reference']['mean_lines']:.1f} |",
+            f"| 每局消除行数，Qwen3.8-27B | **{statistics.fmean(top['lines']):.1f}** · 随机选择 "
+            f"{base['random']['mean_lines']:.1f} · 参考评估器 {base['reference']['mean_lines']:.1f} |",
+        ),
+        t(
+            f"| Best score after 100 pieces | **{number(best[0])}** · {best[1]}, "
+            f"{MODE_NAMES[best[2]][0]}, seed {best[3]} |",
+            f"| 100 个方块后的最高分 | **{number(best[0])}** · {best[1]}，{MODE_NAMES[best[2]][1]}，种子 {best[3]} |",
+        ),
+        "",
+        t("## Watch each model play", "## 观看每个模型对局"),
+        "",
+        t(
+            "Seed 101, from the first piece to the tenth line clear. Waiting time is the measured "
+            "round trip of each call.",
+            "种子 101，从第一个方块播放到第 10 次消除。等待时间是每次调用实测的往返耗时。",
+        ),
+        "",
+        '<div class="tetris-videos">',
+    ]
+    for name in PROFILES:
+        clip = f"{up}examples/tetris/report/videos/{name}"
+        caption = t(
+            f"{MODE_NAMES[VIDEOS[name]][0]} · goal after {video[name]['pieces']} pieces · "
+            f"{seconds(video[name]['median_ms'])} per call",
+            f"{MODE_NAMES[VIDEOS[name]][1]} · {video[name]['pieces']} 个方块达成 · "
+            f"每次调用 {seconds(video[name]['median_ms'], True)}",
+        )
+        out += [
+            "<figure>",
+            f'<video src="{clip}.mp4" poster="{clip}.jpg" controls muted playsinline preload="none"></video>',
+            f"<figcaption><strong>{name} · {model(runs, name)}</strong>{caption}</figcaption>",
+            "</figure>",
+        ]
+    out += ["</div>", "", t("## Results after 100 pieces", "## 100 个方块后的结果"), ""]
+    out += ['<div class="results">', ""]
+    out += [
+        t(
+            "| Profile | Lines · vision | Lines · compact | Call · vision | Call · compact | Agreement |",
+            "| 档位 | 消除行数 · 视觉 | 消除行数 · 精简 | 调用 · 视觉 | 调用 · 精简 | 一致率 |",
+        ),
+        "| --- | ---: | ---: | ---: | ---: | ---: |",
+    ]
+    for name in PROFILES:
+        vis, com = m[name]["vision"], m[name].get("compact")
+        cells = [
+            f"{name} · {model(runs, name)}",
+            f"{statistics.fmean(vis['lines']):.1f}",
+            f"{statistics.fmean(com['lines']):.1f}" if com else "—",
+            seconds(vis["latency_ms"]["median"], zh),
+            seconds(com["latency_ms"]["median"], zh) if com else "—",
+            percent(vis["agreement"]),
+        ]
+        out.append("| " + " | ".join(cells) + " |")
+    out += [
+        "",
+        "</div>",
+        "",
+        t(
+            f"Five seeds per cell, 100 pieces per game. Agreement compares the vision-prompt "
+            f"decisions with a reference evaluator that never moves a piece. [All {games} games →]({report})",
+            f"每格 5 个种子，每局 100 个方块。一致率把视觉提示下的决策与参考评估器比较，参考评估器从不参与落子。"
+            f"[全部 {games} 局 →]({report})",
+        ),
+        "",
+        t("## Without a model", "## 没有模型会怎样"),
+        "",
+        t(
+            f"On the same pruned plans, a random pick tops out in {base['random']['topped_out']} of "
+            f"{base['random']['games']} games and clears {base['random']['mean_lines']:.1f} lines. "
+            f"Always taking the first plan clears {base['first']['mean_lines']:.1f}. The code "
+            "narrows the choice; the model makes it.",
+            f"在同样的剪枝方案上，随机选择 {base['random']['games']} 局中有 {base['random']['topped_out']} 局堆满出局，"
+            f"平均消除 {base['random']['mean_lines']:.1f} 行；总选第一个方案为 {base['first']['mean_lines']:.1f} 行。"
+            "代码缩小选择范围，由模型做出选择。",
+        ),
+        "",
+        t("## How one decision works", "## 一次决策如何完成"),
+        "",
+        t(
+            "1. **Enumerate.** Code lists every placement of the falling piece and of the next one: "
+            "usually 300–600 two-piece plans.",
+            "1. **枚举。** 代码列出当前方块与下一个方块的所有落点，通常有 300–600 个两步方案。",
+        ),
+        t(
+            "2. **Prune without weights.** A plan is dropped only when another matches or beats it "
+            "on every measured fact. About three remain.",
+            "2. **无权重剪枝。** 只有在每项实测事实上都不优于另一方案的走法才会被剔除，通常剩约 3 个。",
+        ),
+        t(
+            "3. **Ask once.** One Choice question lists the plans with their facts: rows cleared, "
+            "new holes, height. The vision prompt adds a lettered image of each outcome.",
+            "3. **只问一次。** 一个 Choice 问题列出各方案及其事实：消除行数、新空洞、高度。视觉提示另附每个结果的字母小图。",
+        ),
+        t(
+            "4. **Read one token.** The answer is a full distribution over the plans; code "
+            "presses the keys of the chosen one.",
+            "4. **读取 1 个 token。** 答案是所有方案上的完整概率分布，代码按所选方案按键。",
+        ),
+        "",
+        t(
+            "**The compact prompt** sends the rules as the state, which never changes, and only "
+            "the pieces and short plan facts as the question. The API keeps the state cached, so "
+            "each call reads about 75–100 new tokens. That is what brings a dense 27B model under "
+            "a second.",
+            "**精简提示**把规则作为不变的 state，问题中只放当前方块和简短的方案事实。API 会缓存 state，"
+            "每次调用只需读取约 75–100 个新 token，这让稠密 27B 模型的决策进入一秒以内。",
+        ),
+        "",
+        f"![{t('The image sent with one real decision: three lettered outcome tiles', '一次真实决策发送的图片：三个带字母的结果小图')}]({up}examples/tetris/report/figures/example-sheet.png)",
+        "",
+        t("## Run it yourself", "## 自己运行"),
+        "",
+        "```bash",
+        t(
+            "uv run openjev serve                                  # balanced profile on :8000",
+            "uv run openjev serve                                  # 在 :8000 启动 balanced 档位",
+        ),
+        t(
+            "uv run python examples/tetris/serve.py                # browser game on http://127.0.0.1:8765",
+            "uv run python examples/tetris/serve.py                # 浏览器游戏：http://127.0.0.1:8765",
+        ),
+        "uv run python examples/tetris/play.py bench --seeds 101,202,303,404,505 --modes vision,compact",
+        "```",
+        "",
+        t(
+            f"Measured on an {summary['machine']['chip']} with llama.cpp on Metal. Five seeds per "
+            "configuration is a small sample; timings depend on the machine and its load.",
+            f"测试环境：{summary['machine']['chip']}，llama.cpp（Metal）。每种配置 5 个种子，样本较小；耗时取决于机器与负载。",
+        ),
+        "",
+        "<style scoped>",
+        ".tetris-videos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 20px 0 8px; }",
+        ".tetris-videos figure { margin: 0; border: 1px solid var(--vp-c-divider); border-radius: 10px; overflow: hidden; background: var(--vp-c-bg-soft); }",
+        ".tetris-videos video { display: block; width: 100%; aspect-ratio: 16 / 9; background: #101713; }",
+        ".tetris-videos figcaption { padding: 10px 12px 12px; font-size: 13px; line-height: 1.5; color: var(--vp-c-text-2); }",
+        ".tetris-videos figcaption strong { display: block; color: var(--vp-c-text-1); }",
+        ".results td, .results th { white-space: nowrap; }",
+        "@media (max-width: 760px) { .tetris-videos { grid-template-columns: 1fr; } }",
+        "</style>",
+    ]
+    return "\n".join(out) + "\n"
 
 
 # --------------------------------------------------------------------------- HTML
@@ -787,7 +971,7 @@ TEMPLATE = """<!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tetris test report · OpenJev Multimodal</title>
-<meta name="description" content="Three local Qwen models play Tetris through OpenJev Multimodal: results, videos, latency and the design study behind one-token decisions.">
+<meta name="description" content="Four local Qwen models play Tetris through OpenJev Multimodal: results, videos, latency, no-model baselines and the design study behind one-token decisions.">
 <meta name="theme-color" content="#101713">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Crect width='20' height='20' rx='4' fill='%23101713'/%3E%3Cpath d='M10 3 17 10 10 17 3 10Z' fill='%23b4f784'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -823,7 +1007,7 @@ code { font: .88em var(--mono); color: var(--text-1); }
 .kpi strong { display: block; font: 500 28px/1.1 var(--display); letter-spacing: -.5px; color: var(--text-1); }
 .kpi span { display: block; margin-top: 8px; font-size: 14px; color: var(--text-1); }
 .kpi small { display: block; margin-top: 6px; font-size: 12px; color: var(--muted); }
-.videos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.videos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
 .video { margin: 0; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
 .video video { display: block; width: 100%; aspect-ratio: 16 / 9; background: #0b110d; }
 .video figcaption { padding: 12px 14px 14px; font-size: 13px; color: var(--muted); }
@@ -889,3 +1073,6 @@ def write(summary: dict, runs: dict, report: Path) -> None:
     (report / "README.md").write_text(markdown(blocks, zh=False))
     (report / "README.zh-CN.md").write_text(markdown(blocks, zh=True))
     (report / "index.html").write_text(page(blocks, figures))
+    site = report.parents[2] / "site"
+    (site / "tetris.md").write_text(site_page(summary, runs, zh=False))
+    (site / "zh" / "tetris.md").write_text(site_page(summary, runs, zh=True))

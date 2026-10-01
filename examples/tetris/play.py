@@ -16,6 +16,7 @@ import copy
 import datetime as dt
 import json
 import platform
+import random
 import statistics
 import subprocess
 import sys
@@ -32,6 +33,7 @@ PROFILES = {
     "Qwen/Qwen3.5-0.8B": "fast",
     "Qwen/Qwen3.5-4B": "balanced",
     "Qwen/Qwen3.6-35B-A3B": "quality",
+    "Qwen/Qwen3.8-27B": "max",
 }
 
 
@@ -128,7 +130,9 @@ def dumps(document: dict) -> str:
     return head + ',\n "games": [\n' + ",\n".join(games) + "\n ]\n}\n"
 
 
-def machine() -> dict:
+def machine(build: str | None = None) -> dict:
+    """The test machine; `build` is the llama.cpp build the API reports, if any."""
+
     def run(*command: str) -> str:
         try:
             done = subprocess.run(command, capture_output=True, text=True, timeout=10)
@@ -136,14 +140,16 @@ def machine() -> dict:
         except (OSError, subprocess.SubprocessError):
             return ""
 
-    llama = run("llama-server", "--version")
-    build = next((line.split()[1] for line in llama.splitlines() if "version:" in line), "")
+    if build is None:
+        llama = run("llama-server", "--version")
+        found = next((line.split()[1] for line in llama.splitlines() if "version:" in line), "")
+        build = f"b{found}" if found else None
     memory = run("sysctl", "-n", "hw.memsize").strip()
     return {
         "system": f"{platform.system()} {platform.machine()}",
         "chip": run("sysctl", "-n", "machdep.cpu.brand_string").strip(),
         "memory_gb": round(int(memory) / 2**30) if memory.isdigit() else None,
-        "llama_cpp": f"b{build}" if build else None,
+        "llama_cpp": build,
         "python": platform.python_version(),
     }
 
@@ -154,6 +160,7 @@ def describe_server(jev: Jev) -> dict:
     limits = jev.http.get(jev.url + "/v1/limits").json()
     return {
         "model": health["model"],
+        "backend_build": health.get("backend_build"),
         "profile": PROFILES.get(health["model"], health["model"]),
         "multimodal": health["multimodal"],
         "openjev": version,
@@ -184,12 +191,109 @@ def bench(args) -> None:
         "schema": 1,
         "profile": profile,
         "server": server,
-        "machine": machine(),
+        "machine": machine(server.get("backend_build")),
         "measured": dt.datetime.now().astimezone().isoformat(timespec="seconds"),
         "games": games,
     }
     out.write_text(dumps(document))
     print(f"wrote {out}")
+
+
+def simulate(seed: int, choose, rng: random.Random, max_pieces: int, goal: int) -> dict:
+    """One game on the same pruned options, with `choose` in place of the model."""
+    game = Game(seed)
+    most_holes, reached = 0, False
+    while not game.over and game.pieces + 2 <= max_pieces:
+        options = frontier(game.plans())
+        if not options:
+            game.over = True
+            break
+        plan = options[choose(options, rng)]
+        press_all(game, plan.first.keys)
+        press_all(game, plan.second.keys)
+        most_holes = max(most_holes, holes(game.board))
+        reached = reached or game.clears >= goal
+    return {
+        "seed": seed,
+        "lines": game.lines,
+        "score": game.score,
+        "goal_reached": reached,
+        "topped_out": game.over,
+        "max_holes": most_holes,
+    }
+
+
+BASELINES = {  # policy name: how it picks among the plans the model would see
+    "random": lambda options, rng: rng.randrange(len(options)),
+    "first": lambda options, rng: 0,
+    "reference": lambda options, rng: max(range(len(options)), key=lambda i: options[i].value()),
+}
+
+
+def baseline(args) -> None:
+    """What the pruned options achieve without a model: random, leftmost and reference picks."""
+    seeds = [int(s) for s in args.seeds.split(",")]
+    policies = {}
+    for name, choose in BASELINES.items():
+        repeats = args.repeats if name == "random" else 1
+        games = [
+            simulate(seed, choose, random.Random(seed * 1000 + r), args.pieces, args.goal)
+            for seed in seeds
+            for r in range(repeats)
+        ]
+        policies[name] = {
+            "games": len(games),
+            "goal_reached": sum(g["goal_reached"] for g in games),
+            "topped_out": sum(g["topped_out"] for g in games),
+            "mean_lines": round(statistics.fmean(g["lines"] for g in games), 1),
+            "mean_score": round(statistics.fmean(g["score"] for g in games)),
+            "best_score": max(g["score"] for g in games),
+            "median_max_holes": statistics.median(g["max_holes"] for g in games),
+            "runs": games,
+        }
+        summary = {k: v for k, v in policies[name].items() if k != "runs"}
+        print(name, json.dumps(summary), flush=True)
+    out = HERE / "report" / "baselines.json"
+    document = {"schema": 1, "seeds": seeds, "pieces": args.pieces, "goal": args.goal}
+    out.write_text(json.dumps(document | {"policies": policies}, indent=1) + "\n")
+    print(f"wrote {out}")
+
+
+def probe(args) -> None:
+    """Time a short run of decisions and save every call: for comparing server setups."""
+    jev = Jev(args.url)
+    server = describe_server(jev)
+    game, calls = Game(args.seed), []
+    for number in range(args.decisions):
+        decision = jev.decide(game, number, args.mode)
+        if decision is None:
+            break
+        if not decision.forced:
+            calls.append(
+                {
+                    "client_ms": round(decision.client_ms, 1),
+                    "timing": decision.timing,
+                    "input_tokens": decision.input_tokens,
+                }
+            )
+        press_all(game, decision.plan.first.keys)
+        press_all(game, decision.plan.second.keys)
+    times = sorted(c["client_ms"] for c in calls)
+    result = {
+        "schema": 1,
+        "name": args.name,
+        "server": server,
+        "machine": machine(server.get("backend_build")),
+        "measured": dt.datetime.now().astimezone().isoformat(timespec="seconds"),
+        "seed": args.seed,
+        "mode": args.mode,
+        "median_ms": round(statistics.median(times), 1),
+        "calls": calls,
+    }
+    out = HERE / "report" / "probes" / f"{args.name}.json"
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps(result, indent=1) + "\n")
+    print(f"{args.name}: {len(calls)} calls, median {result['median_ms']:.0f} ms -> {out.name}")
 
 
 def fixed_states(seeds=(1, 2, 3, 4), per_seed: int = 12) -> list[Game]:
@@ -262,7 +366,7 @@ def ablation(args) -> None:
         "schema": 1,
         "profile": profile,
         "server": server,
-        "machine": machine(),
+        "machine": machine(server.get("backend_build")),
         "measured": dt.datetime.now().astimezone().isoformat(timespec="seconds"),
         "results": earlier | results,  # re-running a variant replaces only that variant
     }
@@ -289,6 +393,17 @@ def main() -> None:
     one = sub.add_parser("play", help="play one game and print the moves")
     many = sub.add_parser("bench", help="play several seeds and write report/runs/<profile>.json")
     study = sub.add_parser("ablation", help="compare presentations on fixed decision states")
+    timing = sub.add_parser("probe", help="time a few decisions and save every call")
+    timing.add_argument("name", help="receipt name: report/probes/<name>.json")
+    timing.add_argument("--url", default="http://127.0.0.1:8000")
+    timing.add_argument("--seed", type=int, default=7)
+    timing.add_argument("--mode", choices=MODES, default="compact")
+    timing.add_argument("--decisions", type=int, default=16)
+    base = sub.add_parser("baseline", help="play the pruned options without a model")
+    base.add_argument("--seeds", default="101,202,303,404,505")
+    base.add_argument("--repeats", type=int, default=20, help="random games per seed")
+    base.add_argument("--pieces", type=int, default=100)
+    base.add_argument("--goal", type=int, default=10)
     for command in (one, many, study):
         command.add_argument("--url", default="http://127.0.0.1:8000")
         command.add_argument("--profile", help="name for the output file (default: from /health)")
@@ -316,6 +431,10 @@ def main() -> None:
             print(json.dumps(game["result"], indent=2))
         elif args.command == "bench":
             bench(args)
+        elif args.command == "baseline":
+            baseline(args)
+        elif args.command == "probe":
+            probe(args)
         else:
             ablation(args)
     except httpx.HTTPError as exc:

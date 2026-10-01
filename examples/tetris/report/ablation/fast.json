@@ -3,6 +3,7 @@
  "profile": "fast",
  "server": {
   "model": "Qwen/Qwen3.5-0.8B",
+  "backend_build": "b51-91c0769",
   "profile": "fast",
   "multimodal": true,
   "openjev": "0.1.0",
@@ -12,10 +13,10 @@
   "system": "Darwin arm64",
   "chip": "Apple M3 Max",
   "memory_gb": 128,
-  "llama_cpp": "b9670",
+  "llama_cpp": "b51-91c0769",
   "python": "3.11.12"
  },
- "measured": "2026-09-21T03:07:33-07:00",
+ "measured": "2026-09-21T07:45:32-07:00",
  "results": {
   "text": {
    "states": 48,
@@ -88,6 +89,15 @@
    "hole_traps": 46,
    "median_ms": 162.15566647588275,
    "median_input_tokens": 642.0
+  },
+  "compact": {
+   "states": 48,
+   "agreement": 0.4166666666666667,
+   "mean_regret": 1.5369118541666669,
+   "avoidable_holes": 26,
+   "hole_traps": 46,
+   "median_ms": 29.161561999899277,
+   "median_input_tokens": 305.0
   }
  }
 }

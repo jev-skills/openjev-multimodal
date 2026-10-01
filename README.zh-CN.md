@@ -36,13 +36,14 @@ uv run openjev serve
 | `fast` | Qwen3.5-0.8B | Q4_K_M | 低占用、简单判断 |
 | `balanced`，默认 | Qwen3.5-4B | Q4_K_M | 日常文字与图片 |
 | `quality` | Qwen3.6-35B-A3B | UD-Q4_K_XL | 大内存 Mac、较强知识能力 |
+| `max` | Qwen3.8-27B | UD-Q4_K_XL | 最强判断力 |
 
 ```bash
 uv run openjev serve --profile quality
 uv run openjev doctor
 ```
 
-一次只运行一个档位。quality 权重约 23.3 GB、投影器约 0.9 GB。实测来自 M3 Max 128 GB，未测其他机器的最低内存要求。
+一次只运行一个档位。quality 权重约 23.3 GB，max 约 17.6 GB，另需 0.9 GB 投影器。要让 max 在重复 state 上达到亚秒级，请用 `scripts/build-llama.sh` 构建[打过补丁的 llama.cpp](https://hand-in.github.io/openjev-multimodal/zh/models#max-qwen3-8-27b)。实测来自 M3 Max 128 GB，未测其他机器的最低内存要求。
 
 ## API 示例
 
@@ -72,9 +73,9 @@ curl http://127.0.0.1:8000/v1/systemone \
 
 ## 俄罗斯方块：限时决策
 
-[![Qwen3.5-4B 通过 OpenJev Multimodal 玩俄罗斯方块](examples/tetris/report/videos/balanced.jpg)](https://hand-in.github.io/openjev-multimodal/zh/tetris)
+[![Qwen3.8-27B 通过 OpenJev Multimodal 玩俄罗斯方块](examples/tetris/report/videos/max.jpg)](https://hand-in.github.io/openjev-multimodal/zh/tetris)
 
-三个本地模型通过 API 玩俄罗斯方块。代码枚举所有合法的两步方案并负责按键；**1 个 Choice token 选出方案**，依据是精确的文字事实与按 token 对齐的结果图。视觉模式的 15 局全部完成 10 次消除，单次决策中位数为 0.15 秒（0.8B）、0.65 秒（4B）和 0.91 秒（35B-A3B）。[演示页](https://hand-in.github.io/openjev-multimodal/zh/tetris) · [在浏览器中试玩](https://hand-in.github.io/openjev-multimodal/demos/tetris/web/) · [测试报告](examples/tetris/report/README.zh-CN.md) · [代码](examples/tetris)。
+四个本地模型通过 API 玩俄罗斯方块。代码模拟所有合法的两步方案并负责按键；**1 个 Choice token 选出方案**。在同样的方案中随机选择，每局只消除 14.3 行；Qwen3.8-27B 消除 38.2 行，每次决策 0.73 秒，规则作为不变的 state 被缓存。[演示页](https://hand-in.github.io/openjev-multimodal/zh/tetris) · [在浏览器中试玩](https://hand-in.github.io/openjev-multimodal/demos/tetris/web/) · [测试报告](examples/tetris/report/README.zh-CN.md) · [代码](examples/tetris)。
 
 ## 在智能体中使用
 

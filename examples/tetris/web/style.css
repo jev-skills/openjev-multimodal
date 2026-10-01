@@ -104,6 +104,9 @@ dl { margin: 0; display: flex; flex-direction: column; gap: 18px; }
 .row-label span { font: 11px var(--mono); letter-spacing: 1.8px; color: var(--muted); text-transform: uppercase; }
 .row-label .meta { letter-spacing: 0; text-transform: none; }
 .sheet-wrap { min-height: 64px; overflow-x: auto; }
+.prompt-label { display: none; }
+.no-image .image-label, .no-image .sheet-wrap { display: none; }
+.no-image .prompt-label { display: inline; }
 #sheet { display: block; max-width: 100%; height: auto; image-rendering: pixelated; border-radius: 4px; }
 #sheet-img { display: block; max-width: 100%; height: auto; image-rendering: pixelated; border-radius: 4px; }
 .plans { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }

@@ -16,7 +16,9 @@ import httpx
 from tetris import Game, Plan, frontier
 from vision import data_url, jev_view, labels, outcome_sheet, tokens
 
-MODES = ("vision", "text", "board", "pixels")  # pixels: outcome sheet, no measured facts
+# pixels: outcome sheet, no measured facts. compact: the rules are the state, which never
+# changes, so the API keeps it cached and each call reads only the pieces and the plans.
+MODES = ("vision", "text", "board", "pixels", "compact")
 
 INSTRUCTIONS = {
     "task": "Choose the plan to play: the keys for the falling piece, then for the next piece.",
@@ -31,6 +33,15 @@ INSTRUCTIONS = {
         "clears": "rows completed by the two moves",
         "new holes": "empty cells the two moves seal under blocks",
         "height": "tallest column afterwards, in rows",
+    },
+}
+RULES = {
+    "game": "Tetris well: 10 columns (0-9, left to right) x 20 rows",
+    **INSTRUCTIONS,
+    "task": "Choose the plan to play: where the falling piece lands, then the next piece.",
+    "fields": {
+        **INSTRUCTIONS["fields"],
+        "cols": "columns the falling piece, then the next piece, occupy after landing",
     },
 }
 SHEET_NOTE = (
@@ -60,11 +71,29 @@ def describe(plan: Plan, falling: str, upcoming: str, facts: bool = True) -> str
     )
 
 
+def brief(plan: Plan) -> str:
+    """One plan in about 25 tokens; the question already names both pieces."""
+    (a, b), (c, d) = plan.first.columns, plan.second.columns
+    return (
+        f"{a}-{b} then {c}-{d}: "
+        f"clears {plan.lines}, new holes {plan.new_holes}, height {plan.second.height}"
+    )
+
+
 def payload(game: Game, options: list[Plan], mode: str = "vision") -> tuple[dict, dict]:
     """The SystemOne request for one decision, plus facts about the image that was sent."""
     if mode not in MODES:
         raise ValueError(f"mode must be one of {MODES}")
     falling, upcoming = game.piece.kind, game.queue[0]
+    if mode == "compact":
+        queue = " ".join(list(game.queue)[:3])
+        question = {
+            "type": "choice",
+            "instructions": f"Falling {falling}, next {queue}. Which plan?",
+            "criteria": {str(i): brief(plan) for i, plan in enumerate(options)},
+        }
+        body = {"model": "jev-latest", "state": RULES, "questions": {"plan": question}}
+        return body, {"width": 0, "height": 0, "tokens": 0}
     facts = mode != "pixels"
     instructions = dict(INSTRUCTIONS)
     if not facts:

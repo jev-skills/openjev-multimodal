@@ -285,15 +285,17 @@ function showDecision(decision) {
     const img = $("sheet-img");
     img.src = decision.imageUrl;
     img.hidden = false;
-  } else if (decision.mode === "text") {
+  } else if (decision.mode === "text" || decision.mode === "compact") {
     drawSheet([]);
   } else {
     drawSheet(decision.plans);
   }
   const image = decision.image;
+  $("card").classList.toggle("no-image", ["text", "compact"].includes(decision.mode));
   $("image-meta").textContent = image && image.tokens
     ? `${image.width} × ${image.height} px · ${image.tokens} ${t("image tokens", "个图像 token")}`
-    : decision.mode === "text" ? t("text-only prompt: no image", "纯文字提示：不发送图片") : "";
+    : decision.mode === "text" ? t("text-only prompt: no image", "纯文字提示：不发送图片")
+    : decision.mode === "compact" ? t("compact prompt: cached rules, no image", "精简提示：规则已缓存，不发送图片") : "";
   renderPlans(decision, false);
   $("metrics").replaceChildren();
   keys.hide();
@@ -334,7 +336,7 @@ async function waitForAnswer(token, ms, promise) {
 
 function reveal(decision) {
   renderPlans(decision, true);
-  if (!decision.imageUrl && decision.mode !== "text") drawSheet(decision.plans, decision.chosen);
+  if (!decision.imageUrl && !["text", "compact"].includes(decision.mode)) drawSheet(decision.plans, decision.chosen);
   if (decision.forced) {
     setMetrics([["1", t("plan dominates every other: no call needed", "个方案全面占优：无需调用")]]);
     return;
