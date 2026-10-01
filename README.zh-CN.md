@@ -105,7 +105,7 @@ uv run --group bench python scripts/render_benchmark.py
 
 ## 原理与边界
 
-选项映射为单 token 标签，通过共同 logit 偏置取得完整候选概率，再归一化抵消偏置。输入预填充、图像编码、模型和缓存仍影响耗时。[原理 →](https://hand-in.github.io/openjev-multimodal/zh/design)
+选项映射为单 token 标签，通过共同 logit 偏置取得完整候选概率，再归一化抵消偏置。输入预填充、图像编码、模型和缓存仍影响耗时，每个响应都会返回服务端耗时。[原理 →](https://hand-in.github.io/openjev-multimodal/zh/design) · [延迟 →](https://hand-in.github.io/openjev-multimodal/zh/performance)
 
 - 默认 localhost；`OPENJEV_API_KEY` 启用 `/v1/*` Bearer 鉴权。
 - `/health` 检查后端，`/health/live` 检查进程，`/v1/limits` 返回限制。

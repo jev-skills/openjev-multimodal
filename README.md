@@ -113,7 +113,7 @@ uv run --group bench python scripts/render_benchmark.py
 
 ## Design and operations
 
-Options map to verified single-token labels. A uniform logit bias brings them into the probability list; normalization cancels the shared bias. Every candidate must be present. The API computes typed answers from the complete distribution. Input prefill, image encoding, model size and cache still determine latency. [How it works →](https://hand-in.github.io/openjev-multimodal/design)
+Options map to verified single-token labels. A uniform logit bias brings them into the probability list; normalization cancels the shared bias. Every candidate must be present. The API computes typed answers from the complete distribution. Input prefill, image encoding, model size and cache still determine latency; every response reports its server time. [How it works →](https://hand-in.github.io/openjev-multimodal/design) · [Latency →](https://hand-in.github.io/openjev-multimodal/performance)
 
 - Localhost binding by default; `OPENJEV_API_KEY` enables Bearer auth on `/v1/*`.
 - `/health` checks the backend; `/health/live` checks the process; `/v1/limits` exposes limits.

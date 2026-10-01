@@ -14,6 +14,7 @@ const menu = (zh = false) => [
   { text: zh ? '深入了解' : 'Go deeper', items: [
     { text: zh ? '模型与性能' : 'Models & performance', link: zh ? '/zh/models' : '/models' },
     { text: zh ? '基准测试' : 'Benchmarks', link: zh ? '/zh/benchmarks' : '/benchmarks' },
+    { text: zh ? '延迟' : 'Latency', link: zh ? '/zh/performance' : '/performance' },
     { text: zh ? '设计与兼容性' : 'Design & compatibility', link: zh ? '/zh/design' : '/design' },
   ] },
 ]
