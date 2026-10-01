@@ -73,6 +73,18 @@ Qwen3.5 and Qwen3.6 are hybrid models. Their recurrent layers cannot roll back t
 
 **One resize per image.** An oversized image goes straight to the vision encoder's size on its 32 px grid, instead of being resized twice. Large JPEGs decode at reduced scale: API-side preparation drops to 31 ms for 2048×1536 and 55 ms for 4032×3024.
 
+## Repeated state
+
+When consecutive requests repeat a state with new questions, the API keeps a checkpoint right after the state, and each request reads only its question. OpenJev's [llama.cpp patch](./models#max-qwen3-8-27b) goes one step further: it places that checkpoint exactly at the end of the state, and it lets a request skip the extra pass llama.cpp otherwise spends to checkpoint the end of every prompt.
+
+| Qwen3.8-27B, compact Tetris prompt | Median per decision |
+| --- | ---: |
+| Stock llama.cpp | 1.93 s |
+| With the repeated-state cache | 0.83 s |
+| With the cache and the patch | 0.66 s |
+
+Sixteen decisions per setup, one server at a time ([receipts](https://github.com/Hand-In/openjev-multimodal/tree/main/examples/tetris/report/probes)). All 32 answers of a fixed check set matched stock llama.cpp. `OPENJEV_PRIME_REPEATED_STATE=false` turns the cache off.
+
 ## Accuracy
 
 Every trial sends the identical request to both versions.

@@ -56,6 +56,7 @@ class LlamaBackend:
         self.labels: list[tuple[str, int]] = []
         self.model = settings.model_name
         self.vision = False
+        self.build: str | None = None  # llama.cpp build_info, reported by /health
         self.media_marker = "<__media__>"
         self.context_size = settings.max_input_tokens
         self.skeletons: dict[tuple[str, ...], _Skeleton | None] = {}
@@ -102,6 +103,7 @@ class LlamaBackend:
         catalog = await self.call("/v1/models")
         props = await self.call("/props")
         self.media_marker = props.get("media_marker", self.media_marker)
+        self.build = props.get("build_info")
         try:
             self.model = catalog["data"][0]["id"]
             self.context_size = min(
@@ -201,12 +203,33 @@ class LlamaBackend:
         """
         prompt = prefix.replace("<__media__>", self.media_marker)
         payload = {"prompt_string": prompt, "multimodal_data": images} if images else prompt
+        # checkpoint_end (OpenJev's llama.cpp build) places the checkpoint after the last prefix
+        # token instead of a few tokens earlier, so questions re-read nothing; others ignore it.
         await self.call(
             "/completion",
-            {"prompt": payload, "n_predict": 0, "cache_prompt": True, "id_slot": 0},
+            {
+                "prompt": payload,
+                "n_predict": 0,
+                "cache_prompt": True,
+                "id_slot": 0,
+                "checkpoint_end": True,
+            },
         )
 
-    async def read(self, prompt: str, images: list[str], labels: list[tuple[str, int]]) -> Readout:
+    async def read(
+        self,
+        prompt: str,
+        images: list[str],
+        labels: list[tuple[str, int]],
+        checkpoints: bool = True,
+    ) -> Readout:
+        """Read the label distribution after `prompt`.
+
+        With `checkpoints=False` the backend skips the extra pass that hybrid models spend to
+        checkpoint the end of a prompt (llama.cpp with OpenJev's `ctx_checkpoints` option;
+        other builds ignore the field). Use it when the prompt resumes from a primed state
+        and its own end will not be reused.
+        """
         prompt = prompt.replace("<__media__>", self.media_marker)
         # Adding the SAME bias to all label logits preserves their pairwise odds.
         # Post-sampling probabilities include this bias; normalizing over labels
@@ -228,6 +251,8 @@ class LlamaBackend:
             "cache_prompt": True,
             "id_slot": 0,
         }
+        if not checkpoints:
+            payload["ctx_checkpoints"] = False
         result = await self.call("/completion", payload)
         try:
             items = result["completion_probabilities"][0]["top_probs"]

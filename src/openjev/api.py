@@ -146,6 +146,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                 "model": backend.model,
                 "multimodal": backend.vision,
                 "backend": "llama.cpp",
+                "backend_build": backend.build,
             },
             status_code=200 if ready else 503,
         )

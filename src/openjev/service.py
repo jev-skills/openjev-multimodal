@@ -51,6 +51,33 @@ class Evaluator:
         self.backend = backend
         self.active = 0
         self.lock = asyncio.Lock()
+        # The previous request as (state, prompts), where state is the shared prefix text plus
+        # image contents, and the state the backend holds a checkpoint after.
+        self.recent: tuple[tuple, tuple] | None = None
+        self.primed: tuple | None = None
+
+    async def prepare(self, state: tuple, images: list[str], branches: list[Branch]):
+        """Give the backend a checkpoint right after the shared state when it pays off.
+
+        Hybrid Qwen models cannot resume from an arbitrary cached position, so without a
+        checkpoint every question re-reads the state. A request with several questions
+        primes its state once. So does a request that repeats the previous request's state
+        with different questions: from then on, requests with that state read only their
+        questions. An exact repeat needs nothing; llama.cpp already resumes near its end.
+        """
+        prompts = tuple(branch.prompt for branch in branches)
+        repeated = self.recent is not None and self.recent[0] == state
+        exact = repeated and self.recent[1] == prompts
+        self.recent = (state, prompts)
+        if state == self.primed:
+            return
+        self.primed = None  # a different prompt replaces the backend's cached state
+        wanted = len(branches) > 1 or (
+            repeated and not exact and self.settings.prime_repeated_state
+        )
+        if self.settings.prime_shared_prefix and wanted:
+            await self.backend.prime(state[0], images)
+            self.primed = state
 
     async def evaluate(self, request: Evaluation) -> tuple[Result, Stats]:
         if request.model not in {"jev-latest", "openjev-latest", self.backend.model}:
@@ -103,16 +130,20 @@ class Evaluator:
                 # Keep branches together on one Metal slot, permitting shared prefix reuse.
                 async with self.lock:
                     admitted = time.perf_counter()
-                    if self.settings.prime_shared_prefix and len(branches) > 1:
-                        await self.backend.prime(prefix, images)
+                    state = (prefix, *images)
+                    await self.prepare(state, images, branches)
                     for branch in branches:
-                        readout = await self.backend.read(branch.prompt, images, branch.labels)
+                        readout = await self.backend.read(
+                            branch.prompt, images, branch.labels, checkpoints=self.primed != state
+                        )
                         input_tokens += readout.input_tokens
                         if input_tokens > self.settings.max_total_input_tokens:
                             raise APIError("Actual multimodal tokens exceed the total token limit.")
                         output_tokens += readout.output_tokens
                         cached += readout.cached_tokens
                         compute_ms += readout.inference_ms
+                        if self.primed == state and readout.cached_tokens < len(shared) // 2:
+                            self.primed = None  # the checkpoint is gone; prime again next time
                         answers[branch.key] = scored(
                             branch.question,
                             branch.options,

@@ -54,6 +54,7 @@ The response contains `answers.refund.noul`, `answers.team.choice`, the full cho
 uv run openjev serve --profile fast      # Qwen3.5-0.8B Q4_K_M
 uv run openjev serve --profile balanced  # Qwen3.5-4B Q4_K_M (default)
 uv run openjev serve --profile quality   # Qwen3.6-35B-A3B UD-Q4_K_XL
+uv run openjev serve --profile max       # Qwen3.8-27B UD-Q4_K_XL
 ```
 
 Run one profile at a time. The server uses one inference slot and four CPU threads by default. `--threads 2` further limits CPU work. Stop with **Ctrl+C**; the CLI shuts down its own backend.
@@ -85,6 +86,7 @@ Use a matching projector. An existing backend must expose native llama.cpp endpo
 | `OPENJEV_IMAGE_MAX_EDGE` | `1024` | Longest image edge after resizing |
 | `OPENJEV_IMAGE_ALIGN` | `32` | Visual-token edge in pixels; oversized images are resized once, straight to the encoder's size (`0` turns this off) |
 | `OPENJEV_PRIME_SHARED_PREFIX` | `true` | Read the shared state once for multi-question requests |
+| `OPENJEV_PRIME_REPEATED_STATE` | `true` | Keep a state that consecutive requests repeat, so each reads only its question |
 | `OPENJEV_TEMPLATE_CACHE` | `true` | Reuse a chat-template skeleton verified against the backend |
 | `OPENJEV_RESPONSE_TIMING` | `true` | Add the `timing` object to responses; headers always carry it |
 

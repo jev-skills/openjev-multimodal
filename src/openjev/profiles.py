@@ -33,4 +33,10 @@ PROFILES = {
         projector_repo="unsloth/Qwen3.6-35B-A3B-GGUF",
         projector_revision="a483e9e6cbd595906af30beda3187c2663a1118c",
     ),
+    "max": Profile(
+        "Qwen/Qwen3.8-27B",
+        "unsloth/Qwen3.8-27B-GGUF",
+        "4ca720788d1e01f1bff70c033e0d0028fd02e502",
+        "Qwen3.8-27B-UD-Q4_K_XL.gguf",
+    ),
 }

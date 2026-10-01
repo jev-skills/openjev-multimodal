@@ -54,6 +54,7 @@ curl http://127.0.0.1:8000/v1/systemone \
 uv run openjev serve --profile fast      # Qwen3.5-0.8B Q4_K_M
 uv run openjev serve --profile balanced  # Qwen3.5-4B Q4_K_M，默认
 uv run openjev serve --profile quality   # Qwen3.6-35B-A3B UD-Q4_K_XL
+uv run openjev serve --profile max       # Qwen3.8-27B UD-Q4_K_XL
 ```
 
 一次只运行一个档位。默认一个推理槽位、四个 CPU 线程；`--threads 2` 可进一步限制 CPU。按 **Ctrl+C** 退出，CLI 会停止自己启动的后端。
@@ -85,6 +86,7 @@ uv run openjev serve --connect http://127.0.0.1:18081
 | `OPENJEV_IMAGE_MAX_EDGE` | `1024` | 缩放后图片最长边 |
 | `OPENJEV_IMAGE_ALIGN` | `32` | 视觉 token 边长（像素）；超大图片一次缩放到编码器实际尺寸，设为 `0` 关闭 |
 | `OPENJEV_PRIME_SHARED_PREFIX` | `true` | 多问题请求只读取一次共享 state |
+| `OPENJEV_PRIME_REPEATED_STATE` | `true` | 连续请求重复同一 state 时保留它，每个请求只读取自己的问题 |
 | `OPENJEV_TEMPLATE_CACHE` | `true` | 复用经后端核验的聊天模板骨架 |
 | `OPENJEV_RESPONSE_TIMING` | `true` | 在响应中加入 `timing` 对象；响应头始终包含耗时 |
 

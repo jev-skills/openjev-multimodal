@@ -15,3 +15,4 @@ benchmarks/replay/
 *.log
 site/.vitepress/cache/
 site/.vitepress/dist/
+.llamacpp/

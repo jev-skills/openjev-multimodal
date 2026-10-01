@@ -24,6 +24,9 @@ class Settings(BaseSettings):
     # Evaluate the shared prefix once per multi-question request so later questions resume
     # from a backend checkpoint instead of re-reading the state and re-encoding images.
     prime_shared_prefix: bool = True
+    # Also keep that checkpoint for a state that consecutive requests repeat with different
+    # questions, so each of them reads only its question.
+    prime_repeated_state: bool = True
     # Reuse a chat-template skeleton verified against the backend instead of rendering it
     # remotely on every request.
     template_cache: bool = True

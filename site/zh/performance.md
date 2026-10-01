@@ -73,6 +73,18 @@ Qwen3.5 与 Qwen3.6 是混合架构，循环层无法回滚到任意位置，而
 
 **图片只缩放一次。** 超出预算的图片直接缩放到视觉编码器使用的尺寸（32 像素网格），不再缩放两次。大尺寸 JPEG 以降采样方式解码：API 处理 2048×1536 降到 31 毫秒，4032×3024 降到 55 毫秒。
 
+## 重复的 state
+
+当连续请求重复同一个 state、只换问题时，API 会在 state 末尾保留检查点，每个请求只读取自己的问题。OpenJev 的 [llama.cpp 补丁](./models#max-qwen3-8-27b)更进一步：把检查点精确放在 state 末尾，并允许请求跳过 llama.cpp 为检查点每个提示末尾而额外进行的一次计算。
+
+| Qwen3.8-27B，精简俄罗斯方块提示 | 每次决策中位数 |
+| --- | ---: |
+| 原版 llama.cpp | 1.93 秒 |
+| 启用重复 state 缓存 | 0.83 秒 |
+| 缓存 + 补丁 | 0.66 秒 |
+
+每种配置 16 次决策，同一时间只运行一个服务（[测量记录](https://github.com/Hand-In/openjev-multimodal/tree/main/examples/tetris/report/probes)）。固定检查集的 32 个答案与原版 llama.cpp 完全一致。设置 `OPENJEV_PRIME_REPEATED_STATE=false` 可关闭该缓存。
+
 ## 准确性
 
 每次试验向两个版本发送完全相同的请求。
