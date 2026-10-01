@@ -6,7 +6,7 @@
 # Stock llama.cpp still works with OpenJev, only slower on those requests.
 #
 #   scripts/build-llama.sh
-#   uv run openjev serve --profile max --llama-server .llamacpp/llama.cpp/build/bin/llama-server
+#   uv run openjev serve --profile max   # uses this build automatically
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"

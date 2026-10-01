@@ -48,7 +48,7 @@ uv run openjev serve --profile quality  # one profile at a time
 uv run openjev doctor
 ```
 
-Quality weights are about 23.3 GB and max weights 17.6 GB, each plus a 0.9 GB projector. For sub-second `max` decisions on a repeated state, build the [patched llama.cpp](https://hand-in.github.io/openjev-multimodal/models#max-qwen3-8-27b) with `scripts/build-llama.sh`. Published measurements use an M3 Max with 128 GB memory; smaller-machine minimums were not benchmarked.
+Quality weights are about 23.3 GB and max weights 17.6 GB, each plus a 0.9 GB projector. For sub-second `max` decisions on a repeated state, build the [patched llama.cpp](https://hand-in.github.io/openjev-multimodal/models#max-qwen3-8-27b) once with `scripts/build-llama.sh`; `serve` then uses it. Slow downloads? `--source modelscope` fetches the same verified files from ModelScope. Published measurements use an M3 Max with 128 GB memory; smaller-machine minimums were not benchmarked.
 
 ## A decision is an API call
 

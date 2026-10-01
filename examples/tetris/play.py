@@ -161,6 +161,7 @@ def describe_server(jev: Jev) -> dict:
     return {
         "model": health["model"],
         "backend_build": health.get("backend_build"),
+        "weights": health.get("weights"),
         "profile": PROFILES.get(health["model"], health["model"]),
         "multimodal": health["multimodal"],
         "openjev": version,

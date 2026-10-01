@@ -6,6 +6,7 @@ import math
 import string
 import uuid
 from dataclasses import dataclass
+from pathlib import Path
 
 import httpx
 
@@ -57,6 +58,7 @@ class LlamaBackend:
         self.model = settings.model_name
         self.vision = False
         self.build: str | None = None  # llama.cpp build_info, reported by /health
+        self.weights: str | None = None  # the loaded weights file, reported by /health
         self.media_marker = "<__media__>"
         self.context_size = settings.max_input_tokens
         self.skeletons: dict[tuple[str, ...], _Skeleton | None] = {}
@@ -104,6 +106,7 @@ class LlamaBackend:
         props = await self.call("/props")
         self.media_marker = props.get("media_marker", self.media_marker)
         self.build = props.get("build_info")
+        self.weights = Path(props["model_path"]).name if props.get("model_path") else None
         try:
             self.model = catalog["data"][0]["id"]
             self.context_size = min(

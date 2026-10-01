@@ -43,7 +43,7 @@ uv run openjev serve --profile quality
 uv run openjev doctor
 ```
 
-一次只运行一个档位。quality 权重约 23.3 GB，max 约 17.6 GB，另需 0.9 GB 投影器。要让 max 在重复 state 上达到亚秒级，请用 `scripts/build-llama.sh` 构建[打过补丁的 llama.cpp](https://hand-in.github.io/openjev-multimodal/zh/models#max-qwen3-8-27b)。实测来自 M3 Max 128 GB，未测其他机器的最低内存要求。
+一次只运行一个档位。quality 权重约 23.3 GB，max 约 17.6 GB，另需 0.9 GB 投影器。要让 max 在重复 state 上达到亚秒级，请用 `scripts/build-llama.sh` 构建一次[打过补丁的 llama.cpp](https://hand-in.github.io/openjev-multimodal/zh/models#max-qwen3-8-27b)，`serve` 之后会自动使用它。下载慢时，`--source modelscope` 会从 ModelScope 获取同样经过校验的文件。实测来自 M3 Max 128 GB，未测其他机器的最低内存要求。
 
 ## API 示例
 

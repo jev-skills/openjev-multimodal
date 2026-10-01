@@ -59,6 +59,14 @@ uv run openjev serve --profile max       # Qwen3.8-27B UD-Q4_K_XL
 
 一次只运行一个档位。默认一个推理槽位、四个 CPU 线程；`--threads 2` 可进一步限制 CPU。按 **Ctrl+C** 退出，CLI 会停止自己启动的后端。
 
+## 更快下载
+
+```bash
+uv run openjev download --profile max --source modelscope
+```
+
+权重默认从 Hugging Face 下载。`--source modelscope` 从 ModelScope 获取相同的文件，在中国大陆通常快得多；另一个平台作为后备。下载以并行、可续传的分段进行（`--connections`，默认 8），按各档位固定的 SHA-256 校验，并存入 Hugging Face 缓存，之后可离线启动。设置 `OPENJEV_MODEL_SOURCE=modelscope` 即可设为默认。`--quant Q8_0` 选择 `max` 档位的 8-bit 权重。
+
 ## 使用已有模型
 
 ```bash

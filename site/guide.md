@@ -59,6 +59,14 @@ uv run openjev serve --profile max       # Qwen3.8-27B UD-Q4_K_XL
 
 Run one profile at a time. The server uses one inference slot and four CPU threads by default. `--threads 2` further limits CPU work. Stop with **Ctrl+C**; the CLI shuts down its own backend.
 
+## Download faster
+
+```bash
+uv run openjev download --profile max --source modelscope
+```
+
+Weights come from Hugging Face by default. `--source modelscope` fetches the same files from ModelScope, which is often far faster from mainland China; the other hub is the fallback. Downloads run as parallel, resumable ranges (`--connections`, default 8), are checked against the SHA-256 pinned for each profile, and land in the Hugging Face cache, so later runs start offline. Set `OPENJEV_MODEL_SOURCE=modelscope` to make it the default. `--quant Q8_0` selects the 8-bit weights of the `max` profile.
+
 ## Existing weights or backend
 
 ```bash
