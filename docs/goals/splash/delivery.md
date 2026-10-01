@@ -4,7 +4,7 @@ Researched and verified on September 21, 2026. Commit dates are fixed at October
 
 ## What Splash is
 
-[Splash](https://github.com/incoai/splash) (read at `7e3c67e`) is open source under Apache-2.0: a Python HTTP server over a C++ and Objective-C++ runtime with hand-shaped Metal kernels, built for two models (Qwen3.8-27B and Qwen3.6-35B-A3B). Its [Qwen3.8-27B package](https://huggingface.co/incoai/Qwen3.8-27B-Splash) holds the mlx-community 4-bit target, a DFlash 2 draft, the vision encoder and the tokenizer as fixed-layout binaries.
+[Splash](https://github.com/incoai/splash) (read at `7e3c67e`) is open source under Apache-2.0: a Python HTTP server over a C++ and Objective-C++ runtime with hand-shaped Metal kernels, built for two models (Qwen3.8-27B and Qwen3.6-35B-A3B). Its [Qwen3.8-27B package](https://huggingface.co/incoai/Qwen3.8-27B-Splash) holds a 4-bit target, a DFlash 2 draft, the vision encoder and the tokenizer as fixed-layout binaries.
 
 Why it is fast, from the source and the launch post:
 
@@ -26,6 +26,6 @@ The kernels need Metal 4: `MTL4CommandQueue`, MetalPerformancePrimitives tensor 
 
 ## Faster downloads
 
-Measured from this Mac: Hugging Face and hf-mirror.com delivered about 0.1 MB/s, and the local proxy on port 1082 refused connections. ModelScope delivered 12 MB/s on one connection and 52, 73 and 82 MB/s on 4, 8 and 16. ModelScope mirrors every unsloth GGUF repository the profiles use, `mlx-community/Qwen3.8-27B-8bit`, `incoai/Qwen3.8-27B-Splash` and `Qwen/Qwen3.8-27B`; not the quality weights (`havenoammo`) or Jundot's oQ8e-mtp.
+Measured from this Mac: Hugging Face and hf-mirror.com delivered about 0.1 MB/s, and the local proxy on port 1082 refused connections. ModelScope delivered 12 MB/s on one connection and 52, 73 and 82 MB/s on 4, 8 and 16. ModelScope mirrors every unsloth GGUF repository the profiles use, `incoai/Qwen3.8-27B-Splash` and `Qwen/Qwen3.8-27B`; not the quality weights (`havenoammo`).
 
 `openjev download` and `serve` take `--source modelscope` (or `OPENJEV_MODEL_SOURCE`), `--connections` and `--quant`. Files download as parallel, resumable 32 MB ranges, are checked against the SHA-256 pinned in `profiles.py` and are installed into the Hugging Face cache; a file missing from one hub comes from the other. The fast profile (737 MB) arrived and verified in 13.5 s. The 29 GB Q8_0 took about six minutes; one range failed after its retries, the resumed pass fetched it, and the file verified.

@@ -11,9 +11,9 @@ Published and verified on September 21, 2026. Commit author and committer dates 
 
 Qwen's Hugging Face organisation lists three Qwen3.8 models. Qwen3.8-27B is dense (27.8B parameters, the Qwen3.5 hybrid architecture, a vision tower, Apache-2.0) and runs on the existing llama.cpp support. Qwen3.8-Flash-Next activates about 6B of 125B parameters plus 51B n-gram embeddings; its smallest GGUF is 74.5 GB, too close to this Mac's GPU memory ceiling after the kernel panic of the same morning. Qwen3.8-2.4T-A95B is not a local model.
 
-Prompt processing decides OpenJev's speed, and on the dense 27B it is compute-bound: llama-bench measured 189–201 tokens/s for UD-Q4_K_XL and 204–219 for Q4_0, in steps of 32 tokens, and today's llama.cpp master matches b9670. The MLX 8-bit builds (mlx-community, LM Studio) and Jundot's oQ8e-mtp keep the vision tower; oMLX's published figure for oQ8e-mtp, 243 tokens/s at 1k context on an M4 Max, corresponds to about the same speed on this M3 Max. MTP heads speed up multi-token decoding, which a one-token readout never uses. UD-Q4_K_XL on llama.cpp was chosen: equal speed, image input through the existing projector, and the checkpoint control that the cache needs. MLX was not run again: its newest release is still the one in use during the panic.
+Prompt processing decides OpenJev's speed, and on the dense 27B it is compute-bound: llama-bench measured 189–201 tokens/s for UD-Q4_K_XL and 204–219 for Q4_0, in steps of 32 tokens, and today's llama.cpp master matches b9670. A published benchmark of an 8-bit build, 243 tokens/s at 1k context on an M4 Max, corresponds to about the same speed on this M3 Max. MTP heads speed up multi-token decoding, which a one-token readout never uses. UD-Q4_K_XL on llama.cpp was chosen: equal speed, image input through the existing projector, and the checkpoint control that the cache needs.
 
-The Q8_0 GGUF and the MLX files were queued for download but did not finish: the local proxy stopped passing Hugging Face's file CDN and direct transfers ran at about 100 KB/s. A resuming download loop was left running.
+The Q8_0 GGUF was queued for download but did not finish that day: the local proxy stopped passing Hugging Face's file CDN and direct transfers ran at about 100 KB/s. A resuming download loop was left running.
 
 ## Evidence
 

@@ -96,16 +96,6 @@ Every trial sends the identical request to both versions.
 - **Several questions:** probabilities within 0.001 on the 0.8B and 4B models, within 0.067 on 35B-A3B. The prefix now runs as its own batch, which changes the floating-point summation order.
 - **Photos:** within 0.018, from one resampling instead of two.
 
-## Not shipped: an MLX engine
-
-An in-process MLX engine was faster with images on the smaller models: a screenshot with four questions took 0.11 s on 0.8B and 0.57 s on 4B, against 0.24 s and 1.00 s with llama.cpp. It is not included.
-
-- **Different answers.** Probabilities moved by up to 0.52. The 0.8B model changed decisions in 5 of 8 request types; the larger models, on screenshots.
-- **Slower on 35B-A3B.** 1.01 s for one question about the ticket, against 0.33 s.
-- **Unstable.** A vision run ended in a macOS kernel panic in the GPU driver. A retry needs MLX memory and cache limits, a cache flush after every request and no concurrent GPU work.
-
-The receipts keep these measurements.
-
 ## Next
 
 - Batch the questions of one request from the shared checkpoint.

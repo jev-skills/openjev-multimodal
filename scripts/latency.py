@@ -1,7 +1,7 @@
 """Interleaved latency benchmark for one or more running OpenJev APIs.
 
 uv run python scripts/latency.py --output benchmarks/performance/balanced.json \
-    before=http://127.0.0.1:8101 after=http://127.0.0.1:8100 mlx=http://127.0.0.1:8102
+    before=http://127.0.0.1:8101 after=http://127.0.0.1:8100
 
 Every trial sends the same fresh payload to each endpoint in rotating order, so load from
 other processes affects all of them alike and answers can be compared one to one. A fresh

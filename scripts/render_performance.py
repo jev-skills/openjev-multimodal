@@ -2,7 +2,7 @@
 charts in English and Chinese. No inference.
 
 uv run python scripts/render_performance.py [receipts ...] [--chart [PROFILE]]
-    [--series before,after,mlx]
+    [--series before,after]
 """
 
 import argparse
@@ -14,7 +14,6 @@ ROOT = Path(__file__).resolve().parents[1]
 SERIES = {  # receipt endpoint: (English name, Chinese name, css class)
     "before": ("Before", "优化前", "s0"),
     "after": ("After", "优化后", "s1"),
-    "mlx": ("MLX engine (not shipped)", "MLX 引擎（未发布）", "s2"),
 }
 SHIPPED = "before,after"
 PANELS = [
@@ -218,7 +217,7 @@ def main():
     )
     parser.add_argument(
         "--series",
-        help="also print one table per profile with these endpoints, e.g. before,after,mlx",
+        help="also print one table per profile with these endpoints, e.g. before,after",
     )
     args = parser.parse_args()
     receipts = {path.stem: json.loads(path.read_text()) for path in args.receipts}
