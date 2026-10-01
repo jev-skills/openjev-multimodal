@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+dist/
+.DS_Store
+.env
+.local/
+.superpowers/
+node_modules/
+*.gguf
+*.log
+site/.vitepress/cache/
+site/.vitepress/dist/

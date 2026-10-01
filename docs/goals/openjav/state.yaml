@@ -1,0 +1,72 @@
+version: 2
+goal:
+  title: OpenJAV multimodal API and bilingual launch
+  slug: openjav
+  kind: specific
+  tranche: Complete the original end-to-end outcome with live evidence.
+  status: active
+  intake:
+    original_request: Jev API plus multimodal input, fast on this Mac, bilingual SEO site, GitHub deployment, October 1 commits.
+    interpreted_outcome: Working local inference service and published reproducible project.
+    input_shape: specific
+    audience: Developers building typed local AI decisions
+    authority: requested
+    proof_type: demo
+    completion_proof: Live API, real benchmarks, passing tests, deployed bilingual site and remote main.
+    likely_misfire: Mock inference or a chat wrapper presented as the actual Jev model.
+    blind_spots_considered: [probability semantics, model license, image privacy, Pages cannot host inference]
+    existing_plan_facts: [Hand-In/openjav-multimodal, main, 2026-10-01 commit dates]
+rules:
+  pm_owns_state: true
+  one_active_task: true
+  max_write_workers: 1
+  no_implementation_without_worker_or_pm_task: true
+  no_completion_without_judge_or_pm_audit: true
+  planning_is_not_completion: true
+  queued_required_worker_blocks_completion: true
+  continuous_until_full_outcome: true
+  missing_input_or_credentials_do_not_stop_goal: true
+  preserve_and_validate_existing_plan: true
+  intake_misfire_must_be_audited: true
+agents: {scout: installed, worker: installed, judge: installed}
+active_task: T002
+tasks:
+  - id: T001
+    type: pm
+    assignee: PM
+    status: done
+    objective: Verify the source contract, hardware, existing state and publishing access.
+    receipt:
+      result: done
+      summary: Empty local and remote repository; authenticated GitHub access; M3 Max 128 GB; llama.cpp b9670 installed; Qwen3.6 35B Q4 weight cached. HN item resolved through Firebase after HTTP 429.
+      evidence: [docs/superpowers/specs/2026-09-21-openjav.md]
+  - id: T002
+    type: pm
+    assignee: PM
+    status: active
+    objective: Implement and verify the local multimodal typed API, CLI and benchmark.
+    allowed_files: [src/, tests/, scripts/, examples/, pyproject.toml, uv.lock, .gitignore, docs/]
+    verify: [uv run pytest, uv run ruff check ., real llama-server smoke and latency benchmark]
+    stop_if: [An operation would destroy unrelated user state.]
+    receipt: null
+  - id: T003
+    type: pm
+    assignee: PM
+    status: queued
+    objective: Build and render bilingual SEO docs and demo using real benchmark evidence.
+    allowed_files: [site/, README.md, README.zh-CN.md, LICENSE, NOTICE, package.json, package-lock.json, docs/, .github/]
+    verify: [npm run docs:build, browser desktop and mobile review]
+    stop_if: [Required benchmark evidence is missing.]
+    receipt: null
+  - id: T004
+    type: pm
+    assignee: PM
+    status: queued
+    objective: Publish fixed-date commits and GitHub Pages, review and audit the complete outcome.
+    allowed_files: ['*']
+    verify: [remote commit dates, GitHub checks, public HTTP pages, live local API]
+    stop_if: [GitHub rejects credentials or permissions.]
+    receipt: null
+checks:
+  dirty_fingerprint: initial
+  last_verification: {result: discovery_complete, task: T001, commands: [system_profiler, gh repo view, git ls-remote, llama-server --version]}
